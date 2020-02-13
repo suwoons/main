@@ -1,4 +1,4 @@
-Nigel, Hanching, Shun De, Cranston, Sarah
+Sarah, Cranston, Shun De, Hanching, Nigel
 
 = Address Book (Level 3)
 ifdef::env-github,env-browser[:relfileprefix: docs/]
