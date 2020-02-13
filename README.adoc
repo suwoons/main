@@ -1,4 +1,6 @@
-Sarah, Cranston, Shun De, Hanching, Nigel
+Team: Nigel, Hanching, Shun De, Cranston, Sarah
+
+
 
 = Address Book (Level 3)
 ifdef::env-github,env-browser[:relfileprefix: docs/]
