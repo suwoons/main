@@ -96,7 +96,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code <String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
@@ -107,6 +107,9 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String remark} into a {@code Remark}.
+     */
     public static Remark parseRemark(String remark) {
         requireNonNull(remark);
         return new Remark(remark);
