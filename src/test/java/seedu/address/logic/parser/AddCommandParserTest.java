@@ -42,10 +42,6 @@ public class AddCommandParserTest {
     public void parse_allFieldsPresent_success() {
         Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
-        // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
-
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
@@ -91,10 +87,6 @@ public class AddCommandParserTest {
 
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB,
-                expectedMessage);
-
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB,
                 expectedMessage);
 
         // all prefixes missing

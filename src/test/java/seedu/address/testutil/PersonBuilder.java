@@ -82,7 +82,7 @@ public class PersonBuilder {
      * Sets the {@code Remark} of the {@code Person} that we are building.
      */
     public PersonBuilder withRemark(String remark) {
-        this.email = new Email(remark);
+        this.remark = new Remark(remark);
         return this;
     }
 
