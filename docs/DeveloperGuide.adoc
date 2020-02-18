@@ -1,4 +1,4 @@
-= AddressBook Level 3 - Developer Guide
+= TAble - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -12,9 +12,9 @@ ifdef::env-github[]
 :note-caption: :information_source:
 :warning-caption: :warning:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level3/tree/master
+:repoURL: https://github.com/AY1920-CS2103-W15-3/main/master
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `Team CS2103-W15-3`      Since: `Feb 2020`      Licence: `MIT`
 
 == Setting up
 
