@@ -295,17 +295,30 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
-|`* * *` |user |add a new person |
+|`* * *` |teaching assistant |add a new student |track all my students in a list
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |teaching assistant |delete a student |remove students that have changed classes
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`* * *` |teaching assistant |find a student by name |locate details of students without having to go through the entire list
+
+|`* * *` |teaching assistant |add consult timing and locations |keep track of all new consults promptly
+
+|`* * *` |teaching assistant |edit consult timing and locations |change consults when the students have to reschedule
+
+|`* * *` |teaching assistant |delete consults |remove consults that are cancelled
+
+|`* * *` |teaching assistant |list consults |track all consults that I have
+
+|`* *` |teaching assistant |find consults based on the date or place |easily locate my consults without having to go through the entire list
 
 |`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
+|`* *` |new user |see usage instructions |refer to instructions when I forget how to use the App
+
 |`*` |user with many persons in the address book |sort persons by name |locate a person easily
+
+
 |=======================================================================
 
 _{More to be added}_
