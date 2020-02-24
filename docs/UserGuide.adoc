@@ -142,6 +142,22 @@ Deletes the 1st student in the results of the `find` command.
 Clears all entries from the address book. +
 Format: `clear`
 
+=== Adding a consult: `addConsult`
+
+Add a consultation slot at the given time, date and place. +
+Format: `addConsult t/TIME d/DATE p/PLACE`
+
+****
+* The time provided must be in HH:MM format, i.e: 24-hour format
+* The date provided must be in DD-MM-YYYY format
+* The place provided should be any valid string
+****
+
+Example:
+
+* `addConsult t/10:00 d/03-03-2020 p/The Deck`.
+
+
 === Exiting the program : `exit`
 
 Exits the program. +
