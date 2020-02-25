@@ -36,7 +36,7 @@ Role: Developer
 '''
 
 === Sarah Lim
-image::m133225.jpg[width="150", align="left"]
+image::sarah.jpg[width="150", align="left"]
 {empty}[http://github.com/suwoons[github]] [<<sarah#, portfolio>>]
 
 Role: Developer
