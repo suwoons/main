@@ -24,7 +24,6 @@ image::hanching.jpg[width="150", align="left"]
 {empty}[http://github.com/hanchingyong[github]] [<<hanching#, portfolio>>]
 
 Role: Developer
-Responsibilities:
 
 '''
 
