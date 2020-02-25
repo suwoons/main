@@ -13,44 +13,40 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 
 === Nigel Neo
 image::damithc.jpg[width="150", align="left"]
-{empty}[http://www.comp.nus.edu.sg/~damithch[homepage]] [https://github.com/damithc[github]] [<<johndoe#, portfolio>>]
+{empty}[https://github.com/nigelnnk[github]] [<<nigel#, portfolio>>]
 
 Role: Developer
 
 '''
 
 === Han Ching
-image::lejolly.jpg[width="150", align="left"]
-{empty}[http://github.com/lejolly[github]] [<<johndoe#, portfolio>>]
+image::hanching.jpg[width="150", align="left"]
+{empty}[http://github.com/hanchingyong[github]] [<<hanching#, portfolio>>]
 
 Role: Developer
-Responsibilities:
 
 '''
 
 === Cranston Yeo
-image::yijinl.jpg[width="150", align="left"]
-{empty}[http://github.com/yijinl[github]] [<<johndoe#, portfolio>>]
+image::cranston.jpg[width="150", align="left"]
+{empty}[http://github.com/CranstonYeo[github]] [<<cranston#, portfolio>>]
 
 Role: Developer
-Responsibilities:
 
 '''
 
 === Sarah Lim
-image::m133225.jpg[width="150", align="left"]
-{empty}[http://github.com/suwoons[github]]
+image::sarah.jpg[width="150", align="left"]
+{empty}[http://github.com/suwoons[github]] [<<sarah#, portfolio>>]
 
 Role: Developer
-Responsibilities:
 
 '''
 
 === Shun De
 image::yl_coder.jpg[width="150", align="left"]
-{empty}[http://github.com/yl-coder[github]] [<<johndoe#, portfolio>>]
+{empty}[http://github.com/shunde97[github]] [<<shunde#, portfolio>>]
 
 Role: Developer
-Responsibilities:
 
 '''

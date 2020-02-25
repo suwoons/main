@@ -57,47 +57,47 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 Format: `help`
 
-=== Adding a person: `add`
+=== Adding a student: `add`
 
-Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+Adds a student to TAble +
+Format: `add n/NAME e/EMAIL [t/TAG]...`
 
 [TIP]
 A person can have any number of tags (including 0)
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe e/johnd@example.com`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com t/CS2103`
 
-=== Listing all persons : `list`
+=== Listing all students : `list`
 
-Shows a list of all persons in the address book. +
+Shows a list of all students in TAble. +
 Format: `list`
 
-=== Editing a person : `edit`
+=== Editing a student : `edit`
 
-Edits an existing person in the address book. +
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+Edits an existing student in TAble. +
+Format: `edit INDEX [n/NAME] [e/EMAIL] [t/TAG]...`
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
 * You can remove all the person's tags by typing `t/` without specifying any tags after it.
 ****
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` +
+* `edit 1 e/johndoe@example.com` +
 Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-=== Locating persons by name: `find`
+=== Locating students by name: `find`
 
-Finds persons whose names contain any of the given keywords. +
+Finds students whose names contain any of the given keywords. +
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 ****
@@ -116,14 +116,14 @@ Returns `john` and `John Doe`
 Returns any person having names `Betsy`, `Tim`, or `John`
 
 // tag::delete[]
-=== Deleting a person : `delete`
+=== Deleting a student : `delete`
 
-Deletes the specified person from the address book. +
+Deletes the specified student from TAble. +
 Format: `delete INDEX`
 
 ****
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
 * The index *must be a positive integer* 1, 2, 3, ...
 ****
 
@@ -131,16 +131,90 @@ Examples:
 
 * `list` +
 `delete 2` +
-Deletes the 2nd person in the address book.
+Deletes the 2nd student in the address book.
 * `find Betsy` +
 `delete 1` +
-Deletes the 1st person in the results of the `find` command.
+Deletes the 1st student in the results of the `find` command.
 
 // end::delete[]
-=== Clearing all entries : `clear`
+=== Adding a consult: `addConsult`
 
-Clears all entries from the address book. +
+Add a consultation slot at the given time, date and place. +
+Format: `addConsult t/TIME d/DATE p/PLACE`
+
+****
+* The time provided must be in HH:MM format, i.e: 24-hour format
+* The date provided must be in DD-MM-YYYY format
+* The place provided should be any valid string
+****
+
+Example:
+
+* `addConsult t/10:00 d/03-03-2020 p/The Deck`
+
+=== Editing a consult: `editConsult`
+
+Edit the time, date or place of an existing consultation slot. +
+Format: `editConsult INDEX [t/TIME] [d/DATE] [p/PLACE]`
+
+****
+* Edits the consult at the specified `INDEX`. The index refers to the index number shown in the displayed consultation list. The index *must be a positive integer* 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+****
+
+Example:
+
+* `editConsult 1 t/15:00` +
+Edits the time of the 1st consult to be at 15:00 hours i.e 3.00 p.m.
+* `edit 2 p/SR3` +
+Edits the place of the 2nd consult to be at SR3.
+
+=== Listing all consults : `listConsult`
+
+Shows a list of all consultations in TAble. +
+Format: `listConsult`
+
+=== Deleting a consult: `deleteConsult`
+
+Removes an existing consultation slot. +
+Format: `deleteConsult INDEX`
+
+****
+* Deletes the consultation at the specified `INDEX`.
+* The index refers to the index number shown in the displayed consultation list.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
+
+Example:
+
+* `listConsult` +
+`deleteConsult 2` +
+Deletes the 2nd consultation in TAble.
+
+=== Clearing all consults : `clearConsult`
+
+Clears all consultations slots in TAble. +
 Format: `clear`
+
+=== Locating consultations by date or place: `findConsult`
+
+Finds consultations whose date or place match any of the given keywords. +
+Format: `findConsult [DATE] [PLACE]`
+
+****
+* At least one of the optional fields must be provided
+* If both optional fields are provided, only consults that meet both criterion will be returned
+* The search is case insensitive. e.g `SR1` will match `sr1`
+* The order of the keywords matters. e.g. `find SR1 03-03-2020` will throw an error
+****
+
+Examples:
+
+* `findConsult 03-03-2020` +
+Returns all consults on 03-03-2020
+* `findConsult SR3` +
+Returns any consults that are held at SR3
 
 === Exiting the program : `exit`
 
