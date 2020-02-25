@@ -28,7 +28,6 @@ TAble is a handy desktop app, optimized for TAs who prefer to work with a Comman
 ** Project management:
 *** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 ** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
 *** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
 ** Documentation:
 *** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
@@ -52,8 +51,6 @@ _{you can add/remove categories in the list above}_
 
 include::../UserGuide.adoc[tag=delete]
 
-include::../UserGuide.adoc[tag=dataencryption]
-
 == Contributions to the Developer Guide
 
 |===
@@ -61,8 +58,6 @@ include::../UserGuide.adoc[tag=dataencryption]
 |===
 
 include::../DeveloperGuide.adoc[tag=undoredo]
-
-include::../DeveloperGuide.adoc[tag=dataencryption]
 
 
 == PROJECT: PowerPointLabs

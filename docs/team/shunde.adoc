@@ -1,4 +1,4 @@
-= Shun De - Project Portfolio
+= Shun De- Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
