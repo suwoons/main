@@ -44,7 +44,7 @@ Role: Developer
 '''
 
 === Shun De
-image::yl_coder.jpg[width="150", align="left"]
+image::shunde.jpg[width="150", align="left"]
 {empty}[http://github.com/shunde97[github]] [<<shunde#, portfolio>>]
 
 Role: Developer
