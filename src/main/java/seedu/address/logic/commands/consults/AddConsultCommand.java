@@ -29,8 +29,8 @@ public class AddConsultCommand extends Command {
             + PREFIX_CONSULT_STUDENT + "STUDENT "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_EVENT_NAME + "CS2103 Consultation "
-            + PREFIX_EVENT_BEGIN_DATE_TIME + "2020-03-03T10:00 "
-            + PREFIX_EVENT_END_DATE_TIME + "2020-03-03T12:00 "
+            + PREFIX_EVENT_BEGIN_DATE_TIME + "2020-03-03 10:00 "
+            + PREFIX_EVENT_END_DATE_TIME + "2020-03-03 12:00 "
             + PREFIX_EVENT_LOCATION + "Outside SR1 "
             + PREFIX_CONSULT_STUDENT + "A0123456P";
 

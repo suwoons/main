@@ -10,13 +10,14 @@ import java.time.LocalDateTime;
  */
 public abstract class Event {
 
-    private String eventName;
+    private EventName eventName;
     private LocalDateTime eventBeginDateTime;
     private LocalDateTime eventEndDateTime;
-    private String location;
+    private EventLocation location;
 
 
-    public Event(String eventName, LocalDateTime eventBeginDateTime, LocalDateTime eventEndDateTime, String location) {
+    public Event(EventName eventName, LocalDateTime eventBeginDateTime, LocalDateTime eventEndDateTime,
+                 EventLocation location) {
         requireAllNonNull(eventName, eventBeginDateTime, eventEndDateTime, location);
         this.eventName = eventName;
         this.eventBeginDateTime = eventBeginDateTime;
@@ -24,7 +25,7 @@ public abstract class Event {
         this.location = location;
     }
 
-    public String getEventName() {
+    public EventName getEventName() {
         return eventName;
     }
 
@@ -36,7 +37,7 @@ public abstract class Event {
         return eventEndDateTime;
     }
 
-    public String getLocation() {
+    public EventLocation getLocation() {
         return location;
     }
 
