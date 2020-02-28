@@ -131,18 +131,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasConsult(Consult consult) {
-        requireNonNull(consult);
-        return addressBook.hasConsult(consult);
-    }
-
-    @Override
-    public void addConsult(Consult toAdd) {
-        addressBook.addConsult(consult);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -159,6 +147,19 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+
+    @Override
+    public boolean hasConsult(Consult consult) {
+        requireNonNull(consult);
+        return addressBook.hasConsult(consult);
+    }
+
+    @Override
+    public void addConsult(Consult consult) {
+        addressBook.addConsult(consult);
+        //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
 }
