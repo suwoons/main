@@ -1,15 +1,17 @@
 package seedu.address.model.event.consult;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.consult.exceptions.ConsultNotFoundException;
 import seedu.address.model.event.consult.exceptions.DuplicateConsultException;
 
-import java.util.Iterator;
-import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of consults that enforces uniqueness between its elements and does not allow nulls.

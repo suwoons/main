@@ -122,16 +122,21 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode();
     }
 
+    /// consult-level operations
+
+    /**
+     * Returns true if a consult with the same identity as {@code consult} exists in TAble.
+     */
     public boolean hasConsult(Consult consult) {
         requireNonNull(consult);
         return consults.contains(consult);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a consult to TAble.
+     * The consult must not already exist in TAble.
      */
-     public void addConsult(Consult consult) {
+    public void addConsult(Consult consult) {
         consults.add(consult);
     }
 
