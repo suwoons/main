@@ -1,40 +1,45 @@
 package seedu.address.model.event;
 
-
 import seedu.address.model.person.Person;
-
-import java.time.LocalDateTime;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
+
 /**
  * Represents an Event in TAble.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated.
  */
 public abstract class Event {
 
     private String eventName;
-    private LocalDateTime eventStartTime;
-    private LocalDateTime eventEndTime;
+    private LocalDateTime eventBeginDateTime;
+    private LocalDateTime eventEndDateTime;
+    private String location;
 
 
-    public Event(String eventName, LocalDateTime eventStartTime, LocalDateTime eventEndTime) {
-        requireAllNonNull(eventName, eventStartTime, eventEndTime);
+    public Event(String eventName, LocalDateTime eventBeginDateTime, LocalDateTime eventEndDateTime, String location) {
+        requireAllNonNull(eventName, eventBeginDateTime, eventEndDateTime, location);
         this.eventName = eventName;
-        this.eventStartTime = eventStartTime;
-        this.eventEndTime = eventEndTime;
+        this.eventBeginDateTime = eventBeginDateTime;
+        this.eventEndDateTime = eventEndDateTime;
+        this.location = location;
     }
 
     public String getEventName() {
         return eventName;
     }
 
-    public LocalDateTime getEventStartTime() {
-        return eventStartTime;
+    public LocalDateTime getEventBeginDateTime() {
+        return eventBeginDateTime;
     }
 
-    public LocalDateTime getEventEndTime() {
-        return eventEndTime;
+    public LocalDateTime getEventEndDateTime() {
+        return eventEndDateTime;
+    }
+
+    public String getLocation() {
+        return location;
     }
 
     /**
@@ -53,8 +58,9 @@ public abstract class Event {
 
         Event otherEvent = (Event) other;
         return otherEvent.getEventName().equals(getEventName())
-                && otherEvent.getEventStartTime().equals(getEventStartTime())
-                && otherEvent.getEventEndTime().equals(getEventEndTime());
+                && otherEvent.getEventBeginDateTime().equals(getEventBeginDateTime())
+                && otherEvent.getEventEndDateTime().equals(getEventEndDateTime())
+                && otherEvent.getLocation().equals(getLocation());
     }
 
     @Override
@@ -62,9 +68,11 @@ public abstract class Event {
         final StringBuilder builder = new StringBuilder();
         builder.append(getEventName())
                 .append(" Start Time: ")
-                .append(getEventStartTime())
+                .append(getEventBeginDateTime())
                 .append(" End Time: ")
-                .append(getEventEndTime());
+                .append(getEventEndDateTime())
+                .append(" Location: ")
+                .append(getLocation());
         return builder.toString();
     }
 
