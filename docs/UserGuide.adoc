@@ -307,6 +307,53 @@ Displays the attendance list for CS2103 T02 from week 1 to week 13 (unmarked att
 Lists all the tutorials that the TA is teaching for the particular semester on TAble. +
 Format: `listTutorial`
 
+=== Add Module into database: `addModule`
+Adds module into TAble. +
+Format: `addModule m/MODULE`
+
+Example:
+
+* `addModule m/CS1010S`
+
+=== Edit Module description: `editModule`
+Edits corresponding description of module. +
+Format: `editModule m/MODULE d/DESCRIPTION`
+
+Example:
+
+* `editModule m/CS1010S d/How cool is that?` +
+When viewing the module page for CS1010S, the description will be updated to show "How cool is that?"
+
+=== Add link to module with appropriate tag: `linkModule`
+Edit module to include links to appropriate websites (e.g. Google Drive Folder, Module Website etc.) +
+Format: `linkModule m/MODULE l/LINK t/TAG`
+
+Example:
+
+* `linkModule m/CS1231 l/comp.nus.edu.sg/~cs1231 t/Website` +
+When viewing he module page for CS1231, there will be an additional clickable link that is labelled "Website" and points to https://comp.nus.edu.sg/~cs1231.
+
+=== Add lecture timeslot: `addLecture` [coming in v2.0]
+Adds lecture timeslot to module. +
+Format: `addLecture m/MODULE d/DAY from/TIME to/TIME p/LOCATION`
+
+Example:
+
+* `addLecture m/CS1010S d/WED from/1400 to/1600 p/LT27`
+
+=== Clear all lecture timeslots: `clearLecture` [coming in v2.0]
+Clears all lectures associated with a certain module. +
+Format: `clearLecture m/MODULE`
+
+Example:
+
+* `clearLecture m/CS1010S`
+
+=== View Module: `viewModule`
+Opens the view for the selected module to view module description, links and lecture timeslots.
+
+Format: `viewModule m/MODULE`
+
 === Exiting the program : `exit`
 
 Exits the program. +
