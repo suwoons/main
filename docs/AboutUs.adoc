@@ -12,7 +12,7 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 == Project Team
 
 === Nigel Neo
-image::nigelnnk.jpg[width="150", align="left"]
+image::nigelnnk.png[width="150", align="left"]
 {empty}[https://github.com/nigelnnk[github]] [<<nigelnnk#, portfolio>>]
 
 Role: Developer
@@ -20,7 +20,7 @@ Role: Developer
 '''
 
 === Han Ching
-image::hanchingyong.jpg[width="150", align="left"]
+image::hanchingyong.png[width="150", align="left"]
 {empty}[http://github.com/hanchingyong[github]] [<<hanchingyong#, portfolio>>]
 
 Role: Developer
@@ -28,7 +28,7 @@ Role: Developer
 '''
 
 === Cranston Yeo
-image::cranstonyeo.jpg[width="150", align="left"]
+image::cranstonyeo.png[width="150", align="left"]
 {empty}[http://github.com/CranstonYeo[github]] [<<cranstonyeo#, portfolio>>]
 
 Role: Developer
@@ -36,7 +36,7 @@ Role: Developer
 '''
 
 === Sarah Lim
-image::suwoons.jpg[width="150", align="left"]
+image::suwoons.png[width="150", align="left"]
 {empty}[http://github.com/suwoons[github]] [<<suwoons#, portfolio>>]
 
 Role: Developer
@@ -44,7 +44,7 @@ Role: Developer
 '''
 
 === Shun De
-image::shunde97.jpg[width="150", align="left"]
+image::shunde97.png[width="150", align="left"]
 {empty}[http://github.com/shunde97[github]] [<<shunde97#, portfolio>>]
 
 Role: Developer

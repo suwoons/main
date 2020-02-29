@@ -3,7 +3,7 @@ ifdef::env-github,env-browser[:relfileprefix: docs/]
 
 _TAble Teaching Assistant Tool_
 
-https://api.travis-ci.org/AY1920-CS2103-W15-3/main[image:https://api.travis-ci.org/AY1920-CS2103-W15-3/main.svg?branch=master[Build status]]
+https://api.travis-ci.org/AY1920-CS2103-W15-3/main[image:https://travis-ci.org/AY1920S2-CS2103-W15-3/main.svg?branch=master[build status]]
 
 
 ifdef::env-github[]
