@@ -18,5 +18,6 @@ public class Consult extends Event {
     public Consult(EventName eventName, LocalDateTime eventStartTime, LocalDateTime eventEndTime,
                    EventLocation location) {
         super(eventName, eventStartTime, eventEndTime, location);
+        //this.student = student;
     }
 }

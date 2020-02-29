@@ -109,8 +109,17 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Gets student with specific index number.
+     *
+     * @param indexNumber Index number of student.
+     * @return Student with index number specified.
+     */
+    public Person getStudent(int indexNumber) {
+        return addressBook.getStudent(indexNumber);
     }
 
     //=========== Filtered Person List Accessors =============================================================

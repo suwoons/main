@@ -97,6 +97,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+
+    /**
+     * Returns {@code student} from {@code TAble}.
+     * {@code student} must exist in the address book.
+     */
+    public Person getStudent(int index) {
+        return persons.getStudent(index);
+    }
+
     //// util methods
 
     @Override

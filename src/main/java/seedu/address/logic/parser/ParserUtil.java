@@ -159,7 +159,7 @@ public class ParserUtil {
     public static LocalDateTime parseEventTime(String eventTime) throws ParseException {
         requireNonNull(eventTime);
         String trimmedEventTime = eventTime.trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-DD HH:MM");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime formattedEventTime;
         try {
             formattedEventTime = LocalDateTime.parse(trimmedEventTime, formatter);

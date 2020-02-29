@@ -1,7 +1,7 @@
 package seedu.address.logic.parser.consults;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_STUDENT;
+//import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_STUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_BEGIN_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_LOCATION;
@@ -35,10 +35,10 @@ public class AddConsultCommandParser implements Parser<AddConsultCommand> {
     public AddConsultCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_EVENT_NAME, PREFIX_EVENT_BEGIN_DATE_TIME,
-                        PREFIX_EVENT_END_DATE_TIME, PREFIX_EVENT_LOCATION, PREFIX_CONSULT_STUDENT);
+                        PREFIX_EVENT_END_DATE_TIME, PREFIX_EVENT_LOCATION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_NAME, PREFIX_EVENT_BEGIN_DATE_TIME,
-                PREFIX_EVENT_END_DATE_TIME, PREFIX_EVENT_LOCATION, PREFIX_CONSULT_STUDENT)
+                PREFIX_EVENT_END_DATE_TIME, PREFIX_EVENT_LOCATION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddConsultCommand.MESSAGE_USAGE));
@@ -51,6 +51,7 @@ public class AddConsultCommandParser implements Parser<AddConsultCommand> {
                 PREFIX_EVENT_END_DATE_TIME).get());
         EventLocation eventLocation = ParserUtil.parseEventLocation(argMultimap.getValue(
                 PREFIX_EVENT_LOCATION).get());
+        //Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONSULT_STUDENT).get());
 
         Consult consult = new Consult(eventName, eventBeginDateTime, eventEndDateTime, eventLocation);
 
