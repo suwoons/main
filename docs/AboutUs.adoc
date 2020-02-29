@@ -12,40 +12,40 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 == Project Team
 
 === Nigel Neo
-image::nigel.jpg[width="150", align="left"]
-{empty}[https://github.com/nigelnnk[github]] [<<nigel#, portfolio>>]
+image::nigelnnk.jpg[width="150", align="left"]
+{empty}[https://github.com/nigelnnk[github]] [<<nigelnnk#, portfolio>>]
 
 Role: Developer
 
 '''
 
 === Han Ching
-image::hanching.jpg[width="150", align="left"]
-{empty}[http://github.com/hanchingyong[github]] [<<hanching#, portfolio>>]
+image::hanchingyong.jpg[width="150", align="left"]
+{empty}[http://github.com/hanchingyong[github]] [<<hanchingyong#, portfolio>>]
 
 Role: Developer
 
 '''
 
 === Cranston Yeo
-image::cranston.jpg[width="150", align="left"]
-{empty}[http://github.com/CranstonYeo[github]] [<<cranston#, portfolio>>]
+image::cranstonyeo.jpg[width="150", align="left"]
+{empty}[http://github.com/CranstonYeo[github]] [<<cranstonyeo#, portfolio>>]
 
 Role: Developer
 
 '''
 
 === Sarah Lim
-image::sarah.jpg[width="150", align="left"]
-{empty}[http://github.com/suwoons[github]] [<<sarah#, portfolio>>]
+image::suwoons.jpg[width="150", align="left"]
+{empty}[http://github.com/suwoons[github]] [<<suwoons#, portfolio>>]
 
 Role: Developer
 
 '''
 
 === Shun De
-image::shunde.jpg[width="150", align="left"]
-{empty}[http://github.com/shunde97[github]] [<<shunde#, portfolio>>]
+image::shunde97.jpg[width="150", align="left"]
+{empty}[http://github.com/shunde97[github]] [<<shunde97#, portfolio>>]
 
 Role: Developer
 

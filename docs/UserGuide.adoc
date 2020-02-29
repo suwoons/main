@@ -307,6 +307,7 @@ Displays the attendance list for CS2103 T02 from week 1 to week 13 (unmarked att
 Lists all the tutorials that the TA is teaching for the particular semester on TAble. +
 Format: `listTutorial`
 
+//tag::Module[]
 === Add Module into database: `addModule`
 Adds module into TAble. +
 Format: `addModule m/MODULE`
@@ -353,7 +354,7 @@ Example:
 Opens the view for the selected module to view module description, links and lecture timeslots.
 
 Format: `viewModule m/MODULE`
-
+//end::Module[]
 === Exiting the program : `exit`
 
 Exits the program. +
