@@ -18,9 +18,7 @@ By: `AY1920-CS2103-W15-3`      Since: `Feb 2020`      Licence: `MIT`
 
 == Introduction
 
-Have you ever had trouble keeping track of your tutorials and students as a TA in NUS? TAble is your handy desktop app,
-optimized for TAs who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical
-User Interface (GUI)! Mark attendance, arrange consults, add module notes, and more with TAble!
+Have you ever had trouble keeping track of your tutorials and students as a TA in NUS? TAble is your handy desktop app, optimized for TAs who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)! Mark attendance, arrange consults, add module notes, and more with TAble!
 
 == Quick Start
 
@@ -251,8 +249,7 @@ Example:
 
 === Marks students as present: `markPresent`
 
-Takes attendance of students in a tutorial class by marking them as present for a particular week.
-Present students will be marked with a :heavy_check_mark:. +
+Takes attendance of students in a tutorial class by marking them as present for a particular week. Present students will be marked with a :heavy_check_mark:. +
 Format: `markPresent m/MODULE n/TUTORIAL_NAME w/WEEK s/STUDENT`
 
 ****
@@ -270,8 +267,7 @@ Marks all students in CS2103 T02 in week 7 as present
 
 === Marks students as absent: `markAbsent`
 
-Takes attendance of students in a tutorial class by marking them as absent for a particular week.
-Absent students will be marked with a :x:. +
+Takes attendance of students in a tutorial class by marking them as absent for a particular week. Absent students will be marked with a :x:. +
 Format: `markPresent m/MODULE n/TUTORIAL_NAME w/WEEK s/STUDENT`
 
 ****
@@ -330,8 +326,7 @@ _{explain how the user can enable/disable data encryption}_
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the
-data of your previous TAble folder.
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TAble folder.
 
 == Command Summary
 
