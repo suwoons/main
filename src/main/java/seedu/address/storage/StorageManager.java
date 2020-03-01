@@ -10,6 +10,8 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.event.consult.ReadOnlyConsult;
+import seedu.address.storage.consults.ConsultStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -19,12 +21,15 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private ConsultStorage consultStorage;
 
 
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                          ConsultStorage consultStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.consultStorage = consultStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -72,6 +77,35 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // Consult methods
+
+    @Override
+    public Path getConsultsFilePath() {
+        return consultStorage.getConsultsFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyConsult> readConsults() throws DataConversionException, IOException {
+        return readConsults(consultStorage.getConsultsFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyConsult> readConsults(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return consultStorage.readConsults(filePath);
+    }
+
+    @Override
+    public void saveConsults(ReadOnlyConsult consults) throws IOException {
+        saveConsults(consults, consultStorage.getConsultsFilePath());
+    }
+
+    @Override
+    public void saveConsults(ReadOnlyConsult consults, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        consultStorage.saveConsults(consults, filePath);
     }
 
 }

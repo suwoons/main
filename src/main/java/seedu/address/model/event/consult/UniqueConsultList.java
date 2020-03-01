@@ -135,4 +135,17 @@ public class UniqueConsultList implements Iterable<Consult> {
         }
         return true;
     }
+
+    /**
+     * Returns the student at the {@code index}.
+     * @param index Index of the student.
+     * @return Student at the index.
+     */
+    public Consult getConsult(int index) {
+        return internalList.get(index);
+    }
+
+    public ObservableList<Consult> getAllConsults() {
+        return this.internalList;
+    }
 }

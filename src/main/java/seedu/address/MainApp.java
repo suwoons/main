@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
@@ -28,6 +29,8 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.consults.ConsultStorage;
+import seedu.address.storage.consults.JsonConsultStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -57,7 +60,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ConsultStorage consultStorage = new JsonConsultStorage(userPrefs.getConsultTAbleFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, consultStorage);
 
         initLogging(config);
 
