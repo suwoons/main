@@ -1,3 +1,7 @@
+.root {
+    -style-colour-orange: #ff7607
+}
+
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
@@ -39,6 +43,39 @@
     -fx-max-height: 0;
 }
 
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab {
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #3c3c3c;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+.tab .tab-label {
+    -fx-alignment: center;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-font-size: 12pt;
+    -fx-padding: 0 0 0 0;
+    /*-fx-font-weight: bold;*/
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: center;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -style-colour-orange;
+    -fx-border-color: null;
+}
+	
+
 .table-view {
     -fx-base: #1d1d1d;
     -fx-control-inner-background: #1d1d1d;
@@ -59,7 +96,7 @@
     -fx-border-color:
         transparent
         transparent
-        derive(-fx-base, 80%)
+        derive(-style-colour-orange, -10%)
         transparent;
     -fx-border-insets: 0 10 1 0;
 }
@@ -108,11 +145,11 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: derive(-style-colour-orange, -50%);
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
+    -fx-border-color: derive(-style-colour-orange, 50%);
     -fx-border-width: 1;
 }
 
@@ -201,6 +238,10 @@
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
+}
+
+.menu-bar:selected .label {
+    -fx-background-color: derive(-style-colour-orange, 20%)
 }
 
 .menu .left-container {
