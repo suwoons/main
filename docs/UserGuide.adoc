@@ -355,6 +355,124 @@ Opens the view for the selected module to view module description, links and lec
 
 Format: `viewModule m/MODULE`
 //end::Module[]
+
+// tag::Reminder[]
+=== Adding a reminder: `addReminder`
+
+Adds a reminder to the reminder list. +
+Format: `addReminder i/INFO d/DATE t/TIME`
+
+[TIP]
+Reminders will alert the user during the stipulated date and time.
+
+****
+* The information provided should be any valid string.
+* The date provided must be in DD-MM-YYYY format
+* The time provided must be in HH:MM format, i.e: 24-hour format
+****
+
+Examples:
+
+* `addReminder i/Mark midterms papers d/05-03-2020 t/14:00`
+
+=== List all reminders: `listReminder`
+
+Lists all the reminders that the TA have added on TAble. +
+Format: `listReminder`
+
+=== Marking a reminder as done: `doneReminder`
+
+Marks the reminder from the reminder list as done. +
+Format: `doneReminder INDEX`
+
+[TIP]
+Reminders marked as done will no longer alert the user during the stipulated date and time.
+
+****
+* Marks the reminder at the specified `INDEX` as done.
+* The index refers to the index number shown in the displayed reminder list.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
+
+Examples:
+
+* `listReminder` +
+`doneReminder 3` +
+Mark the 3rd reminder in TAble as done.
+
+=== Deleting a reminder: `deleteReminder`
+
+Deletes the specified reminder from the reminder list. +
+Format: `deleteReminder INDEX`
+
+****
+* Deletes the reminder at the specified `INDEX`.
+* The index refers to the index number shown in the displayed reminder list.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
+
+Examples:
+
+* `listReminder` +
+`deleteReminder 3` +
+Deletes the 3rd reminder in TAble.
+
+=== Editing a reminder: `editReminder`
+
+Edits an existing reminder in the reminder list. +
+Format: `editReminder INDEX [i/INFO] [d/DATE] t/TIME]`
+
+****
+* Edits the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index *must be a positive integer* 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+****
+
+Examples:
+
+* `editReminder 1 i/Return midterms papers` +
+Edits the information of the 1st reminder to "Return midterms paper".
+
+* `editReminder 3 d/20-05-2020 t/18:00` +
+Edits the date of the 3rd reminder to 20th May 2020 18:00 hours i.e. 6.00 p.m.
+
+=== Finding reminders by information or date: `findReminder`
+Finds reminders matching with the given keyword or date.
+Format: `findReminder [i/INFO] [d/DATE]`
+
+****
+* The search is case insensitive. e.g `Mark` will match `mark`
+* At least one of the optional fields must be provided.
+* If both optional fields are provided, only reminders matching both criteria will be displayed.
+****
+
+Examples:
+
+* `findReminder i/mark`
+Returns reminders containing the keyword 'mark'.
+* `findReminder d/05-03-2020` +
+Returns all reminders on 05 May 2020. 
+
+=== Snoozing a reminder: `snoozeReminder`
+
+Snoozes a reminder in the reminder list. +
+Format: `snoozeReminder INDEX [d/DAY] [h/HOUR]`
+
+****
+* Snooze the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index *must be a positive integer* 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Number of days provided must be a positive whole number.
+* Number of hours provided can either be a positive whole number or a positive decimal number up to 1 decimal place (e.g. 0.5 represents half an hour).
+****
+
+Examples:
+
+* `snoozeReminder 2 d/3 h/0.5` +
+Postpone the second reminder to 3 days and half an hour later.
+* `snoozeReminder 4 h/2` +
+Postpone the fourth reminder to 2 hours later.
+//end::Reminder[]
+
 === Exiting the program : `exit`
 
 Exits the program. +
