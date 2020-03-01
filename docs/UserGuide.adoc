@@ -451,7 +451,7 @@ Examples:
 * `findReminder i/mark`
 Returns reminders containing the keyword 'mark'.
 * `findReminder d/05-03-2020` +
-Returns all reminders on 05 May 2020. 
+Returns all reminders on 05 May 2020.
 
 === Snoozing a reminder: `snoozeReminder`
 
