@@ -92,7 +92,7 @@ public class MainApp extends Application {
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            if(!consultsOptional.isPresent()) {
+            if (!consultsOptional.isPresent()) {
                 logger.info("Consults file not found. Will be starting with no consults");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);

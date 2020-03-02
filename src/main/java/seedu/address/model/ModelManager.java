@@ -35,8 +35,8 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(addressBook, userPrefs, consultTAble);
 
-        logger.fine("Initializing with address book: " + addressBook + " ,user prefs " + userPrefs +
-            " and " + consultTAble);
+        logger.fine("Initializing with address book: " + addressBook + " ,user prefs " + userPrefs
+            + " and " + consultTAble);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
