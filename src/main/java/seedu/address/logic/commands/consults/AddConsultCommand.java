@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.consult.Consult;
 
 /**
- * Adds an event into TAble.
+ * Adds a consult into TAble.
  */
 public class AddConsultCommand extends Command {
 

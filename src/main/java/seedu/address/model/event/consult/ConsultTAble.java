@@ -28,11 +28,18 @@ public class ConsultTAble implements ReadOnlyConsult {
     public ConsultTAble() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a ConsultTAble using the consults in the {@code toBeCopied}
      */
     public ConsultTAble(ReadOnlyConsult toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    /**
+      * Creates a ConsultTAble using the consults in the {@code consultList}
+     */
+    public ConsultTAble(List<Consult> consultList) {
+        this.consults.setConsults(consultList);
     }
 
     //// list overwrite operations
