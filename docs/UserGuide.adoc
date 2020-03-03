@@ -60,7 +60,7 @@ Format: `help`
 === Adding a student: `add`
 
 Adds a student to TAble +
-Format: `add [n/NAME] [id/STUDENTID] [e/EMAIL] [t/TAG]...`
+Format: `add n/NAME id/STUDENTID e/EMAIL [t/TAG]...`
 
 [TIP]
 A person can have any number of tags (including 0)
