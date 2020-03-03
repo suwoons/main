@@ -3,19 +3,37 @@ package seedu.address.model.student;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.HashSet;
 import java.util.Set;
 
-public class Student extends Person {
+public class Student {
 
+    private Name name;
     private StudentID studentID;
+    private Email email;
+    private final Set<Tag> tags = new HashSet<>();
 
-    public Student(Name name, StudentID studentID, Phone phone, Email email, Set<Tag> tags, Remark remark) {
-        super(name, phone, email, tags, remark);
+
+    public Student(Name name, StudentID studentID, Email email, Set<Tag> tags) {
+        requireAllNonNull(name, studentID, email);
+        this.name = name;
         this.studentID = studentID;
+        this.email = email;
+        this.tags.addAll(tags);
     }
 
     public StudentID getStudentID() {
         return studentID;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public Email getEmail() {
+        return email;
     }
 
     public boolean isSameStudent(Student otherStudent) {
@@ -26,7 +44,7 @@ public class Student extends Person {
         return otherStudent != null
                 && otherStudent.getName().equals(getName())
                 && otherStudent.getStudentID().equals(getStudentID())
-                && (otherStudent.getPhone().equals(getPhone()) || otherStudent.getEmail().equals(getEmail()));
+                &&  otherStudent.getEmail().equals(getEmail());
     }
 
     @Override
@@ -41,7 +59,6 @@ public class Student extends Person {
 
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
-                && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getStudentID().equals(getStudentID());
     }
@@ -52,14 +69,10 @@ public class Student extends Person {
         builder.append(getName())
                 .append(" Student ID: ")
                 .append(getStudentID())
-                .append(" Phone: ")
-                .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Tags: ")
-                .append(" Remarks ")
-                .append(getRemark());
-        getTags().forEach(builder::append);
+                .append(" Remarks ");
         return builder.toString();
     }
 
