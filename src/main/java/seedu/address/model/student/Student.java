@@ -78,15 +78,13 @@ public class Student {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Student ID: ")
-                .append(getStudentID())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Tags: ")
-                .append(" Remarks ");
-        return builder.toString();
+        return getName() +
+                " Student ID: " +
+                getStudentID() +
+                " Email: " +
+                getEmail() +
+                " Tags: " +
+                " Remarks ";
     }
 
 }
