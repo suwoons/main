@@ -60,7 +60,7 @@ Format: `help`
 === Adding a student: `add`
 
 Adds a student to TAble +
-Format: `add n/NAME e/EMAIL [t/TAG]...`
+Format: `add [n/NAME] [id/STUDENTID] [e/EMAIL] [t/TAG]...`
 
 [TIP]
 A person can have any number of tags (including 0)
@@ -78,7 +78,7 @@ Format: `list`
 === Editing a student : `edit`
 
 Edits an existing student in TAble. +
-Format: `edit INDEX [n/NAME] [e/EMAIL] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [id/STUDENTID] [e/EMAIL] [t/TAG]...`
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
