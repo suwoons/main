@@ -8,8 +8,12 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Represents a Student in TAble
+ */
 public class Student {
 
+    // Identity fields
     private Name name;
     private StudentID studentID;
     private Email email;
@@ -36,6 +40,11 @@ public class Student {
         return email;
     }
 
+    /**
+     * Returns true if both students of the same name other identity fields that are the same.
+     * This defines a weaker notion of equality between two persons.
+     */
+
     public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
             return true;
@@ -47,6 +56,10 @@ public class Student {
                 &&  otherStudent.getEmail().equals(getEmail());
     }
 
+    /**
+     * Returns true if both students have the same identity and data fields.
+     * This defines a stronger notion of equality between two persons.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
