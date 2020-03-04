@@ -31,7 +31,7 @@ TAble is your handy desktop app, optimized for TAs who prefer to work with a Com
 ** Community:
 *** To be updated
 ** Tools:
-*** Set up Travis-CI.
+*** Set up Travis-CI and Netifly.
 
 _{you can add/remove categories in the list above}_
 
