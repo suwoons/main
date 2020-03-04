@@ -1,11 +1,18 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.EventLocation;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.consult.Consult;
+import seedu.address.model.event.consult.ConsultTAble;
+import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -49,6 +56,18 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+    public static ReadOnlyConsult getSampleConsults() {
+        LocalDateTime startTime = LocalDateTime.now();
+        LocalDateTime endTime = LocalDateTime.now().plusHours(3);
+        EventName eventName = new EventName("Sample Consult");
+        EventLocation eventLocation = new EventLocation("SR1");
+        Consult consult = new Consult(eventName, startTime, endTime, eventLocation);
+        ArrayList<Consult> consultList = new ArrayList<>();
+        consultList.add(consult);
+        ConsultTAble sampleConsultTAble = new ConsultTAble(consultList);
+        return sampleConsultTAble;
     }
 
 }

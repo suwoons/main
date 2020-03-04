@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.consult.Consult;
 import seedu.address.model.person.Person;
 
 /**
@@ -13,6 +14,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Consult> PREDICATE_SHOW_ALL_CONSULTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -84,4 +86,21 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if a consult with the same identity as {@code consult} exists in the address book.
+     */
+    boolean hasConsult(Consult consult);
+
+    /**
+     * Adds the given consult.
+     * {@code consult} must not already exist in TAble.
+     */
+    void addConsult(Consult consult);
+
+    /**
+     * Updates the filter of the filtered consult list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredConsultList(Predicate<Consult> predicate);
 }
