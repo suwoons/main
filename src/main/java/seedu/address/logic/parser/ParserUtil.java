@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +12,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.EventLocation;
+import seedu.address.model.event.EventName;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -21,6 +26,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_TIME = "Format of time is not supported.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -113,5 +119,53 @@ public class ParserUtil {
     public static Remark parseRemark(String remark) {
         requireNonNull(remark);
         return new Remark(remark);
+    }
+
+    /**
+     * Parses a {@code String eventName} into an {@code EventName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code eventName} is invalid.
+     */
+    public static EventName parseEventName(String eventName) throws ParseException {
+        requireNonNull(eventName);
+        String trimmedEventName = eventName.trim();
+        if (!EventName.isValidEventName(trimmedEventName)) {
+            throw new ParseException(EventName.MESSAGE_CONSTRAINTS);
+        }
+        return new EventName(trimmedEventName);
+    }
+
+    /**
+     * Parses a {@code String eventLocation} into an {@code EventLocation}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code eventName} is invalid.
+     */
+    public static EventLocation parseEventLocation(String eventLocation) throws ParseException {
+        requireNonNull(eventLocation);
+        String trimmedEventLocation = eventLocation.trim();
+        if (!EventLocation.isValidLocation(trimmedEventLocation)) {
+            throw new ParseException(EventLocation.MESSAGE_CONSTRAINTS);
+        }
+        return new EventLocation(trimmedEventLocation);
+    }
+
+    /**
+     * Parses a {@code String eventTime} into a {@code LocalDateTime}.
+     *
+     * @throws ParseException if the given {@code eventName} is invalid.
+     */
+    public static LocalDateTime parseEventTime(String eventTime) throws ParseException {
+        requireNonNull(eventTime);
+        String trimmedEventTime = eventTime.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime formattedEventTime;
+        try {
+            formattedEventTime = LocalDateTime.parse(trimmedEventTime, formatter);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MESSAGE_INVALID_TIME);
+        }
+        return formattedEventTime;
     }
 }

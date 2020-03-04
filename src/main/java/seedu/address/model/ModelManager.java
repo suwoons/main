@@ -11,6 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.consult.Consult;
+import seedu.address.model.event.consult.ConsultTAble;
+import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,23 +25,28 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final ConsultTAble consultTAble;
+    private final FilteredList<Consult> filteredConsults;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyConsult consultTAble) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, userPrefs, consultTAble);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + " ,user prefs " + userPrefs
+            + " and " + consultTAble);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.consultTAble = new ConsultTAble(consultTAble);
+        filteredConsults = new FilteredList<>(this.consultTAble.getAllConsults());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new ConsultTAble());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -108,8 +116,17 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Gets student with specific index number.
+     *
+     * @param indexNumber Index number of student.
+     * @return Student with index number specified.
+     */
+    public Person getStudent(int indexNumber) {
+        return addressBook.getStudent(indexNumber);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -146,6 +163,26 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    // Consults section
+
+    @Override
+    public boolean hasConsult(Consult consult) {
+        requireNonNull(consult);
+        return addressBook.hasConsult(consult);
+    }
+
+    @Override
+    public void addConsult(Consult consult) {
+        addressBook.addConsult(consult);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void updateFilteredConsultList(Predicate<Consult> predicate) {
+        requireNonNull(predicate);
+        filteredConsults.setPredicate(predicate);
     }
 
 }

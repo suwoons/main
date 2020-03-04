@@ -98,6 +98,15 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns the student at the {@code index}.
+     * @param index Index of the student.
+     * @return Student at the index.
+     */
+    public Person getStudent(int index) {
+        return internalList.get(index);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Person> asUnmodifiableObservableList() {
