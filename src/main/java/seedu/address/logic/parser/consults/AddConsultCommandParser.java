@@ -45,9 +45,9 @@ public class AddConsultCommandParser implements Parser<AddConsultCommand> {
         }
 
         EventName eventName = ParserUtil.parseEventName(argMultimap.getValue(PREFIX_EVENT_NAME).get());
-        LocalDateTime eventBeginDateTime = ParserUtil.parseEventTime(argMultimap.getValue(
+        LocalDateTime eventBeginDateTime = ParserUtil.parseTime(argMultimap.getValue(
                 PREFIX_EVENT_BEGIN_DATE_TIME).get());
-        LocalDateTime eventEndDateTime = ParserUtil.parseEventTime(argMultimap.getValue(
+        LocalDateTime eventEndDateTime = ParserUtil.parseTime(argMultimap.getValue(
                 PREFIX_EVENT_END_DATE_TIME).get());
         EventLocation eventLocation = ParserUtil.parseEventLocation(argMultimap.getValue(
                 PREFIX_EVENT_LOCATION).get());
