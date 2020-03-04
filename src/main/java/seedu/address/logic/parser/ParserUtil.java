@@ -153,7 +153,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String time} into a {@code LocalDateTime}.
-     *
+     * The format of the LocalDateTime will be in the format yyyy-MM-ddTHH:mm.
      * @throws ParseException if the given {@code eventName} is invalid.
      */
     public static LocalDateTime parseTime(String time) throws ParseException {
