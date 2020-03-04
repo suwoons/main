@@ -152,20 +152,20 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String eventTime} into a {@code LocalDateTime}.
+     * Parses a {@code String time} into a {@code LocalDateTime}.
      *
      * @throws ParseException if the given {@code eventName} is invalid.
      */
-    public static LocalDateTime parseEventTime(String eventTime) throws ParseException {
-        requireNonNull(eventTime);
-        String trimmedEventTime = eventTime.trim();
+    public static LocalDateTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedEventTime = time.trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime formattedEventTime;
+        LocalDateTime formattedTime;
         try {
-            formattedEventTime = LocalDateTime.parse(trimmedEventTime, formatter);
+            formattedTime = LocalDateTime.parse(trimmedEventTime, formatter);
         } catch (DateTimeParseException e) {
             throw new ParseException(MESSAGE_INVALID_TIME);
         }
-        return formattedEventTime;
+        return formattedTime;
     }
 }
