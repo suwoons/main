@@ -690,9 +690,9 @@ _{More to be added}_
 [appendix]
 == Non Functional Requirements
 
-.  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
+.  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed, since Computing TAs should have at least Java `11` installed.
 .  Should be intuitive for users to use after following the User Guide.
-.  Should be able to be scaled for use past 1000 students.
+.  Should be able to be scaled for use past 1000 students, so that even professors are able to use this app.
 .  Should be able to process all commands input in a reasonably quick time (less than 5 seconds).
 .  Should not force shutdown regardless of commands inputted by user.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
