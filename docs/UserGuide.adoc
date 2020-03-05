@@ -221,20 +221,20 @@ Returns any consults that are held at SR3
 === Add a tutorial slot: `addTutorial`
 
 Add a tutorial slot for a particular module at the given time, day and place. +
-Format: `addTutorial mod/MODULE tutorialName/TUTORIAL_NAME day/WEEKDAY beginTime/START_TIME endTIme/END_TIME location/LOCATION`
+Format: `addTutorial mod/MODULE tutorialName/TUTORIAL_NAME day/WEEKDAY beginTime/START_TIME endTIme/END_TIME place/PLACE`
 
 ****
 * The time provided must be in HH:MM format, i.e: 24-hour format
 * The day provided must be the first 3 letters of the day *or* the full name of the weekday
 * The day provided is case insensitive, e.g. `wEd` is equivalent to `Wed` or `wed`
 * The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`
-* The location provided should be any valid string
+* The place provided should be any valid string
 ****
 
 Example:
 
-* `addTutorial mod/CS2103 tutorialName/T02 day/Wed beginTime/12:00 endTime/13:00 location/SR3`
-* `addTutorial mod/CS1101S tutorialName/T11 day/Wednesday beginTime/12:00 endTime/13:00 location/SR3`
+* `addTutorial mod/CS2103 tutorialName/T02 day/Wed beginTime/12:00 endTime/13:00 place/SR3`
+* `addTutorial mod/CS1101S tutorialName/T11 day/Wednesday beginTime/12:00 endTime/13:00 place/SR3`
 
 === Delete a tutorial slot: `deleteTutorial`
 
