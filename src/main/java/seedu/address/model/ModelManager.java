@@ -180,6 +180,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteConsult(Consult target) {
+        consultTAble.removeConsult(target);
+    }
+
+    @Override
+    public ObservableList<Consult> getFilteredConsultList() {
+        return filteredConsults;
+    }
+
+    @Override
     public void updateFilteredConsultList(Predicate<Consult> predicate) {
         requireNonNull(predicate);
         filteredConsults.setPredicate(predicate);
