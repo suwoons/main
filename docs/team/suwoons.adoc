@@ -1,4 +1,4 @@
-= Sarah Lim - Project Portfolio
+= Nigel Neo - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
@@ -11,8 +11,8 @@ TAble is your handy desktop app, optimized for TAs who prefer to work with a Com
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to insert Tutorial description/links/time*
-** What it does:
+* *Major enhancement*: added *the ability to insert Tutorial details and mark attendance of students in a tutorial*
+** What it does: Allows the user to keep track of tutorials they are serving as teaching assistant for, as well as update attendance of students in their respective tutorials
 ** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
 
 * *Code contributed*: [https://github.com[Dead link - Functional code]] [https://github.com[Dead link - Test code]] _{give links to collated code files}_
