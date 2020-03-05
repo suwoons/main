@@ -216,6 +216,8 @@ Returns all consults on 03-03-2020
 * `findConsult SR3` +
 Returns any consults that are held at SR3
 
+
+//tag::Tutorial[]
 === Add a tutorial slot that the TA is teaching: `addTutorial`
 
 Add a tutorial slot for a particular module at the given time, day and place. +
@@ -233,6 +235,19 @@ Example:
 
 * `addTutorial m/CS2103 n/T02 w/Wed from/12:00 to/13:00 p/SR3`
 * `addTutorial m/CS1101S n/T11 w/Wednesday from/13:00 to/15:00 p/SR3`
+
+=== Delete a tutorial slot: `deleteTutorial`
+
+Delete a tutorial slot for a particular module. +
+Format: `deleteTutorial mod/MODULE tutorialName/TUTORIAL_NAME`
+
+****
+* The tutorialName refers to the name of the tutorial slot
+****
+
+Example:
+
+* `deleteTutorial mod/CS2103 tutorialName/T02`
 
 === View details of a tutorial slot: `viewTutorial`
 
@@ -306,6 +321,7 @@ Displays the attendance list for CS2103 T02 from week 1 to week 13 (unmarked att
 
 Lists all the tutorials that the TA is teaching for the particular semester on TAble. +
 Format: `listTutorial`
+//end::Tutorial[]
 
 //tag::Module[]
 === Add Module into database: `addModule`

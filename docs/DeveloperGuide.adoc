@@ -310,6 +310,16 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |teaching assistant |list consults |track all consults that I have
 
+|`* * *` |teaching assistant |add a new tutorial slot| track what tutorials I am teaching
+
+|`* * *` |teaching assistant |delete a new tutorial slot| remove tutorials I have mistakenly added
+
+|`* * *` |teaching assistant |view all tutorial slots I am teaching| track my tutorials and their respective details (eg. time and place)
+
+|`* * *` |teaching assistant |mark students in my tutorial as absent or present| record attendance of my students
+
+|`* * *` |teaching assistant |view attendance sheet for my tutorial| track attendance of my students
+
 |`* *` |teaching assistant |find consults based on the date or place |easily locate my consults without having to go through the entire list
 
 |`* *` |teaching assistant |set a reminder |easily keep track and remember my tasks
@@ -326,11 +336,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |teaching assistant |snooze a reminder |easily postpone a task
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
-
 |`* *` |new user |see usage instructions |refer to instructions when I forget how to use the App
-
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
 
 
 |=======================================================================
@@ -444,6 +450,103 @@ Use case ends.
 * 2a. The list is empty.
 +
 Use case ends.
+
+[discrete]
+=== Use case: Add tutorial (UXX)
+
+*MSS*
+
+1. User requests to add tutorial
+2. System saves the new tutorial into the database.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The user enters an invalid command format to add tutorial.
++
+[none]
+** 1a1. System shows an error message that a wrong format was given.
++
+Use case ends.
+
+[discrete]
+=== Use case: Delete tutorial (UXX)
+
+*MSS*
+
+1. User requests to delete tutorial
+2. System deletes the existing tutorial from the database.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The user enters an invalid command format to delete tutorial.
++
+[none]
+** 1a1. System shows an error message that a wrong format was given.
++
+Use case ends.
+
+[none]
+* 2a. The tutorial requested does not exist in the database.
++
+[none]
+** 2a1. System shows an error message that the requested tutorial was not found.
++
+Use case ends.
+
+[discrete]
+=== Use case: View tutorial (UXX)
+
+*MSS*
+
+1. User requests to view all tutorials.
+2. System returns the list of tutorials and their respective information from the database.
++
+Use case ends.
+
+[discrete]
+=== Use case: Mark attendance of student (UXX)
+
+*MSS*
+
+1. User requests to mark attendance of student, either absent or present.
+2. System updates attendance of the requested student in the database, with the respective attendance specified.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The user enters an invalid command format to mark attendance.
++
+[none]
+** 1a1. System shows an error message that a wrong format was given.
++
+Use case ends.
+
+[none]
+* 2a. The student requested does not exist in the database.
++
+[none]
+** 2a1. System shows an error message that the requested student was not found.
++
+Use case ends.
+
+[discrete]
+=== Use case: View attendance sheet (UXX)
+
+*MSS*
+
+1. User requests to view attendance of students from a particular tutorial.
+2. System returns the list of students and their attendance from the database.
++
+Use case ends.
+
 
 [discrete]
 === Use case: Add reminder (UXX)
@@ -589,7 +692,6 @@ _{More to be added}_
 == Non Functional Requirements
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
-.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
 .  Should be intuitive for users to use after following the User Guide.
 .  Should be able to be scaled for use past 1000 students.
 .  Should be able to process all commands input in a reasonably quick time (less than 5 seconds).
@@ -605,9 +707,6 @@ Events are things which the Teaching Assistant is required to take note of. The 
 
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
-
-[[private-contact-detail]] Private contact detail::
-A contact detail that is not meant to be shared with others
 
 [[students]] Students::
 The primary group of people which the Teaching Assistant wil have to keep track of.
