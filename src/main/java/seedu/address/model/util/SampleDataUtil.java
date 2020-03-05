@@ -63,7 +63,7 @@ public class SampleDataUtil {
         LocalDateTime endTime = LocalDateTime.now().plusHours(3);
         EventName eventName = new EventName("Sample Consult");
         EventLocation eventLocation = new EventLocation("SR1");
-        Consult consult = new Consult(eventName, startTime, endTime, eventLocation);
+        Consult consult = new Consult(startTime, endTime, eventLocation);
         ArrayList<Consult> consultList = new ArrayList<>();
         consultList.add(consult);
         ConsultTAble sampleConsultTAble = new ConsultTAble(consultList);

@@ -326,16 +326,11 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |teaching assistant |snooze a reminder |easily postpone a task
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
-
 |`* *` |new user |see usage instructions |refer to instructions when I forget how to use the App
-
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
 
 
 |=======================================================================
 
-_{More to be added}_
 
 [appendix]
 == Use Cases

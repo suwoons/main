@@ -10,23 +10,17 @@ import java.time.LocalDateTime;
  */
 public abstract class Event {
 
-    private EventName eventName;
     private LocalDateTime eventBeginDateTime;
     private LocalDateTime eventEndDateTime;
     private EventLocation location;
 
 
-    public Event(EventName eventName, LocalDateTime eventBeginDateTime, LocalDateTime eventEndDateTime,
+    public Event(LocalDateTime eventBeginDateTime, LocalDateTime eventEndDateTime,
                  EventLocation location) {
-        requireAllNonNull(eventName, eventBeginDateTime, eventEndDateTime, location);
-        this.eventName = eventName;
+        requireAllNonNull(eventBeginDateTime, eventEndDateTime, location);
         this.eventBeginDateTime = eventBeginDateTime;
         this.eventEndDateTime = eventEndDateTime;
         this.location = location;
-    }
-
-    public EventName getEventName() {
-        return eventName;
     }
 
     public LocalDateTime getEventBeginDateTime() {
@@ -56,8 +50,7 @@ public abstract class Event {
         }
 
         Event otherEvent = (Event) other;
-        return otherEvent.getEventName().equals(getEventName())
-                && otherEvent.getEventBeginDateTime().equals(getEventBeginDateTime())
+        return otherEvent.getEventBeginDateTime().equals(getEventBeginDateTime())
                 && otherEvent.getEventEndDateTime().equals(getEventEndDateTime())
                 && otherEvent.getLocation().equals(getLocation());
     }
@@ -65,8 +58,7 @@ public abstract class Event {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getEventName())
-                .append(" Start Time: ")
+        builder.append(" Start Time: ")
                 .append(getEventBeginDateTime())
                 .append(" End Time: ")
                 .append(getEventEndDateTime())
