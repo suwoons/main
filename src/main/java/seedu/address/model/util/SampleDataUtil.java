@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.EventLocation;
-import seedu.address.model.event.EventName;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.consult.ReadOnlyConsult;
@@ -61,7 +60,6 @@ public class SampleDataUtil {
     public static ReadOnlyConsult getSampleConsults() {
         LocalDateTime startTime = LocalDateTime.now();
         LocalDateTime endTime = LocalDateTime.now().plusHours(3);
-        EventName eventName = new EventName("Sample Consult");
         EventLocation eventLocation = new EventLocation("SR1");
         Consult consult = new Consult(startTime, endTime, eventLocation);
         ArrayList<Consult> consultList = new ArrayList<>();
