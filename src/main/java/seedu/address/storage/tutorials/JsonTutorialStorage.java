@@ -76,5 +76,4 @@ public class JsonTutorialStorage implements TutorialStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableTutorials(tutorials), filePath);
     }
-
 }

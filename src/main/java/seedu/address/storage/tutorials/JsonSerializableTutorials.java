@@ -57,5 +57,4 @@ public class JsonSerializableTutorials {
         }
         return tutorialTAble;
     }
-
 }
