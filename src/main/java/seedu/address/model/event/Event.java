@@ -12,11 +12,11 @@ public abstract class Event {
 
     private LocalDateTime eventBeginDateTime;
     private LocalDateTime eventEndDateTime;
-    private EventLocation location;
+    private Location location;
 
 
     public Event(LocalDateTime eventBeginDateTime, LocalDateTime eventEndDateTime,
-                 EventLocation location) {
+                 Location location) {
         requireAllNonNull(eventBeginDateTime, eventEndDateTime, location);
         this.eventBeginDateTime = eventBeginDateTime;
         this.eventEndDateTime = eventEndDateTime;
@@ -31,7 +31,7 @@ public abstract class Event {
         return eventEndDateTime;
     }
 
-    public EventLocation getLocation() {
+    public Location getLocation() {
         return location;
     }
 

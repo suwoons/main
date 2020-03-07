@@ -3,7 +3,7 @@ package seedu.address.model.event.consult;
 import java.time.LocalDateTime;
 
 import seedu.address.model.event.Event;
-import seedu.address.model.event.EventLocation;
+import seedu.address.model.event.Location;
 //import seedu.address.model.person.Person;
 
 /**
@@ -15,7 +15,7 @@ public class Consult extends Event {
     //private Person student;
 
     public Consult(LocalDateTime eventStartTime, LocalDateTime eventEndTime,
-                   EventLocation location) {
+                   Location location) {
         super(eventStartTime, eventEndTime, location);
         //this.student = student;
     }
