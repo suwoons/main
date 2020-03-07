@@ -32,7 +32,7 @@ public class AddConsultCommand extends Command {
             + PREFIX_STUDENT + "A0123456P";
 
     public static final String MESSAGE_SUCCESS = "New consultation added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CONSULT = "This consultation already exists in TAble.";
+    public static final String MESSAGE_DUPLICATE_CONSULT = "There is already a consultation at that timing.";
 
     private final Consult toAdd;
 

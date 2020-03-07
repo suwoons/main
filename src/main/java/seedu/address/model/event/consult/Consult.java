@@ -39,7 +39,7 @@ public class Consult {
     }
 
     /**
-     * Returns true if both consults have the same identity and data fields.
+     * Returns true if both consults have the same Date and Time, as the TA cannot attend both.
      */
     @Override
     public boolean equals(Object other) {
@@ -53,8 +53,7 @@ public class Consult {
 
         Consult otherEvent = (Consult) other;
         return otherEvent.getConsultBeginDateTime().equals(getConsultBeginDateTime())
-                && otherEvent.getConsultEndDateTime().equals(getConsultEndDateTime())
-                && otherEvent.getPlace().equals(getPlace());
+                && otherEvent.getConsultEndDateTime().equals(getConsultEndDateTime());
     }
 
     @Override

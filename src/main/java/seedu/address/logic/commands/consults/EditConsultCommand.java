@@ -40,7 +40,7 @@ public class EditConsultCommand extends Command {
 
     public static final String MESSAGE_EDIT_CONSULT_SUCCESS = "Edited Consult: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CONSULT = "This consult already exists in TAble.";
+    public static final String MESSAGE_DUPLICATE_CONSULT = "There is already a consultation at that timing.";
 
     private final Index index;
     private final EditConsultDescriptor editConsultDescriptor;
