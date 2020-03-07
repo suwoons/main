@@ -193,6 +193,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setConsult(Consult consultToEdit, Consult editedConsult) {
+        requireAllNonNull(consultToEdit, editedConsult);
+        consultTAble.setConsult(consultToEdit, editedConsult);
+    }
+
+    @Override
     public ObservableList<Consult> getFilteredConsultList() {
         return filteredConsults;
     }

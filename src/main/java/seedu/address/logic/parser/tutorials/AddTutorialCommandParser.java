@@ -58,7 +58,7 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
                 PREFIX_TUTORIAL_BEGIN_TIME).get());
         LocalTime endTime = ParserUtil.parseTime(argMultimap.getValue(
                PREFIX_TUTORIAL_END_TIME).get());
-        Location location = ParserUtil.parseLocation(argMultimap.getValue(
+        Location location = ParserUtil.parsePlace(argMultimap.getValue(
                 PREFIX_PLACE).get());
 
         Tutorial tutorial = new Tutorial(moduleName, tutorialName, weekday, beginTime, endTime, location);

@@ -18,8 +18,8 @@ public class CliSyntax {
 
 
     /* Consult definitions */
-    public static final Prefix PREFIX_CONSULT_BEGIN_DATE_TIME = new Prefix("beginTime/");
-    public static final Prefix PREFIX_CONSULT_END_DATE_TIME = new Prefix("endTime/");
+    public static final Prefix PREFIX_CONSULT_BEGIN_DATE_TIME = new Prefix("beginDateTime/");
+    public static final Prefix PREFIX_CONSULT_END_DATE_TIME = new Prefix("endDateTime/");
 
     /* Tutorial definitions */
     public static final Prefix PREFIX_TUTORIAL_NAME = new Prefix("tutorialName/");
@@ -28,5 +28,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TUTORIAL_END_TIME = new Prefix("endTime/");
 
     /* Module definitions */
-    public static final Prefix PREFIX_MODULE_NAME = new Prefix("m/");
+    public static final Prefix PREFIX_MODULE_NAME = new Prefix("mod/");
 }

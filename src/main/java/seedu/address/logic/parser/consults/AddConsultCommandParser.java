@@ -46,7 +46,7 @@ public class AddConsultCommandParser implements Parser<AddConsultCommand> {
                 PREFIX_CONSULT_BEGIN_DATE_TIME).get());
         LocalDateTime eventEndDateTime = ParserUtil.parseDateTime(argMultimap.getValue(
                 PREFIX_CONSULT_END_DATE_TIME).get());
-        Location location = ParserUtil.parseLocation(argMultimap.getValue(
+        Location location = ParserUtil.parsePlace(argMultimap.getValue(
                 PREFIX_PLACE).get());
         //Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONSULT_STUDENT).get());
 
