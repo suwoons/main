@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.event.EventLocation;
+import seedu.address.model.event.Location;
 import seedu.address.model.event.consult.Consult;
 
 /**
@@ -46,7 +46,7 @@ class JsonAdaptedConsult {
     /**
      * Converts this Jackson-friendly adapted consult object into the model's {@code Consult} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted consult.
      */
     public Consult toModelType() throws IllegalValueException {
 
@@ -72,7 +72,7 @@ class JsonAdaptedConsult {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "EVENT LOCATION"));
         }
 
-        final EventLocation modelLocation = new EventLocation(eventLocation);
+        final Location modelLocation = new Location(eventLocation);
 
         return new Consult(modelBeginDateTime, modelEndDateTime, modelLocation);
     }

@@ -123,7 +123,7 @@ public class UniqueConsultList implements Iterable<Consult> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique consults.
+     * Returns true if {@code consults} contains only unique consults.
      */
     private boolean consultsAreUnique(List<Consult> consults) {
         for (int i = 0; i < consults.size() - 1; i++) {

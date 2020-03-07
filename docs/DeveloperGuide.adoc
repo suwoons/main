@@ -316,6 +316,10 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |teaching assistant |view all tutorial slots I am teaching| track my tutorials and their respective details (eg. time and place)
 
+|`* * *` |teaching assistant |enroll a student in my tutorial| track the students in my tutorial
+
+|`* * *` |teaching assistant |remove a student from my tutorial| remove mistakenly added students or those who dropped the module
+
 |`* * *` |teaching assistant |mark students in my tutorial as absent or present| record attendance of my students
 
 |`* * *` |teaching assistant |view attendance sheet for my tutorial| track attendance of my students
@@ -499,12 +503,84 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: View tutorial (UXX)
+=== Use case: List tutorials (UXX)
 
 *MSS*
 
 1. User requests to view all tutorials.
 2. System returns the list of tutorials and their respective information from the database.
++
+Use case ends.
+
+[discrete]
+=== Use case: Add a student to an existing tutorial (UXX)
+
+*MSS*
+
+1. User requests to add an existing student to an existing tutorial
+2. System updates enrolled student list of the requested tutorial with the specified student in the database.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The user enters an invalid command format to add a student.
++
+[none]
+** 1a1. System shows an error message that a wrong format was given.
++
+Use case ends.
+
+[none]
+* 2a. The student requested does not exist in the database.
++
+[none]
+** 2a1. System shows an error message that the requested student was not found.
++
+Use case ends.
+
+[none]
+* 3a. The tutorial requested does not exist in the database.
++
+[none]
+** 3a1. System shows an error message that the requested tutorial was not found.
++
+Use case ends.
+
+[discrete]
+=== Use case: Remove a student from an existing tutorial (UXX)
+
+*MSS*
+
+1. User requests to remove an existing student from an existing tutorial
+2. System removes the specified student from the tutorial's student list in the database.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The user enters an invalid command format to remove a student.
++
+[none]
+** 1a1. System shows an error message that a wrong format was given.
++
+Use case ends.
+
+[none]
+* 2a. The student requested does not exist in the database or is not enrolled in the tutorial specified.
++
+[none]
+** 2a1. System shows an error message that the requested student was not found in the tutorial.
++
+Use case ends.
+
+[none]
+* 3a. The tutorial requested does not exist in the database.
++
+[none]
+** 3a1. System shows an error message that the requested tutorial was not found.
 +
 Use case ends.
 
