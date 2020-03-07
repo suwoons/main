@@ -2,11 +2,11 @@ package seedu.address.logic.commands.tutorials;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_WEEKDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_BEGIN_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_END_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_WEEKDAY;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -50,6 +50,7 @@ public class AddTutorialCommand extends Command {
         toAdd = tutorial;
     }
 
+    @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 

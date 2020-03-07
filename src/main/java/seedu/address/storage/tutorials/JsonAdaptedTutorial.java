@@ -114,6 +114,7 @@ public class JsonAdaptedTutorial {
 
         final Location modelLocation = new Location(location);
 
-        return new Tutorial(modelModuleName, modelTutorialName, modelWeekday, modelBeginTime, modelEndTime, modelLocation);
+        return new Tutorial(modelModuleName, modelTutorialName, modelWeekday, modelBeginTime, modelEndTime,
+                modelLocation);
     }
 }

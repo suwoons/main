@@ -8,14 +8,14 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.event.tutorial.exceptions.TutorialNotFoundException;
 import seedu.address.model.event.tutorial.exceptions.DuplicateTutorialException;
+import seedu.address.model.event.tutorial.exceptions.TutorialNotFoundException;
 
 /**
  * A list of tutorials that enforces uniqueness between its elements and does not allow nulls.
  * A tutorial is considered unique by comparing using {@code Tutorial#equals(Tutorial)}. As such, adding, updating and
- * removal of tutorial uses Tutorial#equals(Tutorial) so as to ensure that the tutorial being added, updated or removed is
- * unique in terms of identity in the UniqueTutorialList.
+ * removal of tutorial uses Tutorial#equals(Tutorial) so as to ensure that the tutorial being added, updated or removed
+ * is unique in terms of identity in the UniqueTutorialList.
  *
  * Supports a minimal set of list operations.
  *

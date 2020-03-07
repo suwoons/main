@@ -1,10 +1,10 @@
 package seedu.address.logic.commands.consults;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;

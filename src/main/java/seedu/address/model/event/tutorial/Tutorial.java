@@ -1,9 +1,9 @@
 package seedu.address.model.event.tutorial;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 import seedu.address.model.event.Location;
 
@@ -12,13 +12,13 @@ import seedu.address.model.event.Location;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Tutorial {
-    String module;
-    TutorialName tutorialName;
-    DayOfWeek weekday;
-    LocalTime beginTime;
-    LocalTime endTime;
-    Location location;
-//    ArrayList<Student> enrolledStudents;
+    private String module;
+    private TutorialName tutorialName;
+    private DayOfWeek weekday;
+    private LocalTime beginTime;
+    private LocalTime endTime;
+    private Location location;
+    // ArrayList<Student> enrolledStudents;
 
     // note to self: implement tutorialName object to replace the String, and replace module with Module object
     public Tutorial(String module, TutorialName tutorialName, DayOfWeek weekday,

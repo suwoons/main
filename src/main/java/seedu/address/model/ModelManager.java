@@ -14,9 +14,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.consult.ReadOnlyConsult;
+import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.TutorialTAble;
-import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.person.Person;
 
 /**
