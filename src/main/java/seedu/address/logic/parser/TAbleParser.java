@@ -18,14 +18,16 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 
 import seedu.address.logic.commands.consults.AddConsultCommand;
+import seedu.address.logic.commands.consults.DeleteConsultCommand;
 import seedu.address.logic.commands.consults.ListConsultCommand;
 import seedu.address.logic.parser.consults.AddConsultCommandParser;
+import seedu.address.logic.parser.consults.DeleteConsultCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class TAbleParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -81,6 +83,10 @@ public class AddressBookParser {
 
         case ListConsultCommand.COMMAND_WORD:
             return new ListConsultCommand();
+
+        case DeleteConsultCommand.COMMAND_WORD:
+            return new DeleteConsultCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

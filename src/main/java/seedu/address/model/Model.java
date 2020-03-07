@@ -99,6 +99,15 @@ public interface Model {
     void addConsult(Consult consult);
 
     /**
+     * Deletes the given consult.
+     * The consult must exist in TAble.
+     */
+    void deleteConsult(Consult target);
+
+    /** Returns an unmodifiable view of the filtered consult list */
+    ObservableList<Consult> getFilteredConsultList();
+
+    /**
      * Updates the filter of the filtered consult list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
