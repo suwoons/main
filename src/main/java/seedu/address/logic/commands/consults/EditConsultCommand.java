@@ -178,7 +178,7 @@ public class EditConsultCommand extends Command {
             }
 
             // state check
-           EditConsultDescriptor e = (EditConsultDescriptor) other;
+            EditConsultDescriptor e = (EditConsultDescriptor) other;
 
             return getConsultBeginDateTime().equals(e.getConsultBeginDateTime())
                     && getConsultEndDateTime().equals(e.getConsultEndDateTime())

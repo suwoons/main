@@ -137,6 +137,8 @@ Deletes the 2nd student in the address book.
 Deletes the 1st student in the results of the `find` command.
 
 // end::delete[]
+
+// tag::Consult[]
 === Adding a consult: `addConsult`
 
 Add a consultation slot at the given time, date and place. +
@@ -214,6 +216,7 @@ Examples:
 Returns all consults on 03-03-2020
 * `findConsult SR3` +
 Returns any consults that are held at SR3
+// end::Consult[]
 
 
 // tag::Tutorial[]

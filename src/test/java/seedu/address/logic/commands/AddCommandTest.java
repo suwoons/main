@@ -23,7 +23,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.person.Person;
-//import seedu.address.testutil.Assert;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -163,6 +162,11 @@ public class AddCommandTest {
 
         @Override
         public void deleteConsult(Consult target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setConsult(Consult consultToEdit, Consult editedConsult) {
             throw new AssertionError("This method should not be called.");
         }
 
