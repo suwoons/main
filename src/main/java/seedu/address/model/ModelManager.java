@@ -199,6 +199,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearConsults() {
+        consultTAble.clearConsults();
+    }
+
+    @Override
     public ObservableList<Consult> getFilteredConsultList() {
         return filteredConsults;
     }

@@ -196,7 +196,7 @@ Deletes the 2nd consultation in TAble.
 === Clearing all consults : `clearConsult`
 
 Clears all consultations slots in TAble. +
-Format: `clear`
+Format: `clearConsults`
 
 === Locating consultations by date or place: `findConsult`
 

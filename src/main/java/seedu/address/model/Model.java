@@ -114,6 +114,11 @@ public interface Model {
      */
     void setConsult(Consult consultToEdit, Consult editedConsult);
 
+    /**
+     * Deletes all consults in the Consult TAble.
+     */
+    void clearConsults();
+
     /** Returns an unmodifiable view of the filtered consult list */
     ObservableList<Consult> getFilteredConsultList();
 
@@ -150,5 +155,4 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTutorialList(Predicate<Tutorial> predicate);
-
 }
