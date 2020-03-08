@@ -889,7 +889,8 @@ _{More to be added}_
 == Glossary
 
 [[events]] Events::
-Events are things which the Teaching Assistant is required to take note of. The Teaching Assistant will be required to attend these events, which can be in the form of tutorials or consultations.
+Events are things which the Teaching Assistant is required to take note of.
+The Teaching Assistant will be required to attend these events, which can be in the form of tutorials or consultations.
 
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
@@ -902,6 +903,7 @@ The primary user of this application.
 
 [[module]] Module::
 Course that Teaching Assistant teaches and Students register for.
+Due to naming restrictions, Module is shortened to Mod in file names.
 
 [appendix]
 == Product Survey
