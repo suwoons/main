@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Location {
     /**
-     * Represents an Event's location in the address book.
+     * Represents Location where Consults and Tutorials are held.
      * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
      */
 

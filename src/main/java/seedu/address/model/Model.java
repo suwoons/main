@@ -107,6 +107,18 @@ public interface Model {
      */
     void deleteConsult(Consult target);
 
+    /**
+     * Replaces the given consult {@code consultToEdit} with {@code editedConsult}.
+     * {@code consultToEdit} must exist in TAble.
+     * The person identity of {@code editedConsult} must not be the same as another existing consult in TAble.
+     */
+    void setConsult(Consult consultToEdit, Consult editedConsult);
+
+    /**
+     * Deletes all consults in the Consult TAble.
+     */
+    void clearConsults();
+
     /** Returns an unmodifiable view of the filtered consult list */
     ObservableList<Consult> getFilteredConsultList();
 

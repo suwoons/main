@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Event's name in TAble.
+ * Represents a Tutorial's name in TAble.
  * Guarantees: immutable; is valid as declared in {@link #isValidTutorialName(String)}
  */
 

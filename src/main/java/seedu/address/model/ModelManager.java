@@ -173,23 +173,34 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
-    // Consults section
+    // Consults section =======================================================
 
     @Override
     public boolean hasConsult(Consult consult) {
         requireNonNull(consult);
-        return addressBook.hasConsult(consult);
+        return consultTAble.hasConsult(consult);
     }
 
     @Override
     public void addConsult(Consult consult) {
-        addressBook.addConsult(consult);
+        consultTAble.addConsult(consult);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void deleteConsult(Consult target) {
         consultTAble.removeConsult(target);
+    }
+
+    @Override
+    public void setConsult(Consult consultToEdit, Consult editedConsult) {
+        requireAllNonNull(consultToEdit, editedConsult);
+        consultTAble.setConsult(consultToEdit, editedConsult);
+    }
+
+    @Override
+    public void clearConsults() {
+        consultTAble.clearConsults();
     }
 
     @Override
@@ -208,12 +219,12 @@ public class ModelManager implements Model {
     @Override
     public boolean hasTutorial(Tutorial tutorial) {
         requireNonNull(tutorial);
-        return addressBook.hasTutorial(tutorial);
+        return tutorialTAble.hasTutorial(tutorial);
     }
 
     @Override
     public void addTutorial(Tutorial tutorial) {
-        addressBook.addTutorial(tutorial);
+        tutorialTAble.addTutorial(tutorial);
     }
 
     @Override

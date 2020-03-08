@@ -38,9 +38,9 @@ class JsonAdaptedConsult {
      * Converts a given {@code Consult} into this class for Jackson use.
      */
     public JsonAdaptedConsult(Consult source) {
-        beginDateTime = source.getEventBeginDateTime().toString();
-        endDateTime = source.getEventEndDateTime().toString();
-        eventLocation = source.getLocation().eventLocation;
+        beginDateTime = source.getConsultBeginDateTime().toString();
+        endDateTime = source.getConsultEndDateTime().toString();
+        eventLocation = source.getPlace().eventLocation;
     }
 
     /**

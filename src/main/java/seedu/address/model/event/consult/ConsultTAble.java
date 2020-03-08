@@ -108,6 +108,13 @@ public class ConsultTAble implements ReadOnlyConsult {
         return consults.getConsult(index);
     }
 
+    /**
+     * Removes all {@code consults} from this {@code ConsultTAble}.
+     */
+    public void clearConsults() {
+        consults.clearConsults();
+    }
+
     //// util methods
 
     @Override

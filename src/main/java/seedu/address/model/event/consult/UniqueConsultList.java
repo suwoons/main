@@ -99,6 +99,22 @@ public class UniqueConsultList implements Iterable<Consult> {
     }
 
     /**
+     * Returns the consult at the {@code index}.
+     * @param index Index of the student.
+     * @return Consult at the index.
+     */
+    public Consult getConsult(int index) {
+        return internalList.get(index);
+    }
+
+    /**
+     * Removes all {@code consults} from this {@code ConsultTAble}.
+     */
+    public void clearConsults() {
+        internalList.remove(0, internalList.size());
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Consult> asUnmodifiableObservableList() {
@@ -134,15 +150,6 @@ public class UniqueConsultList implements Iterable<Consult> {
             }
         }
         return true;
-    }
-
-    /**
-     * Returns the student at the {@code index}.
-     * @param index Index of the student.
-     * @return Student at the index.
-     */
-    public Consult getConsult(int index) {
-        return internalList.get(index);
     }
 
     public ObservableList<Consult> getAllConsults() {

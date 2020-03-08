@@ -131,7 +131,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code location} is invalid.
      */
-    public static Location parseLocation(String location) throws ParseException {
+    public static Location parsePlace(String location) throws ParseException {
         requireNonNull(location);
         String trimmedLocation = location.trim();
         if (!Location.isValidLocation(trimmedLocation)) {
