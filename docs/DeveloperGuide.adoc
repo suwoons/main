@@ -340,6 +340,12 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |teaching assistant |snooze a reminder |easily postpone a task
 
+|`* * *` |teaching assistant |find a module |retrieve information on it
+
+|`* * *` |teaching assistant |view module links |quickly access module resources
+
+|`* * *` |teaching assistant |add module links |update module resources
+
 |`* *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
 
@@ -761,6 +767,111 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
+=== Use case: Create Module (UXX)
+
+*MSS*
+
+1.  User requests to create Module
+2.  System creates Module and includes it in its storage
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The user enters an invalid command format to add module.
++
+[none]
+** 1a1. System shows an error message that a wrong format was given.
++
+[none]
+* 2a. The user enters a module code that is already present in the storage
+[none]
+** 2a1. System shows an error message stating that the module already exists.
+
+Use case ends.
+
+[discrete]
+=== Use case: View Module (UXX)
+
+*MSS*
+
+1.  User requests to view an existing module
+2.  System updates the tab to show the existing module according to the the User's request
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The module does not exist.
++
+[none]
+** 1a1. System shows an error message that the module does not exist.
++
+Use case ends.
+
+[discrete]
+=== Use case: Update Module (UXX)
+
+*MSS*
+
+1.  User requests to update description of an existing module
+2.  System updates the existing module according to the the User's request
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The module does not exist.
++
+[none]
+** 1a1. System shows an error message that the module does not exist.
++
+Use case ends.
+
+[discrete]
+=== Use case: Include Module links (UXX)
+
+*MSS*
+
+1.  User requests to include links to module
+2.  System updates the existing module links according to the the User's request by appending the link to the module links section.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The module does not exist.
++
+[none]
+** 1a1. System shows an error message that the module does not exist.
++
+Use case ends.
+
+[discrete]
+=== Use case: Clear All Module links (UXX)
+
+*MSS*
+
+1.  User requests to clear all links to module
+2.  System removes all existing module links according to the the User's request
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The module does not exist.
++
+[none]
+** 1a1. System shows an error message that the module does not exist.
++
+Use case ends.
+
 _{More to be added}_
 
 [appendix]
@@ -778,7 +889,8 @@ _{More to be added}_
 == Glossary
 
 [[events]] Events::
-Events are things which the Teaching Assistant is required to take note of. The Teaching Assistant will be required to attend these events, which can be in the form of tutorials or consultations.
+Events are things which the Teaching Assistant is required to take note of.
+The Teaching Assistant will be required to attend these events, which can be in the form of tutorials or consultations.
 
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
@@ -788,6 +900,10 @@ The primary group of people which the Teaching Assistant wil have to keep track 
 
 [[teaching-assistant]] Teaching Assistant::
 The primary user of this application.
+
+[[module]] Module::
+Course that Teaching Assistant teaches and Students register for.
+Due to naming restrictions, Module is shortened to Mod in file names.
 
 [appendix]
 == Product Survey
