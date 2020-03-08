@@ -1,9 +1,10 @@
 package seedu.address.model.mod;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
 
 /**
  * Wraps all module data at the ModTAble level

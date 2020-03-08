@@ -1,11 +1,12 @@
 package seedu.address.model.mod;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Module in TAble.
