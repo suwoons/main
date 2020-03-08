@@ -13,14 +13,20 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_REMARK = new Prefix("r/");
 
-    /* Event definitions */
-    public static final Prefix PREFIX_EVENT_NAME = new Prefix("event/");
-    public static final Prefix PREFIX_EVENT_BEGIN_DATE_TIME = new Prefix("beginDateTime/");
-    public static final Prefix PREFIX_EVENT_END_DATE_TIME = new Prefix("endDateTime/");
-    public static final Prefix PREFIX_EVENT_LOCATION = new Prefix("location/");
+    public static final Prefix PREFIX_PLACE = new Prefix("place/");
+    public static final Prefix PREFIX_STUDENT = new Prefix("student/");
+
 
     /* Consult definitions */
-    public static final Prefix PREFIX_CONSULT_STUDENT = new Prefix("student/");
+    public static final Prefix PREFIX_CONSULT_BEGIN_DATE_TIME = new Prefix("beginDateTime/");
+    public static final Prefix PREFIX_CONSULT_END_DATE_TIME = new Prefix("endDateTime/");
 
+    /* Tutorial definitions */
+    public static final Prefix PREFIX_TUTORIAL_NAME = new Prefix("tutorialName/");
+    public static final Prefix PREFIX_TUTORIAL_WEEKDAY = new Prefix("day/");
+    public static final Prefix PREFIX_TUTORIAL_BEGIN_TIME = new Prefix("beginTime/");
+    public static final Prefix PREFIX_TUTORIAL_END_TIME = new Prefix("endTime/");
 
+    /* Module definitions */
+    public static final Prefix PREFIX_MODULE_NAME = new Prefix("mod/");
 }

@@ -4,12 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Event's location in TAble.
+ * Represents a location in TAble.
  * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
  */
-public class EventLocation {
+public class Location {
     /**
-     * Represents an Event's location in the address book.
+     * Represents Location where Consults and Tutorials are held.
      * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
      */
 
@@ -25,11 +25,11 @@ public class EventLocation {
     public final String eventLocation;
 
     /**
-     * Constructs a {@code EventLocation}.
+     * Constructs a {@code Location}.
      *
      * @param eventLocation A valid event location.
      */
-    public EventLocation(String eventLocation) {
+    public Location(String eventLocation) {
         requireNonNull(eventLocation);
         checkArgument(isValidLocation(eventLocation), MESSAGE_CONSTRAINTS);
         this.eventLocation = eventLocation;
@@ -51,8 +51,8 @@ public class EventLocation {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof EventLocation // instanceof handles nulls
-                && eventLocation.equals(((EventLocation) other).eventLocation)); // state check
+                || (other instanceof Location // instanceof handles nulls
+                && eventLocation.equals(((Location) other).eventLocation)); // state check
     }
 
     @Override

@@ -11,7 +11,9 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.ReadOnlyConsult;
+import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.storage.consults.ConsultStorage;
+import seedu.address.storage.tutorials.TutorialStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -22,14 +24,16 @@ public class StorageManager implements Storage {
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
     private ConsultStorage consultStorage;
+    private TutorialStorage tutorialStorage;
 
 
     public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
-                          ConsultStorage consultStorage) {
+                          ConsultStorage consultStorage, TutorialStorage tutorialStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.consultStorage = consultStorage;
+        this.tutorialStorage = tutorialStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -79,7 +83,7 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
-    // Consult methods
+    // ================ Consult methods ==============================
 
     @Override
     public Path getConsultsFilePath() {
@@ -106,6 +110,35 @@ public class StorageManager implements Storage {
     public void saveConsults(ReadOnlyConsult consults, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         consultStorage.saveConsults(consults, filePath);
+    }
+
+    // ================ Tutorial methods ==============================
+
+    @Override
+    public Path getTutorialsFilePath() {
+        return tutorialStorage.getTutorialsFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyTutorial> readTutorials() throws DataConversionException, IOException {
+        return readTutorials(tutorialStorage.getTutorialsFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyTutorial> readTutorials(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return tutorialStorage.readTutorials(filePath);
+    }
+
+    @Override
+    public void saveTutorials(ReadOnlyTutorial tutorials) throws IOException {
+        saveTutorials(tutorials, tutorialStorage.getTutorialsFilePath());
+    }
+
+    @Override
+    public void saveTutorials(ReadOnlyTutorial tutorials, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        tutorialStorage.saveTutorials(tutorials, filePath);
     }
 
 }

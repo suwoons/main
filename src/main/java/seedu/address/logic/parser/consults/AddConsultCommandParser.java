@@ -1,11 +1,10 @@
 package seedu.address.logic.parser.consults;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_STUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_BEGIN_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_LOCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+//import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
 
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
@@ -17,8 +16,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.event.EventLocation;
-import seedu.address.model.event.EventName;
+import seedu.address.model.event.Location;
 import seedu.address.model.event.consult.Consult;
 //import seedu.address.model.person.Person;
 
@@ -34,26 +32,25 @@ public class AddConsultCommandParser implements Parser<AddConsultCommand> {
      */
     public AddConsultCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_EVENT_NAME, PREFIX_EVENT_BEGIN_DATE_TIME,
-                        PREFIX_EVENT_END_DATE_TIME, PREFIX_EVENT_LOCATION);
+                ArgumentTokenizer.tokenize(args, PREFIX_CONSULT_BEGIN_DATE_TIME,
+                        PREFIX_CONSULT_END_DATE_TIME, PREFIX_PLACE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_NAME, PREFIX_EVENT_BEGIN_DATE_TIME,
-                PREFIX_EVENT_END_DATE_TIME, PREFIX_EVENT_LOCATION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_CONSULT_BEGIN_DATE_TIME,
+                PREFIX_CONSULT_END_DATE_TIME, PREFIX_PLACE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddConsultCommand.MESSAGE_USAGE));
         }
 
-        EventName eventName = ParserUtil.parseEventName(argMultimap.getValue(PREFIX_EVENT_NAME).get());
-        LocalDateTime eventBeginDateTime = ParserUtil.parseEventTime(argMultimap.getValue(
-                PREFIX_EVENT_BEGIN_DATE_TIME).get());
-        LocalDateTime eventEndDateTime = ParserUtil.parseEventTime(argMultimap.getValue(
-                PREFIX_EVENT_END_DATE_TIME).get());
-        EventLocation eventLocation = ParserUtil.parseEventLocation(argMultimap.getValue(
-                PREFIX_EVENT_LOCATION).get());
+        LocalDateTime eventBeginDateTime = ParserUtil.parseDateTime(argMultimap.getValue(
+                PREFIX_CONSULT_BEGIN_DATE_TIME).get());
+        LocalDateTime eventEndDateTime = ParserUtil.parseDateTime(argMultimap.getValue(
+                PREFIX_CONSULT_END_DATE_TIME).get());
+        Location location = ParserUtil.parsePlace(argMultimap.getValue(
+                PREFIX_PLACE).get());
         //Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONSULT_STUDENT).get());
 
-        Consult consult = new Consult(eventName, eventBeginDateTime, eventEndDateTime, eventLocation);
+        Consult consult = new Consult(eventBeginDateTime, eventEndDateTime, location);
 
         return new AddConsultCommand(consult);
     }

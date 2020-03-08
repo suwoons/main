@@ -7,8 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.event.EventLocation;
-import seedu.address.model.event.EventName;
+import seedu.address.model.event.Location;
 import seedu.address.model.event.consult.Consult;
 
 /**
@@ -19,7 +18,6 @@ class JsonAdaptedConsult {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Consult's %s field is missing!";
     private static final String INVALID_DATE_FORMAT = "Invalid date format!";
 
-    private final String eventName;
     private final String beginDateTime;
     private final String endDateTime;
     private final String eventLocation;
@@ -28,11 +26,9 @@ class JsonAdaptedConsult {
      * Constructs a {@code JsonAdaptedConsult} with the given consult details.
      */
     @JsonCreator
-    public JsonAdaptedConsult(@JsonProperty("eventName") String eventName,
-                              @JsonProperty("beginDateTime") String beginDateTime,
+    public JsonAdaptedConsult(@JsonProperty("beginDateTime") String beginDateTime,
                               @JsonProperty("endDateTime") String endDateTime,
                               @JsonProperty("eventLocation") String eventLocation) {
-        this.eventName = eventName;
         this.beginDateTime = beginDateTime;
         this.endDateTime = endDateTime;
         this.eventLocation = eventLocation;
@@ -42,26 +38,17 @@ class JsonAdaptedConsult {
      * Converts a given {@code Consult} into this class for Jackson use.
      */
     public JsonAdaptedConsult(Consult source) {
-        eventName = source.getEventName().eventName;
-        beginDateTime = source.getEventBeginDateTime().toString();
-        endDateTime = source.getEventEndDateTime().toString();
-        eventLocation = source.getLocation().eventLocation;
+        beginDateTime = source.getConsultBeginDateTime().toString();
+        endDateTime = source.getConsultEndDateTime().toString();
+        eventLocation = source.getPlace().eventLocation;
     }
 
     /**
      * Converts this Jackson-friendly adapted consult object into the model's {@code Consult} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted consult.
      */
     public Consult toModelType() throws IllegalValueException {
-        if (eventName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    EventName.class.getSimpleName()));
-        }
-        if (!EventName.isValidEventName(eventName)) {
-            throw new IllegalValueException(EventName.MESSAGE_CONSTRAINTS);
-        }
-        final EventName modelName = new EventName(eventName);
 
         if (beginDateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "BEGIN DATE TIME"));
@@ -85,8 +72,8 @@ class JsonAdaptedConsult {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "EVENT LOCATION"));
         }
 
-        final EventLocation modelLocation = new EventLocation(eventLocation);
+        final Location modelLocation = new Location(eventLocation);
 
-        return new Consult(modelName, modelBeginDateTime, modelEndDateTime, modelLocation);
+        return new Consult(modelBeginDateTime, modelEndDateTime, modelLocation);
     }
 }

@@ -137,25 +137,26 @@ Deletes the 2nd student in the address book.
 Deletes the 1st student in the results of the `find` command.
 
 // end::delete[]
+
+// tag::Consult[]
 === Adding a consult: `addConsult`
 
 Add a consultation slot at the given time, date and place. +
-Format: `addConsult t/TIME d/DATE p/PLACE`
+Format: `addConsult beginDateTime/BEGINDATETIME endDateTime/ENDDATETIME place/PLACE`
 
 ****
-* The time provided must be in HH:MM format, i.e: 24-hour format
-* The date provided must be in DD-MM-YYYY format
+* The begin and end time provided must be in the yyyy-MM-dd HH:mm format
 * The place provided should be any valid string
 ****
 
 Example:
 
-* `addConsult t/10:00 d/03-03-2020 p/The Deck`
+* `addConsult beginDateTime/2020-03-03 10:00 endDateTime/2020-03-03 12:00 place/The Deck`
 
 === Editing a consult: `editConsult`
 
 Edit the time, date or place of an existing consultation slot. +
-Format: `editConsult INDEX [t/TIME] [d/DATE] [p/PLACE]`
+Format: `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]`
 
 ****
 * Edits the consult at the specified `INDEX`. The index refers to the index number shown in the displayed consultation list. The index *must be a positive integer* 1, 2, 3, ...
@@ -165,9 +166,9 @@ Format: `editConsult INDEX [t/TIME] [d/DATE] [p/PLACE]`
 
 Example:
 
-* `editConsult 1 t/15:00` +
-Edits the time of the 1st consult to be at 15:00 hours i.e 3.00 p.m.
-* `edit 2 p/SR3` +
+* `editConsult 1 beginDateTime/2020-03-03 15:00` +
+Edits the beginning time of the 1st consult to be at 2020-03-03, 15:00 hours i.e 3.00 p.m.
+* `edit 2 place/SR3` +
 Edits the place of the 2nd consult to be at SR3.
 
 === Listing all consults : `listConsult`
@@ -195,7 +196,7 @@ Deletes the 2nd consultation in TAble.
 === Clearing all consults : `clearConsult`
 
 Clears all consultations slots in TAble. +
-Format: `clear`
+Format: `clearConsults`
 
 === Locating consultations by date or place: `findConsult`
 
@@ -215,97 +216,121 @@ Examples:
 Returns all consults on 03-03-2020
 * `findConsult SR3` +
 Returns any consults that are held at SR3
+// end::Consult[]
 
-=== Add a tutorial slot that the TA is teaching: `addTutorial`
+
+// tag::Tutorial[]
+=== Add a tutorial slot: `addTutorial`
 
 Add a tutorial slot for a particular module at the given time, day and place. +
-Format: `addTutorial m/MODULE n/TUTORIAL_NAME w/WEEKDAY from/START to/END p/PLACE`
+Format: `addTutorial m/MODULE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE beginTime/START_TIME endTIme/END_TIME place/PLACE`
 
 ****
 * The time provided must be in HH:MM format, i.e: 24-hour format
-* The day provided must be the first 3 letters of the day *or* the full name of the weekday
-* The day provided is case insensitive, e.g. `wEd` is equivalent to `Wed` or `wed`
+* The day provided is the value of the weekday (ie. MONDAY = 1, TUESDAY = 2, ... SUNDAY = 7)
+* The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`
 * The place provided should be any valid string
-* The name refers to the name of the tutorial slot
 ****
 
 Example:
 
-* `addTutorial m/CS2103 n/T02 w/Wed from/12:00 to/13:00 p/SR3`
-* `addTutorial m/CS1101S n/T11 w/Wednesday from/13:00 to/15:00 p/SR3`
+* `addTutorial m/CS2103 tutorialName/T02 day/3 beginTime/12:00 endTime/13:00 place/SR3`
+* `addTutorial m/CS1101S tutorialName/T11 day/4 beginTime/12:00 endTime/13:00 place/SR3`
 
-=== View details of a tutorial slot: `viewTutorial`
+=== Delete a tutorial slot: `deleteTutorial`
 
-Display all the details of a particular tutorial slot. +
-Format: `viewTutorial m/MODULE n/TUTORIAL_NAME`
+Delete a tutorial slot for a particular module. +
+Format: `deleteTutorial m/MODULE tutorialName/TUTORIAL_NAME`
 
 ****
-* Both the module and name of the tutorial slot has to be specified
+* The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`
 ****
 
 Example:
 
-* `viewTutorial m/CS2103 n/T02`
+* `deleteTutorial m/CS2103 tutorialName/T02`
 
 === Marks students as present: `markPresent`
 
 Takes attendance of students in a tutorial class by marking them as present for a particular week. Present students will be marked with a :heavy_check_mark:. +
-Format: `markPresent m/MODULE n/TUTORIAL_NAME w/WEEK s/STUDENT`
+Format: `markPresent m/MODULE tutorialName/TUTORIAL_NAME week/WEEK student/STUDENT [OPTIONAL]`
 
 ****
-* The s/STUDENT section is optional; if no s/ is included, then *all* students enrolled in the tutorial class will be automatically marked as present
-* If the s/STUDENT section is included, then only the student specified will be marked as present
-* The week should be in numerical format, and accepts only numbers in the range 1 to 13
+* The `student/STUDENT` section is optional; if no `student/` is included, then *all* students enrolled in the tutorial class will be automatically marked as present
+* If the `student/STUDENT` section is included, then only the student specified will be marked as present
+* The week should be in numerical format, and accepts only numbers in the range 1 to 13 (inclusive)
 ****
 
 Example:
 
-* `markPresent m/CS2103 n/T02 w/7 s/John Tan` +
+* `markPresent m/CS2103 tutorialName/T02 week/7 student/John Tan` +
 Marks only John Tan as present for CS2103 tutorial T02 in week 7
-* `markPresent m/CS2103 n/T02 w/7` +
+* `markPresent m/CS2103 tutorialName/T02 week/7` +
 Marks all students in CS2103 T02 in week 7 as present
 
 === Marks students as absent: `markAbsent`
 
 Takes attendance of students in a tutorial class by marking them as absent for a particular week. Absent students will be marked with a :x:. +
-Format: `markPresent m/MODULE n/TUTORIAL_NAME w/WEEK s/STUDENT`
+Format: `markPresent m/MODULE tutorialName/TUTORIAL_NAME week/WEEK student/STUDENT`
 
 ****
-* The s/STUDENT section is optional; if no s/ is included, then *all* students enrolled in the tutorial class will be automatically marked as absent
-* If the s/STUDENT section is included, then only the student specified will be marked as absent
-* The week should be in numerical format, and accepts only numbers in the range 1 to 13
+* The `student/STUDENT` section is optional; if no `student/` is included, then *all* students enrolled in the tutorial class will be automatically marked as absent
+* If the `student/STUDENT` section is included, then only the student specified will be marked as absent
+* The week should be in numerical format, and accepts only numbers in the range 1 to 13 (inclusive)
 ****
 
 Example:
 
-* `markAbsent m/CS2103 n/T02 w/7 s/Jane Tan` +
+* `markAbsent m/CS2103 tutorialName/T02 week/7 student/Jane Tan` +
 Marks only Jane Tan as absent for CS2103 tutorial T02 in week 7
-* `markAbsent m/CS2103 n/T02 w/7` +
+* `markAbsent m/CS2103 tutorialName/T02 week/7` +
 Marks all students in CS2103 T02 in week 7 as absent (oh no!)
 
 === Display attendance list for a tutorial: `viewAttendance`
 
-Displays the attendance list for a tutorial. It can either show the attendance for all the weeks or for a certain week only. +
-Format: `viewAttendance m/MODULE n/TUTORIAL_NAME w/WEEK`
-
-****
-* The w/WEEK is optional; if no w/ is included, then the attendance for all the weeks in the semester will be shown
-* If w/WEEK is included, then only the attendance for the specified week will be shown
-* The week should be in numerical format, and accepts only numbers in the range 1 to 13
-****
+Displays the attendance list for a tutorial. It can either show the attendance for all the weeks. +
+Format: `viewAttendance m/MODULE tutorialName/TUTORIAL_NAME`
 
 Example:
 
-* `viewAttendance m/CS2103 n/T02 w/7` +
-Displays the attendance list for CS2103 T02 in week 7
-* `viewAttendance m/CS2103 n/T02` +
+* `viewAttendance m/CS2103 tutorialName/T02` +
 Displays the attendance list for CS2103 T02 from week 1 to week 13 (unmarked attendance will show up as blanks)
-
 
 === List all tutorials: `listTutorial`
 
 Lists all the tutorials that the TA is teaching for the particular semester on TAble. +
 Format: `listTutorial`
+
+=== Add student to tutorial: `addTutorialStudent`
+
+Enroll an existing student to an existing tutorial.
+Format: `addTutorialStudent m/MODULE tutorialName/TUTORIAL_NAME student/STUDENT`
+
+****
+* The `STUDENT` should be referred to by matriculation number.
+* The student should already exist.
+* The tutorial should already exist.
+****
+
+Example:
+
+* `addTutorialStudent m/CS2103 tutorialName/T03 student/A0123456Z`
+
+=== Remove student from tutorial: `deleteTutorialStudent`
+
+Remove an existing student from an existing tutorial.
+Format: `deleteTutorialStudent m/MODULE tutorialName/TUTORIAL_NAME student/STUDENT`
+
+****
+* The `STUDENT` should be referred to by matriculation number.
+* The student should already exist.
+* The tutorial should already exist.
+****
+
+Example:
+
+* `deleteTutorialStudent m/CS2103 tutorialName/T03 student/A0123456Z`
+//end::Tutorial[]
 
 //tag::Module[]
 === Add Module into database: `addModule`

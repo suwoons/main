@@ -14,17 +14,17 @@ import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.consult.ReadOnlyConsult;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable ConsultTAble that is serializable to JSON format.
  */
 @JsonRootName(value = "consults")
 class JsonSerializableConsults {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Consults list contains duplicate consult(s).";
+    public static final String MESSAGE_DUPLICATE_CONSULT = "Consults list contains duplicate consult(s).";
 
     private final List<JsonAdaptedConsult> consults = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableConsults} with the given consults.
      */
     @JsonCreator
     public JsonSerializableConsults(@JsonProperty("consults") List<JsonAdaptedConsult> consults) {
@@ -32,16 +32,16 @@ class JsonSerializableConsults {
     }
 
     /**
-     * Converts a given {@code ReadOnlyConsults} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyConsult} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableConsult}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableConsults}.
      */
     public JsonSerializableConsults(ReadOnlyConsult source) {
         consults.addAll(source.getAllConsults().stream().map(JsonAdaptedConsult::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code ConsultStorage} object.
+     * Converts this ConsultTAble into the model's {@code ConsultStorage} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
@@ -50,7 +50,7 @@ class JsonSerializableConsults {
         for (JsonAdaptedConsult jsonAdaptedConsult : consults) {
             Consult consult = jsonAdaptedConsult.toModelType();
             if (consultTAble.hasConsult(consult)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CONSULT);
             }
             consultTAble.addConsult(consult);
         }

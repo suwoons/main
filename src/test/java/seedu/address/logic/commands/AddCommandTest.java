@@ -21,8 +21,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.consult.Consult;
+import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.person.Person;
-//import seedu.address.testutil.Assert;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -161,7 +161,52 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteConsult(Consult target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setConsult(Consult consultToEdit, Consult editedConsult) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearConsults() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Consult> getFilteredConsultList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredConsultList(Predicate<Consult> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTutorial(Tutorial tutorial) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTutorial(Tutorial tutorial) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTutorial(Tutorial target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Tutorial> getFilteredTutorialList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -1,11 +1,10 @@
 package seedu.address.logic.commands.consults;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_STUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_BEGIN_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_LOCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -22,20 +21,18 @@ public class AddConsultCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a consultation to TAble. "
             + "Parameters: "
-            + PREFIX_EVENT_NAME + "EVENT_NAME "
-            + PREFIX_EVENT_BEGIN_DATE_TIME + "EVENT_BEGIN_DATE_TIME "
-            + PREFIX_EVENT_END_DATE_TIME + "EVENT_END_DATE_TIME "
-            + PREFIX_EVENT_LOCATION + "LOCATION "
-            + PREFIX_CONSULT_STUDENT + "STUDENT "
+            + PREFIX_CONSULT_BEGIN_DATE_TIME + "EVENT_BEGIN_DATE_TIME "
+            + PREFIX_CONSULT_END_DATE_TIME + "EVENT_END_DATE_TIME "
+            + PREFIX_PLACE + "PLACE "
+            + PREFIX_STUDENT + "STUDENT "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_EVENT_NAME + "CS2103 Consultation "
-            + PREFIX_EVENT_BEGIN_DATE_TIME + "2020-03-03 10:00 "
-            + PREFIX_EVENT_END_DATE_TIME + "2020-03-03 12:00 "
-            + PREFIX_EVENT_LOCATION + "Outside SR1 "
-            + PREFIX_CONSULT_STUDENT + "A0123456P";
+            + PREFIX_CONSULT_BEGIN_DATE_TIME + "2020-03-03 10:00 "
+            + PREFIX_CONSULT_END_DATE_TIME + "2020-03-03 12:00 "
+            + PREFIX_PLACE + "Outside SR1 "
+            + PREFIX_STUDENT + "A0123456P";
 
     public static final String MESSAGE_SUCCESS = "New consultation added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CONSULT = "This consultation already exists in TAble.";
+    public static final String MESSAGE_DUPLICATE_CONSULT = "There is already a consultation at that timing.";
 
     private final Consult toAdd;
 
