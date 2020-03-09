@@ -12,4 +12,6 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_CONSULT_DISPLAYED_INDEX = "The consult index provided is invalid";
     public static final String MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX = "The tutorial index provided is invalid";
+    public static final String MESSAGE_BEGIN_TIME_BEFORE_END_TIME = "The begin date time of the consult is before " +
+            "the end date time of the consult.";
 }

@@ -1,6 +1,9 @@
 package seedu.address.model.event.consult;
 
+import static seedu.address.commons.core.Messages.MESSAGE_BEGIN_TIME_BEFORE_END_TIME;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
 
 import java.time.LocalDateTime;
 
@@ -13,25 +16,27 @@ import seedu.address.model.event.Location;
  */
 public class Consult {
 
-    private LocalDateTime consultBeginDateTime;
-    private LocalDateTime consultEndDateTime;
+    private LocalDateTime beginDateTime;
+    private LocalDateTime endDateTime;
     private Location location;
 
 
-    public Consult(LocalDateTime consultBeginDateTime, LocalDateTime consultEndDateTime,
-                 Location location) {
-        requireAllNonNull(consultBeginDateTime, consultEndDateTime, location);
-        this.consultBeginDateTime = consultBeginDateTime;
-        this.consultEndDateTime = consultEndDateTime;
+    public Consult(LocalDateTime beginDateTime, LocalDateTime endDateTime,
+                   Location location) {
+        requireAllNonNull(beginDateTime, endDateTime, location);
+        checkArgument(checkStartEndDateTime(beginDateTime, endDateTime),
+                MESSAGE_BEGIN_TIME_BEFORE_END_TIME);
+        this.beginDateTime = beginDateTime;
+        this.endDateTime = endDateTime;
         this.location = location;
     }
 
-    public LocalDateTime getConsultBeginDateTime() {
-        return consultBeginDateTime;
+    public LocalDateTime getBeginDateTime() {
+        return beginDateTime;
     }
 
-    public LocalDateTime getConsultEndDateTime() {
-        return consultEndDateTime;
+    public LocalDateTime getEndDateTime() {
+        return endDateTime;
     }
 
     public Location getPlace() {
@@ -52,17 +57,17 @@ public class Consult {
         }
 
         Consult otherEvent = (Consult) other;
-        return otherEvent.getConsultBeginDateTime().equals(getConsultBeginDateTime())
-                && otherEvent.getConsultEndDateTime().equals(getConsultEndDateTime());
+        return otherEvent.getBeginDateTime().equals(getBeginDateTime())
+                && otherEvent.getEndDateTime().equals(getEndDateTime());
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Start Time: ")
-                .append(getConsultBeginDateTime())
+                .append(getBeginDateTime())
                 .append(" End Time: ")
-                .append(getConsultEndDateTime())
+                .append(getEndDateTime())
                 .append(" Place: ")
                 .append(getPlace());
         return builder.toString();

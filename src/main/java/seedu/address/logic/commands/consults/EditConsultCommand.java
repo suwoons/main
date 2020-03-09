@@ -86,9 +86,9 @@ public class EditConsultCommand extends Command {
         assert consultToEdit != null;
 
         LocalDateTime updatedBeginStartTime = editConsultDescriptor.getConsultBeginDateTime()
-                .orElse(consultToEdit.getConsultBeginDateTime());
+                .orElse(consultToEdit.getBeginDateTime());
         LocalDateTime updatedEndStartTime = editConsultDescriptor.getConsultEndDateTime()
-                .orElse(consultToEdit.getConsultEndDateTime());
+                .orElse(consultToEdit.getEndDateTime());
         Location updatedLocation = editConsultDescriptor.getLocation().orElse(consultToEdit.getPlace());
 
         return new Consult(updatedBeginStartTime, updatedEndStartTime, updatedLocation);
