@@ -15,6 +15,7 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_PLACE = new Prefix("place/");
     public static final Prefix PREFIX_STUDENT = new Prefix("student/");
+    public static final Prefix PREFIX_INDEX = new Prefix("INDEX (must be a positive integer)");
 
 
     /* Consult definitions */
@@ -28,5 +29,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TUTORIAL_END_TIME = new Prefix("endTime/");
 
     /* Module definitions */
-    public static final Prefix PREFIX_MODULE_NAME = new Prefix("mod/");
+    public static final Prefix PREFIX_MODULE_NAME = new Prefix("m/");
 }

@@ -17,7 +17,7 @@ public class DeleteConsultCommandParser implements Parser<DeleteConsultCommand> 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteConsultCommand
      * and returns a DeleteConsultCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public DeleteConsultCommand parse(String args) throws ParseException {
         try {
