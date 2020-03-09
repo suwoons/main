@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 public class ListTutorialCommand extends Command {
     public static final String COMMAND_WORD = "listTutorial";
 
-    public static final String MESSAGE_SUCCESS = "Listed all tutorials\n";
+    public static final String MESSAGE_SUCCESS = COMMAND_WORD + ": Listed all tutorials\n";
 
 
     @Override
