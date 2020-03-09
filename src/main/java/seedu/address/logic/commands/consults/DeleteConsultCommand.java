@@ -22,7 +22,7 @@ public class DeleteConsultCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the consult identified by the index number used in the displayed Consult TAble.\n"
-            + "Parameters: "+ PREFIX_INDEX + "\n"
+            + "Parameters: " + PREFIX_INDEX + "\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_CONSULT_SUCCESS = "Deleted Consult: %1$s";

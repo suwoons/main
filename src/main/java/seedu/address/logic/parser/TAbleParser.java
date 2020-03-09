@@ -23,6 +23,7 @@ import seedu.address.logic.commands.consults.EditConsultCommand;
 import seedu.address.logic.commands.consults.ListConsultCommand;
 import seedu.address.logic.commands.tutorials.AddTutorialCommand;
 import seedu.address.logic.commands.tutorials.DeleteTutorialCommand;
+import seedu.address.logic.commands.tutorials.ListTutorialCommand;
 import seedu.address.logic.parser.consults.AddConsultCommandParser;
 import seedu.address.logic.parser.consults.ClearConsultCommand;
 import seedu.address.logic.parser.consults.DeleteConsultCommandParser;
@@ -105,6 +106,9 @@ public class TAbleParser {
 
         case DeleteTutorialCommand.COMMAND_WORD:
             return new DeleteTutorialCommandParser().parse(arguments);
+
+        case ListTutorialCommand.COMMAND_WORD:
+            return new ListTutorialCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
