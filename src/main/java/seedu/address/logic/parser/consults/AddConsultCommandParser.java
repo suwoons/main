@@ -52,7 +52,7 @@ public class AddConsultCommandParser implements Parser<AddConsultCommand> {
                 PREFIX_PLACE).get());
         //Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONSULT_STUDENT).get());
 
-        if (!checkStartEndDateTime(beginDateTime, endDateTime)){
+        if (!checkStartEndDateTime(beginDateTime, endDateTime)) {
             throw new ParseException(MESSAGE_BEGIN_TIME_BEFORE_END_TIME);
         }
 

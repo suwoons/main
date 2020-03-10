@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.consults;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_BEGIN_TIME_BEFORE_END_TIME;
+import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
@@ -82,7 +84,8 @@ public class EditConsultCommand extends Command {
      * Creates and returns a {@code Consult} with the details of {@code consultToEdit}
      * edited with {@code editConsultDescriptor}.
      */
-    private static Consult createEditedConsult(Consult consultToEdit, EditConsultDescriptor editConsultDescriptor) {
+    private static Consult createEditedConsult(Consult consultToEdit, EditConsultDescriptor editConsultDescriptor)
+            throws CommandException {
         assert consultToEdit != null;
 
         LocalDateTime updatedBeginStartTime = editConsultDescriptor.getBeginDateTime()
@@ -90,6 +93,10 @@ public class EditConsultCommand extends Command {
         LocalDateTime updatedEndStartTime = editConsultDescriptor.getEndDateTime()
                 .orElse(consultToEdit.getEndDateTime());
         Location updatedLocation = editConsultDescriptor.getLocation().orElse(consultToEdit.getPlace());
+
+        if (!checkStartEndDateTime(updatedBeginStartTime, updatedEndStartTime)) {
+            throw new CommandException(MESSAGE_BEGIN_TIME_BEFORE_END_TIME);
+        }
 
         return new Consult(updatedBeginStartTime, updatedEndStartTime, updatedLocation);
     }
