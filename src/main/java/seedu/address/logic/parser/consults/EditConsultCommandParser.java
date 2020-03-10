@@ -2,6 +2,7 @@ package seedu.address.logic.parser.consults;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
@@ -41,17 +42,17 @@ public class EditConsultCommandParser implements Parser<EditConsultCommand> {
 
         EditConsultCommand.EditConsultDescriptor editConsultDescriptor = new EditConsultCommand.EditConsultDescriptor();
         if (argMultimap.getValue(PREFIX_CONSULT_BEGIN_DATE_TIME).isPresent()) {
-            editConsultDescriptor.setConsultBeginDateTime(
+            editConsultDescriptor.setBeginDateTime(
                     ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_CONSULT_BEGIN_DATE_TIME).get()));
         }
         if (argMultimap.getValue(PREFIX_CONSULT_END_DATE_TIME).isPresent()) {
-            editConsultDescriptor.setConsultEndDateTime(
+            editConsultDescriptor.setEndDateTime(
                     ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_CONSULT_END_DATE_TIME).get()));
         }
         if (argMultimap.getValue(PREFIX_PLACE).isPresent()) {
             editConsultDescriptor.setLocation(ParserUtil.parsePlace(argMultimap.getValue(PREFIX_PLACE).get()));
         }
-
+       // if (!checkStartEndDateTime(editConsultDescriptor.getBeginDateTime(), editConsultDescriptor.getEndDateTime()))
         if (!editConsultDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditConsultCommand.MESSAGE_NOT_EDITED);
         }
