@@ -61,6 +61,24 @@ public class Consult {
                 && otherEvent.getEndDateTime().equals(getEndDateTime());
     }
 
+    /**
+     * Returns true if both consults timing clash, where the beginDateTime of the first consult is after the second
+     * consult or vice versa.
+     */
+    public boolean timeClash(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Consult)) {
+            return false;
+        }
+
+        Consult otherEvent = (Consult) other;
+        return !checkStartEndDateTime(otherEvent.getEndDateTime(), getBeginDateTime())
+                || !checkStartEndDateTime(otherEvent.getBeginDateTime(), getEndDateTime());
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -72,4 +90,5 @@ public class Consult {
                 .append(getPlace());
         return builder.toString();
     }
+
 }
