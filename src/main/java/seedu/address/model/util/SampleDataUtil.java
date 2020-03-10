@@ -1,11 +1,23 @@
 package seedu.address.model.util;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.Location;
+import seedu.address.model.event.consult.Consult;
+import seedu.address.model.event.consult.ConsultTAble;
+import seedu.address.model.event.consult.ReadOnlyConsult;
+import seedu.address.model.event.tutorial.ReadOnlyTutorial;
+import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.model.event.tutorial.TutorialName;
+import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -49,6 +61,31 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+    public static ReadOnlyConsult getSampleConsults() {
+        LocalDateTime startDateTime = LocalDateTime.now();
+        LocalDateTime endDateTime = LocalDateTime.now().plusHours(3);
+        Location location = new Location("SR1");
+        Consult consult = new Consult(startDateTime, endDateTime, location);
+        ArrayList<Consult> consultList = new ArrayList<>();
+        consultList.add(consult);
+        ConsultTAble sampleConsultTAble = new ConsultTAble(consultList);
+        return sampleConsultTAble;
+    }
+
+    public static ReadOnlyTutorial getSampleTutorials() {
+        String moduleName = "CS2103";
+        TutorialName tutorialName = new TutorialName("T03");
+        DayOfWeek weekday = DayOfWeek.WEDNESDAY;
+        LocalTime startTime = LocalTime.now();
+        LocalTime endTime = LocalTime.now().plusHours(2);
+        Location location = new Location("SR1");
+        Tutorial tutorial = new Tutorial(moduleName, tutorialName, weekday, startTime, endTime, location);
+        ArrayList<Tutorial> tutorialList = new ArrayList<>();
+        tutorialList.add(tutorial);
+        TutorialTAble sampleTutorialTAble = new TutorialTAble(tutorialList);
+        return sampleTutorialTAble;
     }
 
 }

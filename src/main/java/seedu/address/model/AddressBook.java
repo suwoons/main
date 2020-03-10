@@ -5,6 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.event.consult.Consult;
+import seedu.address.model.event.consult.UniqueConsultList;
+import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.model.event.tutorial.UniqueTutorialList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,6 +19,8 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueConsultList consults;
+    private final UniqueTutorialList tutorials;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +31,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        consults = new UniqueConsultList();
+        tutorials = new UniqueTutorialList();
     }
 
     public AddressBook() {}
@@ -93,6 +101,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+
+    /**
+     * Returns {@code student} from {@code TAble}.
+     * {@code student} must exist in the address book.
+     */
+    public Person getStudent(int index) {
+        return persons.getStudent(index);
+    }
+
     //// util methods
 
     @Override
@@ -117,4 +134,41 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+    /// consult-level operations
+
+    /**
+     * Returns true if a consult with the same identity as {@code consult} exists in TAble.
+     */
+    public boolean hasConsult(Consult consult) {
+        requireNonNull(consult);
+        return consults.contains(consult);
+    }
+
+    /**
+     * Adds a consult to TAble.
+     * The consult must not already exist in TAble.
+     */
+    public void addConsult(Consult consult) {
+        consults.add(consult);
+    }
+
+    /// tutorial-level operations
+
+    /**
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in TAble.
+     */
+    public boolean hasTutorial(Tutorial tutorial) {
+        requireNonNull(tutorial);
+        return tutorials.contains(tutorial);
+    }
+
+    /**
+     * Adds a tutorial to TAble.
+     * The tutorial must not already exist in TAble.
+     */
+    public void addTutorial(Tutorial tutorial) {
+        tutorials.add(tutorial);
+    }
+
 }

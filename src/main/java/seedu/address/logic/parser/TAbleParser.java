@@ -17,12 +17,25 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 
+import seedu.address.logic.commands.consults.AddConsultCommand;
+import seedu.address.logic.commands.consults.DeleteConsultCommand;
+import seedu.address.logic.commands.consults.EditConsultCommand;
+import seedu.address.logic.commands.consults.ListConsultCommand;
+import seedu.address.logic.commands.tutorials.AddTutorialCommand;
+import seedu.address.logic.commands.tutorials.DeleteTutorialCommand;
+import seedu.address.logic.commands.tutorials.ListTutorialCommand;
+import seedu.address.logic.parser.consults.AddConsultCommandParser;
+import seedu.address.logic.parser.consults.ClearConsultCommand;
+import seedu.address.logic.parser.consults.DeleteConsultCommandParser;
+import seedu.address.logic.parser.consults.EditConsultCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.tutorials.AddTutorialCommandParser;
+import seedu.address.logic.parser.tutorials.DeleteTutorialCommandParser;
 
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class TAbleParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -72,6 +85,30 @@ public class AddressBookParser {
 
         case RemarkCommand.COMMAND_WORD:
             return new RemarkCommandParser().parse(arguments);
+
+        case AddConsultCommand.COMMAND_WORD:
+            return new AddConsultCommandParser().parse(arguments);
+
+        case ListConsultCommand.COMMAND_WORD:
+            return new ListConsultCommand();
+
+        case DeleteConsultCommand.COMMAND_WORD:
+            return new DeleteConsultCommandParser().parse(arguments);
+
+        case EditConsultCommand.COMMAND_WORD:
+            return new EditConsultCommandParser().parse(arguments);
+
+        case ClearConsultCommand.COMMAND_WORD:
+            return new ClearConsultCommand();
+
+        case AddTutorialCommand.COMMAND_WORD:
+            return new AddTutorialCommandParser().parse(arguments);
+
+        case DeleteTutorialCommand.COMMAND_WORD:
+            return new DeleteTutorialCommandParser().parse(arguments);
+
+        case ListTutorialCommand.COMMAND_WORD:
+            return new ListTutorialCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

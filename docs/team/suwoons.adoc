@@ -1,0 +1,48 @@
+= Nigel Neo - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: TAble
+
+== Overview
+
+TAble is your handy desktop app, optimized for TAs who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)! Mark attendance, arrange consults, add module notes, and more with TAble! It has a GUI created with JavaFX and written in Java, and has about 10 kLoC.
+
+== Summary of contributions
+
+* *Major enhancement*: added *the ability to insert Tutorial details and mark attendance of students in a tutorial*
+** What it does: Allows the user to keep track of tutorials they are serving as teaching assistant for, as well as update attendance of students in their respective tutorials
+** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+
+* *Code contributed*: [https://github.com[Dead link - Functional code]] [https://github.com[Dead link - Test code]] _{give links to collated code files}_
+
+* *Other contributions*:
+
+** Project management:
+*** To be updated
+** Enhancements to existing features:
+*** To be updated
+** Documentation:
+*** To be updated
+** Tools:
+*** To be updated
+
+_{you can add/remove categories in the list above}_
+
+== Contributions to the User Guide
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=Tutorial]
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+_To be updated_

@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
@@ -21,6 +22,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.event.consult.ConsultTAble;
+import seedu.address.model.event.consult.ReadOnlyConsult;
+import seedu.address.model.event.tutorial.ReadOnlyTutorial;
+import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -28,6 +33,10 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.consults.ConsultStorage;
+import seedu.address.storage.consults.JsonConsultStorage;
+import seedu.address.storage.tutorials.JsonTutorialStorage;
+import seedu.address.storage.tutorials.TutorialStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -57,7 +66,9 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ConsultStorage consultStorage = new JsonConsultStorage(userPrefs.getConsultTAbleFilePath());
+        TutorialStorage tutorialStorage = new JsonTutorialStorage(userPrefs.getTutorialTableFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, consultStorage, tutorialStorage);
 
         initLogging(config);
 
@@ -69,28 +80,50 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s TAble and {@code userPrefs}. <br>
+     * The data from the sample TAble will be used instead if {@code storage}'s TAble is not found,
+     * or an empty TAble will be used instead if errors occur when reading {@code storage}'s TAble.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyConsult> consultsOptional;
+        Optional<ReadOnlyTutorial> tutorialsOptional;
+
         ReadOnlyAddressBook initialData;
+        ReadOnlyConsult initialConsults;
+        ReadOnlyTutorial initialTutorials;
+
         try {
             addressBookOptional = storage.readAddressBook();
+            consultsOptional = storage.readConsults();
+            tutorialsOptional = storage.readTutorials();
+
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
+            if (!consultsOptional.isPresent()) {
+                logger.info("Consults file not found. Will be starting with no consults");
+            }
+            if (!tutorialsOptional.isPresent()) {
+                logger.info("Tutorials file not found. Will be starting with no tutorials.");
+            }
+
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialConsults = consultsOptional.orElseGet(SampleDataUtil::getSampleConsults);
+            initialTutorials = tutorialsOptional.orElseGet(SampleDataUtil::getSampleTutorials);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+            initialConsults = new ConsultTAble();
+            initialTutorials = new TutorialTAble();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+            initialConsults = new ConsultTAble();
+            initialTutorials = new TutorialTAble();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, userPrefs, initialConsults, initialTutorials);
     }
 
     private void initLogging(Config config) {
@@ -167,13 +200,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting TAble " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping TAble ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
