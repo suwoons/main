@@ -2,6 +2,7 @@ package seedu.address.logic.commands.consults;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_BEGIN_TIME_BEFORE_END_TIME;
+import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_TIMING_CLASH;
 import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
@@ -73,6 +74,10 @@ public class EditConsultCommand extends Command {
 
         if (!consultToEdit.equals(editedConsult) && model.hasConsult(editedConsult)) {
             throw new CommandException(MESSAGE_DUPLICATE_CONSULT);
+        }
+
+        if (model.hasSameTiming(editedConsult)) {
+            throw new CommandException(MESSAGE_CONSULT_TIMING_CLASH);
         }
 
         model.setConsult(consultToEdit, editedConsult);
