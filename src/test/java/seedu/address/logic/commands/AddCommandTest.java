@@ -186,6 +186,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasSameTiming(Consult consult) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public boolean hasTutorial(Tutorial tutorial) {
             throw new AssertionError("This method should not be called.");
         }

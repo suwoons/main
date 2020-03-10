@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.consult.Consult;
-import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.person.Person;
 
