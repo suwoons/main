@@ -220,6 +220,11 @@ public class ModelManager implements Model {
         return consultTAble.hasSameTiming(consult);
     }
 
+    @Override
+    public ReadOnlyConsult getConsultTAble() {
+        return consultTAble;
+    }
+
     // Tutorials section
 
     @Override
