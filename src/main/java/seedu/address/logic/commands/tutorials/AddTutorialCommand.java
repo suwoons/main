@@ -13,6 +13,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.model.mod.Mod;
 
 /**
  * Adds a Tutorial to TAble.
@@ -39,6 +40,7 @@ public class AddTutorialCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New tutorial added!\n%1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in TAble.";
+    public static final String MESSAGE_MISSING_MOD = "This module code does not exist in TAble.";
 
     private final Tutorial toAdd;
 
@@ -56,6 +58,10 @@ public class AddTutorialCommand extends Command {
 
         if (model.hasTutorial(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL);
+        }
+
+        if (!model.hasMod(new Mod(toAdd.getModCode(), ""))) {
+            throw new CommandException(MESSAGE_MISSING_MOD);
         }
 
         model.addTutorial(toAdd);

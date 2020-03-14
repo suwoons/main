@@ -51,7 +51,7 @@ public class Mod {
      * Returns true if both modules have the same module code.
      * This defines a weaker notion of equality between two modules.
      */
-    public boolean isSameMod(seedu.address.model.mod.Mod otherMod) {
+    public boolean isSameMod(Mod otherMod) {
         if (otherMod == this) {
             return true;
         }
@@ -89,7 +89,7 @@ public class Mod {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getModCode())
+        builder.append(this.getModCode())
             .append(" Description: ")
             .append(getName())
                 .append(" Links: ");

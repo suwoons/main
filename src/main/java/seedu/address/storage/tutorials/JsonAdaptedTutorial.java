@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.TutorialName;
+import seedu.address.model.mod.ModCode;
 
 /**
  * Jackson-friendly version of {@link Tutorial}.
@@ -52,7 +53,7 @@ public class JsonAdaptedTutorial {
      * Converts a given {@code Tutorial} into this class for Jackson use.
      */
     public JsonAdaptedTutorial(Tutorial source) {
-        moduleCode = source.getModuleCode();
+        moduleCode = source.getModCode().toString();
         tutorialName = source.getTutorialName().toString();
         weekday = Integer.toString(source.getDay().getValue());
         beginTime = source.getBeginTime().toString();
@@ -75,10 +76,10 @@ public class JsonAdaptedTutorial {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "TUTORIAL_NAME"));
         }
 
-        String modelModuleCode;
+        ModCode modelModuleCode;
         TutorialName modelTutorialName;
 
-        modelModuleCode = moduleCode;
+        modelModuleCode = new ModCode(moduleCode);
         modelTutorialName = new TutorialName(tutorialName);
 
         DayOfWeek modelWeekday;
@@ -114,6 +115,7 @@ public class JsonAdaptedTutorial {
 
         final Location modelLocation = new Location(location);
 
+        //TODO Check if
         return new Tutorial(modelModuleCode, modelTutorialName, modelWeekday, modelBeginTime, modelEndTime,
                 modelLocation);
     }

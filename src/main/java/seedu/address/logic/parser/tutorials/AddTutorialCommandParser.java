@@ -22,6 +22,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.TutorialName;
+import seedu.address.model.mod.ModCode;
 
 /**
  * Parses input arguments and creates a new AddTutorial object
@@ -48,8 +49,7 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
                     AddTutorialCommand.MESSAGE_USAGE));
         }
 
-        // TODO convert to module name after parser module name implemented
-        String moduleCode = argMultimap.getValue(PREFIX_MODULE_CODE).get();
+        ModCode moduleCode = ParserUtil.parseModCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
         TutorialName tutorialName = ParserUtil.parseTutorialName(argMultimap.getValue(
                 PREFIX_TUTORIAL_NAME).get());
         DayOfWeek weekday = ParserUtil.parseDay(argMultimap.getValue(
