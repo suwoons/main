@@ -214,6 +214,17 @@ public class ModelManager implements Model {
         filteredConsults.setPredicate(predicate);
     }
 
+    @Override
+    public boolean hasSameTiming(Consult consult) {
+        requireAllNonNull(consult, consultTAble);
+        return consultTAble.hasSameTiming(consult);
+    }
+
+    @Override
+    public ReadOnlyConsult getConsultTAble() {
+        return consultTAble;
+    }
+
     // Tutorials section
 
     @Override

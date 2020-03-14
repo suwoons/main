@@ -38,6 +38,14 @@ public class UniqueConsultList implements Iterable<Consult> {
     }
 
     /**
+     * Returns true if the list contains another consult which timing clashes with the argument.
+     */
+    public boolean hasSameTiming(Consult consult) {
+        requireNonNull(consult);
+        return internalList.stream().anyMatch(consult::timeClash);
+    }
+
+    /**
      * Adds a consult to the list.
      * The consult must not already exist in the list.
      */
