@@ -216,7 +216,7 @@ public class ParserUtil {
      */
     public static ModCode parseModCode(String modCode) throws ParseException {
         requireNonNull(modCode);
-        String trimmedModCode = modCode.trim();
+        String trimmedModCode = modCode.trim().toUpperCase();
 
         if (!ModCode.isValidModCode(trimmedModCode)) {
             throw new ParseException(TutorialName.MESSAGE_CONSTRAINTS);
