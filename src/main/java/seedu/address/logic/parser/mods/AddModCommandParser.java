@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.mod;
+package seedu.address.logic.parser.mods;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_NAME;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.mod.AddModCommand;
+import seedu.address.logic.commands.mods.AddModCommand;
 import seedu.address.logic.commands.tutorials.AddTutorialCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.mod;
+package seedu.address.logic.commands.mods;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;

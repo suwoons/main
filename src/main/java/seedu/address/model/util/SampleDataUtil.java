@@ -18,6 +18,10 @@ import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.TutorialName;
 import seedu.address.model.event.tutorial.TutorialTAble;
+import seedu.address.model.mod.Mod;
+import seedu.address.model.mod.ModCode;
+import seedu.address.model.mod.ModTAble;
+import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -86,6 +90,16 @@ public class SampleDataUtil {
         tutorialList.add(tutorial);
         TutorialTAble sampleTutorialTAble = new TutorialTAble(tutorialList);
         return sampleTutorialTAble;
+    }
+
+    public static ReadOnlyMod getSampleMods() {
+        ModCode modCode = new ModCode("CS2103");
+        String modName = "Software Engineering";
+        Mod mod = new Mod(modCode, modName);
+        ArrayList<Mod> modList = new ArrayList<>();
+        modList.add(mod);
+        ModTAble sampleModTAble = new ModTAble(modList);
+        return sampleModTAble;
     }
 
 }

@@ -16,7 +16,6 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.tutorial.TutorialName;
-import seedu.address.model.mod.Mod;
 import seedu.address.model.mod.ModCode;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
