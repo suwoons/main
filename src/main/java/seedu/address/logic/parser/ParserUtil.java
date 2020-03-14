@@ -16,6 +16,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.tutorial.TutorialName;
+import seedu.address.model.mod.Mod;
+import seedu.address.model.mod.ModCode;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -206,5 +208,21 @@ public class ParserUtil {
         }
 
         return new TutorialName(trimmedTutorialName);
+    }
+
+    /**
+     * Parses a {@code String modCode} into a {@code ModCode}.
+     *
+     * @throws ParseException if the given {@code modCode} is invalid.
+     */
+    public static ModCode parseMod(String modCode) throws ParseException {
+        requireNonNull(modCode);
+        String trimmedModCode = modCode.trim();
+
+        if (!ModCode.isValidModCode(trimmedModCode)) {
+            throw new ParseException(TutorialName.MESSAGE_CONSTRAINTS);
+        }
+
+        return new ModCode(trimmedModCode);
     }
 }

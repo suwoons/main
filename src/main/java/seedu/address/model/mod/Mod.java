@@ -16,26 +16,27 @@ public class Mod {
 
     // Identity fields
     private final ModCode modCode;
-    private final String description;
+    private final String name;
 
     // Data fields
+    private String description; //TODO update description
     private final Map<String, ModLink> links = new HashMap<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Mod(ModCode modCode, String description) {
-        requireAllNonNull(modCode, description);
+    public Mod(ModCode modCode, String name) {
+        requireAllNonNull(modCode, name);
         this.modCode = modCode;
-        this.description = description;
+        this.name = name;
     }
 
     public ModCode getModCode() {
         return modCode;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
     /**
@@ -75,22 +76,22 @@ public class Mod {
 
         seedu.address.model.mod.Mod otherMod = (seedu.address.model.mod.Mod) other;
         return otherMod.getModCode().equals(getModCode())
-                && otherMod.getDescription().equals(getDescription())
-                && otherMod.getLinks().equals(getLinks());
+            && otherMod.getName().equals(getName())
+            && otherMod.getLinks().equals(getLinks());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(modCode, description, links);
+        return Objects.hash(modCode, name, links);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getModCode())
-                .append(" Description: ")
-                .append(getDescription())
+            .append(" Description: ")
+            .append(getName())
                 .append(" Links: ");
         getLinks().forEach((desc, link) -> builder.append(desc).append(" ").append(link).append("\n"));
         return builder.toString();

@@ -48,7 +48,7 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
                     AddTutorialCommand.MESSAGE_USAGE));
         }
 
-        // convert to module name after parser module name implemented
+        // TODO convert to module name after parser module name implemented
         String moduleCode = argMultimap.getValue(PREFIX_MODULE_CODE).get();
         TutorialName tutorialName = ParserUtil.parseTutorialName(argMultimap.getValue(
                 PREFIX_TUTORIAL_NAME).get());

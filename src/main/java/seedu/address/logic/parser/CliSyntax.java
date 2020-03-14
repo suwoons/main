@@ -30,4 +30,5 @@ public class CliSyntax {
 
     /* Module definitions */
     public static final Prefix PREFIX_MODULE_CODE = new Prefix("mod/");
+    public static final Prefix PREFIX_MODULE_NAME = new Prefix("modName/");
 }
