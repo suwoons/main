@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.consult.Consult;
+import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.person.Person;
 
@@ -128,6 +129,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredConsultList(Predicate<Consult> predicate);
+
+    /**
+     * Returns true if a {@code consult}'s timing clashes with another {@code consult} timing in TAble.
+     */
+    boolean hasSameTiming(Consult consult);
+
+    /** Returns the Consult TAble */
+    ReadOnlyConsult getConsultTAble();
 
     // Tutorial-level operations =====================================================================================
 
