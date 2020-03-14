@@ -21,14 +21,14 @@ import seedu.address.model.event.tutorial.Tutorial;
 public class AddTutorialCommand extends Command {
     public static final String COMMAND_WORD = "addTutorial";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to TAble. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to TAble.\n"
             + "Parameters: "
             + PREFIX_MODULE_NAME + "MODULE_NAME "
             + PREFIX_TUTORIAL_NAME + "TUTORIAL_NAME "
             + PREFIX_TUTORIAL_WEEKDAY + "TUTORIAL_WEEKDAY "
             + PREFIX_TUTORIAL_BEGIN_TIME + "TUTORIAL_BEGIN_TIME "
             + PREFIX_TUTORIAL_END_TIME + "TUTORIAL_END_TIME "
-            + PREFIX_PLACE + "PLACE "
+            + PREFIX_PLACE + "PLACE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_NAME + "CS2103 "
             + PREFIX_TUTORIAL_NAME + "T03 "
@@ -37,7 +37,7 @@ public class AddTutorialCommand extends Command {
             + PREFIX_TUTORIAL_END_TIME + "16:00 "
             + PREFIX_PLACE + "COM1-B113 ";
 
-    public static final String MESSAGE_SUCCESS = "New tutorial added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New tutorial added!\n%1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in TAble.";
 
     private final Tutorial toAdd;
