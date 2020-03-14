@@ -214,7 +214,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code modCode} is invalid.
      */
-    public static ModCode parseMod(String modCode) throws ParseException {
+    public static ModCode parseModCode(String modCode) throws ParseException {
         requireNonNull(modCode);
         String trimmedModCode = modCode.trim();
 

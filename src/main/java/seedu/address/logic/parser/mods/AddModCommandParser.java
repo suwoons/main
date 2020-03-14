@@ -39,7 +39,7 @@ public class AddModCommandParser implements Parser<AddModCommand> {
                 AddTutorialCommand.MESSAGE_USAGE));
         }
 
-        ModCode modCode = ParserUtil.parseMod(argMultimap.getValue(PREFIX_MODULE_CODE).get());
+        ModCode modCode = ParserUtil.parseModCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
         String modName = argMultimap.getValue(PREFIX_MODULE_NAME).get();
 
         Mod mod = new Mod(modCode, modName);

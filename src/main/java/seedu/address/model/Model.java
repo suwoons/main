@@ -19,6 +19,7 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Consult> PREDICATE_SHOW_ALL_CONSULTS = unused -> true;
     Predicate<Tutorial> PREDICATE_SHOW_ALL_TUTORIALS = unused -> true;
+    Predicate<Mod> PREDICATE_SHOW_ALL_MODS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
