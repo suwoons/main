@@ -75,13 +75,13 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyTutorial getSampleTutorials() {
-        String moduleName = "CS2103";
+        String moduleCode = "CS2103";
         TutorialName tutorialName = new TutorialName("T03");
         DayOfWeek weekday = DayOfWeek.WEDNESDAY;
         LocalTime startTime = LocalTime.now();
         LocalTime endTime = LocalTime.now().plusHours(2);
         Location location = new Location("SR1");
-        Tutorial tutorial = new Tutorial(moduleName, tutorialName, weekday, startTime, endTime, location);
+        Tutorial tutorial = new Tutorial(moduleCode, tutorialName, weekday, startTime, endTime, location);
         ArrayList<Tutorial> tutorialList = new ArrayList<>();
         tutorialList.add(tutorial);
         TutorialTAble sampleTutorialTAble = new TutorialTAble(tutorialList);

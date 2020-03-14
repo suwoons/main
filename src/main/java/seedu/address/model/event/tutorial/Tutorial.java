@@ -33,7 +33,7 @@ public class Tutorial {
         this.location = location;
     }
 
-    public String getModule() {
+    public String getModuleCode() {
         return module;
     }
 
@@ -71,7 +71,7 @@ public class Tutorial {
         }
 
         Tutorial otherTutorial = (Tutorial) other;
-        return otherTutorial.getModule().equals(getModule())
+        return otherTutorial.getModuleCode().equals(getModuleCode())
                 && otherTutorial.getTutorialName().equals(getTutorialName());
     }
 
@@ -79,7 +79,7 @@ public class Tutorial {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Module: ")
-                .append(getModule())
+                .append(getModuleCode())
                 .append(" Tutorial Name: ")
                 .append(getTutorialName())
                 .append(" Day: ")

@@ -29,5 +29,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TUTORIAL_END_TIME = new Prefix("endTime/");
 
     /* Module definitions */
-    public static final Prefix PREFIX_MODULE_NAME = new Prefix("m/");
+    public static final Prefix PREFIX_MODULE_CODE = new Prefix("mod/");
 }
