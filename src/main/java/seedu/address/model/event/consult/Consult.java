@@ -90,5 +90,4 @@ public class Consult {
                 .append(getLocation());
         return builder.toString();
     }
-
 }
