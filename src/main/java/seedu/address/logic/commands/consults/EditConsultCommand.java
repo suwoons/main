@@ -97,7 +97,7 @@ public class EditConsultCommand extends Command {
                 .orElse(consultToEdit.getBeginDateTime());
         LocalDateTime updatedEndStartTime = editConsultDescriptor.getEndDateTime()
                 .orElse(consultToEdit.getEndDateTime());
-        Location updatedLocation = editConsultDescriptor.getLocation().orElse(consultToEdit.getPlace());
+        Location updatedLocation = editConsultDescriptor.getLocation().orElse(consultToEdit.getLocation());
 
         if (!checkStartEndDateTime(updatedBeginStartTime, updatedEndStartTime)) {
             throw new CommandException(MESSAGE_BEGIN_TIME_BEFORE_END_TIME);
