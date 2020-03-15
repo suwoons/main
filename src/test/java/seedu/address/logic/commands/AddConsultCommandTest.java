@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.consults.AddConsultCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -27,6 +29,7 @@ import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.ConsultBuilder;
+
 
 public class AddConsultCommandTest {
 
@@ -53,8 +56,8 @@ public class AddConsultCommandTest {
         AddConsultCommand addConsultCommand = new AddConsultCommand(validConsult);
         AddConsultCommandTest.ModelStub modelStub = new AddConsultCommandTest.ModelStubWithConsult(validConsult);
 
-        assertThrows(CommandException.class, AddConsultCommand.MESSAGE_DUPLICATE_CONSULT,
-                () -> addConsultCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddConsultCommand.MESSAGE_DUPLICATE_CONSULT, ()
+            -> addConsultCommand.execute(modelStub));
     }
 
     @Test
