@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.person.Person;
 
@@ -40,6 +41,11 @@ public interface Logic {
     ObservableList<Tutorial> getFilteredTutorialList();
 
     /**
+     * Returns an unmodifiable view of the filtered list of consults
+     */
+    ObservableList<Consult> getFilteredConsultList();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
@@ -53,4 +59,5 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
 }

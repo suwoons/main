@@ -39,7 +39,7 @@ public class Consult {
         return endDateTime;
     }
 
-    public Location getPlace() {
+    public Location getLocation() {
         return location;
     }
 
@@ -87,7 +87,7 @@ public class Consult {
                 .append(" End Time: ")
                 .append(getEndDateTime())
                 .append(" Place: ")
-                .append(getPlace());
+                .append(getLocation());
         return builder.toString();
     }
 
