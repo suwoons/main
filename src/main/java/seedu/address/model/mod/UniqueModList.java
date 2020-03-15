@@ -33,7 +33,7 @@ public class UniqueModList implements Iterable<Mod> {
      */
     public boolean contains(Mod toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameMod);
     }
 
     /**

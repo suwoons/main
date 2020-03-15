@@ -16,4 +16,5 @@ public class Messages {
             + "the End Date Time of the consult.";
     public static final String MESSAGE_CONSULT_TIMING_CLASH = "This consult's timing clash with another pre-existing"
             + " consult.";
+    public static final String MESSAGE_INVALID_MOD_DISPLAYED_INDEX = "The module index provided is invalid";
 }

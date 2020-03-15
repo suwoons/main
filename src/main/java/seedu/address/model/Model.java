@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.model.mod.Mod;
 import seedu.address.model.person.Person;
 
 /**
@@ -18,6 +19,7 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Consult> PREDICATE_SHOW_ALL_CONSULTS = unused -> true;
     Predicate<Tutorial> PREDICATE_SHOW_ALL_TUTORIALS = unused -> true;
+    Predicate<Mod> PREDICATE_SHOW_ALL_MODS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -165,4 +167,32 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTutorialList(Predicate<Tutorial> predicate);
+
+    // Mod-level operations =====================================================================================
+
+    /**
+     * Returns true if a module with the same identity as {@code mod} exists in TAble.
+     */
+    boolean hasMod(Mod mod);
+
+    /**
+     * Adds the given module.
+     * {@code mod} must not already exist in TAble.
+     */
+    void addMod(Mod mod);
+
+    /**
+     * Deletes the given module.
+     * The module must exist in TAble.
+     */
+    void deleteMod(Mod mod);
+
+    /** Returns an unmodifiable view of the filtered module list */
+    ObservableList<Mod> getFilteredModList();
+
+    /**
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredModList(Predicate<Mod> predicate);
 }

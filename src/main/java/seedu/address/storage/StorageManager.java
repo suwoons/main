@@ -12,7 +12,9 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
+import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.storage.consults.ConsultStorage;
+import seedu.address.storage.mods.ModStorage;
 import seedu.address.storage.tutorials.TutorialStorage;
 
 /**
@@ -25,15 +27,17 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
     private ConsultStorage consultStorage;
     private TutorialStorage tutorialStorage;
+    private ModStorage modStorage;
 
 
     public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
-                          ConsultStorage consultStorage, TutorialStorage tutorialStorage) {
+                          ConsultStorage consultStorage, TutorialStorage tutorialStorage, ModStorage modStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.consultStorage = consultStorage;
         this.tutorialStorage = tutorialStorage;
+        this.modStorage = modStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -139,6 +143,35 @@ public class StorageManager implements Storage {
     public void saveTutorials(ReadOnlyTutorial tutorials, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         tutorialStorage.saveTutorials(tutorials, filePath);
+    }
+
+    // ================ Module methods ==============================
+
+    @Override
+    public Path getModsFilePath() {
+        return modStorage.getModsFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyMod> readMods() throws DataConversionException, IOException {
+        return readMods(modStorage.getModsFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyMod> readMods(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return modStorage.readMods(filePath);
+    }
+
+    @Override
+    public void saveMods(ReadOnlyMod mods) throws IOException {
+        saveMods(mods, modStorage.getModsFilePath());
+    }
+
+    @Override
+    public void saveMods(ReadOnlyMod mods, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        modStorage.saveMods(mods, filePath);
     }
 
 }
