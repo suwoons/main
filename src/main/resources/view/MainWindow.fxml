@@ -64,7 +64,7 @@
                                  <content>
                                     <VBox>
                                        <children>
-                                          <StackPane maxHeight="300.0" maxWidth="300.0" minHeight="300.0" minWidth="300.0" prefHeight="300.0" prefWidth="300.0" />
+                                           <StackPane fx:id="tutorialListPanelPlaceholder"/>
                                        </children></VBox>
                                  </content>
                               </Tab>

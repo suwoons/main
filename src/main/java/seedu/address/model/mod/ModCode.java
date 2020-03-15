@@ -1,5 +1,6 @@
 package seedu.address.model.mod;
 
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -41,6 +42,9 @@ public class ModCode {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getModCode() {
+        return modCode;
+    }
 
     @Override
     public String toString() {
