@@ -8,6 +8,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.event.consult.Consult;
 
+/**
+ * An UI component that displays information of a {@code Consult}.
+ */
 public class ConsultCard extends UiPart<Region> {
 
     private static final String FXML = "ConsultListCard.fxml";

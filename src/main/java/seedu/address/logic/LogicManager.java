@@ -28,12 +28,12 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final TAbleParser TAbleParser;
+    private final TAbleParser tableParser;
 
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        TAbleParser = new TAbleParser();
+        tableParser = new TAbleParser();
     }
 
     @Override
@@ -41,7 +41,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = TAbleParser.parseCommand(commandText);
+        Command command = tableParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {

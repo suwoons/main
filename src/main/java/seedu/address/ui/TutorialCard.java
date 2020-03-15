@@ -1,13 +1,14 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.event.tutorial.Tutorial;
 
+/**
+ * An UI component that displays information of a {@code Tutorial}.
+ */
 public class TutorialCard extends UiPart<Region> {
 
     private static final String FXML = "TutorialListCard.fxml";
@@ -37,7 +38,7 @@ public class TutorialCard extends UiPart<Region> {
     @FXML
     private Label endTime;
     @FXML
-    private Label TAlocation;
+    private Label tutlocation;
     //@FXML
     //private FlowPane tags;
 
@@ -48,7 +49,7 @@ public class TutorialCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(tutorial.getTutorialName().getTutorialName());
         modCode.setText(tutorial.getModCode().getModCode());
-        TAlocation.setText(tutorial.getLocation().getEventLocation());
+        tutlocation.setText(tutorial.getLocation().getEventLocation());
         //day.setText(tutorial.getDay());
         //startTime.setText(tutorial.getStartTime());
         //endTime.setText(tutorial.getEndTime());

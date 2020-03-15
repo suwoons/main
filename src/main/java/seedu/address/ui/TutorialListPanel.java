@@ -9,6 +9,9 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.tutorial.Tutorial;
 
+/**
+ * Panel containing the list of tutorials.
+ */
 public class TutorialListPanel extends UiPart<Region> {
 
     private static final String FXML = "TutorialListPanel.fxml";

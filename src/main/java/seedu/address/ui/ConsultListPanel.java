@@ -9,6 +9,9 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.consult.Consult;
 
+/**
+ * Panel containing the list of consults.
+ */
 public class ConsultListPanel extends UiPart<Region> {
     private static final String FXML = "ConsultListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ConsultListPanel.class);
