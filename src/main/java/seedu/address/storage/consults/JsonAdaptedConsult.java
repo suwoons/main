@@ -40,7 +40,7 @@ class JsonAdaptedConsult {
     public JsonAdaptedConsult(Consult source) {
         beginDateTime = source.getBeginDateTime().toString();
         endDateTime = source.getEndDateTime().toString();
-        eventLocation = source.getPlace().eventLocation;
+        eventLocation = source.getLocation().eventLocation;
     }
 
     /**
