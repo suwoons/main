@@ -1,12 +1,16 @@
 package seedu.address.logic.parser.tutorials;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_BEGIN_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_WEEKDAY;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.stream.Stream;
-
 import seedu.address.logic.commands.tutorials.AddTutorialCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;

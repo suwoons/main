@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-
 import seedu.address.model.event.Location;
 import seedu.address.model.mod.ModCode;
 

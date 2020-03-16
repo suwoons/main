@@ -4,13 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_BEGIN_TIME_BEFORE_END_TIME;
 import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_TIMING_CLASH;
 import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CONSULTS;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;

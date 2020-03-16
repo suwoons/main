@@ -3,11 +3,12 @@ package seedu.address.logic.parser.consults;
 import static seedu.address.commons.core.Messages.MESSAGE_BEGIN_TIME_BEFORE_END_TIME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
 
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
-
 import seedu.address.logic.commands.consults.AddConsultCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
