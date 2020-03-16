@@ -269,6 +269,11 @@ public class ModelManager implements Model {
         filteredTutorials.setPredicate(predicate);
     }
 
+    @Override
+    public ReadOnlyTutorial getTutorialTAble() {
+        return tutorialTAble;
+    }
+
     // Modules section ==========================================================================
 
     @Override
