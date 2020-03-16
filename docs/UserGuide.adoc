@@ -223,7 +223,7 @@ Returns any consults that are held at SR3
 === Add a tutorial slot: `addTutorial`
 
 Add a tutorial slot for a particular module at the given time, day and place. +
-Format: `addTutorial m/MODULE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE beginTime/START_TIME endTIme/END_TIME place/PLACE`
+Format: `addTutorial modCode/MODULE_CODE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE beginTime/START_TIME endTIme/END_TIME place/PLACE`
 
 ****
 * The time provided must be in HH:MM format, i.e: 24-hour format
@@ -234,8 +234,8 @@ Format: `addTutorial m/MODULE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE begin
 
 Example:
 
-* `addTutorial m/CS2103 tutorialName/T02 day/3 beginTime/12:00 endTime/13:00 place/SR3`
-* `addTutorial m/CS1101S tutorialName/T11 day/4 beginTime/12:00 endTime/13:00 place/SR3`
+* `addTutorial modCode/CS2103 tutorialName/T02 day/3 beginTime/12:00 endTime/13:00 place/SR3`
+* `addTutorial modCode/CS1101S tutorialName/T11 day/4 beginTime/12:00 endTime/13:00 place/SR3`
 
 === Delete a tutorial slot: `deleteTutorial`
 
@@ -360,28 +360,42 @@ Example:
 //tag::Module[]
 === Add Module into database: `addModule`
 Adds module into TAble. +
-Format: `addModule m/MODULE`
+Format: `addModule modCode/MODULE_CODE modName/MODULE_NAME`
+
+****
+* The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`. It should be prefixed by at most three characters, then four numbers, and finally no more than two characters as suffix.
+* The module name provided should be any valid string
+****
 
 Example:
 
-* `addModule m/CS1010S`
+* `addModule modCode/CS1010S modName/Programming Methodology`
 
 === Edit Module description: `editModule`
 Edits corresponding description of module. +
-Format: `editModule m/MODULE d/DESCRIPTION`
+Format: `editModule modCode/MODULE_CODE d/DESCRIPTION`
+
+****
+* The description provided should be any valid string.
+****
 
 Example:
 
-* `editModule m/CS1010S d/How cool is that?` +
+* `editModule modCode/CS1010S d/How cool is that?` +
 When viewing the module page for CS1010S, the description will be updated to show "How cool is that?"
 
 === Add link to module with appropriate tag: `linkModule`
 Edit module to include links to appropriate websites (e.g. Google Drive Folder, Module Website etc.) +
-Format: `linkModule m/MODULE l/LINK t/TAG`
+Format: `linkModule modCode/MODULE_CODE l/LINK t/TAG`
+
+****
+* The module link should correspond to a valid URL format.
+* The tag provided should be any valid string.
+****
 
 Example:
 
-* `linkModule m/CS1231 l/comp.nus.edu.sg/~cs1231 t/Website` +
+* `linkModule modCode/CS1231 l/https://comp.nus.edu.sg/~cs1231 t/Website` +
 When viewing he module page for CS1231, there will be an additional clickable link that is labelled "Website" and points to https://comp.nus.edu.sg/~cs1231.
 
 === Add lecture timeslot: `addLecture` [coming in v2.0]
@@ -403,7 +417,7 @@ Example:
 === View Module: `viewModule`
 Opens the view for the selected module to view module description, links and lecture timeslots.
 
-Format: `viewModule m/MODULE`
+Format: `viewModule modCode/MODULE_CODE`
 //end::Module[]
 
 // tag::Reminder[]

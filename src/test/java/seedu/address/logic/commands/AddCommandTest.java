@@ -21,7 +21,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.consult.Consult;
+import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.model.mod.Mod;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -186,6 +188,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasSameTiming(Consult consult) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public ReadOnlyConsult getConsultTAble() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public boolean hasTutorial(Tutorial tutorial) {
             throw new AssertionError("This method should not be called.");
         }
@@ -207,6 +219,31 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasMod(Mod mod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addMod(Mod mod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMod(Mod mod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Mod> getFilteredModList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredModList(Predicate<Mod> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

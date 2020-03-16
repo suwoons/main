@@ -13,6 +13,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.TutorialTAble;
+import seedu.address.model.mod.ModTAble;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -24,9 +25,10 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ConsultTAble(), new TutorialTAble());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ConsultTAble(),
+            new TutorialTAble(), new ModTAble());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new ConsultTAble(),
-                new TutorialTAble());
+            new TutorialTAble(), new ModTAble());
     }
 
     @Test

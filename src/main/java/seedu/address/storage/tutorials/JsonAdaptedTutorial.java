@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.TutorialName;
+import seedu.address.model.mod.ModCode;
 
 /**
  * Jackson-friendly version of {@link Tutorial}.
@@ -23,7 +24,7 @@ public class JsonAdaptedTutorial {
     private static final String INVALID_TIME_FORMAT = "Invalid time format!";
     private static final String INVALID_DAY_FORMAT = "Invalid day format!";
 
-    private final String moduleName;
+    private final String moduleCode;
     private final String tutorialName;
     private final String weekday;
     private final String beginTime;
@@ -34,13 +35,13 @@ public class JsonAdaptedTutorial {
      * Constructs a {@code JsonAdaptedTutorial} with the given tutorial details.
      */
     @JsonCreator
-    public JsonAdaptedTutorial(@JsonProperty("moduleName") String moduleName,
+    public JsonAdaptedTutorial(@JsonProperty("moduleCode") String moduleCode,
                               @JsonProperty("tutorialName") String tutorialName,
                               @JsonProperty("weekday") String weekday,
                               @JsonProperty("beginTime") String beginTime,
                               @JsonProperty("endTime") String endTime,
                               @JsonProperty("location") String location) {
-        this.moduleName = moduleName;
+        this.moduleCode = moduleCode;
         this.tutorialName = tutorialName;
         this.weekday = weekday;
         this.beginTime = beginTime;
@@ -52,7 +53,7 @@ public class JsonAdaptedTutorial {
      * Converts a given {@code Tutorial} into this class for Jackson use.
      */
     public JsonAdaptedTutorial(Tutorial source) {
-        moduleName = source.getModule();
+        moduleCode = source.getModCode().toString();
         tutorialName = source.getTutorialName().toString();
         weekday = Integer.toString(source.getDay().getValue());
         beginTime = source.getBeginTime().toString();
@@ -67,18 +68,18 @@ public class JsonAdaptedTutorial {
      */
     public Tutorial toModelType() throws IllegalValueException {
 
-        if (moduleName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "MODULE_NAME"));
+        if (moduleCode == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "MODULE_CODE"));
         }
 
         if (tutorialName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "TUTORIAL_NAME"));
         }
 
-        String modelModuleName;
+        ModCode modelModuleCode;
         TutorialName modelTutorialName;
 
-        modelModuleName = moduleName;
+        modelModuleCode = new ModCode(moduleCode);
         modelTutorialName = new TutorialName(tutorialName);
 
         DayOfWeek modelWeekday;
@@ -114,7 +115,8 @@ public class JsonAdaptedTutorial {
 
         final Location modelLocation = new Location(location);
 
-        return new Tutorial(modelModuleName, modelTutorialName, modelWeekday, modelBeginTime, modelEndTime,
+        //TODO Check if
+        return new Tutorial(modelModuleCode, modelTutorialName, modelWeekday, modelBeginTime, modelEndTime,
                 modelLocation);
     }
 }

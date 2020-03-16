@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
@@ -26,6 +25,8 @@ import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.TutorialTAble;
+import seedu.address.model.mod.ModTAble;
+import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -35,6 +36,8 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.consults.ConsultStorage;
 import seedu.address.storage.consults.JsonConsultStorage;
+import seedu.address.storage.mods.JsonModStorage;
+import seedu.address.storage.mods.ModStorage;
 import seedu.address.storage.tutorials.JsonTutorialStorage;
 import seedu.address.storage.tutorials.TutorialStorage;
 import seedu.address.ui.Ui;
@@ -67,8 +70,10 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         ConsultStorage consultStorage = new JsonConsultStorage(userPrefs.getConsultTAbleFilePath());
-        TutorialStorage tutorialStorage = new JsonTutorialStorage(userPrefs.getTutorialTableFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, consultStorage, tutorialStorage);
+        TutorialStorage tutorialStorage = new JsonTutorialStorage(userPrefs.getTutorialTAbleFilePath());
+        ModStorage modStorage = new JsonModStorage(userPrefs.getModTAbleFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, consultStorage,
+            tutorialStorage, modStorage);
 
         initLogging(config);
 
@@ -88,15 +93,18 @@ public class MainApp extends Application {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         Optional<ReadOnlyConsult> consultsOptional;
         Optional<ReadOnlyTutorial> tutorialsOptional;
+        Optional<ReadOnlyMod> modsOptional;
 
         ReadOnlyAddressBook initialData;
         ReadOnlyConsult initialConsults;
         ReadOnlyTutorial initialTutorials;
+        ReadOnlyMod initialMods;
 
         try {
             addressBookOptional = storage.readAddressBook();
             consultsOptional = storage.readConsults();
             tutorialsOptional = storage.readTutorials();
+            modsOptional = storage.readMods();
 
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
@@ -107,23 +115,29 @@ public class MainApp extends Application {
             if (!tutorialsOptional.isPresent()) {
                 logger.info("Tutorials file not found. Will be starting with no tutorials.");
             }
+            if (!modsOptional.isPresent()) {
+                logger.info("Modules file not found. Will be starting with no modules.");
+            }
 
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             initialConsults = consultsOptional.orElseGet(SampleDataUtil::getSampleConsults);
             initialTutorials = tutorialsOptional.orElseGet(SampleDataUtil::getSampleTutorials);
+            initialMods = modsOptional.orElseGet(SampleDataUtil::getSampleMods);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialConsults = new ConsultTAble();
             initialTutorials = new TutorialTAble();
+            initialMods = new ModTAble();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialConsults = new ConsultTAble();
             initialTutorials = new TutorialTAble();
+            initialMods = new ModTAble();
         }
 
-        return new ModelManager(initialData, userPrefs, initialConsults, initialTutorials);
+        return new ModelManager(initialData, userPrefs, initialConsults, initialTutorials, initialMods);
     }
 
     private void initLogging(Config config) {

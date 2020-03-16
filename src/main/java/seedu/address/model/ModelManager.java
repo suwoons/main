@@ -17,6 +17,9 @@ import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.TutorialTAble;
+import seedu.address.model.mod.Mod;
+import seedu.address.model.mod.ModTAble;
+import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.person.Person;
 
 /**
@@ -32,17 +35,19 @@ public class ModelManager implements Model {
     private final FilteredList<Consult> filteredConsults;
     private final TutorialTAble tutorialTAble;
     private final FilteredList<Tutorial> filteredTutorials;
+    private final ModTAble modTAble;
+    private final FilteredList<Mod> filteredMods;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyConsult consultTAble,
-                        ReadOnlyTutorial tutorialTAble) {
+                        ReadOnlyTutorial tutorialTAble, ReadOnlyMod modTAble) {
         super();
-        requireAllNonNull(addressBook, userPrefs, consultTAble, tutorialTAble);
+        requireAllNonNull(addressBook, userPrefs, consultTAble, tutorialTAble, modTAble);
 
-        logger.fine("Initializing with address book: " + addressBook + " ,user prefs " + userPrefs
-            + " and " + consultTAble);
+        logger.fine("Initializing with address book: " + addressBook + " , user prefs " + userPrefs
+            + ", with consults " + consultTAble + " and modules in " + modTAble);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -51,10 +56,12 @@ public class ModelManager implements Model {
         filteredConsults = new FilteredList<>(this.consultTAble.getAllConsults());
         this.tutorialTAble = new TutorialTAble(tutorialTAble);
         filteredTutorials = new FilteredList<>(this.tutorialTAble.getAllTutorials());
+        this.modTAble = new ModTAble(modTAble);
+        filteredMods = new FilteredList<>(this.modTAble.getAllMods());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new ConsultTAble(), new TutorialTAble());
+        this(new AddressBook(), new UserPrefs(), new ConsultTAble(), new TutorialTAble(), new ModTAble());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -214,7 +221,18 @@ public class ModelManager implements Model {
         filteredConsults.setPredicate(predicate);
     }
 
-    // Tutorials section
+    @Override
+    public boolean hasSameTiming(Consult consult) {
+        requireAllNonNull(consult, consultTAble);
+        return consultTAble.hasSameTiming(consult);
+    }
+
+    @Override
+    public ReadOnlyConsult getConsultTAble() {
+        return consultTAble;
+    }
+
+    // Tutorials section ==========================================================================
 
     @Override
     public boolean hasTutorial(Tutorial tutorial) {
@@ -241,5 +259,34 @@ public class ModelManager implements Model {
     public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
         requireNonNull(predicate);
         filteredTutorials.setPredicate(predicate);
+    }
+
+    // Modules section ==========================================================================
+
+    @Override
+    public boolean hasMod(Mod mod) {
+        requireNonNull(mod);
+        return modTAble.hasMod(mod);
+    }
+
+    @Override
+    public void addMod(Mod mod) {
+        modTAble.addMod(mod);
+    }
+
+    @Override
+    public void deleteMod(Mod target) {
+        modTAble.removeMod(target);
+    }
+
+    @Override
+    public ObservableList<Mod> getFilteredModList() {
+        return filteredMods;
+    }
+
+    @Override
+    public void updateFilteredModList(Predicate<Mod> predicate) {
+        requireNonNull(predicate);
+        filteredMods.setPredicate(predicate);
     }
 }
