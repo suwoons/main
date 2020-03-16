@@ -3,6 +3,7 @@ package seedu.address.storage.consults;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.event.consult.ReadOnlyConsult;
 

@@ -3,6 +3,7 @@ package seedu.address.model.event.tutorial;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+
 import javafx.collections.ObservableList;
 
 /**

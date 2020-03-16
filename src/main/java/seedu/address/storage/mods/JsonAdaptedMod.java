@@ -2,6 +2,7 @@ package seedu.address.storage.mods;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.mod.ModCode;

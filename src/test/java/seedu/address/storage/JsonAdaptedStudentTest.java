@@ -8,7 +8,9 @@ import static seedu.address.testutil.TypicalStudents.BENSON;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;

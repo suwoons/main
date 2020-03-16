@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
 
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
+
 import seedu.address.logic.commands.consults.AddConsultCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
