@@ -15,9 +15,9 @@ import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.storage.consults.ConsultStorage;
-import seedu.address.storage.tutorials.TutorialStorage;
 import seedu.address.storage.mods.ModStorage;
 import seedu.address.storage.reminders.ReminderStorage;
+import seedu.address.storage.tutorials.TutorialStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -33,7 +33,7 @@ public class StorageManager implements Storage {
     private ReminderStorage reminderStorage;
 
     public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
-                          ConsultStorage consultStorage, TutorialStorage tutorialStorage, 
+                          ConsultStorage consultStorage, TutorialStorage tutorialStorage,
                           ModStorage modStorage, ReminderStorage reminderStorage) {
         super();
         this.addressBookStorage = addressBookStorage;

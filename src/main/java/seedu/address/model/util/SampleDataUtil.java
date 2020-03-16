@@ -24,14 +24,14 @@ import seedu.address.model.mod.Mod;
 import seedu.address.model.mod.ModCode;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.mod.ReadOnlyMod;
-import seedu.address.model.reminder.Reminder;
-import seedu.address.model.reminder.ReminderTAble;
-import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.reminder.ReadOnlyReminder;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.tag.Tag;
 
 /**

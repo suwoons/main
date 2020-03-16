@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.reminders;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_TIME;
 
 import seedu.address.logic.commands.Command;
@@ -15,9 +15,9 @@ import seedu.address.model.reminder.Reminder;
  * Adds a reminder into TAble.
  */
 public class AddReminderCommand extends Command {
-        public static final String COMMAND_WORD = "addReminder";
+    public static final String COMMAND_WORD = "addReminder";
 
-        public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to TAble. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to TAble. "
                 + "Parameters: "
                 + PREFIX_REMINDER_DESCRIPTION + "DESC "
                 + PREFIX_REMINDER_DATE + "DATE "
@@ -27,35 +27,35 @@ public class AddReminderCommand extends Command {
                 + PREFIX_REMINDER_DATE + "2020-03-05 "
                 + PREFIX_REMINDER_TIME + "14:00 ";
 
-        public static final String MESSAGE_SUCCESS = "New reminder added: %1$s";
-        public static final String MESSAGE_DUPLICATE_PERSON = "This reminder already exists in TAble";
+    public static final String MESSAGE_SUCCESS = "New reminder added: %1$s";
+    public static final String MESSAGE_DUPLICATE_REMINDER = "This reminder already exists in TAble";
 
-        private final Reminder toAdd;
+    private final Reminder toAdd;
 
-        /**
-         * Creates an AddReminderCommand to add the specified {@code Reminder}
-         */
-        public AddReminderCommand(Reminder reminder) {
-            requireNonNull(reminder);
-            toAdd = reminder;
+    /**
+     * Creates an AddReminderCommand to add the specified {@code Reminder}
+     */
+    public AddReminderCommand(Reminder reminder) {
+        requireNonNull(reminder);
+        toAdd = reminder;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
+        if (model.hasReminder(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_REMINDER);
         }
 
-        @Override
-        public CommandResult execute(Model model) throws CommandException {
-            requireNonNull(model);
+        model.addReminder(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
 
-            if (model.hasReminder(toAdd)) {
-                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-            }
-
-            model.addReminder(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            return other == this // short circuit if same object
-                    || (other instanceof AddReminderCommand // instanceof handles nulls
-                    && toAdd.equals(((AddReminderCommand) other).toAdd));
-        }
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddReminderCommand // instanceof handles nulls
+                && toAdd.equals(((AddReminderCommand) other).toAdd));
+    }
 }

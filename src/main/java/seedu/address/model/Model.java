@@ -10,8 +10,9 @@ import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
-import seedu.address.model.reminder.Reminder;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReadOnlyReminder;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * The API of the Model component.
@@ -202,7 +203,6 @@ public interface Model {
      */
     void updateFilteredModList(Predicate<Mod> predicate);
 
-    
     // Reminder-level operations =====================================================================================
 
     /**
@@ -243,4 +243,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredReminderList(Predicate<Reminder> predicate);
+
+    /** Returns the Reminder TAble */
+    ReadOnlyReminder getReminderTAble();
 }

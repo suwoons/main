@@ -20,10 +20,10 @@ import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.mod.ReadOnlyMod;
+import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderTAble;
-import seedu.address.model.reminder.ReadOnlyReminder;
-import seedu.address.model.person.Person;
 
 
 /**
@@ -69,7 +69,8 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new ConsultTAble(), new TutorialTAble(), new ModTAble(), new ReminderTAble());
+        this(new AddressBook(), new UserPrefs(), new ConsultTAble(), new TutorialTAble(),
+                new ModTAble(), new ReminderTAble());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -302,7 +303,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredMods.setPredicate(predicate);
     }
-    
+
     // Reminders section ==========================================================================
 
     @Override
@@ -341,5 +342,10 @@ public class ModelManager implements Model {
     public void updateFilteredReminderList(Predicate<Reminder> predicate) {
         requireNonNull(predicate);
         filteredReminders.setPredicate(predicate);
+    }
+
+    @Override
+    public ReadOnlyReminder getReminderTAble() {
+        return reminderTAble;
     }
 }

@@ -9,10 +9,10 @@ import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.consult.UniqueConsultList;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.UniqueTutorialList;
-import seedu.address.model.reminder.Reminder;
-import seedu.address.model.reminder.UniqueReminderList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.UniqueReminderList;
 
 /**
  * Wraps all data at the address-book level

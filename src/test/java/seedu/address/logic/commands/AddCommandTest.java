@@ -26,6 +26,7 @@ import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -263,7 +264,7 @@ public class AddCommandTest {
         public void addReminder(Reminder reminder) {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public void deleteReminder(Reminder target) {
             throw new AssertionError("This method should not be called.");
@@ -286,6 +287,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredReminderList(Predicate<Reminder> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyReminder getReminderTAble() {
             throw new AssertionError("This method should not be called.");
         }
     }

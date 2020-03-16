@@ -9,9 +9,9 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.consults.ConsultStorage;
-import seedu.address.storage.tutorials.TutorialStorage;
 import seedu.address.storage.mods.ModStorage;
 import seedu.address.storage.reminders.ReminderStorage;
+import seedu.address.storage.tutorials.TutorialStorage;
 
 /**
  * API of the Storage component

@@ -23,13 +23,13 @@ import seedu.address.logic.commands.consults.ListConsultCommand;
 import seedu.address.logic.commands.mods.AddModCommand;
 import seedu.address.logic.commands.mods.DeleteModCommand;
 import seedu.address.logic.commands.mods.ListModCommand;
-import seedu.address.logic.commands.tutorials.AddTutorialCommand;
-import seedu.address.logic.commands.tutorials.DeleteTutorialCommand;
-import seedu.address.logic.commands.tutorials.ListTutorialCommand;
 import seedu.address.logic.commands.reminders.AddReminderCommand;
 import seedu.address.logic.commands.reminders.DeleteReminderCommand;
 import seedu.address.logic.commands.reminders.DoneReminderCommand;
 import seedu.address.logic.commands.reminders.EditReminderCommand;
+import seedu.address.logic.commands.tutorials.AddTutorialCommand;
+import seedu.address.logic.commands.tutorials.DeleteTutorialCommand;
+import seedu.address.logic.commands.tutorials.ListTutorialCommand;
 import seedu.address.logic.parser.consults.AddConsultCommandParser;
 import seedu.address.logic.parser.consults.ClearConsultCommand;
 import seedu.address.logic.parser.consults.DeleteConsultCommandParser;
@@ -37,12 +37,12 @@ import seedu.address.logic.parser.consults.EditConsultCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.mods.AddModCommandParser;
 import seedu.address.logic.parser.mods.DeleteModCommandParser;
-import seedu.address.logic.parser.tutorials.AddTutorialCommandParser;
-import seedu.address.logic.parser.tutorials.DeleteTutorialCommandParser;
 import seedu.address.logic.parser.reminders.AddReminderCommandParser;
 import seedu.address.logic.parser.reminders.DeleteReminderCommandParser;
 import seedu.address.logic.parser.reminders.DoneReminderCommandParser;
 import seedu.address.logic.parser.reminders.EditReminderCommandParser;
+import seedu.address.logic.parser.tutorials.AddTutorialCommandParser;
+import seedu.address.logic.parser.tutorials.DeleteTutorialCommandParser;
 
 /**
  * Parses user input.

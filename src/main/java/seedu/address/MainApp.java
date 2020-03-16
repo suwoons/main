@@ -25,10 +25,10 @@ import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.TutorialTAble;
-import seedu.address.model.reminder.ReadOnlyReminder;
-import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.mod.ReadOnlyMod;
+import seedu.address.model.reminder.ReadOnlyReminder;
+import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -40,10 +40,10 @@ import seedu.address.storage.consults.ConsultStorage;
 import seedu.address.storage.consults.JsonConsultStorage;
 import seedu.address.storage.mods.JsonModStorage;
 import seedu.address.storage.mods.ModStorage;
+import seedu.address.storage.reminders.JsonReminderStorage;
+import seedu.address.storage.reminders.ReminderStorage;
 import seedu.address.storage.tutorials.JsonTutorialStorage;
 import seedu.address.storage.tutorials.TutorialStorage;
-import seedu.address.storage.reminders.ReminderStorage;
-import seedu.address.storage.reminders.JsonReminderStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -151,7 +151,8 @@ public class MainApp extends Application {
             initialReminders = new ReminderTAble();
         }
 
-        return new ModelManager(initialData, userPrefs, initialConsults, initialTutorials, initialMods, initialReminders);
+        return new ModelManager(initialData, userPrefs, initialConsults,
+                initialTutorials, initialMods, initialReminders);
     }
 
     private void initLogging(Config config) {

@@ -13,8 +13,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.TutorialTAble;
-import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.mod.ModTAble;
+import seedu.address.model.reminder.ReminderTAble;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
