@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.consult.ReadOnlyConsult;
+import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.person.Person;
@@ -167,6 +168,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTutorialList(Predicate<Tutorial> predicate);
+
+    /** Returns the Tutorial TAble */
+    ReadOnlyTutorial getTutorialTAble();
 
     // Mod-level operations =====================================================================================
 
