@@ -1,50 +1,70 @@
 package seedu.address.model.student;
 
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.tag.Tag;
+
 /**
- * Represents a Student in TAble
+ * Represents a Student in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
 
     // Identity fields
-    private Name name;
-    private StudentID studentID;
-    private Email email;
+    private final Name name;
+    private final Phone phone;
+    private final Email email;
+    private final Remark remark;
+
+    // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
-
-    public Student(Name name, StudentID studentID, Email email, Set<Tag> tags) {
-        requireAllNonNull(name, studentID, email);
+    /**
+     * Every field must be present and not null.
+     */
+    public Student(Name name, Phone phone, Email email, Set<Tag> tags, Remark remark) {
+        requireAllNonNull(name, phone, email, tags);
         this.name = name;
-        this.studentID = studentID;
+        this.phone = phone;
         this.email = email;
         this.tags.addAll(tags);
-    }
-
-    public StudentID getStudentID() {
-        return studentID;
+        this.remark = remark;
     }
 
     public Name getName() {
         return name;
     }
 
+    public Phone getPhone() {
+        return phone;
+    }
+
     public Email getEmail() {
         return email;
     }
 
-    /**
-     * Returns true if both students of the same name other identity fields that are the same.
-     * This defines a weaker notion of equality between two persons.
-     */
+    public Remark getRemark() {
+        return remark;
+    }
 
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns true if both students of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two students.
+     */
     public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
             return true;
@@ -52,13 +72,12 @@ public class Student {
 
         return otherStudent != null
                 && otherStudent.getName().equals(getName())
-                && otherStudent.getStudentID().equals(getStudentID())
-                &&  otherStudent.getEmail().equals(getEmail());
+                && (otherStudent.getPhone().equals(getPhone()) || otherStudent.getEmail().equals(getEmail()));
     }
 
     /**
      * Returns true if both students have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * This defines a stronger notion of equality between two students.
      */
     @Override
     public boolean equals(Object other) {
@@ -72,19 +91,30 @@ public class Student {
 
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
+                && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getStudentID().equals(getStudentID());
+                && otherStudent.getTags().equals(getTags());
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(name, phone, email, tags);
     }
 
     @Override
     public String toString() {
-        return getName() +
-                " Student ID: " +
-                getStudentID() +
-                " Email: " +
-                getEmail() +
-                " Tags: " +
-                " Remarks ";
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append(" Phone: ")
+                .append(getPhone())
+                .append(" Email: ")
+                .append(getEmail())
+                .append(" Tags: ")
+                .append(" Remarks")
+                .append(getRemark());
+        getTags().forEach(builder::append);
+        return builder.toString();
     }
 
 }

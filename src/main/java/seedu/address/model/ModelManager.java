@@ -20,7 +20,7 @@ import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.mod.ReadOnlyMod;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -30,7 +30,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Student> filteredStudents;
     private final ConsultTAble consultTAble;
     private final FilteredList<Consult> filteredConsults;
     private final TutorialTAble tutorialTAble;
@@ -51,7 +51,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
         this.consultTAble = new ConsultTAble(consultTAble);
         filteredConsults = new FilteredList<>(this.consultTAble.getAllConsults());
         this.tutorialTAble = new TutorialTAble(tutorialTAble);
@@ -112,26 +112,26 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return addressBook.hasStudent(student);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteStudent(Student target) {
+        addressBook.removeStudent(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addStudent(Student student) {
+        addressBook.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-        addressBook.setPerson(target, editedPerson);
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+        addressBook.setStudent(target, editedStudent);
     }
 
     /**
@@ -140,25 +140,25 @@ public class ModelManager implements Model {
      * @param indexNumber Index number of student.
      * @return Student with index number specified.
      */
-    public Person getStudent(int indexNumber) {
+    public Student getStudent(int indexNumber) {
         return addressBook.getStudent(indexNumber);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Student List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredStudents.setPredicate(predicate);
     }
 
     @Override
@@ -177,7 +177,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredStudents.equals(other.filteredStudents);
     }
 
     // Consults section =======================================================
@@ -191,7 +191,7 @@ public class ModelManager implements Model {
     @Override
     public void addConsult(Consult consult) {
         consultTAble.addConsult(consult);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override

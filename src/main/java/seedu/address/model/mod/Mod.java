@@ -61,8 +61,8 @@ public class Mod {
     }
 
     /**
-     * Returns true if both persons have the same module code, description and tags.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both students have the same module code, description and tags.
+     * This defines a stronger notion of equality between two students.
      */
     @Override
     public boolean equals(Object other) {

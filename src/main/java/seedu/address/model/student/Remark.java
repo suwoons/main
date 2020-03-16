@@ -1,7 +1,7 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents a Student's remark in the address book.
  * Guarantees: immutable; is always valid
  */
 public class Remark {

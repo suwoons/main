@@ -8,7 +8,7 @@ import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
 import java.time.LocalDateTime;
 
 import seedu.address.model.event.Location;
-//import seedu.address.model.person.Person;
+//import seedu.address.model.student.Student;
 
 /**
  * Represents a Consultation in TAble.

@@ -18,7 +18,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.ModTAble;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 //import seedu.address.model.event.consult.Consult;

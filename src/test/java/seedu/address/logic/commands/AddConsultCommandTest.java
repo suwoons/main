@@ -1,20 +1,7 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import org.junit.jupiter.api.Test;
-
 import javafx.collections.ObservableList;
-
+import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.consults.AddConsultCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -27,8 +14,17 @@ import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 import seedu.address.testutil.ConsultBuilder;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.testutil.Assert.assertThrows;
 
 
 public class AddConsultCommandTest {
@@ -120,7 +116,7 @@ public class AddConsultCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -135,27 +131,27 @@ public class AddConsultCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteStudent(Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setStudent(Student target, Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Student> getFilteredStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -1,24 +1,24 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.List;
-
 import javafx.collections.ObservableList;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.consult.UniqueConsultList;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.UniqueTutorialList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.UniqueStudentList;
+
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameStudent comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueStudentList students;
     private final UniqueConsultList consults;
     private final UniqueTutorialList tutorials;
 
@@ -30,7 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        students = new UniqueStudentList();
         consults = new UniqueConsultList();
         tutorials = new UniqueTutorialList();
     }
@@ -38,7 +38,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Students in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -48,11 +48,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the student list with {@code students}.
+     * {@code students} must not contain duplicate students.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setStudents(List<Student> students) {
+        this.students.setStudents(students);
     }
 
     /**
@@ -61,44 +61,44 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setStudents(newData.getStudentList());
     }
 
-    //// person-level operations
+    //// student-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return students.contains(student);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a student to the address book.
+     * The student must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addStudent(Student p) {
+        students.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setStudent(Student target, Student editedStudent) {
+        requireNonNull(editedStudent);
 
-        persons.setPerson(target, editedPerson);
+        students.setStudent(target, editedStudent);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeStudent(Student key) {
+        students.remove(key);
     }
 
 
@@ -106,33 +106,33 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Returns {@code student} from {@code TAble}.
      * {@code student} must exist in the address book.
      */
-    public Person getStudent(int index) {
-        return persons.getStudent(index);
+    public Student getStudent(int index) {
+        return students.getStudent(index);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return students.asUnmodifiableObservableList().size() + " students";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Student> getStudentList() {
+        return students.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && students.equals(((AddressBook) other).students));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return students.hashCode();
     }
 
     /// consult-level operations

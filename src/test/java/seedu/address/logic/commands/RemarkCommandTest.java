@@ -13,8 +13,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.ModTAble;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Remark;
+import seedu.address.model.student.Person;
+import seedu.address.model.student.Remark;
 import seedu.address.testutil.PersonBuilder;
 
 class RemarkCommandTest {

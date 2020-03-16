@@ -20,7 +20,7 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.consult.Consult;
-//import seedu.address.model.person.Person;
+//import seedu.address.model.student.Person;
 
 /**
  * Parses input arguments and creates a new AddCommand object
