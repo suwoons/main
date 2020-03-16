@@ -20,6 +20,7 @@ import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReminderTAble;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -28,7 +29,7 @@ import seedu.address.model.person.Person;
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ConsultTAble(),
-        new TutorialTAble(), new ModTAble());
+        new TutorialTAble(), new ModTAble(), new ReminderTAble());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -38,7 +39,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new ConsultTAble(),
-            new TutorialTAble(), new ModTAble());
+            new TutorialTAble(), new ModTAble(), new ReminderTAble());
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -62,7 +63,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new ConsultTAble(),
-            new TutorialTAble(), new ModTAble());
+            new TutorialTAble(), new ModTAble(), new ReminderTAble());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 

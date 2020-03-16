@@ -1,8 +1,10 @@
 package seedu.address.model.util;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
@@ -27,6 +29,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.reminder.ReadOnlyReminder;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,6 +105,17 @@ public class SampleDataUtil {
         modList.add(mod);
         ModTAble sampleModTAble = new ModTAble(modList);
         return sampleModTAble;
+    }
+
+    public static ReadOnlyReminder getSampleReminders() {
+        String description = "Mark T02 midterms papers.";
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.parse("15:00", DateTimeFormatter.ofPattern("HH:mm"));
+        Reminder reminder = new Reminder(description, date, time, false);
+        ArrayList<Reminder> reminderList = new ArrayList<>();
+        reminderList.add(reminder);
+        ReminderTAble sampleReminderTAble = new ReminderTAble(reminderList);
+        return sampleReminderTAble;
     }
 
 }

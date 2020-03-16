@@ -22,15 +22,16 @@ import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.reminder.ReminderTAble;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ConsultTAble(),
-        new TutorialTAble(), new ModTAble());
+        new TutorialTAble(), new ModTAble(), new ReminderTAble());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ConsultTAble(),
-        new TutorialTAble(), new ModTAble());
+        new TutorialTAble(), new ModTAble(), new ReminderTAble());
 
     @Test
     public void equals() {

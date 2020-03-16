@@ -19,6 +19,7 @@ import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.testutil.AddressBookBuilder;
 
 //import seedu.address.model.event.consult.Consult;
@@ -106,12 +107,13 @@ public class ModelManagerTest {
         ConsultTAble consultTAble = new ConsultTAble();
         TutorialTAble tutorialTAble = new TutorialTAble();
         ModTAble modTAble = new ModTAble();
+        ReminderTAble reminderTAble = new ReminderTAble();
 
         // same values -> returns true
         modelManager = new ModelManager(addressBook, userPrefs, new ConsultTAble(),
-            new TutorialTAble(), new ModTAble());
+            new TutorialTAble(), new ModTAble(), new ReminderTAble());
         ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, consultTAble,
-            tutorialTAble, modTAble);
+            tutorialTAble, modTAble, reminderTAble);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -125,13 +127,13 @@ public class ModelManagerTest {
 
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, consultTAble,
-            tutorialTAble, modTAble)));
+            tutorialTAble, modTAble, reminderTAble)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, consultTAble,
-            tutorialTAble, modTAble)));
+            tutorialTAble, modTAble, reminderTAble)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -140,6 +142,6 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, consultTAble,
-            tutorialTAble, modTAble)));
+            tutorialTAble, modTAble, reminderTAble)));
     }
 }

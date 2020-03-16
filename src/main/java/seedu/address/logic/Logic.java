@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * API of the Logic component
@@ -44,6 +45,11 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of consults
      */
     ObservableList<Consult> getFilteredConsultList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of reminders
+     */
+    ObservableList<Reminder> getFilteredReminderList();
 
     /**
      * Returns the user prefs' address book file path.

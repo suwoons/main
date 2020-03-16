@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.consults.AddConsultCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.reminders.AddReminderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -30,61 +30,62 @@ import seedu.address.model.mod.Mod;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.testutil.ConsultBuilder;
+import seedu.address.testutil.ReminderBuilder;
 
 
-public class AddConsultCommandTest {
+public class AddReminderCommandTest {
 
     @Test
-    public void constructor_nullConsult_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddConsultCommand(null));
+    public void constructor_nullReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddReminderCommand(null));
     }
 
     @Test
-    public void execute_consultAcceptedByModel_addSuccessful() throws Exception {
-        AddConsultCommandTest.ModelStubAcceptingConsultAdded modelStub =
-                new AddConsultCommandTest.ModelStubAcceptingConsultAdded();
-        Consult validConsult = new ConsultBuilder().build();
+    public void execute_reminderAcceptedByModel_addSuccessful() throws Exception {
+        AddReminderCommandTest.ModelStubAcceptingReminderAdded modelStub =
+                new AddReminderCommandTest.ModelStubAcceptingReminderAdded();
+        Reminder validReminder = new ReminderBuilder().build();
 
-        CommandResult commandResult = new AddConsultCommand(validConsult).execute(modelStub);
+        CommandResult commandResult = new AddReminderCommand(validReminder).execute(modelStub);
 
-        assertEquals(String.format(AddConsultCommand.MESSAGE_SUCCESS, validConsult), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validConsult), modelStub.consultsAdded);
+        assertEquals(String.format(AddReminderCommand.MESSAGE_SUCCESS, validReminder),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validReminder), modelStub.remindersAdded);
     }
 
     @Test
-    public void execute_duplicateConsult_throwsCommandException() throws ParseException {
-        Consult validConsult = new ConsultBuilder().build();
-        AddConsultCommand addConsultCommand = new AddConsultCommand(validConsult);
-        AddConsultCommandTest.ModelStub modelStub = new AddConsultCommandTest.ModelStubWithConsult(validConsult);
+    public void execute_duplicateReminder_throwsCommandException() throws ParseException {
+        Reminder validReminder = new ReminderBuilder().build();
+        AddReminderCommand addReminderCommand = new AddReminderCommand(validReminder);
+        AddReminderCommandTest.ModelStub modelStub = new AddReminderCommandTest.ModelStubWithReminder(validReminder);
 
-        assertThrows(CommandException.class, AddConsultCommand.MESSAGE_DUPLICATE_CONSULT, ()
-            -> addConsultCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddReminderCommand.MESSAGE_DUPLICATE_REMINDER, ()
+            -> addReminderCommand.execute(modelStub));
     }
 
     @Test
     public void equals() throws ParseException {
-        Consult c1 = new ConsultBuilder().withLocation("sr1").build();
-        Consult c2 = new ConsultBuilder().withBeginDateTime("2020-02-02 12:00").withEndDateTime("2020-02-02 13:00")
-                .build();
-        AddConsultCommand addC1Command = new AddConsultCommand(c1);
-        AddConsultCommand addC2Command = new AddConsultCommand(c2);
+        Reminder r1 = new ReminderBuilder().withDescription("Email T03 tutorial 4 solutions.").build();
+        Reminder r2 = new ReminderBuilder().withDate("2020-03-25").withTime("14:00").build();
+
+        AddReminderCommand addR1Command = new AddReminderCommand(r1);
+        AddReminderCommand addR2Command = new AddReminderCommand(r2);
 
         // same object -> returns true
-        assertTrue(addC1Command.equals(addC1Command));
+        assertTrue(addR1Command.equals(addR1Command));
 
         // same values -> returns true
-        AddConsultCommand addSr1CommandCopy = new AddConsultCommand(c1);
-        assertTrue(addC1Command.equals(addSr1CommandCopy));
+        AddReminderCommand addR1CommandCopy = new AddReminderCommand(r1);
+        assertTrue(addR1Command.equals(addR1CommandCopy));
 
         // different types -> returns false
-        assertFalse(addC1Command.equals(1));
+        assertFalse(addR1Command.equals(1));
 
         // null -> returns false
-        assertFalse(addC1Command.equals(null));
+        assertFalse(addR1Command.equals(null));
 
-        // different timing -> returns false
-        assertFalse(addC1Command.equals(addC2Command));
+        // different information -> returns false
+        assertFalse(addR1Command.equals(addR2Command));
     }
 
     /**
@@ -303,44 +304,39 @@ public class AddConsultCommandTest {
     }
 
     /**
-     * A Model stub that contains a single consult.
+     * A Model stub that contains a single reminder.
      */
-    private class ModelStubWithConsult extends AddConsultCommandTest.ModelStub {
-        private final Consult consult;
+    private class ModelStubWithReminder extends AddReminderCommandTest.ModelStub {
+        private final Reminder reminder;
 
-        ModelStubWithConsult(Consult consult) {
-            requireNonNull(consult);
-            this.consult = consult;
+        ModelStubWithReminder(Reminder reminder) {
+            requireNonNull(reminder);
+            this.reminder = reminder;
         }
 
         @Override
-        public boolean hasConsult(Consult consult) {
-            requireNonNull(consult);
-            return this.consult.equals(consult);
+        public boolean hasReminder(Reminder reminder) {
+            requireNonNull(reminder);
+            return this.reminder.equals(reminder);
         }
     }
 
     /**
-     * A Model stub that always accept the consult being added.
+     * A Model stub that always accept the reminder being added.
      */
-    private class ModelStubAcceptingConsultAdded extends AddConsultCommandTest.ModelStub {
-        final ArrayList<Consult> consultsAdded = new ArrayList<>();
+    private class ModelStubAcceptingReminderAdded extends AddReminderCommandTest.ModelStub {
+        final ArrayList<Reminder> remindersAdded = new ArrayList<>();
 
         @Override
-        public boolean hasConsult(Consult consult) {
-            requireNonNull(consult);
-            return consultsAdded.stream().anyMatch(consult::equals);
+        public boolean hasReminder(Reminder reminder) {
+            requireNonNull(reminder);
+            return remindersAdded.stream().anyMatch(reminder::equals);
         }
 
         @Override
-        public void addConsult(Consult consult) {
-            requireNonNull(consult);
-            consultsAdded.add(consult);
-        }
-
-        @Override
-        public boolean hasSameTiming(Consult consult) {
-            return consultsAdded.stream().anyMatch(consult::timeClash);
+        public void addReminder(Reminder reminder) {
+            requireNonNull(reminder);
+            remindersAdded.add(reminder);
         }
 
         @Override

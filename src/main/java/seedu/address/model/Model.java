@@ -11,6 +11,8 @@ import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReadOnlyReminder;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * The API of the Model component.
@@ -21,6 +23,7 @@ public interface Model {
     Predicate<Consult> PREDICATE_SHOW_ALL_CONSULTS = unused -> true;
     Predicate<Tutorial> PREDICATE_SHOW_ALL_TUTORIALS = unused -> true;
     Predicate<Mod> PREDICATE_SHOW_ALL_MODS = unused -> true;
+    Predicate<Reminder> PREDICATE_SHOW_ALL_REMINDERS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -199,4 +202,48 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModList(Predicate<Mod> predicate);
+
+    // Reminder-level operations =====================================================================================
+
+    /**
+     * Returns true if a reminder with the same identity as {@code reminder} exists in TAble.
+     */
+    boolean hasReminder(Reminder reminder);
+
+    /**
+     * Adds the given reminder.
+     * {@code reminder} must not already exist in TAble.
+     */
+    void addReminder(Reminder reminder);
+
+    /**
+     * Deletes the given reminder.
+     * The reminder must exist in TAble.
+     */
+    void deleteReminder(Reminder target);
+
+    /**
+     * Replaces the given reminder {@code reminderToEdit} with {@code editedReminder}.
+     * {@code reminderToEdit} must exist in TAble.
+     * The identity of {@code editedReminder} must not be the same as another existing reminder in TAble.
+     */
+    void setReminder(Reminder reminderToEdit, Reminder editedReminder);
+
+    /**
+     * Marks the given reminder as done.
+     * The reminder must exist in TAble.
+     */
+    Reminder doneReminder(Reminder target);
+
+    /** Returns an unmodifiable view of the filtered reminder list */
+    ObservableList<Reminder> getFilteredReminderList();
+
+    /**
+     * Updates the filter of the filtered reminder list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredReminderList(Predicate<Reminder> predicate);
+
+    /** Returns the Reminder TAble */
+    ReadOnlyReminder getReminderTAble();
 }

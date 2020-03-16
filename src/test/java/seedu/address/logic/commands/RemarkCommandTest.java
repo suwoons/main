@@ -15,6 +15,7 @@ import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
+import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.testutil.PersonBuilder;
 
 class RemarkCommandTest {
@@ -22,7 +23,7 @@ class RemarkCommandTest {
     private static final String REMARK_STUB = "Remark test";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ConsultTAble(),
-        new TutorialTAble(), new ModTAble());
+        new TutorialTAble(), new ModTAble(), new ReminderTAble());
 
     @Test
     void execute_addRemarkUnfilteredList_success() {
@@ -34,7 +35,7 @@ class RemarkCommandTest {
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-            new UserPrefs(), new ConsultTAble(), new TutorialTAble(), new ModTAble());
+            new UserPrefs(), new ConsultTAble(), new TutorialTAble(), new ModTAble(), new ReminderTAble());
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
