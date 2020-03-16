@@ -28,10 +28,12 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.consults.JsonConsultStorage;
+import seedu.address.storage.reminders.JsonReminderStorage;
 import seedu.address.storage.tutorials.JsonTutorialStorage;
 import seedu.address.testutil.PersonBuilder;
 
@@ -51,8 +53,9 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonConsultStorage consultStorage = new JsonConsultStorage(temporaryFolder.resolve("consults.json"));
         JsonTutorialStorage tutorialStorage = new JsonTutorialStorage(temporaryFolder.resolve("tutorials.json"));
+        JsonReminderStorage reminderStorage = new JsonReminderStorage(temporaryFolder.resolve("reminders.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, consultStorage,
-                tutorialStorage);
+                tutorialStorage, reminderStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -84,8 +87,10 @@ public class LogicManagerTest {
         JsonConsultStorage consultStorage = new JsonConsultStorage(temporaryFolder.resolve("ioExceptionConsults.json"));
         JsonTutorialStorage tutorialStorage =
                 new JsonTutorialStorage(temporaryFolder.resolve("ioExceptionTutorials.json"));
+        JsonReminderStorage reminderStorage =
+                new JsonReminderStorage(temporaryFolder.resolve("ioExceptionReminders.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, consultStorage,
-                tutorialStorage);
+                tutorialStorage, reminderStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -139,7 +144,7 @@ public class LogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new ConsultTAble(),
-                new TutorialTAble());
+                new TutorialTAble(), new ReminderTAble());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

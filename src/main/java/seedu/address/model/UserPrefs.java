@@ -17,6 +17,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private Path consultTAbleFilePath = Paths.get("data", "consults.json");
     private Path tutorialTableFilePath = Paths.get("data", "tutorials.json");
+    private Path reminderTableFilePath = Paths.get("data", "reminders.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -79,6 +80,17 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.tutorialTableFilePath = tutorialTableFilePath;
     }
     // end
+
+    // Reminders start ==============================================================================
+    public Path getReminderTableFilePath() {
+        return reminderTableFilePath;
+    }
+
+    public void setReminderTableFilePath(Path reminderTableFilePath) {
+        requireNonNull(reminderTableFilePath);
+        this.reminderTableFilePath = reminderTableFilePath;
+    }
+    //end
 
     @Override
     public boolean equals(Object other) {

@@ -17,7 +17,11 @@ import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.TutorialTAble;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderTAble;
+import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.person.Person;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -32,14 +36,16 @@ public class ModelManager implements Model {
     private final FilteredList<Consult> filteredConsults;
     private final TutorialTAble tutorialTAble;
     private final FilteredList<Tutorial> filteredTutorials;
+    private final ReminderTAble reminderTAble;
+    private final FilteredList<Reminder> filteredReminders;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyConsult consultTAble,
-                        ReadOnlyTutorial tutorialTAble) {
+                        ReadOnlyTutorial tutorialTAble, ReadOnlyReminder reminderTAble) {
         super();
-        requireAllNonNull(addressBook, userPrefs, consultTAble, tutorialTAble);
+        requireAllNonNull(addressBook, userPrefs, consultTAble, tutorialTAble, reminderTAble);
 
         logger.fine("Initializing with address book: " + addressBook + " ,user prefs " + userPrefs
             + " and " + consultTAble);
@@ -51,10 +57,12 @@ public class ModelManager implements Model {
         filteredConsults = new FilteredList<>(this.consultTAble.getAllConsults());
         this.tutorialTAble = new TutorialTAble(tutorialTAble);
         filteredTutorials = new FilteredList<>(this.tutorialTAble.getAllTutorials());
+        this.reminderTAble = new ReminderTAble(reminderTAble);
+        filteredReminders = new FilteredList<>(this.reminderTAble.getAllReminders());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new ConsultTAble(), new TutorialTAble());
+        this(new AddressBook(), new UserPrefs(), new ConsultTAble(), new TutorialTAble(), new ReminderTAble());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -242,4 +250,46 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredTutorials.setPredicate(predicate);
     }
+
+    // Reminders section ==========================================================================
+
+    @Override
+    public boolean hasReminder(Reminder reminder) {
+        requireNonNull(reminder);
+        return reminderTAble.hasReminder(reminder);
+    }
+
+    @Override
+    public void addReminder(Reminder reminder) {
+        reminderTAble.addReminder(reminder);
+    }
+
+    @Override
+    public void deleteReminder(Reminder target) {
+        reminderTAble.removeReminder(target);
+    }
+
+    @Override
+    public void setReminder(Reminder reminderToEdit, Reminder editedReminder) {
+        requireAllNonNull(reminderToEdit, editedReminder);
+        reminderTAble.setReminder(reminderToEdit, editedReminder);
+    }
+
+    @Override
+    public Reminder doneReminder(Reminder target) {
+        return reminderTAble.markReminderAsDone(target);
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return filteredReminders;
+    }
+
+    @Override
+    public void updateFilteredReminderList(Predicate<Reminder> predicate) {
+        requireNonNull(predicate);
+        filteredReminders.setPredicate(predicate);
+    }
+
+
 }

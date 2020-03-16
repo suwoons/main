@@ -9,6 +9,8 @@ import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.consult.UniqueConsultList;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.UniqueTutorialList;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.UniqueReminderList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -21,6 +23,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final UniqueConsultList consults;
     private final UniqueTutorialList tutorials;
+    private final UniqueReminderList reminders;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -33,6 +36,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
         consults = new UniqueConsultList();
         tutorials = new UniqueTutorialList();
+        reminders = new UniqueReminderList();
     }
 
     public AddressBook() {}
@@ -169,6 +173,22 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addTutorial(Tutorial tutorial) {
         tutorials.add(tutorial);
+    }
+
+    /**
+     * Returns true if a reminder with the same identity as {@code reminder} exists in TAble.
+     */
+    public boolean hasReminder(Reminder reminder) {
+        requireNonNull(reminder);
+        return reminders.contains(reminder);
+    }
+
+    /**
+     * Adds a reminder to TAble.
+     * The reminder must not already exist in TAble.
+     */
+    public void addReminder(Reminder reminder) {
+        reminders.add(reminder);
     }
 
 }

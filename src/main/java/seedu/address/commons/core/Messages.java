@@ -12,4 +12,6 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_CONSULT_DISPLAYED_INDEX = "The consult index provided is invalid";
     public static final String MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX = "The tutorial index provided is invalid";
+    public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid";
+    public static final String MESSAGE_REMINDER_ALREADY_DONE = "This reminder is already done!";
 }

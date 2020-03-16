@@ -26,6 +26,8 @@ import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.TutorialTAble;
+import seedu.address.model.reminder.ReadOnlyReminder;
+import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -37,6 +39,8 @@ import seedu.address.storage.consults.ConsultStorage;
 import seedu.address.storage.consults.JsonConsultStorage;
 import seedu.address.storage.tutorials.JsonTutorialStorage;
 import seedu.address.storage.tutorials.TutorialStorage;
+import seedu.address.storage.reminders.ReminderStorage;
+import seedu.address.storage.reminders.JsonReminderStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -68,7 +72,9 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         ConsultStorage consultStorage = new JsonConsultStorage(userPrefs.getConsultTAbleFilePath());
         TutorialStorage tutorialStorage = new JsonTutorialStorage(userPrefs.getTutorialTableFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, consultStorage, tutorialStorage);
+        ReminderStorage reminderStorage = new JsonReminderStorage(userPrefs.getReminderTableFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, consultStorage, tutorialStorage,
+                reminderStorage);
 
         initLogging(config);
 
@@ -88,15 +94,18 @@ public class MainApp extends Application {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         Optional<ReadOnlyConsult> consultsOptional;
         Optional<ReadOnlyTutorial> tutorialsOptional;
+        Optional<ReadOnlyReminder> remindersOptional;
 
         ReadOnlyAddressBook initialData;
         ReadOnlyConsult initialConsults;
         ReadOnlyTutorial initialTutorials;
+        ReadOnlyReminder initialReminders;
 
         try {
             addressBookOptional = storage.readAddressBook();
             consultsOptional = storage.readConsults();
             tutorialsOptional = storage.readTutorials();
+            remindersOptional = storage.readReminders();
 
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
@@ -108,22 +117,29 @@ public class MainApp extends Application {
                 logger.info("Tutorials file not found. Will be starting with no tutorials.");
             }
 
+            if (!remindersOptional.isPresent()) {
+                logger.info("Reminders file not found. Will be starting with no reminders");
+            }
+
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             initialConsults = consultsOptional.orElseGet(SampleDataUtil::getSampleConsults);
             initialTutorials = tutorialsOptional.orElseGet(SampleDataUtil::getSampleTutorials);
+            initialReminders = remindersOptional.orElseGet(SampleDataUtil::getSampleReminders);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialConsults = new ConsultTAble();
             initialTutorials = new TutorialTAble();
+            initialReminders = new ReminderTAble();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialConsults = new ConsultTAble();
             initialTutorials = new TutorialTAble();
+            initialReminders = new ReminderTAble();
         }
 
-        return new ModelManager(initialData, userPrefs, initialConsults, initialTutorials);
+        return new ModelManager(initialData, userPrefs, initialConsults, initialTutorials, initialReminders);
     }
 
     private void initLogging(Config config) {

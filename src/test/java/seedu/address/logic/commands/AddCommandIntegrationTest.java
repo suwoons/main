@@ -13,6 +13,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -24,7 +25,8 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ConsultTAble(), new TutorialTAble());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ConsultTAble(),
+                new TutorialTAble(), new ReminderTAble());
     }
 
     @Test
@@ -32,7 +34,7 @@ public class AddCommandIntegrationTest {
         Person validPerson = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new ConsultTAble(),
-                new TutorialTAble());
+                new TutorialTAble(), new ReminderTAble());
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddCommand(validPerson), model,
