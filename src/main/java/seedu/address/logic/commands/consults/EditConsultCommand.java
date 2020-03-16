@@ -1,6 +1,9 @@
 package seedu.address.logic.commands.consults;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_BEGIN_TIME_BEFORE_END_TIME;
+import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_TIMING_CLASH;
+import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
@@ -73,6 +76,10 @@ public class EditConsultCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CONSULT);
         }
 
+        if (model.hasSameTiming(editedConsult)) {
+            throw new CommandException(MESSAGE_CONSULT_TIMING_CLASH);
+        }
+
         model.setConsult(consultToEdit, editedConsult);
         model.updateFilteredConsultList(PREDICATE_SHOW_ALL_CONSULTS);
         return new CommandResult(String.format(MESSAGE_EDIT_CONSULT_SUCCESS, editedConsult));
@@ -82,14 +89,19 @@ public class EditConsultCommand extends Command {
      * Creates and returns a {@code Consult} with the details of {@code consultToEdit}
      * edited with {@code editConsultDescriptor}.
      */
-    private static Consult createEditedConsult(Consult consultToEdit, EditConsultDescriptor editConsultDescriptor) {
+    private static Consult createEditedConsult(Consult consultToEdit, EditConsultDescriptor editConsultDescriptor)
+            throws CommandException {
         assert consultToEdit != null;
 
-        LocalDateTime updatedBeginStartTime = editConsultDescriptor.getConsultBeginDateTime()
-                .orElse(consultToEdit.getConsultBeginDateTime());
-        LocalDateTime updatedEndStartTime = editConsultDescriptor.getConsultEndDateTime()
-                .orElse(consultToEdit.getConsultEndDateTime());
-        Location updatedLocation = editConsultDescriptor.getLocation().orElse(consultToEdit.getPlace());
+        LocalDateTime updatedBeginStartTime = editConsultDescriptor.getBeginDateTime()
+                .orElse(consultToEdit.getBeginDateTime());
+        LocalDateTime updatedEndStartTime = editConsultDescriptor.getEndDateTime()
+                .orElse(consultToEdit.getEndDateTime());
+        Location updatedLocation = editConsultDescriptor.getLocation().orElse(consultToEdit.getLocation());
+
+        if (!checkStartEndDateTime(updatedBeginStartTime, updatedEndStartTime)) {
+            throw new CommandException(MESSAGE_BEGIN_TIME_BEFORE_END_TIME);
+        }
 
         return new Consult(updatedBeginStartTime, updatedEndStartTime, updatedLocation);
     }
@@ -117,8 +129,8 @@ public class EditConsultCommand extends Command {
      * corresponding field value of the consult.
      */
     public static class EditConsultDescriptor {
-        private LocalDateTime consultBeginDateTime;
-        private LocalDateTime consultEndDateTime;
+        private LocalDateTime beginDateTime;
+        private LocalDateTime endDateTime;
         private Location location;
 
 
@@ -128,8 +140,8 @@ public class EditConsultCommand extends Command {
          * Copy constructor.
          */
         public EditConsultDescriptor(EditConsultDescriptor toCopy) {
-            setConsultBeginDateTime(toCopy.consultBeginDateTime);
-            setConsultEndDateTime(toCopy.consultEndDateTime);
+            setBeginDateTime(toCopy.beginDateTime);
+            setEndDateTime(toCopy.endDateTime);
             setLocation(toCopy.location);
         }
 
@@ -137,24 +149,24 @@ public class EditConsultCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(consultBeginDateTime,
-                    consultEndDateTime, location);
+            return CollectionUtil.isAnyNonNull(beginDateTime,
+                    endDateTime, location);
         }
 
-        public void setConsultBeginDateTime(LocalDateTime consultBeginDateTime) {
-            this.consultBeginDateTime = consultBeginDateTime;
+        public void setBeginDateTime(LocalDateTime beginDateTime) {
+            this.beginDateTime = beginDateTime;
         }
 
-        public Optional<LocalDateTime> getConsultBeginDateTime() {
-            return Optional.ofNullable(consultBeginDateTime);
+        public Optional<LocalDateTime> getBeginDateTime() {
+            return Optional.ofNullable(beginDateTime);
         }
 
-        public void setConsultEndDateTime(LocalDateTime consultEndDateTime) {
-            this.consultEndDateTime = consultEndDateTime;
+        public void setEndDateTime(LocalDateTime endDateTime) {
+            this.endDateTime = endDateTime;
         }
 
-        public Optional<LocalDateTime> getConsultEndDateTime() {
-            return Optional.ofNullable(consultEndDateTime);
+        public Optional<LocalDateTime> getEndDateTime() {
+            return Optional.ofNullable(endDateTime);
         }
 
         public void setLocation(Location location) {
@@ -180,8 +192,8 @@ public class EditConsultCommand extends Command {
             // state check
             EditConsultDescriptor e = (EditConsultDescriptor) other;
 
-            return getConsultBeginDateTime().equals(e.getConsultBeginDateTime())
-                    && getConsultEndDateTime().equals(e.getConsultEndDateTime())
+            return getBeginDateTime().equals(e.getBeginDateTime())
+                    && getEndDateTime().equals(e.getEndDateTime())
                     && getLocation().equals(e.getLocation());
         }
 

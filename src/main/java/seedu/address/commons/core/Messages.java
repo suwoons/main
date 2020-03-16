@@ -12,6 +12,11 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_CONSULT_DISPLAYED_INDEX = "The consult index provided is invalid";
     public static final String MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX = "The tutorial index provided is invalid";
+    public static final String MESSAGE_BEGIN_TIME_BEFORE_END_TIME = "The Begin Date Time of the consult is before "
+            + "the End Date Time of the consult.";
+    public static final String MESSAGE_CONSULT_TIMING_CLASH = "This consult's timing clash with another pre-existing"
+            + " consult.";
+    public static final String MESSAGE_INVALID_MOD_DISPLAYED_INDEX = "The module index provided is invalid";
     public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid";
     public static final String MESSAGE_REMINDER_ALREADY_DONE = "This reminder is already done!";
 }

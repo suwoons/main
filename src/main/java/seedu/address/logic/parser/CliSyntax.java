@@ -29,11 +29,11 @@ public class CliSyntax {
     public static final Prefix PREFIX_TUTORIAL_END_TIME = new Prefix("endTime/");
 
     /* Module definitions */
-    public static final Prefix PREFIX_MODULE_NAME = new Prefix("m/");
+    public static final Prefix PREFIX_MODULE_CODE = new Prefix("modCode/");
+    public static final Prefix PREFIX_MODULE_NAME = new Prefix("modName/");
 
     /* Reminder definitions */
     public static final Prefix PREFIX_REMINDER_DESCRIPTION = new Prefix("desc/");
     public static final Prefix PREFIX_REMINDER_DATE = new Prefix("date/");
     public static final Prefix PREFIX_REMINDER_TIME = new Prefix("time/");
-
 }

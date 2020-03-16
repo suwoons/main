@@ -14,15 +14,17 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path addressBookFilePath = Paths.get("data", "addressbook.json");
     private Path consultTAbleFilePath = Paths.get("data", "consults.json");
-    private Path tutorialTableFilePath = Paths.get("data", "tutorials.json");
+    private Path tutorialTAbleFilePath = Paths.get("data", "tutorials.json");
+    private Path modTAbleFilePath = Paths.get("data", "mods.json");
     private Path reminderTableFilePath = Paths.get("data", "reminders.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
      */
-    public UserPrefs() {}
+    public UserPrefs() {
+    }
 
     /**
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
@@ -59,7 +61,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
-    // Consults start
+    // Consults start =============================================================================
     public Path getConsultTAbleFilePath() {
         return consultTAbleFilePath;
     }
@@ -68,18 +70,26 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(consultTAbleFilePath);
         this.consultTAbleFilePath = consultTAbleFilePath;
     }
-    //end
 
-    // Tutorials start
-    public Path getTutorialTableFilePath() {
-        return tutorialTableFilePath;
+    // Tutorials start ============================================================================
+    public Path getTutorialTAbleFilePath() {
+        return tutorialTAbleFilePath;
     }
 
-    public void setTutorialTableFilePath(Path tutorialTableFilePath) {
-        requireNonNull(tutorialTableFilePath);
-        this.tutorialTableFilePath = tutorialTableFilePath;
+    public void setTutorialTAbleFilePath(Path tutorialTAbleFilePath) {
+        requireNonNull(tutorialTAbleFilePath);
+        this.tutorialTAbleFilePath = tutorialTAbleFilePath;
     }
-    // end
+
+    // Modules start ==============================================================================
+    public Path getModTAbleFilePath() {
+        return modTAbleFilePath;
+    }
+
+    public void setModTAbleFilePath(Path modTAbleFilePath) {
+        requireNonNull(modTAbleFilePath);
+        this.modTAbleFilePath = modTAbleFilePath;
+    }
 
     // Reminders start ==============================================================================
     public Path getReminderTableFilePath() {

@@ -41,11 +41,11 @@ public class EditConsultCommandParser implements Parser<EditConsultCommand> {
 
         EditConsultCommand.EditConsultDescriptor editConsultDescriptor = new EditConsultCommand.EditConsultDescriptor();
         if (argMultimap.getValue(PREFIX_CONSULT_BEGIN_DATE_TIME).isPresent()) {
-            editConsultDescriptor.setConsultBeginDateTime(
+            editConsultDescriptor.setBeginDateTime(
                     ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_CONSULT_BEGIN_DATE_TIME).get()));
         }
         if (argMultimap.getValue(PREFIX_CONSULT_END_DATE_TIME).isPresent()) {
-            editConsultDescriptor.setConsultEndDateTime(
+            editConsultDescriptor.setEndDateTime(
                     ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_CONSULT_END_DATE_TIME).get()));
         }
         if (argMultimap.getValue(PREFIX_PLACE).isPresent()) {

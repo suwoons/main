@@ -20,14 +20,18 @@ import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.TutorialName;
 import seedu.address.model.event.tutorial.TutorialTAble;
+import seedu.address.model.mod.Mod;
+import seedu.address.model.mod.ModCode;
+import seedu.address.model.mod.ModTAble;
+import seedu.address.model.mod.ReadOnlyMod;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderTAble;
+import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.reminder.ReadOnlyReminder;
-import seedu.address.model.reminder.Reminder;
-import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -80,17 +84,27 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyTutorial getSampleTutorials() {
-        String moduleName = "CS2103";
+        ModCode modCode = new ModCode("CS2103");
         TutorialName tutorialName = new TutorialName("T03");
         DayOfWeek weekday = DayOfWeek.WEDNESDAY;
         LocalTime startTime = LocalTime.now();
         LocalTime endTime = LocalTime.now().plusHours(2);
         Location location = new Location("SR1");
-        Tutorial tutorial = new Tutorial(moduleName, tutorialName, weekday, startTime, endTime, location);
+        Tutorial tutorial = new Tutorial(modCode, tutorialName, weekday, startTime, endTime, location);
         ArrayList<Tutorial> tutorialList = new ArrayList<>();
         tutorialList.add(tutorial);
         TutorialTAble sampleTutorialTAble = new TutorialTAble(tutorialList);
         return sampleTutorialTAble;
+    }
+
+    public static ReadOnlyMod getSampleMods() {
+        ModCode modCode = new ModCode("CS2103");
+        String modName = "Software Engineering";
+        Mod mod = new Mod(modCode, modName);
+        ArrayList<Mod> modList = new ArrayList<>();
+        modList.add(mod);
+        ModTAble sampleModTAble = new ModTAble(modList);
+        return sampleModTAble;
     }
 
     public static ReadOnlyReminder getSampleReminders() {

@@ -6,13 +6,14 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 import seedu.address.model.event.Location;
+import seedu.address.model.mod.ModCode;
 
 /**
  * Represents a Tutorial in TAble.
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Tutorial {
-    private String module;
+    private ModCode modCode;
     private TutorialName tutorialName;
     private DayOfWeek weekday;
     private LocalTime beginTime;
@@ -20,12 +21,11 @@ public class Tutorial {
     private Location location;
     // ArrayList<Student> enrolledStudents;
 
-    // note to self: implement tutorialName object to replace the String, and replace module with Module object
-    public Tutorial(String module, TutorialName tutorialName, DayOfWeek weekday,
+    public Tutorial(ModCode modCode, TutorialName tutorialName, DayOfWeek weekday,
                     LocalTime beginTime, LocalTime endTime, Location location) {
 
-        requireAllNonNull(module, tutorialName, weekday, beginTime, endTime, location);
-        this.module = module.toUpperCase();
+        requireAllNonNull(modCode, tutorialName, weekday, beginTime, endTime, location);
+        this.modCode = modCode;
         this.tutorialName = tutorialName;
         this.weekday = weekday;
         this.beginTime = beginTime;
@@ -33,8 +33,8 @@ public class Tutorial {
         this.location = location;
     }
 
-    public String getModule() {
-        return module;
+    public ModCode getModCode() {
+        return modCode;
     }
 
     public TutorialName getTutorialName() {
@@ -71,15 +71,15 @@ public class Tutorial {
         }
 
         Tutorial otherTutorial = (Tutorial) other;
-        return otherTutorial.getModule().equals(getModule())
+        return otherTutorial.getModCode().equals(getModCode())
                 && otherTutorial.getTutorialName().equals(getTutorialName());
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(" Module: ")
-                .append(getModule())
+        builder.append(" Module Code: ")
+                .append(getModCode())
                 .append(" Tutorial Name: ")
                 .append(getTutorialName())
                 .append(" Day: ")

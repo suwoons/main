@@ -15,8 +15,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.consults.JsonConsultStorage;
-import seedu.address.storage.reminders.JsonReminderStorage;
 import seedu.address.storage.tutorials.JsonTutorialStorage;
+import seedu.address.storage.mods.JsonModStorage;
+import seedu.address.storage.reminders.JsonReminderStorage;
 
 public class StorageManagerTest {
 
@@ -31,9 +32,10 @@ public class StorageManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonConsultStorage consultStorage = new JsonConsultStorage(getTempFilePath("consults"));
         JsonTutorialStorage tutorialStorage = new JsonTutorialStorage(getTempFilePath("tutorials"));
+        JsonModStorage modStorage = new JsonModStorage(getTempFilePath("mods"));
         JsonReminderStorage reminderStorage = new JsonReminderStorage(getTempFilePath("reminders"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage, consultStorage,
-                tutorialStorage, reminderStorage);
+            tutorialStorage, modStorage, reminderStorage);
     }
 
     private Path getTempFilePath(String fileName) {

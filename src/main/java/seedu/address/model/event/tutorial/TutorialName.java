@@ -39,6 +39,9 @@ public class TutorialName {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getTutorialName() {
+        return tutorialName;
+    }
 
     @Override
     public String toString() {

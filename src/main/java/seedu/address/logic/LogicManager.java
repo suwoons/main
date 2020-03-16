@@ -14,6 +14,8 @@ import seedu.address.logic.parser.TAbleParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.consult.Consult;
+import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -26,12 +28,12 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final TAbleParser addressBookParser;
+    private final TAbleParser tableParser;
 
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new TAbleParser();
+        tableParser = new TAbleParser();
     }
 
     @Override
@@ -39,11 +41,12 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = tableParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveConsults(model.getConsultTAble());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -59,6 +62,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Tutorial> getFilteredTutorialList() {
+        return model.getFilteredTutorialList();
+    }
+
+    @Override
+    public ObservableList<Consult> getFilteredConsultList() {
+        return model.getFilteredConsultList();
     }
 
     @Override
