@@ -18,6 +18,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path consultTAbleFilePath = Paths.get("data", "consults.json");
     private Path tutorialTAbleFilePath = Paths.get("data", "tutorials.json");
     private Path modTAbleFilePath = Paths.get("data", "mods.json");
+    private Path reminderTableFilePath = Paths.get("data", "reminders.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -89,6 +90,17 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(modTAbleFilePath);
         this.modTAbleFilePath = modTAbleFilePath;
     }
+
+    // Reminders start ==============================================================================
+    public Path getReminderTableFilePath() {
+        return reminderTableFilePath;
+    }
+
+    public void setReminderTableFilePath(Path reminderTableFilePath) {
+        requireNonNull(reminderTableFilePath);
+        this.reminderTableFilePath = reminderTableFilePath;
+    }
+    //end
 
     @Override
     public boolean equals(Object other) {

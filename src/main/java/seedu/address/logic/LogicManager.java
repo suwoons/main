@@ -16,7 +16,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.tutorial.Tutorial;
-import seedu.address.model.student.Student;
+import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.storage.Storage;
 
 /**
@@ -47,6 +48,8 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveConsults(model.getConsultTAble());
+            storage.saveTutorials(model.getTutorialTAble());
+            storage.saveReminders(model.getReminderTAble());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -60,8 +63,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Student> getFilteredStudentList() {
-        return model.getFilteredStudentList();
+    public ObservableList<Person> getFilteredPersonList() {
+        return model.getFilteredPersonList();
     }
 
     @Override
@@ -72,6 +75,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Consult> getFilteredConsultList() {
         return model.getFilteredConsultList();
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return model.getFilteredReminderList();
     }
 
     @Override

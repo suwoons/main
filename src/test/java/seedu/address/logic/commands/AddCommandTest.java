@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -20,42 +22,45 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.consult.ReadOnlyConsult;
+import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
-import seedu.address.model.student.Student;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReadOnlyReminder;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullStudent_throwsNullPointerException() {
+    public void constructor_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
-        Student validStudent = new StudentBuilder().build();
+    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
     @Test
-    public void execute_duplicateStudent_throwsCommandException() {
-        Student validStudent = new StudentBuilder().build();
-        AddCommand addCommand = new AddCommand(validStudent);
-        ModelStub modelStub = new ModelStubWithStudent(validStudent);
+    public void execute_duplicatePerson_throwsCommandException() {
+        Person validPerson = new PersonBuilder().build();
+        AddCommand addCommand = new AddCommand(validPerson);
+        ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Student alice = new StudentBuilder().withName("Alice").build();
-        Student bob = new StudentBuilder().withName("Bob").build();
+        Person alice = new PersonBuilder().withName("Alice").build();
+        Person bob = new PersonBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -72,7 +77,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different student -> returns false
+        // different person -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -111,7 +116,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addStudent(Student student) {
+        public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -126,27 +131,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasStudent(Student student) {
+        public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteStudent(Student target) {
+        public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setStudent(Student target, Student editedStudent) {
+        public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Student> getFilteredStudentList() {
+        public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredStudentList(Predicate<Student> predicate) {
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -221,6 +226,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyTutorial getTutorialTAble() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasMod(Mod mod) {
             throw new AssertionError("This method should not be called.");
         }
@@ -244,42 +254,82 @@ public class AddCommandTest {
         public void updateFilteredModList(Predicate<Mod> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasReminder(Reminder reminder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addReminder(Reminder reminder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteReminder(Reminder target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Reminder doneReminder(Reminder target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setReminder(Reminder reminderToEdit, Reminder editedReminder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Reminder> getFilteredReminderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredReminderList(Predicate<Reminder> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyReminder getReminderTAble() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
-     * A Model stub that contains a single student.
+     * A Model stub that contains a single person.
      */
-    private class ModelStubWithStudent extends ModelStub {
-        private final Student student;
+    private class ModelStubWithPerson extends ModelStub {
+        private final Person person;
 
-        ModelStubWithStudent(Student student) {
-            requireNonNull(student);
-            this.student = student;
+        ModelStubWithPerson(Person person) {
+            requireNonNull(person);
+            this.person = person;
         }
 
         @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return this.student.isSameStudent(student);
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return this.person.isSamePerson(person);
         }
     }
 
     /**
-     * A Model stub that always accept the student being added.
+     * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingStudentAdded extends ModelStub {
-        final ArrayList<Student> studentsAdded = new ArrayList<>();
+    private class ModelStubAcceptingPersonAdded extends ModelStub {
+        final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return studentsAdded.stream().anyMatch(student::isSameStudent);
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return personsAdded.stream().anyMatch(person::isSamePerson);
         }
 
         @Override
-        public void addStudent(Student student) {
-            requireNonNull(student);
-            studentsAdded.add(student);
+        public void addPerson(Person person) {
+            requireNonNull(person);
+            personsAdded.add(person);
         }
 
         @Override

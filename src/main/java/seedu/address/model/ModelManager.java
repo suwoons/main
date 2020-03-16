@@ -20,7 +20,11 @@ import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.mod.ReadOnlyMod;
-import seedu.address.model.student.Student;
+import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReadOnlyReminder;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderTAble;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -30,38 +34,43 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Student> filteredStudents;
+    private final FilteredList<Person> filteredPersons;
     private final ConsultTAble consultTAble;
     private final FilteredList<Consult> filteredConsults;
     private final TutorialTAble tutorialTAble;
     private final FilteredList<Tutorial> filteredTutorials;
     private final ModTAble modTAble;
     private final FilteredList<Mod> filteredMods;
+    private final ReminderTAble reminderTAble;
+    private final FilteredList<Reminder> filteredReminders;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyConsult consultTAble,
-                        ReadOnlyTutorial tutorialTAble, ReadOnlyMod modTAble) {
+                        ReadOnlyTutorial tutorialTAble, ReadOnlyMod modTAble, ReadOnlyReminder reminderTAble) {
         super();
-        requireAllNonNull(addressBook, userPrefs, consultTAble, tutorialTAble, modTAble);
+        requireAllNonNull(addressBook, userPrefs, consultTAble, tutorialTAble, modTAble, reminderTAble);
 
         logger.fine("Initializing with address book: " + addressBook + " , user prefs " + userPrefs
             + ", with consults " + consultTAble + " and modules in " + modTAble);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.consultTAble = new ConsultTAble(consultTAble);
         filteredConsults = new FilteredList<>(this.consultTAble.getAllConsults());
         this.tutorialTAble = new TutorialTAble(tutorialTAble);
         filteredTutorials = new FilteredList<>(this.tutorialTAble.getAllTutorials());
         this.modTAble = new ModTAble(modTAble);
         filteredMods = new FilteredList<>(this.modTAble.getAllMods());
+        this.reminderTAble = new ReminderTAble(reminderTAble);
+        filteredReminders = new FilteredList<>(this.reminderTAble.getAllReminders());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new ConsultTAble(), new TutorialTAble(), new ModTAble());
+        this(new AddressBook(), new UserPrefs(), new ConsultTAble(), new TutorialTAble(),
+                new ModTAble(), new ReminderTAble());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -112,26 +121,26 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasStudent(Student student) {
-        requireNonNull(student);
-        return addressBook.hasStudent(student);
+    public boolean hasPerson(Person person) {
+        requireNonNull(person);
+        return addressBook.hasPerson(person);
     }
 
     @Override
-    public void deleteStudent(Student target) {
-        addressBook.removeStudent(target);
+    public void deletePerson(Person target) {
+        addressBook.removePerson(target);
     }
 
     @Override
-    public void addStudent(Student student) {
-        addressBook.addStudent(student);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+    public void addPerson(Person person) {
+        addressBook.addPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setStudent(Student target, Student editedStudent) {
-        requireAllNonNull(target, editedStudent);
-        addressBook.setStudent(target, editedStudent);
+    public void setPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        addressBook.setPerson(target, editedPerson);
     }
 
     /**
@@ -140,25 +149,25 @@ public class ModelManager implements Model {
      * @param indexNumber Index number of student.
      * @return Student with index number specified.
      */
-    public Student getStudent(int indexNumber) {
+    public Person getStudent(int indexNumber) {
         return addressBook.getStudent(indexNumber);
     }
 
-    //=========== Filtered Student List Accessors =============================================================
+    //=========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Student> getFilteredStudentList() {
-        return filteredStudents;
+    public ObservableList<Person> getFilteredPersonList() {
+        return filteredPersons;
     }
 
     @Override
-    public void updateFilteredStudentList(Predicate<Student> predicate) {
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        filteredStudents.setPredicate(predicate);
+        filteredPersons.setPredicate(predicate);
     }
 
     @Override
@@ -177,7 +186,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredStudents.equals(other.filteredStudents);
+                && filteredPersons.equals(other.filteredPersons);
     }
 
     // Consults section =======================================================
@@ -191,7 +200,7 @@ public class ModelManager implements Model {
     @Override
     public void addConsult(Consult consult) {
         consultTAble.addConsult(consult);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -261,6 +270,11 @@ public class ModelManager implements Model {
         filteredTutorials.setPredicate(predicate);
     }
 
+    @Override
+    public ReadOnlyTutorial getTutorialTAble() {
+        return tutorialTAble;
+    }
+
     // Modules section ==========================================================================
 
     @Override
@@ -288,5 +302,50 @@ public class ModelManager implements Model {
     public void updateFilteredModList(Predicate<Mod> predicate) {
         requireNonNull(predicate);
         filteredMods.setPredicate(predicate);
+    }
+
+    // Reminders section ==========================================================================
+
+    @Override
+    public boolean hasReminder(Reminder reminder) {
+        requireNonNull(reminder);
+        return reminderTAble.hasReminder(reminder);
+    }
+
+    @Override
+    public void addReminder(Reminder reminder) {
+        reminderTAble.addReminder(reminder);
+    }
+
+    @Override
+    public void deleteReminder(Reminder target) {
+        reminderTAble.removeReminder(target);
+    }
+
+    @Override
+    public void setReminder(Reminder reminderToEdit, Reminder editedReminder) {
+        requireAllNonNull(reminderToEdit, editedReminder);
+        reminderTAble.setReminder(reminderToEdit, editedReminder);
+    }
+
+    @Override
+    public Reminder doneReminder(Reminder target) {
+        return reminderTAble.markReminderAsDone(target);
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return filteredReminders;
+    }
+
+    @Override
+    public void updateFilteredReminderList(Predicate<Reminder> predicate) {
+        requireNonNull(predicate);
+        filteredReminders.setPredicate(predicate);
+    }
+
+    @Override
+    public ReadOnlyReminder getReminderTAble() {
+        return reminderTAble;
     }
 }

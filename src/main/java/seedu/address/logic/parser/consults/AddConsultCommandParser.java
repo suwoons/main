@@ -21,7 +21,7 @@ import seedu.address.model.event.Location;
 import seedu.address.model.event.consult.Consult;
 
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
-//import seedu.address.model.student.Student;
+//import seedu.address.model.person.Person;
 
 /**
  * Parses input arguments and creates a new AddCommand object

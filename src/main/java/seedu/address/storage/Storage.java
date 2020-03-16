@@ -10,13 +10,14 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.consults.ConsultStorage;
 import seedu.address.storage.mods.ModStorage;
+import seedu.address.storage.reminders.ReminderStorage;
 import seedu.address.storage.tutorials.TutorialStorage;
 
 /**
  * API of the Storage component
  */
 public interface Storage extends AddressBookStorage, UserPrefsStorage, ConsultStorage,
-    TutorialStorage, ModStorage {
+    TutorialStorage, ModStorage, ReminderStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
