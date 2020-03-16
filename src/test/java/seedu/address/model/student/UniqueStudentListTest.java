@@ -49,7 +49,7 @@ public class UniqueStudentListTest {
     }
 
     @Test
-    public void add_duplicateStudent_throwsDuplicatePersonException() {
+    public void add_duplicateStudent_throwsDuplicateStudentException() {
         uniqueStudentList.add(ALICE);
         assertThrows(DuplicateStudentException.class, () -> uniqueStudentList.add(ALICE));
     }
@@ -73,9 +73,9 @@ public class UniqueStudentListTest {
     public void setStudent_editedStudentIsSameStudent_success() {
         uniqueStudentList.add(ALICE);
         uniqueStudentList.setStudent(ALICE, ALICE);
-        UniqueStudentList expectedUniquePersonList = new UniqueStudentList();
-        expectedUniquePersonList.add(ALICE);
-        assertEquals(expectedUniquePersonList, uniqueStudentList);
+        UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
+        expectedUniqueStudentList.add(ALICE);
+        assertEquals(expectedUniqueStudentList, uniqueStudentList);
     }
 
     @Test
@@ -84,18 +84,18 @@ public class UniqueStudentListTest {
         Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueStudentList.setStudent(ALICE, editedAlice);
-        UniqueStudentList expectedUniquePersonList = new UniqueStudentList();
-        expectedUniquePersonList.add(editedAlice);
-        assertEquals(expectedUniquePersonList, uniqueStudentList);
+        UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
+        expectedUniqueStudentList.add(editedAlice);
+        assertEquals(expectedUniqueStudentList, uniqueStudentList);
     }
 
     @Test
     public void setStudent_editedStudentHasDifferentIdentity_success() {
         uniqueStudentList.add(ALICE);
         uniqueStudentList.setStudent(ALICE, BOB);
-        UniqueStudentList expectedUniquePersonList = new UniqueStudentList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniqueStudentList);
+        UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
+        expectedUniqueStudentList.add(BOB);
+        assertEquals(expectedUniqueStudentList, uniqueStudentList);
     }
 
     @Test
@@ -119,8 +119,8 @@ public class UniqueStudentListTest {
     public void remove_existingStudent_removesStudent() {
         uniqueStudentList.add(ALICE);
         uniqueStudentList.remove(ALICE);
-        UniqueStudentList expectedUniquePersonList = new UniqueStudentList();
-        assertEquals(expectedUniquePersonList, uniqueStudentList);
+        UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
+        assertEquals(expectedUniqueStudentList, uniqueStudentList);
     }
 
     @Test
@@ -131,10 +131,10 @@ public class UniqueStudentListTest {
     @Test
     public void setStudents_uniqueStudentList_replacesOwnListWithProvidedUniqueStudentList() {
         uniqueStudentList.add(ALICE);
-        UniqueStudentList expectedUniquePersonList = new UniqueStudentList();
-        expectedUniquePersonList.add(BOB);
-        uniqueStudentList.setStudents(expectedUniquePersonList);
-        assertEquals(expectedUniquePersonList, uniqueStudentList);
+        UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
+        expectedUniqueStudentList.add(BOB);
+        uniqueStudentList.setStudents(expectedUniqueStudentList);
+        assertEquals(expectedUniqueStudentList, uniqueStudentList);
     }
 
     @Test
@@ -145,8 +145,8 @@ public class UniqueStudentListTest {
     @Test
     public void setStudents_list_replacesOwnListWithProvidedList() {
         uniqueStudentList.add(ALICE);
-        List<Student> personList = Collections.singletonList(BOB);
-        uniqueStudentList.setStudents(personList);
+        List<Student> studentList = Collections.singletonList(BOB);
+        uniqueStudentList.setStudents(studentList);
         UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
         expectedUniqueStudentList.add(BOB);
         assertEquals(expectedUniqueStudentList, uniqueStudentList);

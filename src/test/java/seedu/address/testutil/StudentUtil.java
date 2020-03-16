@@ -10,7 +10,7 @@ import java.util.Set;
 import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
- * A utility class for Person.
+ * A utility class for Student.
  */
 public class StudentUtil {
 
@@ -36,7 +36,7 @@ public class StudentUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditStudentDescriptor}'s details.
      */
     public static String getEditStudentDescriptorDetails(EditStudentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();

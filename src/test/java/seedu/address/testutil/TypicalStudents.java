@@ -10,7 +10,7 @@ import java.util.List;
 import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Student} objects to be used in tests.
  */
 public class TypicalStudents {
 
@@ -38,7 +38,7 @@ public class TypicalStudents {
     public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).withRemark(VALID_REMARK_NICE).build();
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
@@ -50,7 +50,7 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical students.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();

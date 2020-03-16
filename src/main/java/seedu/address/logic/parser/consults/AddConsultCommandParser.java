@@ -1,26 +1,21 @@
 package seedu.address.logic.parser.consults;
 
-import static seedu.address.commons.core.Messages.MESSAGE_BEGIN_TIME_BEFORE_END_TIME;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
-import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
+import seedu.address.logic.commands.consults.AddConsultCommand;
+import seedu.address.logic.parser.*;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Location;
+import seedu.address.model.event.consult.Consult;
 
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.consults.AddConsultCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.Prefix;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.event.Location;
-import seedu.address.model.event.consult.Consult;
-//import seedu.address.model.student.Person;
+import static seedu.address.commons.core.Messages.MESSAGE_BEGIN_TIME_BEFORE_END_TIME;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
+import static seedu.address.logic.parser.CliSyntax.*;
+
+//import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
+//import seedu.address.model.student.Student;
 
 /**
  * Parses input arguments and creates a new AddCommand object

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditStudentDescriptor objects.
  */
 public class EditStudentDescriptorBuilder {
 
@@ -27,7 +27,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code student}'s details
+     * Returns an {@code EditStudentDescriptor} with fields containing {@code student}'s details
      */
     public EditStudentDescriptorBuilder(Student student) {
         descriptor = new EditStudentDescriptor();
@@ -38,7 +38,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -46,7 +46,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -54,7 +54,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
@@ -62,7 +62,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditStudentDescriptor}
      * that we are building.
      */
     public EditStudentDescriptorBuilder withTags(String... tags) {
