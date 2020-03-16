@@ -1,5 +1,9 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.consult.UniqueConsultList;
@@ -7,10 +11,6 @@ import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.UniqueTutorialList;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the address-book level

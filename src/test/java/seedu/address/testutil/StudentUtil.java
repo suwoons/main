@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.*;
+
+import java.util.Set;
+
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
-
-import java.util.Set;
-
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * A utility class for Student.

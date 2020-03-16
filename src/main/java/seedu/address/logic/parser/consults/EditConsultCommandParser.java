@@ -2,9 +2,7 @@ package seedu.address.logic.parser.consults;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.consults.EditConsultCommand;

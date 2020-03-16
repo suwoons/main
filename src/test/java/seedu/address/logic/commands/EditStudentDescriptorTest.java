@@ -1,12 +1,13 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.address.testutil.EditStudentDescriptorBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.*;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 public class EditStudentDescriptorTest {
 

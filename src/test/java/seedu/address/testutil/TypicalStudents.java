@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.student.Student;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.student.Student;
 
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.
