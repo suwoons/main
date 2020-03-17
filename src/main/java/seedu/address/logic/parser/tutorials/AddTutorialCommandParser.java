@@ -1,6 +1,8 @@
 package seedu.address.logic.parser.tutorials;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_TUTORIAL_BEGIN_TIME_BEFORE_END_TIME;
+import static seedu.address.commons.util.TutorialUtil.checkStartEndTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_BEGIN_TIME;
@@ -60,6 +62,10 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
                PREFIX_TUTORIAL_END_TIME).get());
         Location location = ParserUtil.parsePlace(argMultimap.getValue(
                 PREFIX_PLACE).get());
+
+        if (!checkStartEndTime(beginTime, endTime)) {
+            throw new ParseException(MESSAGE_TUTORIAL_BEGIN_TIME_BEFORE_END_TIME);
+        }
 
         Tutorial tutorial = new Tutorial(moduleCode, tutorialName, weekday, beginTime, endTime, location);
 

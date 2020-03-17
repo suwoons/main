@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.tutorials;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_TUTORIAL_TIMING_CLASH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_BEGIN_TIME;
@@ -26,17 +27,17 @@ public class AddTutorialCommand extends Command {
             + "Parameters: "
             + PREFIX_MODULE_CODE + "MODULE_CODE "
             + PREFIX_TUTORIAL_NAME + "TUTORIAL_NAME "
-            + PREFIX_TUTORIAL_WEEKDAY + "TUTORIAL_WEEKDAY "
+            + PREFIX_TUTORIAL_WEEKDAY + "TUTORIAL_WEEKDAY_VALUE (1-7) "
             + PREFIX_TUTORIAL_BEGIN_TIME + "TUTORIAL_BEGIN_TIME "
             + PREFIX_TUTORIAL_END_TIME + "TUTORIAL_END_TIME "
             + PREFIX_PLACE + "PLACE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_CODE + "CS2103 "
             + PREFIX_TUTORIAL_NAME + "T03 "
-            + PREFIX_TUTORIAL_WEEKDAY + "Wednesday "
+            + PREFIX_TUTORIAL_WEEKDAY + "3 "
             + PREFIX_TUTORIAL_BEGIN_TIME + "15:00 "
             + PREFIX_TUTORIAL_END_TIME + "16:00 "
-            + PREFIX_PLACE + "COM1-B113 ";
+            + PREFIX_PLACE + "SR3 ";
 
     public static final String MESSAGE_SUCCESS = "New tutorial added!\n%1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in TAble.";
@@ -62,6 +63,10 @@ public class AddTutorialCommand extends Command {
 
         if (!model.hasMod(new Mod(toAdd.getModCode(), ""))) {
             throw new CommandException(MESSAGE_MISSING_MOD);
+        }
+
+        if (model.hasSameTiming(toAdd)) {
+            throw new CommandException(MESSAGE_TUTORIAL_TIMING_CLASH);
         }
 
         model.addTutorial(toAdd);

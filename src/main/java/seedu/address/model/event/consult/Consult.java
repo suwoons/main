@@ -1,6 +1,6 @@
 package seedu.address.model.event.consult;
 
-import static seedu.address.commons.core.Messages.MESSAGE_BEGIN_TIME_BEFORE_END_TIME;
+import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
@@ -8,7 +8,7 @@ import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
 import java.time.LocalDateTime;
 
 import seedu.address.model.event.Location;
-//import seedu.address.model.person.Person;
+//import seedu.address.model.student.Student;
 
 /**
  * Represents a Consultation in TAble.
@@ -25,7 +25,7 @@ public class Consult {
                    Location location) {
         requireAllNonNull(beginDateTime, endDateTime, location);
         checkArgument(checkStartEndDateTime(beginDateTime, endDateTime),
-                MESSAGE_BEGIN_TIME_BEFORE_END_TIME);
+                MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME);
         this.beginDateTime = beginDateTime;
         this.endDateTime = endDateTime;
         this.location = location;
@@ -39,7 +39,7 @@ public class Consult {
         return endDateTime;
     }
 
-    public Location getPlace() {
+    public Location getLocation() {
         return location;
     }
 
@@ -87,8 +87,7 @@ public class Consult {
                 .append(" End Time: ")
                 .append(getEndDateTime())
                 .append(" Place: ")
-                .append(getPlace());
+                .append(getLocation());
         return builder.toString();
     }
-
 }

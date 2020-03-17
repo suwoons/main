@@ -37,6 +37,14 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     }
 
     /**
+     * Returns true if the list contains another tutorial timing clashes with the argument.
+     */
+    public boolean hasSameTiming(Tutorial tutorial) {
+        requireNonNull(tutorial);
+        return internalList.stream().anyMatch(tutorial::timeClash);
+    }
+
+    /**
      * Adds a tutorial to the list.
      * The tutorial must not already exist in the list.
      */

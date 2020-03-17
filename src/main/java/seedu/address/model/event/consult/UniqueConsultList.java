@@ -40,7 +40,7 @@ public class UniqueConsultList implements Iterable<Consult> {
     /**
      * Returns true if the list contains another consult which timing clashes with the argument.
      */
-    public boolean hasSameTiming(Consult consult) {
+    public boolean hasSameDateTiming(Consult consult) {
         requireNonNull(consult);
         return internalList.stream().anyMatch(consult::timeClash);
     }
@@ -60,7 +60,7 @@ public class UniqueConsultList implements Iterable<Consult> {
     /**
      * Replaces the consult {@code target} in the list with {@code editedConsult}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedConsult} must not be the same as another existing consult in the list.
+     * The student identity of {@code editedConsult} must not be the same as another existing consult in the list.
      */
     public void setConsult(Consult target, Consult editedConsult) {
         requireAllNonNull(target, editedConsult);

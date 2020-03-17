@@ -31,9 +31,11 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TutorialListPanel tutorialListPanel;
+    private ConsultListPanel consultListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,7 +44,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane studentListPanelPlaceholder;
+
+    @FXML
+    private StackPane tutorialListPanelPlaceholder;
+
+    @FXML
+    private StackPane consultListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -107,8 +115,14 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+        tutorialListPanel = new TutorialListPanel(logic.getFilteredTutorialList());
+        tutorialListPanelPlaceholder.getChildren().add(tutorialListPanel.getRoot());
+
+        consultListPanel = new ConsultListPanel(logic.getFilteredConsultList());
+        consultListPanelPlaceholder.getChildren().add(consultListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -160,8 +174,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public StudentListPanel getStudentListPanel() {
+        return studentListPanel;
     }
 
     /**

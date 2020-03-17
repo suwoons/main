@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -17,10 +18,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.tutorial.TutorialName;
 import seedu.address.model.mod.ModCode;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,6 +31,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_DATE_TIME = "Format of date and time is not supported.";
+    public static final String MESSAGE_INVALID_DATE = "Format of date is not supported.";
     public static final String MESSAGE_INVALID_TIME = "Format of time is not supported.";
     public static final String MESSAGE_INVALID_DAY = "Format of day is not supported.";
 
@@ -157,6 +159,24 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_DATE_TIME);
         }
         return formattedDateTime;
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDate}.
+     * The format of the LocalDate will be in the format yyyy-MM-dd.
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate formattedDate;
+        try {
+            formattedDate = LocalDate.parse(trimmedDate, formatter);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MESSAGE_INVALID_DATE);
+        }
+        return formattedDate;
     }
 
     /**

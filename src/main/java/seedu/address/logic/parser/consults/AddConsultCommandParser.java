@@ -1,8 +1,7 @@
 package seedu.address.logic.parser.consults;
 
-import static seedu.address.commons.core.Messages.MESSAGE_BEGIN_TIME_BEFORE_END_TIME;
+import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
@@ -20,7 +19,9 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.consult.Consult;
-//import seedu.address.model.person.Person;
+
+//import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
+//import seedu.address.model.student.Student;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -53,7 +54,7 @@ public class AddConsultCommandParser implements Parser<AddConsultCommand> {
         //Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONSULT_STUDENT).get());
 
         if (!checkStartEndDateTime(beginDateTime, endDateTime)) {
-            throw new ParseException(MESSAGE_BEGIN_TIME_BEFORE_END_TIME);
+            throw new ParseException(MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME);
         }
 
         Consult consult = new Consult(beginDateTime, endDateTime, location);

@@ -14,7 +14,10 @@ import seedu.address.logic.parser.TAbleParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.event.consult.Consult;
+import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.student.Student;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,12 +29,12 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final TAbleParser TAbleParser;
+    private final TAbleParser tableParser;
 
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        TAbleParser = new TAbleParser();
+        tableParser = new TAbleParser();
     }
 
     @Override
@@ -39,12 +42,14 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = TAbleParser.parseCommand(commandText);
+        Command command = tableParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveConsults(model.getConsultTAble());
+            storage.saveTutorials(model.getTutorialTAble());
+            storage.saveReminders(model.getReminderTAble());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -58,8 +63,23 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Student> getFilteredStudentList() {
+        return model.getFilteredStudentList();
+    }
+
+    @Override
+    public ObservableList<Tutorial> getFilteredTutorialList() {
+        return model.getFilteredTutorialList();
+    }
+
+    @Override
+    public ObservableList<Consult> getFilteredConsultList() {
+        return model.getFilteredConsultList();
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return model.getFilteredReminderList();
     }
 
     @Override
