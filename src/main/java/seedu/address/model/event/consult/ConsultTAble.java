@@ -83,7 +83,7 @@ public class ConsultTAble implements ReadOnlyConsult {
      * Replaces the given consult {@code target} in the list with {@code editedConsult}.
      * {@code target} must exist in the ConsultTAble.
      * The consult identity of {@code editedConsult} must not be the same
-     * as another existing person in the address book.
+     * as another existing student in the address book.
      */
     public void setConsult(Consult target, Consult editedConsult) {
         requireNonNull(editedConsult);

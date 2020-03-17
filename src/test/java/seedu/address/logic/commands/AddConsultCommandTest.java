@@ -27,9 +27,9 @@ import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
-import seedu.address.model.person.Person;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.student.Student;
 import seedu.address.testutil.ConsultBuilder;
 
 
@@ -122,7 +122,7 @@ public class AddConsultCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -137,27 +137,27 @@ public class AddConsultCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteStudent(Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setStudent(Student target, Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Student> getFilteredStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

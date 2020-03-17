@@ -60,7 +60,7 @@ public class UniqueConsultList implements Iterable<Consult> {
     /**
      * Replaces the consult {@code target} in the list with {@code editedConsult}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedConsult} must not be the same as another existing consult in the list.
+     * The student identity of {@code editedConsult} must not be the same as another existing consult in the list.
      */
     public void setConsult(Consult target, Consult editedConsult) {
         requireAllNonNull(target, editedConsult);
