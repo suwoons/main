@@ -39,6 +39,8 @@ public class TutorialCard extends UiPart<Region> {
     private Label endTime;
     @FXML
     private Label tutlocation;
+    @FXML
+    private Label tutTime;
     //@FXML
     //private FlowPane tags;
 
@@ -50,7 +52,7 @@ public class TutorialCard extends UiPart<Region> {
         name.setText(tutorial.getTutorialName().getTutorialName());
         modCode.setText(tutorial.getModCode().getModCode());
         tutlocation.setText(tutorial.getLocation().getEventLocation());
-        //day.setText(tutorial.getDay());
+        tutTime.setText(tutorial.getDayAndTime());
         //startTime.setText(tutorial.getStartTime());
         //endTime.setText(tutorial.getEndTime());
 

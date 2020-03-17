@@ -10,6 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.model.mod.Mod;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.student.Student;
 
@@ -45,6 +46,11 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of consults
      */
     ObservableList<Consult> getFilteredConsultList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of consults
+     */
+    ObservableList<Mod> getFilteredModList();
 
     /**
      * Returns an unmodifiable view of the filtered list of reminders

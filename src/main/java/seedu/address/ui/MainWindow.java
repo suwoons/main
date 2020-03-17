@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private TutorialListPanel tutorialListPanel;
     private ConsultListPanel consultListPanel;
+    private ModListPanel modListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -51,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane consultListPanelPlaceholder;
+
+    @FXML
+    private StackPane modListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -123,6 +127,9 @@ public class MainWindow extends UiPart<Stage> {
 
         consultListPanel = new ConsultListPanel(logic.getFilteredConsultList());
         consultListPanelPlaceholder.getChildren().add(consultListPanel.getRoot());
+
+        modListPanel = new ModListPanel(logic.getFilteredModList());
+        modListPanelPlaceholder.getChildren().add(modListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
