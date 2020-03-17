@@ -137,9 +137,9 @@ public interface Model {
     void updateFilteredConsultList(Predicate<Consult> predicate);
 
     /**
-     * Returns true if a {@code consult}'s timing clashes with another {@code consult} timing in TAble.
+     * Returns true if a {@code consult}'s timing clashes with another {@code consult}'s timing in TAble.
      */
-    boolean hasSameTiming(Consult consult);
+    boolean hasSameDateTiming(Consult consult);
 
     /** Returns the Consult TAble */
     ReadOnlyConsult getConsultTAble();
@@ -171,6 +171,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTutorialList(Predicate<Tutorial> predicate);
+
+    /**
+     * Returns true if a {@code tutorial}'s timing clashes with another {@code tutorial}'s timing in TAble.
+     */
+    boolean hasSameTiming(Tutorial tutorial);
 
     /** Returns the Tutorial TAble */
     ReadOnlyTutorial getTutorialTAble();

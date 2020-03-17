@@ -198,7 +198,7 @@ public class AddReminderCommandTest {
         }
 
         @Override
-        public boolean hasSameTiming(Consult consult) {
+        public boolean hasSameDateTiming(Consult consult) {
             throw new AssertionError("This method should not be called");
         }
 
@@ -230,6 +230,11 @@ public class AddReminderCommandTest {
         @Override
         public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSameTiming(Tutorial tutorial) {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override

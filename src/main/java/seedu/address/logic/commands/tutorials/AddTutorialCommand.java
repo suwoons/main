@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.tutorials;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_TUTORIAL_TIMING_CLASH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_BEGIN_TIME;
@@ -62,6 +63,10 @@ public class AddTutorialCommand extends Command {
 
         if (!model.hasMod(new Mod(toAdd.getModCode(), ""))) {
             throw new CommandException(MESSAGE_MISSING_MOD);
+        }
+
+        if (model.hasSameTiming(toAdd)) {
+            throw new CommandException(MESSAGE_TUTORIAL_TIMING_CLASH);
         }
 
         model.addTutorial(toAdd);
