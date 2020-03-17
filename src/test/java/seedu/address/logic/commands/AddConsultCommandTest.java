@@ -197,7 +197,7 @@ public class AddConsultCommandTest {
         }
 
         @Override
-        public boolean hasSameTiming(Consult consult) {
+        public boolean hasSameDateTiming(Consult consult) {
             throw new AssertionError("This method should not be called");
         }
 
@@ -234,6 +234,11 @@ public class AddConsultCommandTest {
         @Override
         public ReadOnlyTutorial getTutorialTAble() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSameTiming(Tutorial tutorial) {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override
@@ -339,7 +344,7 @@ public class AddConsultCommandTest {
         }
 
         @Override
-        public boolean hasSameTiming(Consult consult) {
+        public boolean hasSameDateTiming(Consult consult) {
             return consultsAdded.stream().anyMatch(consult::timeClash);
         }
 

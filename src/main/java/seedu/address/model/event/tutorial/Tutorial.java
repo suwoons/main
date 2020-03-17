@@ -1,6 +1,7 @@
 package seedu.address.model.event.tutorial;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.TutorialUtil.checkStartEndTime;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -74,6 +75,25 @@ public class Tutorial {
         return otherTutorial.getModCode().equals(getModCode())
                 && otherTutorial.getTutorialName().equals(getTutorialName());
     }
+
+    /**
+     * Returns true if both consults timing clash, where the beginDateTime of the first consult is after the second
+     * consult or vice versa.
+     */
+    public boolean timeClash(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Tutorial)) {
+            return false;
+        }
+
+        Tutorial otherEvent = (Tutorial) other;
+        return !checkStartEndTime(otherEvent.getEndTime(), getBeginTime())
+                || !checkStartEndTime(otherEvent.getBeginTime(), getEndTime());
+    }
+
 
     @Override
     public String toString() {

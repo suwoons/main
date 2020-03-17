@@ -231,9 +231,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasSameTiming(Consult consult) {
+    public boolean hasSameDateTiming(Consult consult) {
         requireAllNonNull(consult, consultTAble);
-        return consultTAble.hasSameTiming(consult);
+        return consultTAble.hasSameDateTiming(consult);
     }
 
     @Override
@@ -268,6 +268,12 @@ public class ModelManager implements Model {
     public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
         requireNonNull(predicate);
         filteredTutorials.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean hasSameTiming(Tutorial tutorial) {
+        requireAllNonNull(tutorial, tutorialTAble);
+        return tutorialTAble.hasSameTiming(tutorial);
     }
 
     @Override

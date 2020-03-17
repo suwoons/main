@@ -122,4 +122,8 @@ public class TutorialTAble implements ReadOnlyTutorial {
     public int hashCode() {
         return tutorials.hashCode();
     }
+
+    public boolean hasSameTiming(Tutorial tutorial) {
+        return tutorials.hasSameTiming(tutorial);
+    }
 }

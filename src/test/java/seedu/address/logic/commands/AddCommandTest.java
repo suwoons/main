@@ -191,7 +191,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasSameTiming(Consult consult) {
+        public boolean hasSameDateTiming(Consult consult) {
             throw new AssertionError("This method should not be called");
         }
 
@@ -230,6 +230,10 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public boolean hasSameTiming(Tutorial tutorial) {
+            throw new AssertionError("This method should not be called");
+        }
         @Override
         public boolean hasMod(Mod mod) {
             throw new AssertionError("This method should not be called.");

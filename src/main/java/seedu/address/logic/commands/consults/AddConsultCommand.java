@@ -53,7 +53,7 @@ public class AddConsultCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CONSULT);
         }
 
-        if (model.hasSameTiming(toAdd)) {
+        if (model.hasSameDateTiming(toAdd)) {
             throw new CommandException(MESSAGE_CONSULT_TIMING_CLASH);
         }
 
