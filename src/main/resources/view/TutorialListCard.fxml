@@ -26,7 +26,7 @@
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <Label fx:id="modCode" styleClass="cell_small_label" text="\$modCode" />
-      <Label fx:id="TAlocation" styleClass="cell_small_label" text="\$TAlocation" />
+      <Label fx:id="tutlocation" styleClass="cell_small_label" text="\$tutlocation" />
     </VBox>
   </GridPane>
 </HBox>
