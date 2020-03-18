@@ -75,10 +75,10 @@ public class Consult {
         }
 
         Consult otherEvent = (Consult) other;
-        return (!checkStartEndDateTime(otherEvent.getBeginDateTime(), getEndDateTime()) &&
-            !checkStartEndDateTime(getBeginDateTime(), otherEvent.getBeginDateTime()))
-                || (!checkStartEndDateTime(otherEvent.getEndDateTime(), getBeginDateTime()) &&
-            !checkStartEndDateTime(getEndDateTime(), otherEvent.getEndDateTime()));
+        return (!checkStartEndDateTime(otherEvent.getBeginDateTime(), getEndDateTime())
+            && !checkStartEndDateTime(getBeginDateTime(), otherEvent.getBeginDateTime()))
+                || (!checkStartEndDateTime(otherEvent.getEndDateTime(), getBeginDateTime())
+            && !checkStartEndDateTime(getEndDateTime(), otherEvent.getEndDateTime()));
     }
 
     @Override
