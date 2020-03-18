@@ -12,6 +12,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CONSULTS;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -76,7 +77,7 @@ public class EditConsultCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CONSULT);
         }
 
-        if (model.hasSameDateTiming(editedConsult)) {
+        if (model.hasSameDateTime(editedConsult)) {
             throw new CommandException(MESSAGE_CONSULT_TIMING_CLASH);
         }
 

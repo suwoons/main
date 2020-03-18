@@ -191,7 +191,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasSameDateTiming(Consult consult) {
+        public boolean hasSameDateTime(Consult consult) {
             throw new AssertionError("This method should not be called");
         }
 

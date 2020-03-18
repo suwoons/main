@@ -231,9 +231,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasSameDateTiming(Consult consult) {
+    public boolean hasSameDateTime(Consult consult) {
         requireAllNonNull(consult, consultTAble);
-        return consultTAble.hasSameDateTiming(consult);
+        return consultTAble.hasSameDateTime(consult);
     }
 
     @Override
