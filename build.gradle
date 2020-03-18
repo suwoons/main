@@ -67,9 +67,10 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
-
-    destinationDir = file("${buildDir}/jar/")
+    archiveBaseName = "TAble"
+    archiveVersion = "1.2"
+    archiveClassifier = null
+    archiveAppendix = null
 }
 
 task coverage(type: JacocoReport) {
