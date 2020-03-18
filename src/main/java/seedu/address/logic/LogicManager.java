@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.model.mod.Mod;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.student.Student;
 import seedu.address.storage.Storage;
@@ -75,6 +76,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Consult> getFilteredConsultList() {
         return model.getFilteredConsultList();
+    }
+
+    @Override
+    public ObservableList<Mod> getFilteredModList() {
+        return model.getFilteredModList();
     }
 
     @Override

@@ -5,6 +5,7 @@ import static seedu.address.commons.util.TutorialUtil.checkStartEndTime;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import seedu.address.model.event.Location;
 import seedu.address.model.mod.ModCode;
@@ -56,6 +57,12 @@ public class Tutorial {
 
     public Location getLocation() {
         return location;
+    }
+
+    public String getDayAndTime() {
+        String day = weekday.toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+        return day + " " + beginTime.format(formatter) + "-" + endTime.format(formatter);
     }
 
     /**
