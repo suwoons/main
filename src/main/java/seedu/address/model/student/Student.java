@@ -17,7 +17,7 @@ public class Student {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final MatricNumber matricNumber;
     private final Email email;
     private final Remark remark;
 
@@ -27,10 +27,10 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Set<Tag> tags, Remark remark) {
-        requireAllNonNull(name, phone, email, tags);
+    public Student(Name name, MatricNumber matricNumber, Email email, Set<Tag> tags, Remark remark) {
+        requireAllNonNull(name, matricNumber, email, tags);
         this.name = name;
-        this.phone = phone;
+        this.matricNumber = matricNumber;
         this.email = email;
         this.tags.addAll(tags);
         this.remark = remark;
@@ -40,8 +40,8 @@ public class Student {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public MatricNumber getMatricNumber() {
+        return matricNumber;
     }
 
     public Email getEmail() {
@@ -72,7 +72,8 @@ public class Student {
 
         return otherStudent != null
                 && otherStudent.getName().equals(getName())
-                && (otherStudent.getPhone().equals(getPhone()) || otherStudent.getEmail().equals(getEmail()));
+                && (otherStudent.getMatricNumber().equals(getMatricNumber()) || otherStudent.getEmail()
+                    .equals(getEmail()));
     }
 
     /**
@@ -91,7 +92,7 @@ public class Student {
 
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
-                && otherStudent.getPhone().equals(getPhone())
+                && otherStudent.getMatricNumber().equals(getMatricNumber())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getTags().equals(getTags());
     }
@@ -99,15 +100,15 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(name, matricNumber, email, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
+                .append(" Matric Number: ")
+                .append(getMatricNumber())
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Tags: ")
