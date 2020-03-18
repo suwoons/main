@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_NAME;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.mods.AddModCommand;
-import seedu.address.logic.commands.tutorials.AddTutorialCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -36,7 +35,7 @@ public class AddModCommandParser implements Parser<AddModCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE, PREFIX_MODULE_NAME)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddTutorialCommand.MESSAGE_USAGE));
+                AddModCommand.MESSAGE_USAGE));
         }
 
         ModCode modCode = ParserUtil.parseModCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
