@@ -27,7 +27,7 @@ public class AddCommand extends Command {
             + PREFIX_REMARK + "REMARK "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_MATRICNUMBER + "98765432 "
+            + PREFIX_MATRICNUMBER + "A0111111X "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney"

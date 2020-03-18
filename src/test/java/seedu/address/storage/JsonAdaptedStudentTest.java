@@ -18,7 +18,7 @@ import seedu.address.model.student.Name;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_MATRICNUMBER = "+651234";
+    private static final String INVALID_MATRICNUMBER = "A1234";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 

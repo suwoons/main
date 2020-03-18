@@ -27,14 +27,20 @@ public class MatricNumberTest {
         // invalid matric numbers
         assertFalse(MatricNumber.isValidMatricNumber("")); // empty string
         assertFalse(MatricNumber.isValidMatricNumber(" ")); // spaces only
-        assertFalse(MatricNumber.isValidMatricNumber("91")); // less than 3 numbers
+        assertFalse(MatricNumber.isValidMatricNumber("A123B")); // less than 7 numbers
         assertFalse(MatricNumber.isValidMatricNumber("test")); // non-numeric
-        assertFalse(MatricNumber.isValidMatricNumber("9011p041")); // alphabets within digits
-        assertFalse(MatricNumber.isValidMatricNumber("9312 1534")); // spaces within digits
+        assertFalse(MatricNumber.isValidMatricNumber("A019fbf36H")); // alphabets within digits
+        assertFalse(MatricNumber.isValidMatricNumber("A015 3965H")); // spaces within digits
+        assertFalse(MatricNumber.isValidMatricNumber("A0151585")); // must end with an alphabet
+        assertFalse(MatricNumber.isValidMatricNumber("a0123456b")); // alphabets must be capitalised
+        assertFalse(MatricNumber.isValidMatricNumber("A012345678B")); // more than 7 numbers
+        assertFalse(MatricNumber.isValidMatricNumber("0123456B")); // does not start with capital A
+
+
+
+
 
         // valid matric numbers
-        assertTrue(MatricNumber.isValidMatricNumber("911")); // exactly 3 numbers
-        assertTrue(MatricNumber.isValidMatricNumber("93121534"));
-        assertTrue(MatricNumber.isValidMatricNumber("124293842033123")); // long matric numbers
+        assertTrue(MatricNumber.isValidMatricNumber("A0156986H"));
     }
 }

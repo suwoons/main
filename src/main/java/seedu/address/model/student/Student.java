@@ -72,8 +72,8 @@ public class Student {
 
         return otherStudent != null
                 && otherStudent.getName().equals(getName())
-                && (otherStudent.getMatricNumber().equals(getMatricNumber()) || otherStudent.getEmail()
-                    .equals(getEmail()));
+                && otherStudent.getMatricNumber().equals(getMatricNumber())
+                && otherStudent.getEmail().equals(getEmail());
     }
 
     /**

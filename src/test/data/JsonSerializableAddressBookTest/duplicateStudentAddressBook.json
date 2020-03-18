@@ -1,14 +1,14 @@
 {
   "students": [ {
     "name": "Alice Pauline",
-    "matricNumber": "94351253",
+    "matricNumber": "A0169853D",
     "email": "alice@example.com",
     "remark": "",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
-    "matricNumber": "94351253",
-    "email": "pauline@example.com",
+    "matricNumber": "A0169853D",
+    "email": "alice@example.com",
     "remark": "4th street"
   } ]
 }

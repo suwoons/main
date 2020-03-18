@@ -39,15 +39,15 @@ public class StudentTest {
         editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameStudent(editedAlice));
 
-        // same name, same matric number, different attributes -> returns true
+        // same name, same matric number, different attributes -> returns false
         editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameStudent(editedAlice));
+        assertFalse(ALICE.isSameStudent(editedAlice));
 
-        // same name, same email, different attributes -> returns true
+        // same name, same email, different attributes -> returns false
         editedAlice = new StudentBuilder(ALICE).withMatricNumber(VALID_MATRICNUMBER_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameStudent(editedAlice));
+        assertFalse(ALICE.isSameStudent(editedAlice));
 
         // same name, same matric number, same email, different attributes -> returns true
         editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();

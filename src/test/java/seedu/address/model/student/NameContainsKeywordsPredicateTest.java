@@ -68,8 +68,8 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new StudentBuilder().withName("Alice Bob").build()));
 
         // Keywords match matric number, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new StudentBuilder().withName("Alice").withMatricNumber("12345")
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("A0123456A", "alice@email.com", "Main", "Street"));
+        assertFalse(predicate.test(new StudentBuilder().withName("Alice").withMatricNumber("A0123456A")
                 .withEmail("alice@email.com").build()));
     }
 }
