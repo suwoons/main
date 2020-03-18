@@ -12,6 +12,6 @@ public class ConsultUtil {
      * @return true if beginDateTime is before endDateTime
      */
     public static boolean checkStartEndDateTime(LocalDateTime startDateTime, LocalDateTime endDateTime) {
-        return startDateTime.compareTo(endDateTime) < 0;
+        return startDateTime.isBefore(endDateTime);
     }
 }

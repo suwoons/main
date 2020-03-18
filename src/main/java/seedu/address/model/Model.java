@@ -139,7 +139,7 @@ public interface Model {
     /**
      * Returns true if a {@code consult}'s timing clashes with another {@code consult}'s timing in TAble.
      */
-    boolean hasSameDateTiming(Consult consult);
+    boolean hasSameDateTime(Consult consult);
 
     /** Returns the Consult TAble */
     ReadOnlyConsult getConsultTAble();

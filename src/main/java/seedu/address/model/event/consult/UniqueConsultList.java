@@ -5,9 +5,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.consult.exceptions.ConsultNotFoundException;
 import seedu.address.model.event.consult.exceptions.DuplicateConsultException;
 
@@ -25,6 +27,8 @@ import seedu.address.model.event.consult.exceptions.DuplicateConsultException;
  */
 public class UniqueConsultList implements Iterable<Consult> {
 
+    private final Logger logger = LogsCenter.getLogger(getClass());
+
     private final ObservableList<Consult> internalList = FXCollections.observableArrayList();
     private final ObservableList<Consult> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -40,9 +44,10 @@ public class UniqueConsultList implements Iterable<Consult> {
     /**
      * Returns true if the list contains another consult which timing clashes with the argument.
      */
-    public boolean hasSameDateTiming(Consult consult) {
+    public boolean hasSameDateTime(Consult consult) {
         requireNonNull(consult);
-        return internalList.stream().anyMatch(consult::timeClash);
+        logger.info("" + internalList.stream().filter(consult::timeClash).count());
+        return internalList.stream().filter(consult::timeClash).count() > 1;
     }
 
     /**
