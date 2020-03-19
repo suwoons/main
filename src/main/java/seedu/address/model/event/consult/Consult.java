@@ -8,7 +8,7 @@ import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
 import java.time.LocalDateTime;
 
 import seedu.address.model.event.Location;
-//import seedu.address.model.student.Student;
+import seedu.address.model.student.MatricNumber;
 
 /**
  * Represents a Consultation in TAble.
@@ -16,19 +16,40 @@ import seedu.address.model.event.Location;
  */
 public class Consult {
 
+    private MatricNumber matricNumber;
     private LocalDateTime beginDateTime;
     private LocalDateTime endDateTime;
     private Location location;
 
 
-    public Consult(LocalDateTime beginDateTime, LocalDateTime endDateTime,
+    public Consult(MatricNumber matricNumber, LocalDateTime beginDateTime, LocalDateTime endDateTime,
                    Location location) {
-        requireAllNonNull(beginDateTime, endDateTime, location);
+        requireAllNonNull(matricNumber, beginDateTime, endDateTime, location);
         checkArgument(checkStartEndDateTime(beginDateTime, endDateTime),
                 MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME);
+        this.matricNumber = matricNumber;
         this.beginDateTime = beginDateTime;
         this.endDateTime = endDateTime;
         this.location = location;
+    }
+
+    /**
+     * Constructor without Matric Number.
+     * @param beginDateTime Start Date Time of the consult.
+     * @param endDateTime End Date Time of the consult.
+     * @param location Location of the consult.
+     */
+    public Consult(LocalDateTime beginDateTime, LocalDateTime endDateTime, Location location) {
+        requireAllNonNull(beginDateTime, endDateTime, location);
+        checkArgument(checkStartEndDateTime(beginDateTime, endDateTime),
+            MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME);
+        this.beginDateTime = beginDateTime;
+        this.endDateTime = endDateTime;
+        this.location = location;
+    }
+
+    public MatricNumber getMatricNumber() {
+        return matricNumber;
     }
 
     public LocalDateTime getBeginDateTime() {
@@ -41,6 +62,10 @@ public class Consult {
 
     public Location getLocation() {
         return location;
+    }
+
+    public void setMatricNumber(MatricNumber matricNumber) {
+        this.matricNumber = matricNumber;
     }
 
     /**

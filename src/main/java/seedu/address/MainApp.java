@@ -15,11 +15,11 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyStudent;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.StudentTAble;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.consult.ReadOnlyConsult;
@@ -64,7 +64,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing StudentTAble ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -95,13 +95,13 @@ public class MainApp extends Application {
      * or an empty TAble will be used instead if errors occur when reading {@code storage}'s TAble.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyStudent> addressBookOptional;
         Optional<ReadOnlyConsult> consultsOptional;
         Optional<ReadOnlyTutorial> tutorialsOptional;
         Optional<ReadOnlyMod> modsOptional;
         Optional<ReadOnlyReminder> remindersOptional;
 
-        ReadOnlyAddressBook initialData;
+        ReadOnlyStudent initialData;
         ReadOnlyConsult initialConsults;
         ReadOnlyTutorial initialTutorials;
         ReadOnlyMod initialMods;
@@ -115,7 +115,7 @@ public class MainApp extends Application {
             remindersOptional = storage.readReminders();
 
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample StudentTAble");
             }
             if (!consultsOptional.isPresent()) {
                 logger.info("Consults file not found. Will be starting with no consults");
@@ -136,15 +136,15 @@ public class MainApp extends Application {
             initialMods = modsOptional.orElseGet(SampleDataUtil::getSampleMods);
             initialReminders = remindersOptional.orElseGet(SampleDataUtil::getSampleReminders);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty StudentTAble");
+            initialData = new StudentTAble();
             initialConsults = new ConsultTAble();
             initialTutorials = new TutorialTAble();
             initialMods = new ModTAble();
             initialReminders = new ReminderTAble();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty StudentTAble");
+            initialData = new StudentTAble();
             initialConsults = new ConsultTAble();
             initialTutorials = new TutorialTAble();
             initialMods = new ModTAble();
@@ -213,7 +213,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty StudentTAble");
             initializedPrefs = new UserPrefs();
         }
 
