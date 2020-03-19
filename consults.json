@@ -1,19 +1,45 @@
 {
-  "consults": [
-    {
-      "beginDateTime": "2020-03-03T10:10",
-      "endDateTime": "2020-03-03T12:20",
-      "eventLocation": "SR1"
-    },
-    {
-      "beginDateTime": "2020-03-03T13:15",
-      "endDateTime": "2020-03-03T14:20",
-      "eventLocation": "SR3"
-    },
-    {
-      "beginDateTime": "2020-03-03T15:10",
-      "endDateTime": "2020-03-03T16:20",
-      "eventLocation": "SR2"
-    }
-  ]
+  "consults" : [ {
+    "beginDateTime" : "2020-03-19T17:01:37.119544200",
+    "endDateTime" : "2020-03-19T20:01:37.119544200",
+    "eventLocation" : "SR1",
+    "studentName" : "John Doe",
+    "matricNumber" : "A0111111X"
+  }, {
+    "beginDateTime" : "2020-03-04T12:10",
+    "endDateTime" : "2020-03-04T15:10",
+    "eventLocation" : "sr1",
+    "studentName" : "John Doe",
+    "matricNumber" : "A0111111X"
+  }, {
+    "beginDateTime" : "2020-03-05T12:10",
+    "endDateTime" : "2020-03-05T15:10",
+    "eventLocation" : "sr1",
+    "studentName" : "John Doe",
+    "matricNumber" : "A0111111X"
+  }, {
+    "beginDateTime" : "2020-03-06T12:10",
+    "endDateTime" : "2020-03-06T15:10",
+    "eventLocation" : "sr1",
+    "studentName" : "John Doe",
+    "matricNumber" : "A0111111X"
+  }, {
+    "beginDateTime" : "2020-03-07T12:10",
+    "endDateTime" : "2020-03-07T15:10",
+    "eventLocation" : "sr1",
+    "studentName" : "John Doe",
+    "matricNumber" : "A0111111X"
+  }, {
+    "beginDateTime" : "2020-03-01T12:10",
+    "endDateTime" : "2020-03-01T15:10",
+    "eventLocation" : "sr1",
+    "studentName" : "John Doe",
+    "matricNumber" : "A0111111X"
+  }, {
+    "beginDateTime" : "2020-02-04T12:10",
+    "endDateTime" : "2020-02-04T15:10",
+    "eventLocation" : "sr1",
+    "studentName" : "John",
+    "matricNumber" : "A0111112X"
+  } ]
 }
