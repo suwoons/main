@@ -145,7 +145,7 @@ Add a consultation slot at the given time, date and place. +
 Format: `addConsult student/STUDENT_INDEX beginDateTime/BEGINDATETIME endDateTime/ENDDATETIME place/PLACE`
 
 ****
-* The begin and end time provided must be in the yyyy-MM-dd HH:mm format
+* The begin and end date time provided must be in the yyyy-MM-dd HH:mm format
 * The place provided should be any valid string
 * The 'STUDENT_INDEX' should be referred to by the index as referred to in the student list.
 ****
