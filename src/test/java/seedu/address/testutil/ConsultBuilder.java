@@ -8,6 +8,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.student.MatricNumber;
+import seedu.address.model.student.Name;
 
 /**
  * A utility class to help with building Consult objects.
@@ -17,16 +18,19 @@ public class ConsultBuilder {
     public static final String DEFAULT_END_DATE_TIME = "2020-03-03 17:00";
     public static final String DEFAULT_LOCATION = "SR1";
     public static final String DEFAULT_MATRIC_NUMBER = "A0123456Z";
+    public static final String DEFAULT_STUDENT_NAME = "ALICE";
 
     private LocalDateTime beginDateTime;
     private LocalDateTime endDateTime;
     private Location location;
     private MatricNumber matricNumber;
+    private Name studentName;
 
     public ConsultBuilder() throws ParseException {
         beginDateTime = ParserUtil.parseDateTime(DEFAULT_BEGIN_DATE_TIME);
         endDateTime = ParserUtil.parseDateTime(DEFAULT_END_DATE_TIME);
         location = new Location(DEFAULT_LOCATION);
+        studentName = new Name(DEFAULT_STUDENT_NAME);
         matricNumber = new MatricNumber(DEFAULT_MATRIC_NUMBER);
     }
 
@@ -37,6 +41,7 @@ public class ConsultBuilder {
         beginDateTime = consultToCopy.getBeginDateTime();
         endDateTime = consultToCopy.getEndDateTime();
         location = consultToCopy.getLocation();
+        studentName = consultToCopy.getStudentName();
         matricNumber = consultToCopy.getMatricNumber();
     }
 
@@ -75,6 +80,6 @@ public class ConsultBuilder {
     }
 
     public Consult build() {
-        return new Consult(matricNumber, beginDateTime, endDateTime, location);
+        return new Consult(beginDateTime, endDateTime, location, studentName, matricNumber);
     }
 }

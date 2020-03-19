@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 import seedu.address.model.event.Location;
 import seedu.address.model.student.MatricNumber;
+import seedu.address.model.student.Name;
 
 /**
  * Represents a Consultation in TAble.
@@ -16,25 +17,26 @@ import seedu.address.model.student.MatricNumber;
  */
 public class Consult {
 
-    private MatricNumber matricNumber;
     private LocalDateTime beginDateTime;
     private LocalDateTime endDateTime;
     private Location location;
+    private Name studentName;
+    private MatricNumber matricNumber;
 
-
-    public Consult(MatricNumber matricNumber, LocalDateTime beginDateTime, LocalDateTime endDateTime,
-                   Location location) {
-        requireAllNonNull(matricNumber, beginDateTime, endDateTime, location);
+    public Consult(LocalDateTime beginDateTime, LocalDateTime endDateTime,
+                   Location location, Name studentName, MatricNumber matricNumber) {
+        requireAllNonNull(beginDateTime, endDateTime, location, studentName, matricNumber);
         checkArgument(checkStartEndDateTime(beginDateTime, endDateTime),
                 MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME);
-        this.matricNumber = matricNumber;
         this.beginDateTime = beginDateTime;
         this.endDateTime = endDateTime;
         this.location = location;
+        this.studentName = studentName;
+        this.matricNumber = matricNumber;
     }
 
     /**
-     * Constructor without Matric Number.
+     * Constructor without MatricNumber and StudentName.
      * @param beginDateTime Start Date Time of the consult.
      * @param endDateTime End Date Time of the consult.
      * @param location Location of the consult.
@@ -60,12 +62,20 @@ public class Consult {
         return endDateTime;
     }
 
+    public Name getStudentName() {
+        return studentName;
+    }
+
     public Location getLocation() {
         return location;
     }
 
     public void setMatricNumber(MatricNumber matricNumber) {
         this.matricNumber = matricNumber;
+    }
+
+    public void setStudentName(Name studentName) {
+        this.studentName = studentName;
     }
 
     /**

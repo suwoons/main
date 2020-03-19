@@ -18,12 +18,14 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.student.MatricNumber;
+import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
 /**
  * Adds a consult into TAble.
  */
 public class AddConsultCommand extends Command {
+
 
     public static final String COMMAND_WORD = "addConsult";
 
@@ -73,7 +75,9 @@ public class AddConsultCommand extends Command {
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         MatricNumber studentMatricNumber = new MatricNumber(studentToEdit.getMatricNumber().toString());
+        Name studentName = new Name(studentToEdit.getName().toString());
         toAdd.setMatricNumber(studentMatricNumber);
+        toAdd.setStudentName(studentName);
 
         model.addConsult(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

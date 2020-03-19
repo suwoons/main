@@ -51,7 +51,7 @@ public class TutorialCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(tutorial.getTutorialName().getTutorialName());
         modCode.setText(tutorial.getModCode().getModCode());
-        tutlocation.setText(tutorial.getLocation().getEventLocation());
+        tutlocation.setText(tutorial.getLocation().toString());
         tutTime.setText(tutorial.getDayAndTime());
         //startTime.setText(tutorial.getStartTime());
         //endTime.setText(tutorial.getEndTime());

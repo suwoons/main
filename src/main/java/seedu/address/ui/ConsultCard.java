@@ -1,17 +1,22 @@
 package seedu.address.ui;
 
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.consult.Consult;
+import seedu.address.storage.StorageManager;
 
 /**
  * An UI component that displays information of a {@code Consult}.
  */
 public class ConsultCard extends UiPart<Region> {
+
+    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
 
     private static final String FXML = "ConsultListCard.fxml";
 
@@ -27,8 +32,8 @@ public class ConsultCard extends UiPart<Region> {
 
     @javafx.fxml.FXML
     private HBox cardPane;
-    @javafx.fxml.FXML
-    private Label id;
+    @FXML
+    private Label studentName;
     @FXML
     private Label beginDateTime;
     @FXML
@@ -36,14 +41,17 @@ public class ConsultCard extends UiPart<Region> {
     @FXML
     private Label eventLocation;
 
-    public ConsultCard(Consult consult, int displayedIndex) {
+    public ConsultCard(Consult consult) {
         super(FXML);
         this.consult = consult;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MMM-YY");
-        id.setText(displayedIndex + ". ");
         beginDateTime.setText("Start: " + consult.getBeginDateTime().format(formatter));
         endDateTime.setText("End: " + consult.getEndDateTime().format(formatter));
-        eventLocation.setText("Location: " + consult.getLocation().getEventLocation());
+        eventLocation.setText("Location: " + consult.getLocation().toString());
+        studentName.setText(consult.getStudentName().toString());
+        logger.fine(consult.getLocation().toString());
+        logger.fine(consult.getStudentName().toString());
+
     }
 
     @Override
@@ -60,7 +68,6 @@ public class ConsultCard extends UiPart<Region> {
 
         // state check
         ConsultCard card = (ConsultCard) other;
-        return id.getText().equals(card.id.getText())
-                && consult.equals(card.consult);
+        return consult.equals(card.consult);
     }
 }
