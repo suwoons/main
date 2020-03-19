@@ -147,7 +147,7 @@ Format: `addConsult student/STUDENT_INDEX beginDateTime/BEGINDATETIME endDateTim
 ****
 * The begin and end date time provided must be in the yyyy-MM-dd HH:mm format
 * The place provided should be any valid string
-* The 'STUDENT_INDEX' should be referred to by the index as referred to in the student list.
+* The 'STUDENT_INDEX' should be referred to by the index as referred to in the student list
 ****
 
 Example:
