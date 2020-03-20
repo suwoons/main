@@ -140,7 +140,7 @@ public class ConsultTAble implements ReadOnlyConsult {
         return consults.hashCode();
     }
 
-    public boolean hasSameDateTiming(Consult consult) {
-        return consults.hasSameDateTiming(consult);
+    public boolean hasSameDateTime(Consult consult) {
+        return consults.hasSameDateTime(consult);
     }
 }

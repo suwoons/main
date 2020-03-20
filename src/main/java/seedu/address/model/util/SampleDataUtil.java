@@ -28,8 +28,8 @@ import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.student.Email;
+import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
@@ -40,17 +40,17 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Student[] getSampleStudents() {
         return new Student[] {
-            new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+            new Student(new Name("Alex Yeoh"), new MatricNumber("A0187596R"), new Email("alexyeoh@example.com"),
                 getTagSet("friends"), new Remark("Nice")),
-            new Student(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+            new Student(new Name("Bernice Yu"), new MatricNumber("A0125875G"), new Email("berniceyu@example.com"),
                 getTagSet("colleagues", "friends"), new Remark("Pretty")),
-            new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                getTagSet("neighbours"), new Remark("Italian")),
-            new Student(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+            new Student(new Name("Charlotte Oliveiro"), new MatricNumber("A0123456A"),
+                    new Email("charlotte@example.com"), getTagSet("neighbours"), new Remark("Italian")),
+            new Student(new Name("David Li"), new MatricNumber("A0356982H"), new Email("lidavid@example.com"),
                 getTagSet("family"), new Remark("Handsome")),
-            new Student(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+            new Student(new Name("Irfan Ibrahim"), new MatricNumber("A0167954H"), new Email("irfan@example.com"),
                 getTagSet("classmates"), new Remark("Kind")),
-            new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+            new Student(new Name("Roy Balakrishnan"), new MatricNumber("A0136975F"), new Email("royb@example.com"),
                 getTagSet("colleagues"), new Remark("Fake"))
         };
     }
