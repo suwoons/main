@@ -142,7 +142,7 @@ Deletes the 1st student in the results of the `find` command.
 === Adding a consult: `addConsult`
 
 Add a consultation slot at the given time, date and place. +
-Format: `addConsult student/STUDENT_INDEX beginDateTime/BEGINDATETIME endDateTime/ENDDATETIME place/PLACE`
+Format: `addConsult student/STUDENT_INDEX beginDateTime/BEGIN_DATE_TIME endDateTime/END_DATE_TIME place/PLACE`
 
 ****
 * The 'STUDENT_INDEX' should be referred to by the index as referred to in the student list
