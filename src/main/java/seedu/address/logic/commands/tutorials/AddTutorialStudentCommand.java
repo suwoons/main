@@ -1,5 +1,11 @@
 package seedu.address.logic.commands.tutorials;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_INDEX;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -9,12 +15,6 @@ import seedu.address.model.Model;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_INDEX;
 
 /**
  * Adds an existing student to an existing Tutorial in TAble.

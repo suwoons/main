@@ -29,6 +29,7 @@ import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.TutorialBuilder;
 
@@ -236,8 +237,18 @@ public class AddTutorialCommandTest {
         }
 
         @Override
+        public boolean hasTutorialStudent(Tutorial tutorial, Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addTutorial(Tutorial tutorial) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTutorialStudent(Tutorial tutorial, MatricNumber matric) {
+
         }
 
         @Override
