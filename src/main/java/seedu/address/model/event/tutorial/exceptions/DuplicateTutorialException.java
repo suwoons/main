@@ -7,6 +7,6 @@ package seedu.address.model.event.tutorial.exceptions;
 
 public class DuplicateTutorialException extends RuntimeException {
     public DuplicateTutorialException() {
-        super("Operation would result in duplicate consults");
+        super("Operation would result in duplicate tutorials");
     }
 }
