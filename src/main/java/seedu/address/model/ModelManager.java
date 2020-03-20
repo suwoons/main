@@ -23,6 +23,7 @@ import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderTAble;
+import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 
 
@@ -247,6 +248,17 @@ public class ModelManager implements Model {
     public boolean hasTutorial(Tutorial tutorial) {
         requireNonNull(tutorial);
         return tutorialTAble.hasTutorial(tutorial);
+    }
+
+    @Override
+    public boolean hasTutorialStudent(Tutorial tutorial, Student student) {
+        requireAllNonNull(tutorial, student);
+        return tutorialTAble.hasTutorialStudent(tutorial, student);
+    }
+
+    @Override
+    public void addTutorialStudent(Tutorial tutorial, MatricNumber matric) {
+        tutorialTAble.addTutorialStudent(tutorial, matric);
     }
 
     @Override

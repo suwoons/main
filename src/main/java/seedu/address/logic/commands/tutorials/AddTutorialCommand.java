@@ -19,7 +19,6 @@ import seedu.address.model.event.tutorial.Tutorial;
 /**
  * Adds a Tutorial to TAble.
  */
-
 public class AddTutorialCommand extends Command {
     public static final String COMMAND_WORD = "addTutorial";
 

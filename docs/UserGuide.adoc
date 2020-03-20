@@ -258,7 +258,7 @@ Example:
 === Marks students as present: `markPresent`
 
 Takes attendance of students in a tutorial class by marking them as present for a particular week. Present students will be marked with a :heavy_check_mark:. +
-Format: `markPresent INDEX week/WEEK student/STUDENT [OPTIONAL]`
+Format: `markPresent tutorialIndex/INDEX week/WEEK student/STUDENT [OPTIONAL]`
 
 ****
 * Updates the tutorial at the specified `INDEX`.
@@ -271,15 +271,15 @@ Format: `markPresent INDEX week/WEEK student/STUDENT [OPTIONAL]`
 
 Example:
 
-* `markPresent 2 week/7 student/2` +
+* `markPresent tutorialIndex/3 week/7 student/2` +
 Marks only student at index 2 (for tutorial at index 3) as present in week 7 for tutorial at index 3
-* `markPresent 2 tutorialName/T02 week/7 student/all` +
+* `markPresent tutorialIndex/2 tutorialName/T02 week/7 student/all` +
 Marks all students as present in week 7 in tutorial at index 2
 
 === Marks students as absent: `markAbsent`
 
 Takes attendance of students in a tutorial class by marking them as absent for a particular week. Absent students will be marked with a :x:. +
-Format: `markPresent INDEX week/WEEK student/STUDENT`
+Format: `markPresent tutorialIndex/INDEX week/WEEK student/STUDENT`
 
 ****
 * Updates the tutorial at the specified `INDEX`.
@@ -292,15 +292,15 @@ Format: `markPresent INDEX week/WEEK student/STUDENT`
 
 Example:
 
-* `markAbsent 3 week/7 student/2` +
+* `markAbsent tutorialIndex/3 week/7 student/2` +
 Marks only student at index 2 (for tutorial at index 3) as absent in week 7 for tutorial at index 3
-* `markAbsent 3 week/7 student/all` +
+* `markAbsent tutorialIndex/3 week/7 student/all` +
 Marks all students in week 7 as absent in tutorial at index 3 (oh no!)
 
 === Display attendance list for a tutorial: `listAttendance`
 
 Displays the attendance list for a tutorial for a specified week. +
-Format: `listAttendance INDEX week/WEEK`
+Format: `listAttendance tutorialIndex/INDEX week/WEEK`
 
 ****
 * Shows the attendance for tutorial at the specified `INDEX`, for the specified 'WEEK'
@@ -311,7 +311,7 @@ Format: `listAttendance INDEX week/WEEK`
 
 Example:
 
-* `listAttendance 2 week/7` +
+* `listAttendance tutorialIndex/2 week/7` +
 Displays the attendance list for tutorial at index 2 on week 7
 
 === List all tutorials: `listTutorial`
@@ -326,7 +326,7 @@ Format: `listTutorial`
 === Add student to tutorial: `addTutorialStudent`
 
 Enroll an existing student to an existing tutorial.
-Format: `addTutorialStudent INDEX student/STUDENT`
+Format: `addTutorialStudent tutorialIndex/INDEX student/STUDENT`
 
 ****
 * Shows the attendance for tutorial at the specified `INDEX`.
@@ -339,12 +339,12 @@ Format: `addTutorialStudent INDEX student/STUDENT`
 
 Example:
 
-* `addTutorialStudent 3 student/12`
+* `addTutorialStudent tutorialIndex/3 student/12`
 
 === Remove student from tutorial: `deleteTutorialStudent`
 
 Remove an existing student from an existing tutorial.
-Format: `deleteTutorialStudent INDEX student/STUDENT`
+Format: `deleteTutorialStudent tutorialIndex/INDEX student/STUDENT`
 
 ****
 * Shows the attendance for tutorial at the specified `INDEX`.
@@ -357,7 +357,7 @@ Format: `deleteTutorialStudent INDEX student/STUDENT`
 
 Example:
 
-* `deleteTutorialStudent 3 student/12`
+* `deleteTutorialStudent tutorialIndex/3 student/12`
 //end::Tutorial[]
 
 //tag::Module[]

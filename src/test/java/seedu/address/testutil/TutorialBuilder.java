@@ -78,7 +78,7 @@ public class TutorialBuilder {
      * Sets the {@code BeginTime} of the {@code Tutorial} that we are building.
      */
     public TutorialBuilder withBeginTime(String beginTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm a");
         this.beginTime = LocalTime.parse(beginTime, formatter);
         return this;
     }
