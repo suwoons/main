@@ -278,7 +278,7 @@ A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `Consults
 |It may be confusing for the user, as certain command prefixes may share similar initials, such as `tags` and `time`.
 |===
 
-Reason for choosing alternative 1:  We believe that the user experience will be better  when using more descriptive command prefixes, as the user will not be required to constantly check on the user guide since the command prefixes are intuitive.
+Reason for choosing Alternative 1:  We believe that the user experience will be better  when using more descriptive command prefixes, as the user will not be required to constantly check on the user guide since the command prefixes are intuitive.
 
 ===== Consult storing Matric Number and Name
 
@@ -296,7 +296,7 @@ Reason for choosing alternative 1:  We believe that the user experience will be 
 |It will be harder to test due to the high degree of coupling.
 |===
 
-Reason for choosing alternative 1: Due to the time constraint of this project, our group has decided to choose alternative 1, as it not only reduces coupling, but is sufficient for us to uniquely identify the `Student` participating in the `Consult` as the `MatricNumber` would be unique.
+Reason for choosing Alternative 1: Due to the time constraint of this project, our group has decided to choose alternative 1, as it not only reduces coupling, but is sufficient for us to uniquely identify the `Student` participating in the `Consult` as the `MatricNumber` would be unique.
 
 // end:consult[]
 
