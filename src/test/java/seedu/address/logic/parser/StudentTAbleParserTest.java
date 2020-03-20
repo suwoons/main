@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +29,7 @@ import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.StudentUtil;
 
-public class AddressBookParserTest {
+public class StudentTAbleParserTest {
 
     private final TAbleParser parser = new TAbleParser();
 
@@ -49,8 +49,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_STUDENT), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST), command);
     }
 
     @Test
@@ -58,8 +58,8 @@ public class AddressBookParserTest {
         Student student = new StudentBuilder().build();
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_STUDENT, descriptor), command);
+                + INDEX_FIRST.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test

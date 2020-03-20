@@ -142,17 +142,17 @@ Deletes the 1st student in the results of the `find` command.
 === Adding a consult: `addConsult`
 
 Add a consultation slot at the given time, date and place. +
-Format: `addConsult beginDateTime/BEGINDATETIME endDateTime/ENDDATETIME place/PLACE student/INDEX`
+Format: `addConsult student/STUDENT_INDEX beginDateTime/BEGINDATETIME endDateTime/ENDDATETIME place/PLACE`
 
 ****
-* The begin and end time provided must be in the yyyy-MM-dd HH:mm format
-* The place provided should be any valid string
-* The 'STUDENT' should be referred to by the index as referred to in the student list.
+* The 'STUDENT_INDEX' should be referred to by the index as referred to in the student list
+* The begin and end date time provided must be in the yyyy-MM-dd HH:mm format
+* The location provided should be any valid string i.e, must be alphanumeric
 ****
 
 Example:
 
-* `addConsult beginDateTime/2020-03-03 10:00 endDateTime/2020-03-03 12:00 place/Deck student/1`
+* `addConsult student/1 beginDateTime/2020-03-03 10:00 endDateTime/2020-03-03 12:00 place/Deck`
 
 === Editing a consult: `editConsult`
 
@@ -163,6 +163,7 @@ Format: `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIM
 * Edits the consult at the specified `INDEX`. The index refers to the index number shown in the displayed consultation list. The index *must be a positive integer* 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* Note that one cannot edit the student involved in the consult, as it is unlikely that the TA will need to change the student at that consult timing.
 ****
 
 Example:
