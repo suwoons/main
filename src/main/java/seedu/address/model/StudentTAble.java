@@ -5,12 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.event.consult.Consult;
-import seedu.address.model.event.consult.UniqueConsultList;
-import seedu.address.model.event.tutorial.Tutorial;
-import seedu.address.model.event.tutorial.UniqueTutorialList;
-import seedu.address.model.reminder.Reminder;
-import seedu.address.model.reminder.UniqueReminderList;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
 
@@ -19,12 +13,9 @@ import seedu.address.model.student.UniqueStudentList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameStudent comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class StudentTAble implements ReadOnlyStudent {
 
     private final UniqueStudentList students;
-    private final UniqueConsultList consults;
-    private final UniqueTutorialList tutorials;
-    private final UniqueReminderList reminders;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -35,17 +26,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         students = new UniqueStudentList();
-        consults = new UniqueConsultList();
-        tutorials = new UniqueTutorialList();
-        reminders = new UniqueReminderList();
     }
 
-    public AddressBook() {}
+    public StudentTAble() {}
 
     /**
-     * Creates an AddressBook using the Students in the {@code toBeCopied}
+     * Creates an StudentTAble using the Students in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public StudentTAble(ReadOnlyStudent toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -61,9 +49,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code StudentTAble} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyStudent newData) {
         requireNonNull(newData);
 
         setStudents(newData.getStudentList());
@@ -99,7 +87,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code StudentTAble}.
      * {@code key} must exist in the address book.
      */
     public void removeStudent(Student key) {
@@ -131,65 +119,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && students.equals(((AddressBook) other).students));
+                || (other instanceof StudentTAble // instanceof handles nulls
+                && students.equals(((StudentTAble) other).students));
     }
 
     @Override
     public int hashCode() {
         return students.hashCode();
     }
-
-    /// consult-level operations
-
-    /**
-     * Returns true if a consult with the same identity as {@code consult} exists in TAble.
-     */
-    public boolean hasConsult(Consult consult) {
-        requireNonNull(consult);
-        return consults.contains(consult);
-    }
-
-    /**
-     * Adds a consult to TAble.
-     * The consult must not already exist in TAble.
-     */
-    public void addConsult(Consult consult) {
-        consults.add(consult);
-    }
-
-    /// tutorial-level operations
-
-    /**
-     * Returns true if a tutorial with the same identity as {@code tutorial} exists in TAble.
-     */
-    public boolean hasTutorial(Tutorial tutorial) {
-        requireNonNull(tutorial);
-        return tutorials.contains(tutorial);
-    }
-
-    /**
-     * Adds a tutorial to TAble.
-     * The tutorial must not already exist in TAble.
-     */
-    public void addTutorial(Tutorial tutorial) {
-        tutorials.add(tutorial);
-    }
-
-    /**
-     * Returns true if a reminder with the same identity as {@code reminder} exists in TAble.
-     */
-    public boolean hasReminder(Reminder reminder) {
-        requireNonNull(reminder);
-        return reminders.contains(reminder);
-    }
-
-    /**
-     * Adds a reminder to TAble.
-     * The reminder must not already exist in TAble.
-     */
-    public void addReminder(Reminder reminder) {
-        reminders.add(reminder);
-    }
-
 }

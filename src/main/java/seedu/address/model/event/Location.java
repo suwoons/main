@@ -42,11 +42,6 @@ public class Location {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public String getEventLocation() {
-        return this.eventLocation;
-    }
-
-
     @Override
     public String toString() {
         return eventLocation;

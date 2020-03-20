@@ -32,7 +32,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new StudentTAble(), new StudentTAble(modelManager.getStudentTAble()));
     }
 
     @Test
@@ -101,8 +101,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withStudent(ALICE).withStudent(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        StudentTAble studentTAble = new AddressBookBuilder().withStudent(ALICE).withStudent(BENSON).build();
+        StudentTAble differentStudentTAble = new StudentTAble();
         UserPrefs userPrefs = new UserPrefs();
         ConsultTAble consultTAble = new ConsultTAble();
         TutorialTAble tutorialTAble = new TutorialTAble();
@@ -110,9 +110,9 @@ public class ModelManagerTest {
         ReminderTAble reminderTAble = new ReminderTAble();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs, new ConsultTAble(),
+        modelManager = new ModelManager(studentTAble, userPrefs, new ConsultTAble(),
             new TutorialTAble(), new ModTAble(), new ReminderTAble());
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, consultTAble,
+        ModelManager modelManagerCopy = new ModelManager(studentTAble, userPrefs, consultTAble,
             tutorialTAble, modTAble, reminderTAble);
         assertTrue(modelManager.equals(modelManagerCopy));
 
@@ -125,14 +125,14 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, consultTAble,
+        // different studentTAble -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentStudentTAble, userPrefs, consultTAble,
             tutorialTAble, modTAble, reminderTAble)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, consultTAble,
+        assertFalse(modelManager.equals(new ModelManager(studentTAble, userPrefs, consultTAble,
             tutorialTAble, modTAble, reminderTAble)));
 
         // resets modelManager to initial state for upcoming tests
@@ -141,7 +141,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, consultTAble,
+        assertFalse(modelManager.equals(new ModelManager(studentTAble, differentUserPrefs, consultTAble,
             tutorialTAble, modTAble, reminderTAble)));
     }
 }

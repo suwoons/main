@@ -5,9 +5,9 @@ import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.StudentTAble;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.TutorialTAble;
@@ -30,7 +30,7 @@ public class ClearCommandTest {
             new TutorialTAble(), new ModTAble(), new ReminderTAble());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ConsultTAble(),
             new TutorialTAble(), new ModTAble(), new ReminderTAble());
-        expectedModel.setAddressBook(new AddressBook());
+        expectedModel.setStudentTAble(new StudentTAble());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
