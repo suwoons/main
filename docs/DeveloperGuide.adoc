@@ -259,6 +259,45 @@ The beginDateTime and endDateTime attributes are represented using Java's `Local
 The `XConsultCommand` class represent classes that extend the abstract class `Command` and allows the TA to add, edit, delete, view and clear consultations added to TAble. These `XConsultCommands` are created by the respective `XConsultCommandParsers`.
 
 A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `Consults`. When a `Consult` is added to the ConsultTAble, there will first be a check that the `Consult` does not already exist in the `UniqueConsultList`.
+
+==== Design Considerations
+
+===== Length of command prefixes (For all features)
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1 (Current Choice):* Make the prefixes of the command descriptive, such as `student/`.
+|*Alternative 2 :* Make the prefixes of the commands short, by using the first few letters of the command word, such as `s/` for students.
+
+|*Pros*
+|It is more clear and intuitive for the user to type in the full prefix.
+|It is easier for the user to type in shorter command prefixes, so that it is less tedious to input the commands.
+
+|*Cons*
+|Lower user experience as the user has to type in longer commands to use the TAble application.
+|It may be confusing for the user, as certain command prefixes may share similar initials, such as `tags` and `time`.
+|===
+
+Reason for choosing alternative 1:  We believe that the user experience will be better  when using more descriptive command prefixes, as the user will not be required to constantly check on the user guide since the command prefixes are intuitive.
+
+===== Consult storing Matric Number and Name
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1 (Current Choice):* Make the consult store the matric number and name of the student that is attending the consult.
+|*Alternative 2 :* Make the consult store the entire Student class that is attending the consult.
+
+|*Pros*
+|It is easier to implement and coupling will be reduced as `Student` will not be directly related to the `Consult` class.
+|It is easier to visualise as the entire `Student` related to the `Consult` will be stored.
+
+|*Cons*
+|It is not as intuitive as currently, the `Consult` class only stores certain attributes of the `Student` that is attending the `Consult`.
+|It will be harder to test due to the high degree of coupling.
+|===
+
+Reason for choosing alternative 1: Due to the time constraint of this project, our group has decided to choose alternative 1, as it not only reduces coupling, but is sufficient for us to uniquely identify the `Student` participating in the `Consult` as the `MatricNumber` would be unique.
+
 // end:consult[]
 
 
