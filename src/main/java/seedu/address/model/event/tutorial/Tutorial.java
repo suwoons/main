@@ -78,6 +78,7 @@ public class Tutorial {
             return false;
         }
 
+        // same tutorial as long as same modCode and tutorialName
         Tutorial otherTutorial = (Tutorial) other;
         return otherTutorial.getModCode().equals(getModCode())
                 && otherTutorial.getTutorialName().equals(getTutorialName());
