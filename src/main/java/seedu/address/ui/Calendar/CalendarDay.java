@@ -1,17 +1,13 @@
 package seedu.address.ui.Calendar;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.ui.UiPart;
 
@@ -24,10 +20,10 @@ public class CalendarDay extends UiPart<Region> {
     private static final String FXML = "CalendarDay.fxml";
 
     @javafx.fxml.FXML
-    private GridPane calendarDayGridPane;
+    private StackPane calendarDayStackPane;
 
     @javafx.fxml.FXML
-    private Label calendarView;
+    private Label calendarDate;
 
     private LocalDate date;
 
@@ -41,16 +37,15 @@ public class CalendarDay extends UiPart<Region> {
     /**
      * Returns the calendarDayGridPane
      */
-    public GridPane getCalendarDayGridPane() {
-        return calendarDayGridPane;
+    public StackPane getCalendarDayStackPane() {
+        return calendarDayStackPane;
     }
 
     /**
      * Sets the date of the CalendarDay to be that of the input {@Code: calendarDate}.
      */
     public void setDate(LocalDate calendarDate) {
-        this.date = date;
-        Text dateNum = new Text(String.format("%d", calendarDate.getDayOfMonth()));
-        calendarDayGridPane.getChildren().add(dateNum);
+        this.date = calendarDate;
+        //this.calendarDate = new Label(String.format("%d", calendarDate.getDayOfMonth())); }
     }
 }

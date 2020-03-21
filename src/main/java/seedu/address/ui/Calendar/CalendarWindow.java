@@ -3,14 +3,13 @@ package seedu.address.ui.Calendar;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -31,7 +30,7 @@ public class CalendarWindow extends UiPart<Stage> {
     private GridPane calendarGrid;
 
     @FXML
-    private Text calendarTitle;
+    private Label calendarTitle;
 
     private ArrayList<CalendarDay> allCalendarDays;
     private YearMonth currentYearMonth;
@@ -46,7 +45,6 @@ public class CalendarWindow extends UiPart<Stage> {
         currentYearMonth = YearMonth.now();
         allCalendarDays = new ArrayList<>(35);
         calendarGrid = new GridPane();
-        calendarTitle = new Text();
         createUI();
         fillDays();
         fillTitle();
@@ -67,17 +65,10 @@ public class CalendarWindow extends UiPart<Stage> {
             for (int j = 0; j < DAYS_OF_WEEK; j++) {
                 CalendarDay day = new CalendarDay();
                 allCalendarDays.add(day);
-                GridPane dayGrid = day.getCalendarDayGridPane();
-                calendarGrid.add(dayGrid, j, i);
+                StackPane dayPane = day.getCalendarDayStackPane();
+                calendarGrid.add(dayPane, j, i);
             }
         }
-    }
-
-    /**
-     * Fill the Calendar Title with meaningful text.
-     */
-    public void fillTitle() {
-
     }
 
     /**
@@ -92,10 +83,24 @@ public class CalendarWindow extends UiPart<Stage> {
         }
         // Populate the calendar with day numbers
         for (CalendarDay calendarDay : allCalendarDays) {
+            StackPane calendarDayStackPane = calendarDay.getCalendarDayStackPane();
+            calendarDayStackPane.getChildren().clear();
+            Text dateText = new Text(String.format("%02d", calendarDate.getDayOfMonth()));
+            calendarDayStackPane.getChildren().add(dateText);
             calendarDay.setDate(calendarDate);
             calendarDate = calendarDate.plusDays(1);
         }
     }
+
+    /**
+     * Fill the Calendar Title with text.
+     */
+    public void fillTitle() {
+        calendarTitle.setText(currentYearMonth.getMonth().toString() + " "
+            + currentYearMonth.getYear());
+        logger.info(currentYearMonth.getMonth().toString() + " " + currentYearMonth.getYear());
+    }
+
 
     /**
      * Shows the Calendar window.
