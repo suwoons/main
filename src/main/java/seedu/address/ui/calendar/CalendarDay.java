@@ -1,13 +1,11 @@
-package seedu.address.ui.Calendar;
+package seedu.address.ui.calendar;
 
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.ui.UiPart;
 

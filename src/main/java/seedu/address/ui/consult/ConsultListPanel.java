@@ -1,4 +1,4 @@
-package seedu.address.ui.Consult;
+package seedu.address.ui.consult;
 
 import java.util.logging.Logger;
 
