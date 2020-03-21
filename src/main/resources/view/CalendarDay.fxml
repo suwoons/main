@@ -3,7 +3,5 @@
 <?import javafx.scene.layout.*?>
 
 
-<StackPane fx:id="calendarDayStackPane" prefHeight="60" prefWidth="200" style="
--fx-background-color: green; -fx-border-color: black; -fx-border-width: 1 1 1 1;"
-           xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="calendarDayStackPane" prefHeight="60" prefWidth="200" style="-fx-background-color: #3e7b91; -fx-border-color: black; -fx-border-width: 0.75 0.75 0.75 0.75 ;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
 </StackPane>
