@@ -10,6 +10,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.tutorial.exceptions.DuplicateTutorialException;
 import seedu.address.model.event.tutorial.exceptions.TutorialNotFoundException;
+import seedu.address.model.student.MatricNumber;
+import seedu.address.model.student.Student;
 
 /**
  * A list of tutorials that enforces uniqueness between its elements and does not allow nulls.
@@ -37,6 +39,15 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     }
 
     /**
+     * Returns true if the specified tutorial in the given argument contains a student that matches the student
+     * in the argument.
+     */
+    public boolean containsTutorialStudent(Tutorial tutorial, Student student) {
+        requireAllNonNull(tutorial, student);
+        return tutorial.tutorialStudentClash(student);
+    }
+
+    /**
      * Returns true if the list contains another tutorial timing clashes with the argument.
      */
     public boolean hasSameTiming(Tutorial tutorial) {
@@ -55,6 +66,24 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
         }
         internalList.add(toAdd);
     }
+
+    /**
+     * Adds a student to a tutorial to the list.
+     * The tutorial must already exist in the list.
+     */
+    public void addTutorialStudent(Tutorial toAddTo, MatricNumber matric) {
+        requireAllNonNull(toAddTo, matric);
+        long matchCount = internalList.stream().filter(toAddTo::equals).count();
+        if (matchCount == 1) {
+            internalList.stream().filter(toAddTo::equals).forEach(tut -> tut.setEnrolledStudents(matric));
+        } else if (matchCount == 0) {
+            throw new TutorialNotFoundException();
+        } else {
+            // matchCount > 1
+            throw new DuplicateTutorialException();
+        }
+    }
+
 
     /**
      * Removes the equivalent tutorial from the list.

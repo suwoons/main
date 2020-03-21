@@ -29,6 +29,7 @@ import seedu.address.logic.commands.reminders.DeleteReminderCommand;
 import seedu.address.logic.commands.reminders.DoneReminderCommand;
 import seedu.address.logic.commands.reminders.EditReminderCommand;
 import seedu.address.logic.commands.tutorials.AddTutorialCommand;
+import seedu.address.logic.commands.tutorials.AddTutorialStudentCommand;
 import seedu.address.logic.commands.tutorials.DeleteTutorialCommand;
 import seedu.address.logic.commands.tutorials.ListTutorialCommand;
 import seedu.address.logic.parser.consults.AddConsultCommandParser;
@@ -43,6 +44,7 @@ import seedu.address.logic.parser.reminders.DeleteReminderCommandParser;
 import seedu.address.logic.parser.reminders.DoneReminderCommandParser;
 import seedu.address.logic.parser.reminders.EditReminderCommandParser;
 import seedu.address.logic.parser.tutorials.AddTutorialCommandParser;
+import seedu.address.logic.parser.tutorials.AddTutorialStudentCommandParser;
 import seedu.address.logic.parser.tutorials.DeleteTutorialCommandParser;
 
 /**
@@ -116,6 +118,9 @@ public class TAbleParser {
 
         case AddTutorialCommand.COMMAND_WORD:
             return new AddTutorialCommandParser().parse(arguments);
+
+        case AddTutorialStudentCommand.COMMAND_WORD:
+            return new AddTutorialStudentCommandParser().parse(arguments);
 
         case DeleteTutorialCommand.COMMAND_WORD:
             return new DeleteTutorialCommandParser().parse(arguments);

@@ -14,12 +14,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.tutorial.Tutorial;
-import seedu.address.model.mod.Mod;
+//import seedu.address.model.mod.Mod;
 
 /**
  * Adds a Tutorial to TAble.
  */
-
 public class AddTutorialCommand extends Command {
     public static final String COMMAND_WORD = "addTutorial";
 
@@ -61,9 +60,9 @@ public class AddTutorialCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL);
         }
 
-        if (!model.hasMod(new Mod(toAdd.getModCode(), ""))) {
-            throw new CommandException(MESSAGE_MISSING_MOD);
-        }
+        // if (!model.hasMod(new Mod(toAdd.getModCode(), ""))) {
+        //   throw new CommandException(MESSAGE_MISSING_MOD);
+        // }
 
         if (model.hasSameTiming(toAdd)) {
             throw new CommandException(MESSAGE_TUTORIAL_TIMING_CLASH);
