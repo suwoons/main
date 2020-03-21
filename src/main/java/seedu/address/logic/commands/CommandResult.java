@@ -17,6 +17,19 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The application should show the calendar. */
+    private final boolean showCalendar;
+
+    /**
+     * Constructs a {@code CommandResult} for a calendar command.
+     */
+    public CommandResult(String feedbackToUser, boolean showCalendar, boolean showHelp, boolean exit) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showCalendar = showCalendar;
+        this.showHelp = showHelp;
+        this.exit = exit;
+    }
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -24,6 +37,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showCalendar = false;
     }
 
     /**
@@ -44,6 +58,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowCalendar() {
+        return showCalendar;
     }
 
     @Override
