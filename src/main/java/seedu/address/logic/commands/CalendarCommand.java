@@ -12,7 +12,7 @@ public class CalendarCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a calendar view of all tutorials and consults.\n"
         + "Example: " + COMMAND_WORD;
 
-    public static final String SHOWING_CALENDAR_MESSAGE = "Opened calendar window.";
+    public static final String SHOWING_CALENDAR_MESSAGE = "Opened Calendar window.";
 
     @Override
     public CommandResult execute(Model model) {
