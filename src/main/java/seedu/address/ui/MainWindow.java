@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CalendarWindow calendarWindow;
     private TutorialListPanel tutorialListPanel;
     private ConsultListPanel consultListPanel;
     private ModListPanel modListPanel;
@@ -75,6 +76,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        calendarWindow = new CalendarWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -165,6 +167,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the Calendar window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleCalendar() {
+        if (!calendarWindow.isShowing()) {
+            calendarWindow.show();
+        } else {
+            calendarWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -198,6 +212,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowCalendar()) {
+                handleCalendar();
             }
 
             if (commandResult.isExit()) {
