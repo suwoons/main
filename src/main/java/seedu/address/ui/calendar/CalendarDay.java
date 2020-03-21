@@ -3,47 +3,51 @@ package seedu.address.ui.calendar;
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
-import javafx.scene.control.Label;
+import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.ui.UiPart;
 
 /**
- * Java class that represents one day in the Calendar Window.
+ * Represents a calendar date cell in the calendar window.
  */
 public class CalendarDay extends UiPart<Region> {
 
-    private static final Logger logger = LogsCenter.getLogger(CalendarDay.class);
     private static final String FXML = "CalendarDay.fxml";
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
-    @javafx.fxml.FXML
+    @FXML
     private StackPane calendarDayStackPane;
-
-    @javafx.fxml.FXML
-    private Label calendarDate;
 
     private LocalDate date;
 
     /**
-     * Creates a new CalendarDay.
-     **/
+     * Creates a CalendarDay.
+     */
     public CalendarDay() {
         super(FXML);
     }
 
-    /**
-     * Returns the calendarDayGridPane
-     */
     public StackPane getCalendarDayStackPane() {
+        logger.fine("Return StackPane");
         return calendarDayStackPane;
     }
 
     /**
-     * Sets the date of the CalendarDay to be that of the input {@Code: calendarDate}.
+     * Sets the date of this {@code CalendarDay} to the specified date.
+     *
+     * */
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    /**
+     * Returns the date of this {@code CalendarDay}.
+     *
+     * @return The date of this {@code CalendarDay}.
      */
-    public void setDate(LocalDate calendarDate) {
-        this.date = calendarDate;
-        //this.calendarDate = new Label(String.format("%d", calendarDate.getDayOfMonth())); }
+    public LocalDate getDate() {
+        return date;
     }
 }
