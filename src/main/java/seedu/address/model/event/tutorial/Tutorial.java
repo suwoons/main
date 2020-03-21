@@ -3,6 +3,7 @@ package seedu.address.model.event.tutorial;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.commons.util.TutorialUtil.checkStartEndTime;
 
+import java.lang.reflect.Array;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 
 import seedu.address.model.event.Location;
 import seedu.address.model.mod.ModCode;
-import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 
 /**
@@ -24,7 +24,7 @@ public class Tutorial {
     private LocalTime beginTime;
     private LocalTime endTime;
     private Location location;
-    private ArrayList<MatricNumber> enrolledStudents;
+    private ArrayList<Student> enrolledStudents;
     private ArrayList<ArrayList<Boolean>> studentAttendance;
 
     /**
@@ -47,7 +47,7 @@ public class Tutorial {
         this.beginTime = beginTime;
         this.endTime = endTime;
         this.location = location;
-        this.enrolledStudents = new ArrayList<MatricNumber>();
+        this.enrolledStudents = new ArrayList<Student>();
 
         ArrayList<ArrayList<Boolean>> studentAttendance = new ArrayList<ArrayList<Boolean>>();
         for (int i = 0; i < 13; i++) {
@@ -58,12 +58,39 @@ public class Tutorial {
     }
 
     /**
+     * Constructor for Tutorial to initialize a Tutorial class with enrolled students, and attendance sheet.
+     * @param modCode Module code of the tutorial
+     * @param tutorialName Name of the tutorial
+     * @param weekday Day of the week that the tutorial takes place
+     * @param beginTime Time that the tutorial begins
+     * @param endTime Time that the tutorial ends
+     * @param location Location of the tutorial
+     * @param enrolledStudents ArrayList of enrolled Students
+     * @param studentAttendance Attendance sheet for enrolled Students
+     */
+    public Tutorial(ModCode modCode, TutorialName tutorialName, DayOfWeek weekday,
+                    LocalTime beginTime, LocalTime endTime, Location location, ArrayList<Student> enrolledStudents,
+                    ArrayList<ArrayList<Boolean>> studentAttendance) {
+
+        requireAllNonNull(modCode, tutorialName, weekday, beginTime, endTime, location, enrolledStudents,
+                studentAttendance);
+        this.modCode = modCode;
+        this.tutorialName = tutorialName;
+        this.weekday = weekday;
+        this.beginTime = beginTime;
+        this.endTime = endTime;
+        this.location = location;
+        this.enrolledStudents = enrolledStudents;
+        this.studentAttendance = studentAttendance;
+    }
+
+    /**
      * Adds a new student to the list based on the provided {@code matric}
      * and adds a new row in the attendance sheet for the student for all the weeks, default as false.
      *
      */
-    public void setEnrolledStudents(MatricNumber matric) {
-        enrolledStudents.add(matric);
+    public void setEnrolledStudents(Student student) {
+        enrolledStudents.add(student);
         for (int i = 0; i < 13; i++) {
             ArrayList<Boolean> week = studentAttendance.get(i);
             week.add(false);
@@ -100,7 +127,7 @@ public class Tutorial {
         return day + " " + beginTime.format(formatter) + "-" + endTime.format(formatter);
     }
 
-    public ArrayList<MatricNumber> getEnrolledStudents() {
+    public ArrayList<Student> getEnrolledStudents() {
         return enrolledStudents;
     }
 
@@ -161,8 +188,8 @@ public class Tutorial {
      */
     public boolean tutorialStudentClash(Student student) {
         boolean hasDuplicateStudent = false;
-        for (MatricNumber matric : this.getEnrolledStudents()) {
-            if (matric.equals(student.getMatricNumber())) {
+        for (Student s : this.getEnrolledStudents()) {
+            if (s.getMatricNumber().equals(student.getMatricNumber())) {
                 hasDuplicateStudent = true;
                 break;
             }

@@ -165,9 +165,9 @@ public interface Model {
 
     /**
      * Adds the given student to the given tutorial.
-     * {@code tutorial} and student with unique {@code matric} must already exist in TAble.
+     * {@code tutorial} and {@code student} must already exist in TAble.
      */
-    void addTutorialStudent(Tutorial tutorial, MatricNumber matric);
+    void addTutorialStudent(Tutorial tutorial, Student student);
 
     /**
      * Deletes the given tutorial.

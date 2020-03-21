@@ -84,12 +84,11 @@ public class TutorialTAble implements ReadOnlyTutorial {
     }
 
     /**
-     * Adds a student with specified {@code matric} to a tutorial to TAble.
+     * Adds a {@code student} to a tutorial to TAble.
      * The tutorial must already exist in TAble.
      */
-    public void addTutorialStudent(Tutorial tutorial, MatricNumber matric) {
-        // implement
-        tutorials.addTutorialStudent(tutorial, matric);
+    public void addTutorialStudent(Tutorial tutorial, Student student) {
+        tutorials.addTutorialStudent(tutorial, student);
     }
 
 

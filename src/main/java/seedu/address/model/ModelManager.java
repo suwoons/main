@@ -257,8 +257,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addTutorialStudent(Tutorial tutorial, MatricNumber matric) {
-        tutorialTAble.addTutorialStudent(tutorial, matric);
+    public void addTutorialStudent(Tutorial tutorial, Student student) {
+        tutorialTAble.addTutorialStudent(tutorial, student);
     }
 
     @Override
