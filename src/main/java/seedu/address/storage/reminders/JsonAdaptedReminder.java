@@ -21,6 +21,7 @@ class JsonAdaptedReminder {
     private final String description;
     private final String date;
     private final String time;
+    private final String done;
 
     /**
      * Constructs a {@code JsonAdaptedReminder} with the given reminder details.
@@ -28,10 +29,12 @@ class JsonAdaptedReminder {
     @JsonCreator
     public JsonAdaptedReminder(@JsonProperty("description") String description,
                               @JsonProperty("date") String date,
-                              @JsonProperty("time") String time) {
+                              @JsonProperty("time") String time,
+                              @JsonProperty("done") String done) {
         this.description = description;
         this.date = date;
         this.time = time;
+        this.done = done;
     }
 
     /**
@@ -41,6 +44,7 @@ class JsonAdaptedReminder {
         description = source.getDescription();
         date = source.getDate().toString();
         time = source.getTime().toString();
+        done = source.getDone() ? "Yes" : "No";
     }
 
     /**
@@ -62,9 +66,14 @@ class JsonAdaptedReminder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "TIME"));
         }
 
+        if (done == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "DONE"));
+        }
+
         String modelDescription;
         LocalDate modelDate;
         LocalTime modelTime;
+        boolean modelDone;
 
         modelDescription = description;
 
@@ -75,6 +84,8 @@ class JsonAdaptedReminder {
             throw new IllegalValueException(INVALID_DATE_TIME_FORMAT);
         }
 
-        return new Reminder(modelDescription, modelDate, modelTime, false);
+        modelDone = done.equals("Yes");
+
+        return new Reminder(modelDescription, modelDate, modelTime, modelDone);
     }
 }
