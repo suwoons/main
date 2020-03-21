@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.tutorials.AddTutorialCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyStudent;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -29,58 +31,86 @@ import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.TutorialBuilder;
 
-public class AddCommandTest {
+public class AddTutorialCommandTest {
 
     @Test
-    public void constructor_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullTutorial_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddTutorialCommand(null));
+    }
+
+
+    @Test
+    public void execute_tutorialAcceptedByModel_addSuccessful() throws Exception {
+        AddTutorialCommandTest.ModelStubAcceptingTutorialAdded modelStub =
+                new AddTutorialCommandTest.ModelStubAcceptingTutorialAdded();
+        Tutorial validTutorial = new TutorialBuilder().build();
+
+        CommandResult commandResult = new AddTutorialCommand(validTutorial).execute(modelStub);
+
+        assertEquals(String.format(AddTutorialCommand.MESSAGE_SUCCESS, validTutorial),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTutorial), modelStub.tutorialsAdded);
+    }
+
+
+    @Test
+    public void execute_duplicateTutorial_throwsCommandException() throws ParseException {
+        Tutorial validTutorial = new TutorialBuilder().build();
+        AddTutorialCommand addTutorialCommand = new AddTutorialCommand(validTutorial);
+        AddTutorialCommandTest.ModelStub modelStub = new AddTutorialCommandTest.ModelStubWithTutorial(validTutorial);
+
+        assertThrows(CommandException.class, AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL, ()
+            -> addTutorialCommand.execute(modelStub));
     }
 
     @Test
-    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
-        Student validStudent = new StudentBuilder().build();
+    public void equals() throws ParseException {
+        // have to add builder for modCode, name, day
+        Tutorial t1 = new TutorialBuilder().withLocation("SR1").build();
+        Tutorial t2 = new TutorialBuilder().withBeginTime("10:00").withEndTime("12:00").build();
+        Tutorial t3 = new TutorialBuilder().withModCode("CS2100").build();
+        Tutorial t4 = new TutorialBuilder().withTutorialName("T01").build();
+        Tutorial t5 = new TutorialBuilder().withDay("1").build();
+        Tutorial t6 = new TutorialBuilder().withLocation("SR3").build();
 
-        CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
-    }
-
-    @Test
-    public void execute_duplicateStudent_throwsCommandException() {
-        Student validStudent = new StudentBuilder().build();
-        AddCommand addCommand = new AddCommand(validStudent);
-        ModelStub modelStub = new ModelStubWithStudent(validStudent);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
-    }
-
-    @Test
-    public void equals() {
-        Student alice = new StudentBuilder().withName("Alice").build();
-        Student bob = new StudentBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddTutorialCommand addT1Command = new AddTutorialCommand(t1);
+        AddTutorialCommand addT2Command = new AddTutorialCommand(t2);
+        AddTutorialCommand addT3command = new AddTutorialCommand(t3);
+        AddTutorialCommand addT4command = new AddTutorialCommand(t4);
+        AddTutorialCommand addT5command = new AddTutorialCommand(t5);
+        AddTutorialCommand addT6command = new AddTutorialCommand(t6);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addT1Command.equals(addT1Command));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddTutorialCommand addSr1CommandCopy = new AddTutorialCommand(t1);
+        assertTrue(addT1Command.equals(addSr1CommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addT1Command.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addT1Command.equals(null));
 
-        // different student -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different timing -> returns true
+        assertTrue(addT1Command.equals(addT2Command));
+
+        // different location -> returns true
+        assertTrue(addT6command.equals(addT1Command));
+
+        // different day -> returns true
+        assertTrue(addT5command.equals(addT1Command));
+
+        // different module -> returns false
+        assertFalse(addT3command.equals(addT1Command));
+
+        // different tutorial name -> returns false
+        assertFalse(addT4command.equals(addT1Command));
     }
+
 
     /**
      * A default model stub that have all of the methods failing.
@@ -245,6 +275,7 @@ public class AddCommandTest {
         public boolean hasSameTiming(Tutorial tutorial) {
             throw new AssertionError("This method should not be called");
         }
+
         @Override
         public boolean hasMod(Mod mod) {
             throw new AssertionError("This method should not be called.");
@@ -286,12 +317,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Reminder doneReminder(Reminder target) {
+        public void setReminder(Reminder reminderToEdit, Reminder editedReminder) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setReminder(Reminder reminderToEdit, Reminder editedReminder) {
+        public Reminder doneReminder(Reminder target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -311,40 +342,46 @@ public class AddCommandTest {
         }
     }
 
-    /**
-     * A Model stub that contains a single student.
-     */
-    private class ModelStubWithStudent extends ModelStub {
-        private final Student student;
 
-        ModelStubWithStudent(Student student) {
-            requireNonNull(student);
-            this.student = student;
+    /**
+     * A Model stub that contains a single tutorial.
+     */
+    private class ModelStubWithTutorial extends AddTutorialCommandTest.ModelStub {
+        private final Tutorial tutorial;
+
+        ModelStubWithTutorial(Tutorial tutorial) {
+            requireNonNull(tutorial);
+            this.tutorial = tutorial;
         }
 
         @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return this.student.isSameStudent(student);
+        public boolean hasTutorial(Tutorial tutorial) {
+            requireNonNull(tutorial);
+            return this.tutorial.equals(tutorial);
         }
     }
 
     /**
-     * A Model stub that always accept the student being added.
+     * A Model stub that always accepts the tutorial being added.
      */
-    private class ModelStubAcceptingStudentAdded extends ModelStub {
-        final ArrayList<Student> studentsAdded = new ArrayList<>();
+    private class ModelStubAcceptingTutorialAdded extends AddTutorialCommandTest.ModelStub {
+        final ArrayList<Tutorial> tutorialsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return studentsAdded.stream().anyMatch(student::isSameStudent);
+        public boolean hasTutorial(Tutorial tutorial) {
+            requireNonNull(tutorial);
+            return tutorialsAdded.stream().anyMatch(tutorial::equals);
         }
 
         @Override
-        public void addStudent(Student student) {
-            requireNonNull(student);
-            studentsAdded.add(student);
+        public void addTutorial(Tutorial tutorial) {
+            requireNonNull(tutorial);
+            tutorialsAdded.add(tutorial);
+        }
+
+        @Override
+        public boolean hasSameTiming(Tutorial tutorial) {
+            return tutorialsAdded.stream().anyMatch(tutorial::timeClash);
         }
 
         @Override
@@ -352,4 +389,5 @@ public class AddCommandTest {
             return new StudentTAble();
         }
     }
+
 }
