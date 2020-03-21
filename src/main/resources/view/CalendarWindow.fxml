@@ -1,33 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.Scene?>
-<?import javafx.stage.Stage?>
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-    <icons>
-        <Image url="@/images/help_icon.png" />
-    </icons>
+<fx:root resizable="false" title="Calendar" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene>
-            <HBox alignment="CENTER">
-                <children>
-                    <Label fx:id="calendarView" text="Label">
-                        <HBox.margin>
-                            <Insets right="5.0" />
-                        </HBox.margin>
-                    </Label>
-                </children>
-                <opaqueInsets>
-                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-                </opaqueInsets>
-                <padding>
-                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-                </padding>
-            </HBox>
+            <VBox spacing="20" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                <HBox alignment="BASELINE_CENTER" spacing="30">
+                    <Text fx:id="calendarTitle" fill="white" />
+                </HBox>
+                <GridPane alignment="BASELINE_CENTER" prefWidth="600">
+                    <GridPane alignment="BASELINE_CENTER" prefHeight="10" prefWidth="200" GridPane.columnIndex="0">
+                        <Text fill="white" text="Sunday" />
+                    </GridPane>
+                    <GridPane alignment="BASELINE_CENTER" prefHeight="10" prefWidth="200" GridPane.columnIndex="1">
+                        <Text fill="white" text="Monday" />
+                    </GridPane>
+                    <GridPane alignment="BASELINE_CENTER" prefHeight="10" prefWidth="200" GridPane.columnIndex="2">
+                        <Text fill="white" text="Tuesday" />
+                    </GridPane>
+                    <GridPane alignment="BASELINE_CENTER" prefHeight="10" prefWidth="200" GridPane.columnIndex="3">
+                        <Text fill="white" text="Wednesday" />
+                    </GridPane>
+                    <GridPane alignment="BASELINE_CENTER" prefHeight="10" prefWidth="200" GridPane.columnIndex="4">
+                        <Text fill="white" text="Thursday" />
+                    </GridPane>
+                    <GridPane alignment="BASELINE_CENTER" prefHeight="10" prefWidth="200" GridPane.columnIndex="5">
+                        <Text fill="white" text="Friday" />
+                    </GridPane>
+                    <GridPane alignment="BASELINE_CENTER" prefHeight="10" prefWidth="200" GridPane.columnIndex="6">
+                        <Text fill="white" text="Saturday" />
+                    </GridPane>
+                </GridPane>
+                <GridPane fx:id="calendarDayGridPane" prefHeight="400" prefWidth="600">
+                </GridPane>
+            </VBox>
         </Scene>
     </scene>
 </fx:root>

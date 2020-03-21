@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.Consult;
 
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.storage.StorageManager;
+import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Consult}.
