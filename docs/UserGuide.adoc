@@ -427,20 +427,20 @@ Format: `viewModule modCode/MODULE_CODE`
 === Adding a reminder: `addReminder`
 
 Adds a reminder to the reminder list. +
-Format: `addReminder i/INFO d/DATE t/TIME`
+Format: `addReminder desc/DESCRIPTION date/DATE time/TIME`
 
 [TIP]
 Reminders will alert the user during the stipulated date and time.
 
 ****
-* The information provided should be any valid string.
-* The date provided must be in DD-MM-YYYY format
+* The description provided should be any valid string.
+* The date provided must be in YYYY-MM-DD format
 * The time provided must be in HH:MM format, i.e: 24-hour format
 ****
 
 Examples:
 
-* `addReminder i/Mark midterms papers d/05-03-2020 t/14:00`
+* `addReminder desc/Mark midterms papers date/2020-03-05 time/14:00`
 
 === List all reminders: `listReminder`
 
@@ -487,7 +487,7 @@ Deletes the 3rd reminder in TAble.
 === Editing a reminder: `editReminder`
 
 Edits an existing reminder in the reminder list. +
-Format: `editReminder INDEX [i/INFO] [d/DATE] t/TIME]`
+Format: `editReminder INDEX [desc/DESCRIPTION] [date/DATE] [time/TIME]`
 
 ****
 * Edits the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index *must be a positive integer* 1, 2, 3, ...
@@ -497,15 +497,15 @@ Format: `editReminder INDEX [i/INFO] [d/DATE] t/TIME]`
 
 Examples:
 
-* `editReminder 1 i/Return midterms papers` +
-Edits the information of the 1st reminder to "Return midterms paper".
+* `editReminder 1 desc/Return midterms papers` +
+Edits the description of the 1st reminder to "Return midterms paper".
 
-* `editReminder 3 d/20-05-2020 t/18:00` +
+* `editReminder 3 date/2020-05-20 time/18:00` +
 Edits the date of the 3rd reminder to 20th May 2020 18:00 hours i.e. 6.00 p.m.
 
 === Finding reminders by information or date: `findReminder`
 Finds reminders matching with the given keyword or date.
-Format: `findReminder [i/INFO] [d/DATE]`
+Format: `findReminder [desc/DESCRIPTION] [date/DATE]`
 
 ****
 * The search is case insensitive. e.g `Mark` will match `mark`
@@ -515,29 +515,28 @@ Format: `findReminder [i/INFO] [d/DATE]`
 
 Examples:
 
-* `findReminder i/mark`
+* `findReminder desc/mark` +
 Returns reminders containing the keyword 'mark'.
-* `findReminder d/05-03-2020` +
+* `findReminder date/2020-05-05` +
 Returns all reminders on 05 May 2020.
 
 === Snoozing a reminder: `snoozeReminder`
 
 Snoozes a reminder in the reminder list. +
-Format: `snoozeReminder INDEX [d/DAY] [h/HOUR]`
+Format: `snoozeReminder INDEX [day/DAY] [hour/HOUR] [minute/MINUTE]`
 
 ****
 * Snooze the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index *must be a positive integer* 1, 2, 3, ...
 * At least one of the optional fields must be provided.
-* Number of days provided must be a positive whole number.
-* Number of hours provided can either be a positive whole number or a positive decimal number up to 1 decimal place (e.g. 0.5 represents half an hour).
+* Number of days, hours or minutes provided must be a positive whole number.
 ****
 
 Examples:
 
-* `snoozeReminder 2 d/3 h/0.5` +
-Postpone the second reminder to 3 days and half an hour later.
-* `snoozeReminder 4 h/2` +
-Postpone the fourth reminder to 2 hours later.
+* `snoozeReminder 2 day/3 hour/2` +
+Postpone the second reminder to 3 days and 2 hours later.
+* `snoozeReminder 4 minute/30` +
+Postpone the fourth reminder to 30 minutes later.
 //end::Reminder[]
 
 === Exiting the program : `exit`
