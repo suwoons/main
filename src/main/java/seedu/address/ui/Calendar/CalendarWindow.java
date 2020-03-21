@@ -17,6 +17,7 @@ import seedu.address.ui.UiPart;
 
 /**
  * Controller for a calendar page.
+ * Solution adapted from https://github.com/SirGoose3432/javafx-calendar/blob/master/src/FullCalendarView.java
  */
 public class CalendarWindow extends UiPart<Stage> {
 
