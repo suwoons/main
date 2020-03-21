@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+skinparam classAttributeIconSize 0
+skinparam arrowThickness 1.1
+skinparam arrowColor CONSULT_COLOUR
+skinparam classBackgroundColor CONSULT_COLOUR
+skinparam classFontColor #white
+skinparam classAttributeFontColor #white
+
+
+package Model <<Rectangle>> {
+interface Model
+class ModelManager
+class UniqueConsultList
+class ConsultTAble
+class Consult {
+-beginDateTime
+-endDateTime
+-studentMatricNumber
+-studentName
+-Location
+}
+}
+package Logic <<Rectangle>> {
+interface Parser
+class XConsultCommandParser
+abstract class Command
+class XConsultCommand
+}
+
+Model <|.. ModelManager
+ModelManager o-- "1" ConsultTAble
+ConsultTAble  *-- "1" UniqueConsultList
+UniqueConsultList o--> "*" Consult
+Command <|-- XConsultCommand
+XConsultCommandParser .> XConsultCommand : creates >
+XConsultCommandParser ..> Consult : creates >
+Parser <|-- XConsultCommandParser
+
+show Consult fields
+@enduml

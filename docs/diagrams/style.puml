@@ -33,6 +33,10 @@
 
 !define USER_COLOR #000000
 
+!define CONSULT_COLOUR #993399
+!define CONSULT_COLOUR_T1 #a329a3
+!define CONSULT_COLOUR_T2 #ad1fad
+
 skinparam BackgroundColor #FFFFFFF
 
 skinparam Shadowing false
