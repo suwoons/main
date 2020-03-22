@@ -11,7 +11,6 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
-import seedu.address.model.Model;
 
 /**
  * The manager of the UI component.
@@ -24,13 +23,11 @@ public class UiManager implements Ui {
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
 
     private Logic logic;
-    private Model model;
     private MainWindow mainWindow;
 
-    public UiManager(Logic logic, Model model) {
+    public UiManager(Logic logic) {
         super();
         this.logic = logic;
-        this.model = model;
     }
 
     @Override
