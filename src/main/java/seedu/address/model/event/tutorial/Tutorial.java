@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import seedu.address.model.event.Location;
 import seedu.address.model.mod.ModCode;
-import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 
 /**
@@ -18,13 +17,14 @@ import seedu.address.model.student.Student;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Tutorial {
+
     private ModCode modCode;
     private TutorialName tutorialName;
     private DayOfWeek weekday;
     private LocalTime beginTime;
     private LocalTime endTime;
     private Location location;
-    private ArrayList<MatricNumber> enrolledStudents;
+    private ArrayList<Student> enrolledStudents;
     private ArrayList<ArrayList<Boolean>> studentAttendance;
 
     /**
@@ -47,7 +47,7 @@ public class Tutorial {
         this.beginTime = beginTime;
         this.endTime = endTime;
         this.location = location;
-        this.enrolledStudents = new ArrayList<MatricNumber>();
+        this.enrolledStudents = new ArrayList<Student>();
 
         ArrayList<ArrayList<Boolean>> studentAttendance = new ArrayList<ArrayList<Boolean>>();
         for (int i = 0; i < 13; i++) {
@@ -58,15 +58,54 @@ public class Tutorial {
     }
 
     /**
-     * Adds a new student to the list based on the provided {@code matric}
-     * and adds a new row in the attendance sheet for the student for all the weeks, default as false.
-     *
+     * Constructor for Tutorial to initialize a Tutorial class with enrolled students, and attendance sheet.
+     * @param modCode Module code of the tutorial
+     * @param tutorialName Name of the tutorial
+     * @param weekday Day of the week that the tutorial takes place
+     * @param beginTime Time that the tutorial begins
+     * @param endTime Time that the tutorial ends
+     * @param location Location of the tutorial
+     * @param enrolledStudents ArrayList of enrolled Students
+     * @param studentAttendance Attendance sheet for enrolled Students
      */
-    public void setEnrolledStudents(MatricNumber matric) {
-        enrolledStudents.add(matric);
+    public Tutorial(ModCode modCode, TutorialName tutorialName, DayOfWeek weekday,
+                    LocalTime beginTime, LocalTime endTime, Location location, ArrayList<Student> enrolledStudents,
+                    ArrayList<ArrayList<Boolean>> studentAttendance) {
+
+        requireAllNonNull(modCode, tutorialName, weekday, beginTime, endTime, location, enrolledStudents,
+                studentAttendance);
+        this.modCode = modCode;
+        this.tutorialName = tutorialName;
+        this.weekday = weekday;
+        this.beginTime = beginTime;
+        this.endTime = endTime;
+        this.location = location;
+        this.enrolledStudents = enrolledStudents;
+        this.studentAttendance = studentAttendance;
+    }
+
+    /**
+     * Adds a new {@code student} to the tutorial,
+     * and adds a new row in the attendance sheet for the student for all the weeks, default as false (ie. absent).
+     */
+    public void setEnrolledStudents(Student student) {
+        enrolledStudents.add(student);
         for (int i = 0; i < 13; i++) {
             ArrayList<Boolean> week = studentAttendance.get(i);
             week.add(false);
+        }
+    }
+
+    /**
+     * Removes given {@code student} from the tutorial
+     * and removes the row in the attendance sheet corresponding to the student for all the weeks.
+     */
+    public void removeEnrolledStudent(Student student) {
+        int targetIndex = enrolledStudents.indexOf(student);
+        enrolledStudents.remove(student);
+        for (int i = 0; i < 13; i++) {
+            ArrayList<Boolean> week = studentAttendance.get(i);
+            week.remove(targetIndex);
         }
     }
 
@@ -100,8 +139,12 @@ public class Tutorial {
         return day + " " + beginTime.format(formatter) + "-" + endTime.format(formatter);
     }
 
-    public ArrayList<MatricNumber> getEnrolledStudents() {
+    public ArrayList<Student> getEnrolledStudents() {
         return enrolledStudents;
+    }
+
+    public Student getEnrolledStudentAt(int index) {
+        return this.enrolledStudents.get(index);
     }
 
     public ArrayList<ArrayList<Boolean>> getAttendance() {
@@ -115,6 +158,35 @@ public class Tutorial {
      */
     public ArrayList<Boolean> getAttendanceWeek(int week) {
         return studentAttendance.get(week);
+    }
+
+    /**
+     * Returns attendance for whole semester of specified student
+     */
+    public ArrayList<Boolean> getAttendanceofStudent(Student student) throws IndexOutOfBoundsException {
+        int index = enrolledStudents.indexOf(student);
+        if (index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        ArrayList<Boolean> attendanceList = new ArrayList<Boolean>();
+        for (ArrayList<Boolean> week : studentAttendance) {
+            attendanceList.add(week.get(index));
+        }
+        return attendanceList;
+    }
+
+    /**
+     * Returns attendance for whole semester of student at given index in tutorial's enrolled students.
+     */
+    public ArrayList<Boolean> getAttendanceofStudent(int index) throws IndexOutOfBoundsException {
+        if (index < 0 || index >= enrolledStudents.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        ArrayList<Boolean> attendanceList = new ArrayList<Boolean>();
+        for (ArrayList<Boolean> week : studentAttendance) {
+            attendanceList.add(week.get(index));
+        }
+        return attendanceList;
     }
 
     /**
@@ -161,8 +233,8 @@ public class Tutorial {
      */
     public boolean tutorialStudentClash(Student student) {
         boolean hasDuplicateStudent = false;
-        for (MatricNumber matric : this.getEnrolledStudents()) {
-            if (matric.equals(student.getMatricNumber())) {
+        for (Student s : this.getEnrolledStudents()) {
+            if (s.getMatricNumber().equals(student.getMatricNumber())) {
                 hasDuplicateStudent = true;
                 break;
             }

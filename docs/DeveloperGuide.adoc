@@ -300,6 +300,16 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 
 // end:consult[]
 
+
+// tag:tutorial[]
+=== Consult feature
+
+=== Implementation
+
+==== Design Considerations
+
+// end:tutorial[]
+
 // tag::module[]
 === Module feature
 *TAble* allows NUS SoC teaching assistants to track and record all modules that they are teaching.

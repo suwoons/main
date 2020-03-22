@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 
 /**
@@ -65,8 +64,6 @@ public class TutorialTAble implements ReadOnlyTutorial {
         setTutorials(newData.getAllTutorials());
     }
 
-    //// Tutorial-level operations
-
     /**
      * Returns true if a tutorial with the same identity as {@code tutorial} exists in TAble.
      */
@@ -76,7 +73,7 @@ public class TutorialTAble implements ReadOnlyTutorial {
     }
 
     /**
-     * Returns true if a specified tutorial  contains the identical {@code student}.
+     * Returns true if a specified tutorial contains the identical {@code student}.
      */
     public boolean hasTutorialStudent(Tutorial tutorial, Student student) {
         requireAllNonNull(tutorial, student);
@@ -84,12 +81,11 @@ public class TutorialTAble implements ReadOnlyTutorial {
     }
 
     /**
-     * Adds a student with specified {@code matric} to a tutorial to TAble.
+     * Adds a {@code student} to a tutorial to TAble.
      * The tutorial must already exist in TAble.
      */
-    public void addTutorialStudent(Tutorial tutorial, MatricNumber matric) {
-        // implement
-        tutorials.addTutorialStudent(tutorial, matric);
+    public void addTutorialStudent(Tutorial tutorial, Student student) {
+        tutorials.addTutorialStudent(tutorial, student);
     }
 
 
@@ -110,6 +106,13 @@ public class TutorialTAble implements ReadOnlyTutorial {
         tutorials.remove(key);
     }
 
+    /**
+     * Removes {@code student} from {@code tutorial} in {@code TutorialTAble}.
+     * {@code tutorial} must exist in the Tutorial TAble, and {@code student} must exist in the tutorial.
+     */
+    public void deleteTutorialStudent(Tutorial tutorial, Student student) {
+        tutorials.deleteTutorialStudent(tutorial, student);
+    }
 
     /**
      * Returns {@code tutorial} from {@code TAble}.
