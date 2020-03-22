@@ -157,7 +157,7 @@ Example:
 === Editing a consult: `editConsult`
 
 Edit the time, date or place of an existing consultation slot. +
-Format: `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE] [student/INDEX]`
+Format: `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]`
 
 ****
 * Edits the consult at the specified `INDEX`. The index refers to the index number shown in the displayed consultation list. The index *must be a positive integer* 1, 2, 3, ...
