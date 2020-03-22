@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ConsultUtil;
 import seedu.address.logic.Logic;
-import seedu.address.model.Model;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.ui.UiPart;
 
