@@ -23,19 +23,21 @@ class Consult {
 }
 package Logic <<Rectangle>> {
 interface Parser
-class XConsultCommandParser
+class XYZConsultCommandParser
 abstract class Command
-class XConsultCommand
+class XYZConsultCommand
 }
 
 Model <|.. ModelManager
 ModelManager o-- "1" ConsultTAble
 ConsultTAble  *-- "1" UniqueConsultList
 UniqueConsultList o--> "*" Consult
-Command <|-- XConsultCommand
-XConsultCommandParser .> XConsultCommand : creates >
-XConsultCommandParser ..> Consult : creates >
-Parser <|-- XConsultCommandParser
+Command <|-right- XYZConsultCommand
+XYZConsultCommandParser ..> XYZConsultCommand : creates >
+XYZConsultCommandParser .left.> Consult : creates >
+Parser <|-- XYZConsultCommandParser
+note left of XYZConsultCommand: XYZConsultCommand = AddConsultCommand etc
+
 
 show Consult fields
 @enduml
