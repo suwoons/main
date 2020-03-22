@@ -76,7 +76,10 @@ public class SampleDataUtil {
         LocalDateTime startDateTime = LocalDateTime.now();
         LocalDateTime endDateTime = LocalDateTime.now().plusHours(3);
         Location location = new Location("SR1");
-        Consult consult = new Consult(startDateTime, endDateTime, location);
+        Name studentName = new Name("Alex Yeoh");
+        MatricNumber matricNumber = new MatricNumber("A0187596R");
+
+        Consult consult = new Consult(startDateTime, endDateTime, location, studentName, matricNumber);
         ArrayList<Consult> consultList = new ArrayList<>();
         consultList.add(consult);
         ConsultTAble sampleConsultTAble = new ConsultTAble(consultList);
