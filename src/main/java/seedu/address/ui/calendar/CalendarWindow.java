@@ -14,6 +14,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.ConsultUtil;
+import seedu.address.model.Model;
+import seedu.address.model.event.consult.Consult;
 import seedu.address.ui.UiPart;
 
 /**
@@ -35,12 +38,14 @@ public class CalendarWindow extends UiPart<Stage> {
 
     private List<CalendarDay> calendarDays;
     private YearMonth currentYearMonth;
+    private List<Consult> consults;
 
     /**
      * Constructs a calendar window with the current month as reference.
      */
-    public CalendarWindow(Stage root) {
+    public CalendarWindow(Stage root, List<Consult> consults) {
         super(FXML, root);
+        this.consults = consults;
         calendarDays = new ArrayList<>();
         currentYearMonth = YearMonth.now();
         createUi();
@@ -51,8 +56,8 @@ public class CalendarWindow extends UiPart<Stage> {
     /**
      * Creates a new CalendarWindow.
      */
-    public CalendarWindow() {
-        this(new Stage());
+    public CalendarWindow(Model model) {
+        this(new Stage(), model.getConsultTAble().getAllConsults());
     }
 
     /**
@@ -79,7 +84,6 @@ public class CalendarWindow extends UiPart<Stage> {
         while (!calendarDate.getDayOfWeek().toString().equals("SUNDAY")) {
             calendarDate = calendarDate.minusDays(1);
         }
-
         for (CalendarDay calendarDay : calendarDays) {
             StackPane calendarDayStackPane = calendarDay.getCalendarDayStackPane();
             calendarDayStackPane.getChildren().clear();
@@ -87,6 +91,8 @@ public class CalendarWindow extends UiPart<Stage> {
             StackPane.setAlignment(dateText, Pos.TOP_LEFT);
             calendarDayStackPane.getChildren().add(dateText);
             calendarDay.setDate(calendarDate);
+            addAllConsults(calendarDay, calendarDate);
+            calendarDay.updateNumConsults();
             calendarDate = calendarDate.plusDays(1);
         }
     }
@@ -162,5 +168,17 @@ public class CalendarWindow extends UiPart<Stage> {
     @FXML
     public void prevMonthFx() {
         prevMonth();
+    }
+
+    /**
+     *
+     */
+    public void addAllConsults(CalendarDay calendarDay, LocalDate calendarDate) {
+        for (Consult consult : consults) {
+            if (ConsultUtil.isSameDate(consult.getBeginDateTime(), calendarDate)) {
+                calendarDay.addConsult(consult);
+                logger.fine("Same date detected.");
+            }
+        }
     }
 }
