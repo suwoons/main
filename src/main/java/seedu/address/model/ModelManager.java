@@ -23,6 +23,7 @@ import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderTAble;
+import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 
 
@@ -32,7 +33,7 @@ import seedu.address.model.student.Student;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final StudentTAble studentTAble;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
     private final ConsultTAble consultTAble;
@@ -45,9 +46,9 @@ public class ModelManager implements Model {
     private final FilteredList<Reminder> filteredReminders;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given studentTAble and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyConsult consultTAble,
+    public ModelManager(ReadOnlyStudent addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyConsult consultTAble,
                         ReadOnlyTutorial tutorialTAble, ReadOnlyMod modTAble, ReadOnlyReminder reminderTAble) {
         super();
         requireAllNonNull(addressBook, userPrefs, consultTAble, tutorialTAble, modTAble, reminderTAble);
@@ -55,9 +56,9 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " , user prefs " + userPrefs
             + ", with consults " + consultTAble + " and modules in " + modTAble);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.studentTAble = new StudentTAble(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        filteredStudents = new FilteredList<>(this.studentTAble.getStudentList());
         this.consultTAble = new ConsultTAble(consultTAble);
         filteredConsults = new FilteredList<>(this.consultTAble.getAllConsults());
         this.tutorialTAble = new TutorialTAble(tutorialTAble);
@@ -69,7 +70,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new ConsultTAble(), new TutorialTAble(),
+        this(new StudentTAble(), new UserPrefs(), new ConsultTAble(), new TutorialTAble(),
                 new ModTAble(), new ReminderTAble());
     }
 
@@ -108,39 +109,39 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== StudentTAble ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setStudentTAble(ReadOnlyStudent studentTAble) {
+        this.studentTAble.resetData(studentTAble);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyStudent getStudentTAble() {
+        return studentTAble;
     }
 
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return addressBook.hasStudent(student);
+        return studentTAble.hasStudent(student);
     }
 
     @Override
     public void deleteStudent(Student target) {
-        addressBook.removeStudent(target);
+        studentTAble.removeStudent(target);
     }
 
     @Override
     public void addStudent(Student student) {
-        addressBook.addStudent(student);
+        studentTAble.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-        addressBook.setStudent(target, editedStudent);
+        studentTAble.setStudent(target, editedStudent);
     }
 
     /**
@@ -150,7 +151,7 @@ public class ModelManager implements Model {
      * @return Student with index number specified.
      */
     public Student getStudent(int indexNumber) {
-        return addressBook.getStudent(indexNumber);
+        return studentTAble.getStudent(indexNumber);
     }
 
     //=========== Filtered Student List Accessors =============================================================
@@ -184,7 +185,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return studentTAble.equals(other.studentTAble)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents);
     }
@@ -231,9 +232,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasSameDateTiming(Consult consult) {
+    public boolean hasSameDateTime(Consult consult) {
         requireAllNonNull(consult, consultTAble);
-        return consultTAble.hasSameDateTiming(consult);
+        return consultTAble.hasSameDateTime(consult);
     }
 
     @Override
@@ -247,6 +248,17 @@ public class ModelManager implements Model {
     public boolean hasTutorial(Tutorial tutorial) {
         requireNonNull(tutorial);
         return tutorialTAble.hasTutorial(tutorial);
+    }
+
+    @Override
+    public boolean hasTutorialStudent(Tutorial tutorial, Student student) {
+        requireAllNonNull(tutorial, student);
+        return tutorialTAble.hasTutorialStudent(tutorial, student);
+    }
+
+    @Override
+    public void addTutorialStudent(Tutorial tutorial, MatricNumber matric) {
+        tutorialTAble.addTutorialStudent(tutorial, matric);
     }
 
     @Override

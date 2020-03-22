@@ -153,8 +153,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-// tag::undoredo[]
-=== [Proposed] Undo/Redo feature
+
+// tag:undoredo[]
+=== [Proposed] Undo/Redo Feature
 ==== Proposed Implementation
 
 The undo/redo mechanism is facilitated by `VersionedAddressBook`.
@@ -241,6 +242,64 @@ image::CommitActivityDiagram.png[]
 _{Explain here how the data encryption feature will be implemented}_
 
 // end::dataencryption[]
+
+// tag::consult[]
+=== Consult feature
+*TAble* allows NUS teaching assistants to track and record all their consultations scheduled with their students.
+
+==== Implementation
+A `consult` class stores all of the relevant information of consults. The class diagram below shows how all the different components interact to allow the consult feature to function. Note that the XConsultCommand and XConsultCommandParser refers to all Consult related commands like add, edit, delete etc.
+
+.Class diagram of 'Consults' feature
+image::ConsultsCommandClassDiagram.png[]
+
+A consultation slot is represented by the `consult` class which contains 5 key attributes, the beginDateTime, endDateTime, location, studentMatricNumber and studentName.
+The beginDateTime and endDateTime attributes are represented using Java's `LocalDateTime` class. The studentMatricNumber and studentName attributes are classes that belong to a certain `Student`. The studentMatricNumber is used to uniquely identify the `Student` involved in the consultation, while the studentName is used in the front end of the application, displayed to the TA.
+
+The `XConsultCommand` class represent classes that extend the abstract class `Command` and allows the TA to add, edit, delete, view and clear consultations added to TAble. These `XConsultCommands` are created by the respective `XConsultCommandParsers`.
+
+A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `Consults`. When a `consult` is added to the ConsultTAble, there will first be a check that the `consult` does not already exist in the `UniqueConsultList`.
+
+==== Design Considerations
+
+===== Length of command prefixes (For all features)
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1 (Current Choice):* Make the prefixes of the command descriptive, such as `student/`.
+|*Alternative 2 :* Make the prefixes of the commands short, by using the first few letters of the command word, such as `s/` for students.
+
+|*Pros*
+|It is more clear and intuitive for the user to type in the full prefix.
+|It is easier for the user to type in shorter command prefixes, so that it is less tedious to input the commands.
+
+|*Cons*
+|Lower user experience as the user has to type in longer commands to use the TAble application.
+|It may be confusing for the user, as certain command prefixes may share similar initials, such as `tags` and `time`.
+|===
+
+Reason for choosing Alternative 1:  We believe that the user experience will be better  when using more descriptive command prefixes, as the user will not be required to constantly check on the user guide since the command prefixes are intuitive.
+
+===== Consult storing Matric Number and Name
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1 (Current Choice):* Make the consult store the matric number and name of the student that is attending the consult.
+|*Alternative 2 :* Make the consult store the entire Student class that is attending the consult.
+
+|*Pros*
+|It is easier to implement and coupling will be reduced as `Student` will not be directly related to the `consult` class.
+|It is easier to visualise as the entire `Student` related to the `consult` will be stored.
+
+|*Cons*
+|It is not as intuitive as currently, the `consult` class only stores certain attributes of the `Student` that is attending the `consult`.
+|It will be harder to test due to the high degree of coupling.
+|===
+
+Reason for choosing Alternative 1: Due to the time constraint of this project, our group has decided to choose alternative 1, as it not only reduces coupling, but is sufficient for us to uniquely identify the `Student` participating in the `consult` as the `MatricNumber` would be unique.
+
+// end:consult[]
+
 
 === Logging
 
@@ -898,6 +957,8 @@ Windows, Linux, Unix, OS-X
 [[students]] Students::
 The primary group of people which the Teaching Assistant wil have to keep track of.
 
+[[events]] TA::
+Refers to Teaching Assistant. See Teaching Assistant for more information.
 [[teaching-assistant]] Teaching Assistant::
 The primary user of this application.
 

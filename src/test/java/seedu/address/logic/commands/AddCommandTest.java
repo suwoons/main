@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyStudent;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.StudentTAble;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
@@ -27,6 +27,7 @@ import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
@@ -121,12 +122,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setStudentTAble(ReadOnlyStudent newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyStudent getStudentTAble() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -191,7 +192,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasSameDateTiming(Consult consult) {
+        public boolean hasSameDateTime(Consult consult) {
             throw new AssertionError("This method should not be called");
         }
 
@@ -206,8 +207,18 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTutorialStudent(Tutorial tutorial, Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addTutorial(Tutorial tutorial) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTutorialStudent(Tutorial tutorial, MatricNumber matric) {
+
         }
 
         @Override
@@ -337,8 +348,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyStudent getStudentTAble() {
+            return new StudentTAble();
         }
     }
 }

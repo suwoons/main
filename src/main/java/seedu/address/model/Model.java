@@ -12,6 +12,7 @@ import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 
 /**
@@ -56,12 +57,12 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code studentTAble}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setStudentTAble(ReadOnlyStudent studentTAble);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the StudentTAble */
+    ReadOnlyStudent getStudentTAble();
 
     /**
      * Returns true if a student with the same identity as {@code student} exists in the address book.
@@ -139,7 +140,7 @@ public interface Model {
     /**
      * Returns true if a {@code consult}'s timing clashes with another {@code consult}'s timing in TAble.
      */
-    boolean hasSameDateTiming(Consult consult);
+    boolean hasSameDateTime(Consult consult);
 
     /** Returns the Consult TAble */
     ReadOnlyConsult getConsultTAble();
@@ -152,10 +153,21 @@ public interface Model {
     boolean hasTutorial(Tutorial tutorial);
 
     /**
+     * Returns true if a specified tutorial contains the identical {@code student}.
+     */
+    boolean hasTutorialStudent(Tutorial tutorial, Student student);
+
+    /**
      * Adds the given tutorial.
      * {@code tutorial} must not already exist in TAble.
      */
     void addTutorial(Tutorial tutorial);
+
+    /**
+     * Adds the given student to the given tutorial.
+     * {@code tutorial} and student with unique {@code matric} must already exist in TAble.
+     */
+    void addTutorialStudent(Tutorial tutorial, MatricNumber matric);
 
     /**
      * Deletes the given tutorial.

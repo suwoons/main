@@ -1,10 +1,13 @@
 package seedu.address.model.event.tutorial;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.student.MatricNumber;
+import seedu.address.model.student.Student;
 
 /**
  * Wraps all tutorial data at the Tutorial TAble level
@@ -71,6 +74,24 @@ public class TutorialTAble implements ReadOnlyTutorial {
         requireNonNull(tutorial);
         return tutorials.contains(tutorial);
     }
+
+    /**
+     * Returns true if a specified tutorial  contains the identical {@code student}.
+     */
+    public boolean hasTutorialStudent(Tutorial tutorial, Student student) {
+        requireAllNonNull(tutorial, student);
+        return tutorials.containsTutorialStudent(tutorial, student);
+    }
+
+    /**
+     * Adds a student with specified {@code matric} to a tutorial to TAble.
+     * The tutorial must already exist in TAble.
+     */
+    public void addTutorialStudent(Tutorial tutorial, MatricNumber matric) {
+        // implement
+        tutorials.addTutorialStudent(tutorial, matric);
+    }
+
 
     /**
      * Adds a tutorial to TAble.

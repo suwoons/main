@@ -1,65 +1,80 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalConsults.getTypicalConsultTAble;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.consults.AddConsultCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyStudent;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.StudentTAble;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.Consult;
+import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.Mod;
+import seedu.address.model.mod.ModTAble;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderTAble;
+import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.ConsultBuilder;
 
-
 public class AddConsultCommandTest {
 
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalConsultTAble(),
+        new TutorialTAble(), new ModTAble(), new ReminderTAble());
+
     @Test
-    public void constructor_nullConsult_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddConsultCommand(null));
+    public void constructor_nullIndexNullConsult_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddConsultCommand(null, null));
     }
 
     @Test
     public void execute_consultAcceptedByModel_addSuccessful() throws Exception {
-        AddConsultCommandTest.ModelStubAcceptingConsultAdded modelStub =
-                new AddConsultCommandTest.ModelStubAcceptingConsultAdded();
         Consult validConsult = new ConsultBuilder().build();
+        Index index = Index.fromOneBased(1);
 
-        CommandResult commandResult = new AddConsultCommand(validConsult).execute(modelStub);
+        AddConsultCommand addConsultCommand = new AddConsultCommand(index, validConsult);
+        String expectedMessage = String.format(AddConsultCommand.MESSAGE_SUCCESS, validConsult);
+        Model expectedModel = new ModelManager(new StudentTAble(model.getStudentTAble()),
+            new UserPrefs(), new ConsultTAble(), new TutorialTAble(), new ModTAble(), new ReminderTAble());
+        expectedModel.addConsult(validConsult);
 
-        assertEquals(String.format(AddConsultCommand.MESSAGE_SUCCESS, validConsult), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validConsult), modelStub.consultsAdded);
+        assertCommandSuccess(addConsultCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_duplicateConsult_throwsCommandException() throws ParseException {
-        Consult validConsult = new ConsultBuilder().build();
-        AddConsultCommand addConsultCommand = new AddConsultCommand(validConsult);
-        AddConsultCommandTest.ModelStub modelStub = new AddConsultCommandTest.ModelStubWithConsult(validConsult);
+    public void execute_sameConsult_throwsCommandException() throws ParseException {
+        Consult firstConsult = model.getFilteredConsultList().get(INDEX_FIRST.getZeroBased());
+        Index index = Index.fromOneBased(1);
 
-        assertThrows(CommandException.class, AddConsultCommand.MESSAGE_DUPLICATE_CONSULT, ()
-            -> addConsultCommand.execute(modelStub));
+        AddConsultCommand addConsultCommand = new AddConsultCommand(index, firstConsult);
+
+        assertCommandFailure(addConsultCommand, model, addConsultCommand.MESSAGE_DUPLICATE_CONSULT);
     }
 
     @Test
@@ -67,14 +82,16 @@ public class AddConsultCommandTest {
         Consult c1 = new ConsultBuilder().withLocation("sr1").build();
         Consult c2 = new ConsultBuilder().withBeginDateTime("2020-02-02 12:00").withEndDateTime("2020-02-02 13:00")
                 .build();
-        AddConsultCommand addC1Command = new AddConsultCommand(c1);
-        AddConsultCommand addC2Command = new AddConsultCommand(c2);
+        Index index = Index.fromOneBased(1);
+
+        AddConsultCommand addC1Command = new AddConsultCommand(index, c1);
+        AddConsultCommand addC2Command = new AddConsultCommand(index, c2);
 
         // same object -> returns true
         assertTrue(addC1Command.equals(addC1Command));
 
         // same values -> returns true
-        AddConsultCommand addSr1CommandCopy = new AddConsultCommand(c1);
+        AddConsultCommand addSr1CommandCopy = new AddConsultCommand(index, c1);
         assertTrue(addC1Command.equals(addSr1CommandCopy));
 
         // different types -> returns false
@@ -127,12 +144,12 @@ public class AddConsultCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setStudentTAble(ReadOnlyStudent newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyStudent getStudentTAble() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -197,7 +214,7 @@ public class AddConsultCommandTest {
         }
 
         @Override
-        public boolean hasSameDateTiming(Consult consult) {
+        public boolean hasSameDateTime(Consult consult) {
             throw new AssertionError("This method should not be called");
         }
 
@@ -212,8 +229,18 @@ public class AddConsultCommandTest {
         }
 
         @Override
+        public boolean hasTutorialStudent(Tutorial tutorial, Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addTutorial(Tutorial tutorial) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTutorialStudent(Tutorial tutorial, MatricNumber matric) {
+
         }
 
         @Override
@@ -314,7 +341,7 @@ public class AddConsultCommandTest {
         private final Consult consult;
 
         ModelStubWithConsult(Consult consult) {
-            requireNonNull(consult);
+            requireAllNonNull(consult);
             this.consult = consult;
         }
 
@@ -344,13 +371,13 @@ public class AddConsultCommandTest {
         }
 
         @Override
-        public boolean hasSameDateTiming(Consult consult) {
+        public boolean hasSameDateTime(Consult consult) {
             return consultsAdded.stream().anyMatch(consult::timeClash);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyStudent getStudentTAble() {
+            return new StudentTAble();
         }
     }
 }

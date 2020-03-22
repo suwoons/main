@@ -21,7 +21,7 @@ public class StudentCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on StudentTAble level 4</a>
      */
 
     public final Student student;
@@ -33,7 +33,7 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label matricNumber;
     @FXML
     private Label email;
     @FXML
@@ -47,7 +47,7 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
+        matricNumber.setText(student.getMatricNumber().value);
         email.setText(student.getEmail().value);
         remark.setText(student.getRemark().value);
         student.getTags().stream()

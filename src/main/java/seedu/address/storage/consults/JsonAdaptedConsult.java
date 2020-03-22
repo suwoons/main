@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.consult.Consult;
+import seedu.address.model.student.MatricNumber;
+import seedu.address.model.student.Name;
 
 /**
  * Jackson-friendly version of {@link Consult}.
@@ -21,6 +23,8 @@ class JsonAdaptedConsult {
     private final String beginDateTime;
     private final String endDateTime;
     private final String eventLocation;
+    private final String studentName;
+    private final String matricNumber;
 
     /**
      * Constructs a {@code JsonAdaptedConsult} with the given consult details.
@@ -28,10 +32,14 @@ class JsonAdaptedConsult {
     @JsonCreator
     public JsonAdaptedConsult(@JsonProperty("beginDateTime") String beginDateTime,
                               @JsonProperty("endDateTime") String endDateTime,
-                              @JsonProperty("eventLocation") String eventLocation) {
+                              @JsonProperty("eventLocation") String eventLocation,
+                              @JsonProperty("studentName") String studentName,
+                              @JsonProperty("matricNumber") String matricNumber) {
         this.beginDateTime = beginDateTime;
         this.endDateTime = endDateTime;
         this.eventLocation = eventLocation;
+        this.studentName = studentName;
+        this.matricNumber = matricNumber;
     }
 
     /**
@@ -40,7 +48,9 @@ class JsonAdaptedConsult {
     public JsonAdaptedConsult(Consult source) {
         beginDateTime = source.getBeginDateTime().toString();
         endDateTime = source.getEndDateTime().toString();
-        eventLocation = source.getLocation().eventLocation;
+        eventLocation = source.getLocation().toString();
+        studentName = source.getStudentName().toString();
+        matricNumber = source.getMatricNumber().toString();
     }
 
     /**
@@ -74,6 +84,10 @@ class JsonAdaptedConsult {
 
         final Location modelLocation = new Location(eventLocation);
 
-        return new Consult(modelBeginDateTime, modelEndDateTime, modelLocation);
+        final Name modelName = new Name(studentName);
+
+        final MatricNumber modelMatricNum = new MatricNumber(matricNumber);
+
+        return new Consult(modelBeginDateTime, modelEndDateTime, modelLocation, modelName, modelMatricNum);
     }
 }

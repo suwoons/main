@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.model.student.Email;
+import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
@@ -32,7 +32,7 @@ public class EditStudentDescriptorBuilder {
     public EditStudentDescriptorBuilder(Student student) {
         descriptor = new EditStudentDescriptor();
         descriptor.setName(student.getName());
-        descriptor.setPhone(student.getPhone());
+        descriptor.setMatricNumber(student.getMatricNumber());
         descriptor.setEmail(student.getEmail());
         descriptor.setTags(student.getTags());
     }
@@ -46,10 +46,10 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditStudentDescriptor} that we are building.
+     * Sets the {@code MatricNumber} of the {@code EditStudentDescriptor} that we are building.
      */
-    public EditStudentDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditStudentDescriptorBuilder withMatricNumber(String matricNumber) {
+        descriptor.setMatricNumber(new MatricNumber(matricNumber));
         return this;
     }
 

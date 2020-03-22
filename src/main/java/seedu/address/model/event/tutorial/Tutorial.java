@@ -6,9 +6,12 @@ import static seedu.address.commons.util.TutorialUtil.checkStartEndTime;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import seedu.address.model.event.Location;
 import seedu.address.model.mod.ModCode;
+import seedu.address.model.student.MatricNumber;
+import seedu.address.model.student.Student;
 
 /**
  * Represents a Tutorial in TAble.
@@ -21,8 +24,19 @@ public class Tutorial {
     private LocalTime beginTime;
     private LocalTime endTime;
     private Location location;
-    // ArrayList<Student> enrolledStudents;
+    private ArrayList<MatricNumber> enrolledStudents;
+    private ArrayList<ArrayList<Boolean>> studentAttendance;
 
+    /**
+     * Constructor for Tutorial to initialize an empty Tutorial class with no enrolled students, and
+     * empty attendance sheet.
+     * @param modCode Module code of the tutorial
+     * @param tutorialName Name of the tutorial
+     * @param weekday Day of the week that the tutorial takes place
+     * @param beginTime Time that the tutorial begins
+     * @param endTime Time that the tutorial ends
+     * @param location Location of the tutorial
+     */
     public Tutorial(ModCode modCode, TutorialName tutorialName, DayOfWeek weekday,
                     LocalTime beginTime, LocalTime endTime, Location location) {
 
@@ -33,6 +47,27 @@ public class Tutorial {
         this.beginTime = beginTime;
         this.endTime = endTime;
         this.location = location;
+        this.enrolledStudents = new ArrayList<MatricNumber>();
+
+        ArrayList<ArrayList<Boolean>> studentAttendance = new ArrayList<ArrayList<Boolean>>();
+        for (int i = 0; i < 13; i++) {
+            ArrayList<Boolean> week = new ArrayList<Boolean>();
+            studentAttendance.add(week);
+        }
+        this.studentAttendance = studentAttendance;
+    }
+
+    /**
+     * Adds a new student to the list based on the provided {@code matric}
+     * and adds a new row in the attendance sheet for the student for all the weeks, default as false.
+     *
+     */
+    public void setEnrolledStudents(MatricNumber matric) {
+        enrolledStudents.add(matric);
+        for (int i = 0; i < 13; i++) {
+            ArrayList<Boolean> week = studentAttendance.get(i);
+            week.add(false);
+        }
     }
 
     public ModCode getModCode() {
@@ -65,6 +100,23 @@ public class Tutorial {
         return day + " " + beginTime.format(formatter) + "-" + endTime.format(formatter);
     }
 
+    public ArrayList<MatricNumber> getEnrolledStudents() {
+        return enrolledStudents;
+    }
+
+    public ArrayList<ArrayList<Boolean>> getAttendance() {
+        return studentAttendance;
+    }
+
+    /**
+     * Returns the attendance of a tutorial for a specified week
+     * @param week Specified week of attendance to be retrieved
+     * @return ArrayList of attendance represented by Boolean for the specified week
+     */
+    public ArrayList<Boolean> getAttendanceWeek(int week) {
+        return studentAttendance.get(week);
+    }
+
     /**
      * Returns true if both tutorials have the same module and tutorial name fields.
      */
@@ -78,14 +130,15 @@ public class Tutorial {
             return false;
         }
 
+        // same tutorial as long as same modCode and tutorialName
         Tutorial otherTutorial = (Tutorial) other;
         return otherTutorial.getModCode().equals(getModCode())
                 && otherTutorial.getTutorialName().equals(getTutorialName());
     }
 
     /**
-     * Returns true if both consults timing clash, where the beginDateTime of the first consult is after the second
-     * consult or vice versa.
+     * Returns true if both tutorials timing clash, where the tutorials are set in periods
+     * which overlap.
      */
     public boolean timeClash(Object other) {
         if (other == this) {
@@ -96,11 +149,26 @@ public class Tutorial {
             return false;
         }
 
-        Tutorial otherEvent = (Tutorial) other;
-        return !checkStartEndTime(otherEvent.getEndTime(), getBeginTime())
-                || !checkStartEndTime(otherEvent.getBeginTime(), getEndTime());
+        Tutorial otherTutorial = (Tutorial) other;
+        return (!checkStartEndTime(otherTutorial.getBeginTime(), getEndTime())
+                && !checkStartEndTime(getBeginTime(), otherTutorial.getBeginTime()))
+                || (!checkStartEndTime(otherTutorial.getEndTime(), getBeginTime())
+                && !checkStartEndTime(getEndTime(), otherTutorial.getEndTime()));
     }
 
+    /**
+     * Returns true if the other tutorial already contains the specified student.
+     */
+    public boolean tutorialStudentClash(Student student) {
+        boolean hasDuplicateStudent = false;
+        for (MatricNumber matric : this.getEnrolledStudents()) {
+            if (matric.equals(student.getMatricNumber())) {
+                hasDuplicateStudent = true;
+                break;
+            }
+        }
+        return hasDuplicateStudent;
+    }
 
     @Override
     public String toString() {

@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.student.Email;
+import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
@@ -17,19 +17,19 @@ import seedu.address.model.util.SampleDataUtil;
 public class StudentBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_MATRICNUMBER = "A0111111A";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_REMARK = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Phone phone;
+    private MatricNumber matricNumber;
     private Email email;
     private Set<Tag> tags;
     private Remark remark;
 
     public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        matricNumber = new MatricNumber(DEFAULT_MATRICNUMBER);
         email = new Email(DEFAULT_EMAIL);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
@@ -40,7 +40,7 @@ public class StudentBuilder {
      */
     public StudentBuilder(Student studentToCopy) {
         name = studentToCopy.getName();
-        phone = studentToCopy.getPhone();
+        matricNumber = studentToCopy.getMatricNumber();
         email = studentToCopy.getEmail();
         remark = studentToCopy.getRemark();
         tags = new HashSet<>(studentToCopy.getTags());
@@ -63,10 +63,10 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Student} that we are building.
+     * Sets the {@code MatricNumber} of the {@code Student} that we are building.
      */
-    public StudentBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public StudentBuilder withMatricNumber(String matricNumber) {
+        this.matricNumber = new MatricNumber(matricNumber);
         return this;
     }
 
@@ -87,7 +87,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, phone, email, tags, remark);
+        return new Student(name, matricNumber, email, tags, remark);
     }
 
 }

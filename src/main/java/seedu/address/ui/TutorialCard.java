@@ -18,7 +18,7 @@ public class TutorialCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on StudentTAble level 4</a>
      */
 
     public final Tutorial tutorial;
@@ -51,7 +51,7 @@ public class TutorialCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(tutorial.getTutorialName().getTutorialName());
         modCode.setText(tutorial.getModCode().getModCode());
-        tutlocation.setText(tutorial.getLocation().getEventLocation());
+        tutlocation.setText(tutorial.getLocation().toString());
         tutTime.setText(tutorial.getDayAndTime());
         //startTime.setText(tutorial.getStartTime());
         //endTime.setText(tutorial.getEndTime());
