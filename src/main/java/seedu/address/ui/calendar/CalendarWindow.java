@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -15,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ConsultUtil;
+import seedu.address.logic.Logic;
 import seedu.address.model.Model;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.ui.UiPart;
@@ -43,7 +45,7 @@ public class CalendarWindow extends UiPart<Stage> {
     /**
      * Constructs a calendar window with the current month as reference.
      */
-    public CalendarWindow(Stage root, List<Consult> consults) {
+    public CalendarWindow(Stage root, ObservableList<Consult> consults) {
         super(FXML, root);
         this.consults = consults;
         calendarDays = new ArrayList<>();
@@ -56,8 +58,8 @@ public class CalendarWindow extends UiPart<Stage> {
     /**
      * Creates a new CalendarWindow.
      */
-    public CalendarWindow(Model model) {
-        this(new Stage(), model.getConsultTAble().getAllConsults());
+    public CalendarWindow(Logic logic) {
+        this(new Stage(), logic.getFilteredConsultList());
     }
 
     /**
