@@ -48,7 +48,6 @@ DeleteModCommand ..> Mod LOGIC_COLOR_T2
 AddModCommandParser ..> Mod LOGIC_COLOR_T2
 DeleteModCommandParser ..> Mod LOGIC_COLOR_T2
 
-
 show Mod fields
 
 @enduml

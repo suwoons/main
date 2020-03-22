@@ -302,11 +302,14 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 
 
 // tag:tutorial[]
-=== Consult feature
+=== Tutorial feature
+xxx
 
 === Implementation
+xxx
 
 ==== Design Considerations
+xxx
 
 // end:tutorial[]
 
@@ -317,7 +320,7 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 ==== Implementation
 A module can be stored as a Mod object in TAble (renamed due to naming restrictions on Java keywords). The main components are the module code, which is used to identify unique modules, and module name. Mod can also store the user's notes of the module through its description parameter, as well as a set of module links which are relevant to the course.
 
-.Class diagram of 'Mod' feature, displaying only directly related files
+.Class diagram of 'Mod' feature, displaying only directly related classes
 image::ModClassDiagram.png[]
 
 Module links are stored as ModLink objects in TAble. The collection of ModLinks are stored as HashMap<String, ModLink> since each module link can be described differently. This allows for more flexibility in naming the module links, rather than solely using an index based notation.
