@@ -302,11 +302,14 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 
 
 // tag:tutorial[]
-=== Consult feature
+=== Tutorial feature
+xxx
 
 === Implementation
+xxx
 
 ==== Design Considerations
+xxx
 
 // end:tutorial[]
 
