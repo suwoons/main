@@ -79,7 +79,7 @@ image::UiClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `ConsultListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
@@ -100,7 +100,7 @@ link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `AddressBookParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
-.  The command execution can affect the `Model` (e.g. adding a person).
+.  The command execution can affect the `Model` (e.g. adding a student).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -122,12 +122,12 @@ image::ModelClassDiagram.png[]
 The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Address Book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the AddressBook data of Students, and other data sources named as `{component}TAble` e.g. `ModTAble`.
+* exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 [NOTE]
-As a more OOP model, we can store a `Tag` list in `Address Book`, which `Person` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. An example of how such a model may look like is given below. +
+As a more OOP model, we can store a `Tag` list in `Address Book`, which `Student` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Student` needing their own `Tag` object. An example of how such a model may look like is given below. +
  +
 image:BetterModelClassDiagram.png[]
 
@@ -142,7 +142,7 @@ image::StorageClassDiagram.png[]
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the Address Book data in json format and read it back.
+* can save the Address Book and TAble data in json format and read it back.
 
 [[Design-Commons]]
 === Common classes
@@ -245,10 +245,10 @@ _{Explain here how the data encryption feature will be implemented}_
 
 // tag::consult[]
 === Consult feature
-*TAble* allows NUS teaching assistants to track and record all their consultations scheduled with their students.
+*TAble* allows NUS SoC teaching assistants to track and record all their consultations scheduled with their students.
 
 ==== Implementation
-A `consult` class stores all of the relevant information of consults. The class diagram below shows how all the different components interact to allow the consult feature to function. Note that the XConsultCommand and XConsultCommandParser refers to all Consult related commands like add, edit, delete etc.
+A `Consult` class stores all of the relevant information of consults. The class diagram below shows how all the different components interact to allow the consult feature to function. Note that the XYZConsultCommand and XYZConsultCommandParser refers to all Consult related commands like add, edit, delete etc.
 
 .Class diagram of 'Consults' feature
 image::ConsultsCommandClassDiagram.png[]
@@ -256,7 +256,7 @@ image::ConsultsCommandClassDiagram.png[]
 A consultation slot is represented by the `consult` class which contains 5 key attributes, the beginDateTime, endDateTime, location, studentMatricNumber and studentName.
 The beginDateTime and endDateTime attributes are represented using Java's `LocalDateTime` class. The studentMatricNumber and studentName attributes are classes that belong to a certain `Student`. The studentMatricNumber is used to uniquely identify the `Student` involved in the consultation, while the studentName is used in the front end of the application, displayed to the TA.
 
-The `XConsultCommand` class represent classes that extend the abstract class `Command` and allows the TA to add, edit, delete, view and clear consultations added to TAble. These `XConsultCommands` are created by the respective `XConsultCommandParsers`.
+The `XYZConsultCommand` class represent classes that extend the abstract class `Command` and allows the TA to add, edit, delete, view and clear consultations added to TAble. These `XYZConsultCommands` are created by the respective `XYZConsultCommandParsers`.
 
 A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `Consults`. When a `consult` is added to the ConsultTAble, there will first be a check that the `consult` does not already exist in the `UniqueConsultList`.
 
@@ -278,7 +278,7 @@ A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `Consults
 |It may be confusing for the user, as certain command prefixes may share similar initials, such as `tags` and `time`.
 |===
 
-Reason for choosing Alternative 1:  We believe that the user experience will be better  when using more descriptive command prefixes, as the user will not be required to constantly check on the user guide since the command prefixes are intuitive.
+Reason for choosing Alternative 1:  We believe that the user experience will be better when using more descriptive command prefixes, as the user will not be required to constantly check on the user guide since the command prefixes are intuitive.
 
 ===== Consult storing Matric Number and Name
 
@@ -300,6 +300,7 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 
 // end:consult[]
 
+
 // tag:tutorial[]
 === Consult feature
 
@@ -308,6 +309,40 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 ==== Design Considerations
 
 // end:tutorial[]
+
+// tag::module[]
+=== Module feature
+*TAble* allows NUS SoC teaching assistants to track and record all modules that they are teaching.
+
+==== Implementation
+A module can be stored as a Mod object in TAble (renamed due to naming restrictions on Java keywords). The main components are the module code, which is used to identify unique modules, and module name. Mod can also store the user's notes of the module through its description parameter, as well as a set of module links which are relevant to the course.
+
+.Class diagram of 'Mod' feature, displaying only directly related files
+image::ModClassDiagram.png[]
+
+Module links are stored as ModLink objects in TAble. The collection of ModLinks are stored as HashMap<String, ModLink> since each module link can be described differently. This allows for more flexibility in naming the module links, rather than solely using an index based notation.
+
+==== Design Considerations
+
+===== ModLink behaviour
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1: (Current Choice)* Copy link into user's clipboard
+|*Alternative 2 :* Open a new browser page
+
+|*Pros*
+|Allows for easier access and sharing of link.
+|Fast access to module's weblink by directly opening a browser.
+
+|*Cons*
+| User needs to open a browser before accessing link.
+| Very distracting when opening link, as focus changes from TAble to browser unexpectedly (depending on when browser loads).
+|===
+
+Reason for choosing Alternative 1: On a user design perspective, it is less jarring to copy link into the user's clipboard, since the user can choose when they want to access the link and have the flexibility to share the link to others. Additionally, opening a new browser page requires more complicated code that depends on another program.
+
+// end:module[]
 
 === Logging
 
@@ -346,7 +381,7 @@ Refer to the guide <<DevOps#, here>>.
 
 *Target user profile*:
 
-* has a need to manage a significant number of students
+* Is a NUS SoC Teaching Assistant
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
