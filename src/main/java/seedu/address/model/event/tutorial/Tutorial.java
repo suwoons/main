@@ -17,6 +17,7 @@ import seedu.address.model.student.Student;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Tutorial {
+
     private ModCode modCode;
     private TutorialName tutorialName;
     private DayOfWeek weekday;
@@ -142,6 +143,10 @@ public class Tutorial {
         return enrolledStudents;
     }
 
+    public Student getEnrolledStudentAt(int index) {
+        return this.enrolledStudents.get(index);
+    }
+
     public ArrayList<ArrayList<Boolean>> getAttendance() {
         return studentAttendance;
     }
@@ -153,6 +158,35 @@ public class Tutorial {
      */
     public ArrayList<Boolean> getAttendanceWeek(int week) {
         return studentAttendance.get(week);
+    }
+
+    /**
+     * Returns attendance for whole semester of specified student
+     */
+    public ArrayList<Boolean> getAttendanceofStudent(Student student) throws IndexOutOfBoundsException {
+        int index = enrolledStudents.indexOf(student);
+        if (index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        ArrayList<Boolean> attendanceList = new ArrayList<Boolean>();
+        for (ArrayList<Boolean> week : studentAttendance) {
+            attendanceList.add(week.get(index));
+        }
+        return attendanceList;
+    }
+
+    /**
+     * Returns attendance for whole semester of student at given index in tutorial's enrolled students.
+     */
+    public ArrayList<Boolean> getAttendanceofStudent(int index) throws IndexOutOfBoundsException{
+        if (index < 0 || index >= enrolledStudents.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        ArrayList<Boolean> attendanceList = new ArrayList<Boolean>();
+        for (ArrayList<Boolean> week : studentAttendance) {
+            attendanceList.add(week.get(index));
+        }
+        return attendanceList;
     }
 
     /**
