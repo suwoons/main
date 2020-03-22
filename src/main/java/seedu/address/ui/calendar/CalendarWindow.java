@@ -130,4 +130,37 @@ public class CalendarWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
+    /**
+     * Moves the calendar month forward by 1 and repopulates the calendar with the new CalendarDays.
+     */
+    public void nextMonth() {
+        currentYearMonth = currentYearMonth.plusMonths(1);
+        fillDays();
+        fillTitle();
+    }
+
+    /**
+     * JavaFX function to call the next month.
+     */
+    @FXML
+    public void nextMonthFx() {
+        nextMonth();
+    }
+
+    /**
+     * Moves the calendar month backwards by 1 and repopulates the calendar with the new CalendarDays.
+     */
+    public void prevMonth() {
+        currentYearMonth = currentYearMonth.minusMonths(1);
+        fillDays();
+        fillTitle();
+    }
+
+    /**
+     * JavaFX function to call the next month.
+     */
+    @FXML
+    public void prevMonthFx() {
+        prevMonth();
+    }
 }
