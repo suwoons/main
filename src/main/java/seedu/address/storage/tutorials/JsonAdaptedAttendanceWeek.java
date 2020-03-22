@@ -1,11 +1,16 @@
 package seedu.address.storage.tutorials;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.model.event.tutorial.Tutorial;
+
+/**
+ * Jackson-friendly version of an attendance week in {@link Tutorial}.
+ */
 class JsonAdaptedAttendanceWeek {
 
     private final List<Boolean> attendanceWeek = new ArrayList<Boolean>();

@@ -36,7 +36,7 @@ class JsonAdaptedTutorial {
     private final String endTime;
     private final String location;
     private final List<JsonAdaptedStudent> enrolledStudents = new ArrayList<>();
-    private final List<JsonAdaptedAttendanceWeek> studentAttendance = new ArrayList<>();;
+    private final List<JsonAdaptedAttendanceWeek> studentAttendance = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedTutorial} with the given tutorial details.

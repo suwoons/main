@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.event.tutorial.exceptions.DuplicateTutorialException;
 import seedu.address.model.event.tutorial.exceptions.TutorialNotFoundException;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.UniqueStudentList;
 
 /**
  * A list of tutorials that enforces uniqueness between its elements and does not allow nulls.
@@ -94,6 +93,24 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new TutorialNotFoundException();
+        }
+    }
+
+    /**
+     * Removes the equivalent student from the given tutorial.
+     * The tutorial must exist in the list, and the student must exist in the tutorial.
+     */
+    public void deleteTutorialStudent(Tutorial toDeleteFrom, Student student) {
+        requireAllNonNull(toDeleteFrom, student);
+        long matchCount = internalList.stream().filter(toDeleteFrom::equals).count();
+
+        if (matchCount == 1) {
+            internalList.stream().filter(toDeleteFrom::equals).forEach(tut -> tut.removeEnrolledStudent(student));
+        } else if (matchCount == 0) {
+            throw new TutorialNotFoundException();
+        } else {
+            // matchCount > 1
+            throw new DuplicateTutorialException();
         }
     }
 

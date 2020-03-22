@@ -12,7 +12,6 @@ import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 
 /**
@@ -174,6 +173,12 @@ public interface Model {
      * The tutorial must exist in TAble.
      */
     void deleteTutorial(Tutorial target);
+
+    /**
+     * Deletes the given student from  the given tutorial.
+     * {@code toDeleteFrom} and {@code target} must already exist in TutorialTAble.
+     */
+    void deleteTutorialStudent(Tutorial toDeleteFrom, Student target);
 
     /** Returns an unmodifiable view of the filtered tutorial list */
     ObservableList<Tutorial> getFilteredTutorialList();

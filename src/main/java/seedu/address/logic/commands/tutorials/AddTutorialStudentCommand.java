@@ -67,7 +67,7 @@ public class AddTutorialStudentCommand extends Command {
         }
 
         model.addTutorialStudent(tutorialToAddTo, studentToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd.getName(),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd.getName().fullName,
                 tutorialToAddTo.getModCode().toString(), tutorialToAddTo.getTutorialName()));
     }
 }

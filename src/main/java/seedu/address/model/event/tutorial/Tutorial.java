@@ -3,7 +3,6 @@ package seedu.address.model.event.tutorial;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.commons.util.TutorialUtil.checkStartEndTime;
 
-import java.lang.reflect.Array;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -85,15 +84,27 @@ public class Tutorial {
     }
 
     /**
-     * Adds a new student to the list based on the provided {@code matric}
-     * and adds a new row in the attendance sheet for the student for all the weeks, default as false.
-     *
+     * Adds a new {@code student} to the tutorial,
+     * and adds a new row in the attendance sheet for the student for all the weeks, default as false (ie. absent).
      */
     public void setEnrolledStudents(Student student) {
         enrolledStudents.add(student);
         for (int i = 0; i < 13; i++) {
             ArrayList<Boolean> week = studentAttendance.get(i);
             week.add(false);
+        }
+    }
+
+    /**
+     * Removes given {@code student} from the tutorial
+     * and removes the row in the attendance sheet corresponding to the student for all the weeks.
+     */
+    public void removeEnrolledStudent(Student student) {
+        int targetIndex = enrolledStudents.indexOf(student);
+        enrolledStudents.remove(student);
+        for (int i = 0; i < 13; i++) {
+            ArrayList<Boolean> week = studentAttendance.get(i);
+            week.remove(targetIndex);
         }
     }
 
