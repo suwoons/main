@@ -297,6 +297,11 @@ public class AddTutorialCommandTest {
         }
 
         @Override
+        public void setMod(Mod target, Mod editedMod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Mod> getFilteredModList() {
             throw new AssertionError("This method should not be called.");
         }
