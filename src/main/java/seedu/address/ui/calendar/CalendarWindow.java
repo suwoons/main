@@ -174,6 +174,8 @@ public class CalendarWindow extends UiPart<Stage> {
      *
      */
     public void addAllConsults(CalendarDay calendarDay, LocalDate calendarDate) {
+        //Remove all consults to restart the count.
+        calendarDay.removeConsults();
         for (Consult consult : consults) {
             if (ConsultUtil.isSameDate(consult.getBeginDateTime(), calendarDate)) {
                 calendarDay.addConsult(consult);

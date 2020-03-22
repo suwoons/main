@@ -64,6 +64,13 @@ public class CalendarDay extends UiPart<Region> {
     }
 
     /**
+     *
+     */
+    public void removeConsults() {
+        consults.clear();
+    }
+
+    /**
      * Updates the number of consults on this CalendarDay.
      */
     public void updateNumConsults() {
