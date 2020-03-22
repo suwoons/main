@@ -248,17 +248,17 @@ _{Explain here how the data encryption feature will be implemented}_
 *TAble* allows NUS teaching assistants to track and record all their consultations scheduled with their students.
 
 ==== Implementation
-A `Consult` class stores all of the relevant information of consults. The class diagram below shows how all the different components interact to allow the consult feature to function. Note that the XConsultCommand and XConsultCommandParser refers to all Consult related commands like add, edit, delete etc.
+A `consult` class stores all of the relevant information of consults. The class diagram below shows how all the different components interact to allow the consult feature to function. Note that the XConsultCommand and XConsultCommandParser refers to all Consult related commands like add, edit, delete etc.
 
 .Class diagram of 'Consults' feature
 image::ConsultsCommandClassDiagram.png[]
 
-A consultation slot is represented by the `Consult` class which contains 5 key attributes, the beginDateTime, endDateTime, location, studentMatricNumber and studentName.
+A consultation slot is represented by the `consult` class which contains 5 key attributes, the beginDateTime, endDateTime, location, studentMatricNumber and studentName.
 The beginDateTime and endDateTime attributes are represented using Java's `LocalDateTime` class. The studentMatricNumber and studentName attributes are classes that belong to a certain `Student`. The studentMatricNumber is used to uniquely identify the `Student` involved in the consultation, while the studentName is used in the front end of the application, displayed to the TA.
 
 The `XConsultCommand` class represent classes that extend the abstract class `Command` and allows the TA to add, edit, delete, view and clear consultations added to TAble. These `XConsultCommands` are created by the respective `XConsultCommandParsers`.
 
-A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `Consults`. When a `Consult` is added to the ConsultTAble, there will first be a check that the `Consult` does not already exist in the `UniqueConsultList`.
+A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `Consults`. When a `consult` is added to the ConsultTAble, there will first be a check that the `consult` does not already exist in the `UniqueConsultList`.
 
 ==== Design Considerations
 
@@ -288,15 +288,15 @@ Reason for choosing Alternative 1:  We believe that the user experience will be 
 |*Alternative 2 :* Make the consult store the entire Student class that is attending the consult.
 
 |*Pros*
-|It is easier to implement and coupling will be reduced as `Student` will not be directly related to the `Consult` class.
-|It is easier to visualise as the entire `Student` related to the `Consult` will be stored.
+|It is easier to implement and coupling will be reduced as `Student` will not be directly related to the `consult` class.
+|It is easier to visualise as the entire `Student` related to the `consult` will be stored.
 
 |*Cons*
-|It is not as intuitive as currently, the `Consult` class only stores certain attributes of the `Student` that is attending the `Consult`.
+|It is not as intuitive as currently, the `consult` class only stores certain attributes of the `Student` that is attending the `consult`.
 |It will be harder to test due to the high degree of coupling.
 |===
 
-Reason for choosing Alternative 1: Due to the time constraint of this project, our group has decided to choose alternative 1, as it not only reduces coupling, but is sufficient for us to uniquely identify the `Student` participating in the `Consult` as the `MatricNumber` would be unique.
+Reason for choosing Alternative 1: Due to the time constraint of this project, our group has decided to choose alternative 1, as it not only reduces coupling, but is sufficient for us to uniquely identify the `Student` participating in the `consult` as the `MatricNumber` would be unique.
 
 // end:consult[]
 
