@@ -139,6 +139,9 @@ public class TutorialBuilder {
         return this;
     }
 
+    /**
+     * Builds and returns a {@code Tutorial} object from a {@code TutorialBuilder} object
+     */
     public Tutorial build() {
         Tutorial builtTutorial = new Tutorial(modCode, tutorialName, day, beginTime, endTime, location);
         for (Student student : enrolledStudents) {

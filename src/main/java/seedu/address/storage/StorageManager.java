@@ -14,10 +14,6 @@ import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.reminder.ReadOnlyReminder;
-import seedu.address.storage.consults.ConsultStorage;
-import seedu.address.storage.mods.ModStorage;
-import seedu.address.storage.reminders.ReminderStorage;
-import seedu.address.storage.tutorials.TutorialStorage;
 
 /**
  * Manages storage of StudentTAble data in local storage.

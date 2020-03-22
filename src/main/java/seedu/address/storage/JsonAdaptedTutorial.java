@@ -1,4 +1,4 @@
-package seedu.address.storage.tutorials;
+package seedu.address.storage;
 
 import java.time.DateTimeException;
 import java.time.DayOfWeek;
@@ -17,7 +17,6 @@ import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.TutorialName;
 import seedu.address.model.mod.ModCode;
 import seedu.address.model.student.Student;
-import seedu.address.storage.JsonAdaptedStudent;
 
 /**
  * Jackson-friendly version of {@link Tutorial}.

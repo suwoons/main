@@ -1,4 +1,4 @@
-package seedu.address.storage.reminders;
+package seedu.address.storage;
 
 import static java.util.Objects.requireNonNull;
 

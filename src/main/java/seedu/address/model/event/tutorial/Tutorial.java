@@ -178,7 +178,7 @@ public class Tutorial {
     /**
      * Returns attendance for whole semester of student at given index in tutorial's enrolled students.
      */
-    public ArrayList<Boolean> getAttendanceofStudent(int index) throws IndexOutOfBoundsException{
+    public ArrayList<Boolean> getAttendanceofStudent(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= enrolledStudents.size()) {
             throw new IndexOutOfBoundsException();
         }

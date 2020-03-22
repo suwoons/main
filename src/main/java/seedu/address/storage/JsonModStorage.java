@@ -1,4 +1,4 @@
-package seedu.address.storage.mods;
+package seedu.address.storage;
 
 import static java.util.Objects.requireNonNull;
 
@@ -19,7 +19,7 @@ import seedu.address.model.mod.ReadOnlyMod;
  */
 public class JsonModStorage implements ModStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(seedu.address.storage.mods.JsonModStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(seedu.address.storage.JsonModStorage.class);
 
     private Path filePath;
 
