@@ -16,7 +16,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ConsultUtil;
-import seedu.address.logic.Logic;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.ui.UiPart;
 
@@ -57,8 +56,8 @@ public class CalendarWindow extends UiPart<Stage> {
     /**
      * Creates a new CalendarWindow.
      */
-    public CalendarWindow(Logic logic) {
-        this(new Stage(), logic.getFilteredConsultList());
+    public CalendarWindow(ObservableList<Consult> consults) {
+        this(new Stage(), consults);
     }
 
     /**
