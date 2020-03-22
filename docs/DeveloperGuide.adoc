@@ -300,6 +300,14 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 
 // end:consult[]
 
+// tag:tutorial[]
+=== Consult feature
+
+=== Implementation
+
+==== Design Considerations
+
+// end:tutorial[]
 
 === Logging
 
