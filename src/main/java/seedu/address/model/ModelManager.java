@@ -316,6 +316,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setMod(Mod target, Mod editedMod) {
+        requireAllNonNull(target, editedMod);
+        modTAble.setMod(target, editedMod);
+    }
+
+    @Override
     public ObservableList<Mod> getFilteredModList() {
         return filteredMods;
     }
