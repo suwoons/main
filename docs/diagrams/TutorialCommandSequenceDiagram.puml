@@ -73,4 +73,5 @@ deactivate AddTutorialCommand
 
 [<--LogicManager
 deactivate LogicManager
+
 @enduml

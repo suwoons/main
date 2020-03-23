@@ -17,7 +17,8 @@ import seedu.address.model.student.Student;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Tutorial {
-    private final static int NUM_OF_WEEKS = 13;
+
+    public static final int NUM_OF_WEEKS = 13;
 
     private ModCode modCode;
     private TutorialName tutorialName;
