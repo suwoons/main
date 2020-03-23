@@ -82,7 +82,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        calendarWindow = new CalendarWindow(logic.getFilteredConsultList());
+        calendarWindow = new CalendarWindow(logic.getFilteredConsultList(), logic.getFilteredTutorialList());
     }
 
     public Stage getPrimaryStage() {
