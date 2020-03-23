@@ -16,7 +16,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ConsultUtil;
+import seedu.address.commons.util.TutorialUtil;
 import seedu.address.model.event.consult.Consult;
+import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.ui.UiPart;
 
 /**
@@ -39,13 +41,15 @@ public class CalendarWindow extends UiPart<Stage> {
     private List<CalendarDay> calendarDays;
     private YearMonth currentYearMonth;
     private List<Consult> consults;
+    private List<Tutorial> tutorials;
 
     /**
      * Constructs a calendar window with the current month as reference.
      */
-    public CalendarWindow(Stage root, ObservableList<Consult> consults) {
+    public CalendarWindow(Stage root, ObservableList<Consult> consults, ObservableList<Tutorial> tutorials) {
         super(FXML, root);
         this.consults = consults;
+        this.tutorials = tutorials;
         calendarDays = new ArrayList<>();
         currentYearMonth = YearMonth.now();
         createUi();
@@ -56,8 +60,8 @@ public class CalendarWindow extends UiPart<Stage> {
     /**
      * Creates a new CalendarWindow.
      */
-    public CalendarWindow(ObservableList<Consult> consults) {
-        this(new Stage(), consults);
+    public CalendarWindow(ObservableList<Consult> consults, ObservableList<Tutorial> tutorials) {
+        this(new Stage(), consults, tutorials);
     }
 
     /**
@@ -92,7 +96,9 @@ public class CalendarWindow extends UiPart<Stage> {
             calendarDayStackPane.getChildren().add(dateText);
             calendarDay.setDate(calendarDate);
             addAllConsults(calendarDay, calendarDate);
+            addAllTutorials(calendarDay, calendarDate);
             calendarDay.updateNumConsults();
+            calendarDay.updateNumTutorials();
             calendarDate = calendarDate.plusDays(1);
         }
     }
@@ -171,14 +177,28 @@ public class CalendarWindow extends UiPart<Stage> {
     }
 
     /**
-     *
+     * Adds all the consultations on the {@Code calendarDate} to the {@Code calendarDay}.
      */
     public void addAllConsults(CalendarDay calendarDay, LocalDate calendarDate) {
         //Remove all consults to restart the count.
         calendarDay.removeConsults();
         for (Consult consult : consults) {
-            if (ConsultUtil.isSameDate(consult.getBeginDateTime(), calendarDate)) {
+            if (ConsultUtil.checkSameDate(consult.getBeginDateTime(), calendarDate)) {
                 calendarDay.addConsult(consult);
+                logger.fine("Same date detected.");
+            }
+        }
+    }
+
+    /**
+     * Adds all the tutorials on the {@Code calendarDate} to the {@Code calendarDay}.
+     */
+    public void addAllTutorials(CalendarDay calendarDay, LocalDate calendarDate) {
+        //Remove all tutorials to restart the count.
+        calendarDay.removeTutorials();
+        for (Tutorial tutorial : tutorials) {
+            if (TutorialUtil.checkDayOfWeek(tutorial.getDay(), calendarDate)) {
+                calendarDay.addTutorial(tutorial);
                 logger.fine("Same date detected.");
             }
         }

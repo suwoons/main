@@ -15,6 +15,8 @@ public class Messages {
             + "after the End Date Time of the consult.";
     public static final String MESSAGE_CONSULT_TIMING_CLASH = "This consult's timing clash with another pre-existing"
             + " consult.";
+    public static final String MESSAGE_CONSULT_DIFFERENT_DATE = "The start and end date of the consult is different.";
+
 
     public static final String MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX = "The tutorial index provided is invalid.";
     public static final String MESSAGE_INVALID_TUTORIAL_STUDENT_INDEX = "The student index provided is invalid.";
