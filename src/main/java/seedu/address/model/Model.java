@@ -216,6 +216,13 @@ public interface Model {
      */
     void deleteMod(Mod mod);
 
+    /**
+     * Replaces the given module {@code target} with {@code editedMod}.
+     * {@code target} must exist in the address book.
+     * The module identity of {@code editedMod} must not be the same as another existing Mod in Table.
+     */
+    void setMod(Mod target, Mod editedMod);
+
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Mod> getFilteredModList();
 
