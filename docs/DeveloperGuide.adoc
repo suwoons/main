@@ -301,11 +301,20 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 // end:consult[]
 
 // tag:tutorial[]
-=== Consult feature
+
+=== Tutorial feature
+*TAble* allows NUS teaching assistants to track and record all the tutorials they are teaching, and maintain details of the tutorial, such as the module it is under, start and end time of the tutorial, and the location it is held.
+Tutorials in *TAble* also allow teaching assistants to enroll students in a tutorial and mark their attendance for every week of the semester, and allows for convenient referencing (particularly when there's a pandemic and contact tracing is critical).
 
 === Implementation
+.Sequence diagram for the command to add a tutorial
+image::AddTutorialCommandSequenceDiagram.png[]
 
 ==== Design Considerations
+As a `tutorial` in TAble should be able to keep track of enrolled students and mark their attendance, the `tutorial` object will have to contain a list of `Student` objects (ie. the enrolled students).
+However, a `Student` object does not contain the attribute of whether they are present or not for a particular `tutorial`, as that is the responsibility of the `tutorial` to keep track, not the `Student` 's.
+Thus, to navigate this and implement the attendance feature in `tutorial`, each `tutorial` maintains a separate nested list of booleans. The student attendance sheet thus comprises of a list of 13 lists of booleans, to represent each week of a typical NUS school semester, and the size in each of the nested lists corresponds to the number of enrolled students.
+This hence allows attendance of a `Student` to be easily reference and marked in a `tutorial` without requiring the `Student` to be privy to that information, and allows for convenient retrieval of attendance by week or by student.
 
 // end:tutorial[]
 

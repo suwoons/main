@@ -17,6 +17,7 @@ import seedu.address.model.student.Student;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Tutorial {
+    private final static int NUM_OF_WEEKS = 13;
 
     private ModCode modCode;
     private TutorialName tutorialName;
@@ -50,7 +51,7 @@ public class Tutorial {
         this.enrolledStudents = new ArrayList<Student>();
 
         ArrayList<ArrayList<Boolean>> studentAttendance = new ArrayList<ArrayList<Boolean>>();
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < NUM_OF_WEEKS; i++) {
             ArrayList<Boolean> week = new ArrayList<Boolean>();
             studentAttendance.add(week);
         }
@@ -103,7 +104,7 @@ public class Tutorial {
     public void removeEnrolledStudent(Student student) {
         int targetIndex = enrolledStudents.indexOf(student);
         enrolledStudents.remove(student);
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < NUM_OF_WEEKS; i++) {
             ArrayList<Boolean> week = studentAttendance.get(i);
             week.remove(targetIndex);
         }
