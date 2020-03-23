@@ -223,6 +223,10 @@ public class Tutorial {
         }
 
         Tutorial otherTutorial = (Tutorial) other;
+        if (!otherTutorial.getDay().equals(getDay())) {
+            return false;
+        }
+
         return (!checkStartEndTime(otherTutorial.getBeginTime(), getEndTime())
                 && !checkStartEndTime(getBeginTime(), otherTutorial.getBeginTime()))
                 || (!checkStartEndTime(otherTutorial.getEndTime(), getBeginTime())

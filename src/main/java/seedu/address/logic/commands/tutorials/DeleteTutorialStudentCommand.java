@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.tutorials;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TUTORIAL_STUDENT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_INDEX;
 
@@ -63,7 +64,7 @@ public class DeleteTutorialStudentCommand extends Command {
             return new CommandResult(String.format(MESSAGE_DELETE_TUTORIAL_STUDENT_SUCCESS, toDelete.getName().fullName,
                     tutorialToDeleteFrom.getModCode(), tutorialToDeleteFrom.getTutorialName()));
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException("Student index out of bounds!");
+            throw new CommandException(MESSAGE_INVALID_TUTORIAL_STUDENT_INDEX);
         }
     }
 }
