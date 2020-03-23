@@ -100,7 +100,7 @@
                                  <content>
                                     <VBox>
                                        <children>
-                                          <StackPane minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" />
+                                          <StackPane fx:id="attendanceListPanelPlaceholder" minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" />
                                        </children></VBox>
                                  </content>
                               </Tab>

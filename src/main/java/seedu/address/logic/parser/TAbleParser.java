@@ -52,6 +52,7 @@ import seedu.address.logic.parser.tutorials.AddTutorialCommandParser;
 import seedu.address.logic.parser.tutorials.AddTutorialStudentCommandParser;
 import seedu.address.logic.parser.tutorials.DeleteTutorialCommandParser;
 import seedu.address.logic.parser.tutorials.DeleteTutorialStudentCommandParser;
+import seedu.address.logic.parser.tutorials.ListTutorialCommandParser;
 import seedu.address.logic.parser.tutorials.MarkAbsentCommandParser;
 import seedu.address.logic.parser.tutorials.MarkPresentCommandParser;
 
@@ -147,7 +148,7 @@ public class TAbleParser {
             return new DeleteTutorialCommandParser().parse(arguments);
 
         case ListTutorialCommand.COMMAND_WORD:
-            return new ListTutorialCommand();
+            return new ListTutorialCommandParser().parse(arguments);
 
         // ======================================== Mod Commands ==================================
 

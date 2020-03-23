@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.event.tutorial.Tutorial;
+
 /**
  * Represents the result of a command execution.
  */
@@ -20,6 +22,11 @@ public class CommandResult {
     /** The application should show the calendar. */
     private final boolean showCalendar;
 
+    /** The application should show the relevant attendance list for specified tutorial and week */
+    private final boolean showAttendance;
+    private final Tutorial tutorialToShow;
+    private final int weekZeroBased;
+
     /**
      * Constructs a {@code CommandResult} for a calendar command.
      */
@@ -28,6 +35,22 @@ public class CommandResult {
         this.showCalendar = showCalendar;
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showAttendance = false;
+        this.tutorialToShow = null;
+        this.weekZeroBased = 0;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} for a ListTutorial command.
+     */
+    public CommandResult(String feedbackToUser, Tutorial tutorial, int weekZeroBased) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showCalendar = false;
+        this.showHelp = false;
+        this.exit = false;
+        this.showAttendance = true;
+        this.tutorialToShow = tutorial;
+        this.weekZeroBased = weekZeroBased;
     }
 
     /**
@@ -38,6 +61,9 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.showCalendar = false;
+        this.showAttendance = false;
+        this.tutorialToShow = null;
+        this.weekZeroBased = 0;
     }
 
     /**
@@ -52,6 +78,14 @@ public class CommandResult {
         return feedbackToUser;
     }
 
+    public Tutorial getTutorialToShow() {
+        return tutorialToShow;
+    }
+
+    public int getWeekZeroBased() {
+        return weekZeroBased;
+    }
+
     public boolean isShowHelp() {
         return showHelp;
     }
@@ -62,6 +96,10 @@ public class CommandResult {
 
     public boolean isShowCalendar() {
         return showCalendar;
+    }
+
+    public boolean isShowAttendance() {
+        return showAttendance;
     }
 
     @Override
@@ -78,12 +116,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
+                && showCalendar == otherCommandResult.showCalendar
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, showCalendar, exit);
     }
 
 }
