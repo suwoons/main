@@ -27,6 +27,7 @@ import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
+import seedu.address.model.reminder.Description;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.student.Student;
@@ -65,7 +66,7 @@ public class AddReminderCommandTest {
 
     @Test
     public void equals() throws ParseException {
-        Reminder r1 = new ReminderBuilder().withDescription("Email T03 tutorial 4 solutions.").build();
+        Reminder r1 = new ReminderBuilder().withDescription(new Description("Email T03 tutorial 4 solutions.")).build();
         Reminder r2 = new ReminderBuilder().withDate("2020-03-25").withTime("14:00").build();
 
         AddReminderCommand addR1Command = new AddReminderCommand(r1);

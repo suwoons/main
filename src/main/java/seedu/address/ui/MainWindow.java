@@ -40,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private TutorialListPanel tutorialListPanel;
     private ConsultListPanel consultListPanel;
     private ModListPanel modListPanel;
+    private ReminderListPanel reminderListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -58,6 +59,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane modListPanelPlaceholder;
+
+    @FXML
+    private StackPane reminderListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -134,6 +138,9 @@ public class MainWindow extends UiPart<Stage> {
 
         modListPanel = new ModListPanel(logic.getFilteredModList());
         modListPanelPlaceholder.getChildren().add(modListPanel.getRoot());
+
+        reminderListPanel = new ReminderListPanel(logic.getFilteredReminderList());
+        reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
