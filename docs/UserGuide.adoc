@@ -297,32 +297,6 @@ Marks only student at index 2 (for tutorial at index 3) as absent in week 7 for 
 * `markAbsent tutorialIndex/3 week/7 student/all` +
 Marks all students in week 7 as absent in tutorial at index 3 (oh no!)
 
-=== Display attendance list for a tutorial: `listAttendance`
-
-Displays the attendance list for a tutorial for a specified week. +
-Format: `listAttendance tutorialIndex/INDEX week/WEEK`
-
-****
-* Shows the attendance for tutorial at the specified `INDEX`, for the specified 'WEEK'
-* The index refers to the index number shown in the displayed tutorial list.
-* The index and week *must be a positive integer* 1, 2, 3, ...
-* The integer for week has to be in the range 1-13 (inclusive).
-****
-
-Example:
-
-* `listAttendance tutorialIndex/2 week/7` +
-Displays the attendance list for tutorial at index 2 on week 7
-
-=== List all tutorials: `listTutorial`
-
-Lists all the tutorials that the TA is teaching for the particular semester on TAble. +
-Format: `listTutorial`
-
-****
-* May be referred to to obtain the index of a particular tutorial
-****
-
 === Add student to tutorial: `addTutorialStudent`
 
 Enroll an existing student to an existing tutorial.

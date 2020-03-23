@@ -115,6 +115,22 @@ public class TutorialTAble implements ReadOnlyTutorial {
     }
 
     /**
+     * Marks {@code studentToMark} in {@code tutorialToMark} as present in {@code week}.
+     * {@code tutorialToMark} must exist in the Tutorial TAble, and {@code studentToMark} must exist in the tutorial.
+     */
+    public void markPresent(Tutorial tutorialToMark, Student studentToMark, int week) {
+        tutorials.markPresent(tutorialToMark, studentToMark, week);
+    }
+
+    /**
+     * Marks {@code studentToMark} in {@code tutorialToMark} as absent in {@code week}.
+     * {@code tutorialToMark} must exist in the Tutorial TAble, and {@code studentToMark} must exist in the tutorial.
+     */
+    public void markAbsent(Tutorial tutorialToMark, Student studentToMark, int week) {
+        tutorials.markAbsent(tutorialToMark, studentToMark, week);
+    }
+
+    /**
      * Returns {@code tutorial} from {@code TAble}.
      * {@code tutorial} must exist in the address book.
      */
