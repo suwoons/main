@@ -24,6 +24,7 @@ import seedu.address.logic.commands.consults.ListConsultCommand;
 import seedu.address.logic.commands.mods.AddModCommand;
 import seedu.address.logic.commands.mods.DeleteModCommand;
 import seedu.address.logic.commands.mods.ListModCommand;
+import seedu.address.logic.commands.mods.NoteModCommand;
 import seedu.address.logic.commands.reminders.AddReminderCommand;
 import seedu.address.logic.commands.reminders.DeleteReminderCommand;
 import seedu.address.logic.commands.reminders.DoneReminderCommand;
@@ -40,6 +41,7 @@ import seedu.address.logic.parser.consults.EditConsultCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.mods.AddModCommandParser;
 import seedu.address.logic.parser.mods.DeleteModCommandParser;
+import seedu.address.logic.parser.mods.NoteModCommandParser;
 import seedu.address.logic.parser.reminders.AddReminderCommandParser;
 import seedu.address.logic.parser.reminders.DeleteReminderCommandParser;
 import seedu.address.logic.parser.reminders.DoneReminderCommandParser;
@@ -103,6 +105,8 @@ public class TAbleParser {
         case RemarkCommand.COMMAND_WORD:
             return new RemarkCommandParser().parse(arguments);
 
+        // ======================================== Consult Commands ==============================
+
         case AddConsultCommand.COMMAND_WORD:
             return new AddConsultCommandParser().parse(arguments);
 
@@ -117,6 +121,8 @@ public class TAbleParser {
 
         case ClearConsultCommand.COMMAND_WORD:
             return new ClearConsultCommand();
+
+        // ======================================== Tutorial Commands =============================
 
         case AddTutorialCommand.COMMAND_WORD:
             return new AddTutorialCommandParser().parse(arguments);
@@ -133,6 +139,8 @@ public class TAbleParser {
         case ListTutorialCommand.COMMAND_WORD:
             return new ListTutorialCommand();
 
+        // ======================================== Mod Commands ==================================
+
         case AddModCommand.COMMAND_WORD:
             return new AddModCommandParser().parse(arguments);
 
@@ -141,6 +149,11 @@ public class TAbleParser {
 
         case ListModCommand.COMMAND_WORD:
             return new ListModCommand();
+
+        case NoteModCommand.COMMAND_WORD:
+            return new NoteModCommandParser().parse(arguments);
+
+        // ======================================== Reminder Commands =============================
 
         case AddReminderCommand.COMMAND_WORD:
             return new AddReminderCommandParser().parse(arguments);
@@ -153,6 +166,8 @@ public class TAbleParser {
 
         case EditReminderCommand.COMMAND_WORD:
             return new EditReminderCommandParser().parse(arguments);
+
+        // ======================================== Calendar Commands =============================
 
         case CalendarCommand.COMMAND_WORD:
             return new CalendarCommand();
