@@ -61,7 +61,7 @@ public class CalendarWindow extends UiPart<Stage> {
      * Creates a new CalendarWindow.
      */
     public CalendarWindow(ObservableList<Consult> consults, ObservableList<Tutorial> tutorials) {
-        this(new Stage(), consults,tutorials);
+        this(new Stage(), consults, tutorials);
     }
 
     /**

@@ -21,10 +21,11 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.consult.Consult;
+import seedu.address.model.student.MatricNumber;
+import seedu.address.model.student.Name;
 
 /**
  * Edits the details of an existing consult in TAble.
@@ -94,13 +95,14 @@ public class EditConsultCommand extends Command {
      */
     private static Consult createEditedConsult(Consult consultToEdit, EditConsultDescriptor editConsultDescriptor)
             throws CommandException {
+
         assert consultToEdit != null;
 
         LocalDateTime updatedBeginStartTime = editConsultDescriptor.getBeginDateTime()
                 .orElse(consultToEdit.getBeginDateTime());
+
         LocalDateTime updatedEndStartTime = editConsultDescriptor.getEndDateTime()
                 .orElse(consultToEdit.getEndDateTime());
-        Location updatedLocation = editConsultDescriptor.getLocation().orElse(consultToEdit.getLocation());
 
         if (!checkStartEndDateTime(updatedBeginStartTime, updatedEndStartTime)) {
             throw new CommandException(MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME);
@@ -110,7 +112,12 @@ public class EditConsultCommand extends Command {
             throw new CommandException(MESSAGE_CONSULT_DIFFERENT_DATE);
         }
 
-        return new Consult(updatedBeginStartTime, updatedEndStartTime, updatedLocation);
+        Location updatedLocation = editConsultDescriptor.getLocation().orElse(consultToEdit.getLocation());
+        MatricNumber studentMatricNumber = consultToEdit.getMatricNumber();
+        Name studentName = consultToEdit.getStudentName();
+
+        return new Consult(updatedBeginStartTime, updatedEndStartTime,
+            updatedLocation, studentName, studentMatricNumber);
     }
 
     @Override

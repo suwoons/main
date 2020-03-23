@@ -73,8 +73,9 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyConsult getSampleConsults() {
-        LocalDateTime startDateTime = LocalDateTime.now();
-        LocalDateTime endDateTime = LocalDateTime.now().plusHours(3);
+        LocalDateTime startDateTime = LocalDateTime.parse("2020-04-03 10:00",
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        LocalDateTime endDateTime = startDateTime.plusHours(3);
         Location location = new Location("SR1");
         Name studentName = new Name("Alex Yeoh");
         MatricNumber matricNumber = new MatricNumber("A0187596R");
