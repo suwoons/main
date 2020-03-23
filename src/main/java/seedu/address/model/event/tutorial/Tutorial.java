@@ -18,6 +18,8 @@ import seedu.address.model.student.Student;
  */
 public class Tutorial {
 
+    public static final int NUM_OF_WEEKS = 13;
+
     private ModCode modCode;
     private TutorialName tutorialName;
     private DayOfWeek weekday;
@@ -50,7 +52,7 @@ public class Tutorial {
         this.enrolledStudents = new ArrayList<Student>();
 
         ArrayList<ArrayList<Boolean>> studentAttendance = new ArrayList<ArrayList<Boolean>>();
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < NUM_OF_WEEKS; i++) {
             ArrayList<Boolean> week = new ArrayList<Boolean>();
             studentAttendance.add(week);
         }
@@ -103,7 +105,7 @@ public class Tutorial {
     public void removeEnrolledStudent(Student student) {
         int targetIndex = enrolledStudents.indexOf(student);
         enrolledStudents.remove(student);
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < NUM_OF_WEEKS; i++) {
             ArrayList<Boolean> week = studentAttendance.get(i);
             week.remove(targetIndex);
         }
@@ -222,6 +224,10 @@ public class Tutorial {
         }
 
         Tutorial otherTutorial = (Tutorial) other;
+        if (!otherTutorial.getDay().equals(getDay())) {
+            return false;
+        }
+
         return (!checkStartEndTime(otherTutorial.getBeginTime(), getEndTime())
                 && !checkStartEndTime(getBeginTime(), otherTutorial.getBeginTime()))
                 || (!checkStartEndTime(otherTutorial.getEndTime(), getBeginTime())

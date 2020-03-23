@@ -112,7 +112,7 @@ public class AddTutorialCommandTest {
 
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that has all of the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -392,6 +392,11 @@ public class AddTutorialCommandTest {
         @Override
         public boolean hasSameTiming(Tutorial tutorial) {
             return tutorialsAdded.stream().anyMatch(tutorial::timeClash);
+        }
+
+        @Override
+        public boolean hasMod(Mod mod) {
+            return true;
         }
 
         @Override
