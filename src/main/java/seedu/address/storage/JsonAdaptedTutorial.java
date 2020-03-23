@@ -1,9 +1,12 @@
-package seedu.address.storage.tutorials;
+package seedu.address.storage;
 
 import java.time.DateTimeException;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,14 +16,15 @@ import seedu.address.model.event.Location;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.TutorialName;
 import seedu.address.model.mod.ModCode;
+import seedu.address.model.student.Student;
 
 /**
  * Jackson-friendly version of {@link Tutorial}.
  */
 
-public class JsonAdaptedTutorial {
+class JsonAdaptedTutorial {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tutorial's %s field is missing!";
+    private static final String MISSING_FIELD_MESSAGE_FORMAT = "Tutorial's %s field is missing!";
     private static final String INVALID_TIME_FORMAT = "Invalid time format!";
     private static final String INVALID_DAY_FORMAT = "Invalid day format!";
 
@@ -30,6 +34,8 @@ public class JsonAdaptedTutorial {
     private final String beginTime;
     private final String endTime;
     private final String location;
+    private final List<JsonAdaptedStudent> enrolledStudents = new ArrayList<>();
+    private final List<JsonAdaptedAttendanceWeek> studentAttendance = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedTutorial} with the given tutorial details.
@@ -40,13 +46,21 @@ public class JsonAdaptedTutorial {
                               @JsonProperty("weekday") String weekday,
                               @JsonProperty("beginTime") String beginTime,
                               @JsonProperty("endTime") String endTime,
-                              @JsonProperty("location") String location) {
+                              @JsonProperty("location") String location,
+                               @JsonProperty("enrolledStudents") List<JsonAdaptedStudent> enrolledStudents,
+                               @JsonProperty("studentAttendance") List<JsonAdaptedAttendanceWeek> studentAttendance) {
         this.moduleCode = moduleCode;
         this.tutorialName = tutorialName;
         this.weekday = weekday;
         this.beginTime = beginTime;
         this.endTime = endTime;
         this.location = location;
+        if (enrolledStudents != null) {
+            this.enrolledStudents.addAll(enrolledStudents);
+        }
+        if (studentAttendance != null) {
+            this.studentAttendance.addAll(studentAttendance);
+        }
     }
 
     /**
@@ -59,6 +73,12 @@ public class JsonAdaptedTutorial {
         beginTime = source.getBeginTime().toString();
         endTime = source.getEndTime().toString();
         location = source.getLocation().eventLocation;
+        enrolledStudents.addAll(source.getEnrolledStudents().stream()
+                .map(JsonAdaptedStudent::new)
+                .collect(Collectors.toList()));
+        studentAttendance.addAll(source.getAttendance().stream()
+                .map(JsonAdaptedAttendanceWeek::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -115,8 +135,29 @@ public class JsonAdaptedTutorial {
 
         final Location modelLocation = new Location(location);
 
-        //TODO Check if
+        final ArrayList<Student> modelEnrolledStudents = new ArrayList<Student>();
+        final ArrayList<ArrayList<Boolean>> modelStudentAttendance = new ArrayList<ArrayList<Boolean>>();
+
+        for (int i = 0; i < 13; i++) {
+            ArrayList<Boolean> week = new ArrayList<Boolean>();
+            modelStudentAttendance.add(week);
+        }
+
+        if (!enrolledStudents.isEmpty()) {
+            for (JsonAdaptedStudent jsonStudent : enrolledStudents) {
+                Student student = jsonStudent.toModelType();
+                modelEnrolledStudents.add(student);
+            }
+        }
+
+        if (!studentAttendance.isEmpty()) {
+            for (int i = 0; i < studentAttendance.size(); i++) {
+                ArrayList<Boolean> week = studentAttendance.get(i).toModelType();
+                modelStudentAttendance.set(i, week);
+            }
+        }
+
         return new Tutorial(modelModuleCode, modelTutorialName, modelWeekday, modelBeginTime, modelEndTime,
-                modelLocation);
+                modelLocation, modelEnrolledStudents, modelStudentAttendance);
     }
 }

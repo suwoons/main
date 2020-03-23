@@ -13,7 +13,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.tutorial.Tutorial;
-import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 
 /**
@@ -61,15 +60,14 @@ public class AddTutorialStudentCommand extends Command {
 
         Tutorial tutorialToAddTo = lastShownTutorialList.get(tutorialIndex.getZeroBased());
         Student studentToAdd = lastShownStudentList.get(studentIndex.getZeroBased());
-        MatricNumber studentMatricNumber = new MatricNumber(studentToAdd.getMatricNumber().toString());
 
         // check duplicate student
         if (model.hasTutorialStudent(tutorialToAddTo, studentToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL_STUDENT);
         }
 
-        model.addTutorialStudent(tutorialToAddTo, studentMatricNumber);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd.getName(),
+        model.addTutorialStudent(tutorialToAddTo, studentToAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd.getName().fullName,
                 tutorialToAddTo.getModCode().toString(), tutorialToAddTo.getTutorialName()));
     }
 }

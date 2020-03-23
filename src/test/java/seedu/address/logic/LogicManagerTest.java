@@ -31,12 +31,12 @@ import seedu.address.model.mod.ModTAble;
 import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.student.Student;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonConsultStorage;
+import seedu.address.storage.JsonModStorage;
+import seedu.address.storage.JsonReminderStorage;
+import seedu.address.storage.JsonTutorialStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.storage.consults.JsonConsultStorage;
-import seedu.address.storage.mods.JsonModStorage;
-import seedu.address.storage.reminders.JsonReminderStorage;
-import seedu.address.storage.tutorials.JsonTutorialStorage;
 import seedu.address.testutil.StudentBuilder;
 
 public class LogicManagerTest {

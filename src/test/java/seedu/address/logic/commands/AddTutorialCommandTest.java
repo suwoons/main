@@ -29,7 +29,6 @@ import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.TutorialBuilder;
 
@@ -113,7 +112,7 @@ public class AddTutorialCommandTest {
 
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that has all of the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -246,13 +245,19 @@ public class AddTutorialCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void addTutorialStudent(Tutorial tutorial, MatricNumber matric) {
 
+        @Override
+        public void addTutorialStudent(Tutorial tutorial, Student matric) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void deleteTutorial(Tutorial target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTutorialStudent(Tutorial toDeleteFrom, Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -288,6 +293,11 @@ public class AddTutorialCommandTest {
 
         @Override
         public void deleteMod(Mod mod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMod(Mod target, Mod editedMod) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -382,6 +392,11 @@ public class AddTutorialCommandTest {
         @Override
         public boolean hasSameTiming(Tutorial tutorial) {
             return tutorialsAdded.stream().anyMatch(tutorial::timeClash);
+        }
+
+        @Override
+        public boolean hasMod(Mod mod) {
+            return true;
         }
 
         @Override

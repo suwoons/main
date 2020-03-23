@@ -1,8 +1,10 @@
 package seedu.address.model.event.consult;
 
 import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME;
+import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_DIFFERENT_DATE;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.ConsultUtil.checkSameDate;
 import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
 
 import java.time.LocalDateTime;
@@ -28,6 +30,7 @@ public class Consult {
         requireAllNonNull(beginDateTime, endDateTime, location, studentName, matricNumber);
         checkArgument(checkStartEndDateTime(beginDateTime, endDateTime),
                 MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME);
+        checkArgument(checkSameDate(beginDateTime, endDateTime), MESSAGE_CONSULT_DIFFERENT_DATE);
         this.beginDateTime = beginDateTime;
         this.endDateTime = endDateTime;
         this.location = location;

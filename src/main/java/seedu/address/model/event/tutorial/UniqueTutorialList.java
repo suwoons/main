@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.tutorial.exceptions.DuplicateTutorialException;
 import seedu.address.model.event.tutorial.exceptions.TutorialNotFoundException;
-import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 
 /**
@@ -71,11 +70,12 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
      * Adds a student to a tutorial to the list.
      * The tutorial must already exist in the list.
      */
-    public void addTutorialStudent(Tutorial toAddTo, MatricNumber matric) {
-        requireAllNonNull(toAddTo, matric);
+    public void addTutorialStudent(Tutorial toAddTo, Student student) {
+        requireAllNonNull(toAddTo, student);
         long matchCount = internalList.stream().filter(toAddTo::equals).count();
+
         if (matchCount == 1) {
-            internalList.stream().filter(toAddTo::equals).forEach(tut -> tut.setEnrolledStudents(matric));
+            internalList.stream().filter(toAddTo::equals).forEach(tut -> tut.setEnrolledStudents(student));
         } else if (matchCount == 0) {
             throw new TutorialNotFoundException();
         } else {
@@ -93,6 +93,24 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new TutorialNotFoundException();
+        }
+    }
+
+    /**
+     * Removes the equivalent student from the given tutorial.
+     * The tutorial must exist in the list, and the student must exist in the tutorial.
+     */
+    public void deleteTutorialStudent(Tutorial toDeleteFrom, Student student) {
+        requireAllNonNull(toDeleteFrom, student);
+        long matchCount = internalList.stream().filter(toDeleteFrom::equals).count();
+
+        if (matchCount == 1) {
+            internalList.stream().filter(toDeleteFrom::equals).forEach(tut -> tut.removeEnrolledStudent(student));
+        } else if (matchCount == 0) {
+            throw new TutorialNotFoundException();
+        } else {
+            // matchCount > 1
+            throw new DuplicateTutorialException();
         }
     }
 

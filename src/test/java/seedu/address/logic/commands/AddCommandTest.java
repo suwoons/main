@@ -27,7 +27,6 @@ import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
@@ -216,13 +215,19 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void addTutorialStudent(Tutorial tutorial, MatricNumber matric) {
 
+        @Override
+        public void addTutorialStudent(Tutorial tutorial, Student matric) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void deleteTutorial(Tutorial target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTutorialStudent(Tutorial toDeleteFrom, Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -257,6 +262,11 @@ public class AddCommandTest {
 
         @Override
         public void deleteMod(Mod mod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMod(Mod target, Mod editedMod) {
             throw new AssertionError("This method should not be called.");
         }
 

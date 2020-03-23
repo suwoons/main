@@ -17,7 +17,7 @@ import seedu.address.model.mod.Mod;
 import seedu.address.model.mod.ModCode;
 
 /**
- * Parses input arguments and creates a new AddMod object
+ * Parses input arguments and creates a new AddModCommand object
  */
 
 public class AddModCommandParser implements Parser<AddModCommand> {
