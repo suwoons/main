@@ -2,7 +2,9 @@ package seedu.address.logic.commands.consults;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME;
+import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_DIFFERENT_DATE;
 import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_TIMING_CLASH;
+import static seedu.address.commons.util.ConsultUtil.checkSameDate;
 import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
@@ -19,6 +21,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.consult.Consult;
@@ -101,6 +104,10 @@ public class EditConsultCommand extends Command {
 
         if (!checkStartEndDateTime(updatedBeginStartTime, updatedEndStartTime)) {
             throw new CommandException(MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME);
+        }
+
+        if (!checkSameDate(updatedBeginStartTime, updatedEndStartTime)) {
+            throw new CommandException(MESSAGE_CONSULT_DIFFERENT_DATE);
         }
 
         return new Consult(updatedBeginStartTime, updatedEndStartTime, updatedLocation);

@@ -183,7 +183,7 @@ public class CalendarWindow extends UiPart<Stage> {
         //Remove all consults to restart the count.
         calendarDay.removeConsults();
         for (Consult consult : consults) {
-            if (ConsultUtil.isSameDate(consult.getBeginDateTime(), calendarDate)) {
+            if (ConsultUtil.checkSameDate(consult.getBeginDateTime(), calendarDate)) {
                 calendarDay.addConsult(consult);
                 logger.fine("Same date detected.");
             }
