@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CalendarCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -23,6 +24,7 @@ import seedu.address.logic.commands.consults.ListConsultCommand;
 import seedu.address.logic.commands.mods.AddModCommand;
 import seedu.address.logic.commands.mods.DeleteModCommand;
 import seedu.address.logic.commands.mods.ListModCommand;
+import seedu.address.logic.commands.mods.NoteModCommand;
 import seedu.address.logic.commands.reminders.AddReminderCommand;
 import seedu.address.logic.commands.reminders.DeleteReminderCommand;
 import seedu.address.logic.commands.reminders.DoneReminderCommand;
@@ -30,6 +32,7 @@ import seedu.address.logic.commands.reminders.EditReminderCommand;
 import seedu.address.logic.commands.tutorials.AddTutorialCommand;
 import seedu.address.logic.commands.tutorials.AddTutorialStudentCommand;
 import seedu.address.logic.commands.tutorials.DeleteTutorialCommand;
+import seedu.address.logic.commands.tutorials.DeleteTutorialStudentCommand;
 import seedu.address.logic.commands.tutorials.ListTutorialCommand;
 import seedu.address.logic.parser.consults.AddConsultCommandParser;
 import seedu.address.logic.parser.consults.ClearConsultCommand;
@@ -38,6 +41,7 @@ import seedu.address.logic.parser.consults.EditConsultCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.mods.AddModCommandParser;
 import seedu.address.logic.parser.mods.DeleteModCommandParser;
+import seedu.address.logic.parser.mods.NoteModCommandParser;
 import seedu.address.logic.parser.reminders.AddReminderCommandParser;
 import seedu.address.logic.parser.reminders.DeleteReminderCommandParser;
 import seedu.address.logic.parser.reminders.DoneReminderCommandParser;
@@ -45,6 +49,7 @@ import seedu.address.logic.parser.reminders.EditReminderCommandParser;
 import seedu.address.logic.parser.tutorials.AddTutorialCommandParser;
 import seedu.address.logic.parser.tutorials.AddTutorialStudentCommandParser;
 import seedu.address.logic.parser.tutorials.DeleteTutorialCommandParser;
+import seedu.address.logic.parser.tutorials.DeleteTutorialStudentCommandParser;
 
 /**
  * Parses user input.
@@ -100,6 +105,8 @@ public class TAbleParser {
         case RemarkCommand.COMMAND_WORD:
             return new RemarkCommandParser().parse(arguments);
 
+        // ======================================== Consult Commands ==============================
+
         case AddConsultCommand.COMMAND_WORD:
             return new AddConsultCommandParser().parse(arguments);
 
@@ -115,17 +122,24 @@ public class TAbleParser {
         case ClearConsultCommand.COMMAND_WORD:
             return new ClearConsultCommand();
 
+        // ======================================== Tutorial Commands =============================
+
         case AddTutorialCommand.COMMAND_WORD:
             return new AddTutorialCommandParser().parse(arguments);
 
         case AddTutorialStudentCommand.COMMAND_WORD:
             return new AddTutorialStudentCommandParser().parse(arguments);
 
+        case DeleteTutorialStudentCommand.COMMAND_WORD:
+            return new DeleteTutorialStudentCommandParser().parse(arguments);
+
         case DeleteTutorialCommand.COMMAND_WORD:
             return new DeleteTutorialCommandParser().parse(arguments);
 
         case ListTutorialCommand.COMMAND_WORD:
             return new ListTutorialCommand();
+
+        // ======================================== Mod Commands ==================================
 
         case AddModCommand.COMMAND_WORD:
             return new AddModCommandParser().parse(arguments);
@@ -135,6 +149,11 @@ public class TAbleParser {
 
         case ListModCommand.COMMAND_WORD:
             return new ListModCommand();
+
+        case NoteModCommand.COMMAND_WORD:
+            return new NoteModCommandParser().parse(arguments);
+
+        // ======================================== Reminder Commands =============================
 
         case AddReminderCommand.COMMAND_WORD:
             return new AddReminderCommandParser().parse(arguments);
@@ -147,6 +166,11 @@ public class TAbleParser {
 
         case EditReminderCommand.COMMAND_WORD:
             return new EditReminderCommandParser().parse(arguments);
+
+        // ======================================== Calendar Commands =============================
+
+        case CalendarCommand.COMMAND_WORD:
+            return new CalendarCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

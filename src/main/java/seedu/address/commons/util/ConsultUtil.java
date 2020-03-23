@@ -1,5 +1,6 @@
 package seedu.address.commons.util;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -13,5 +14,14 @@ public class ConsultUtil {
      */
     public static boolean checkStartEndDateTime(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         return startDateTime.isBefore(endDateTime);
+    }
+
+    /**
+     *
+     */
+    public static boolean isSameDate(LocalDateTime consultDateTime, LocalDate calendarDate) {
+        LocalDate startDate = LocalDate.of(consultDateTime.getYear(), consultDateTime.getMonthValue(),
+            consultDateTime.getDayOfMonth());
+        return startDate.isEqual(calendarDate);
     }
 }

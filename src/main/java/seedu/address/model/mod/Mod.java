@@ -19,7 +19,7 @@ public class Mod {
     private final String name;
 
     // Data fields
-    private String description; //TODO update description
+    private String note; //TODO update description
     private final Map<String, ModLink> links = new HashMap<>();
 
     /**
@@ -29,6 +29,14 @@ public class Mod {
         requireAllNonNull(modCode, name);
         this.modCode = modCode;
         this.name = name;
+        this.note = "";
+    }
+
+    public Mod(Mod mod, String note) {
+        requireAllNonNull(mod, note);
+        this.modCode = mod.getModCode();
+        this.name = mod.getName();
+        this.note = mod.getNote() + note;
     }
 
     public ModCode getModCode() {
@@ -37,6 +45,10 @@ public class Mod {
 
     public String getName() {
         return name;
+    }
+
+    public String getNote() {
+        return note;
     }
 
     /**

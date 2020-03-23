@@ -1,4 +1,4 @@
-package seedu.address.storage.consults;
+package seedu.address.storage;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;

@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR_T2
+skinparam classFontColor #white
+skinparam classAttributeFontColor #white
+skinparam classAttributeIconSize 0
+
+package seedu.address.model.mod {
+
+class Mod {
+-ModCode modcode
+-String modName
+-String description
+-Map<String, ModLink> links
+}
+class ModCode
+class ModLink
+class ModTAble
+
+}
+
+Mod *-- "1" ModCode
+Mod ..> "*" ModLink
+ModTAble -- "*" Mod
+
+Package Logic <<Rectangle>>{
+    Class AddModCommand LOGIC_COLOR_T2
+    Class DeleteModCommand LOGIC_COLOR_T2
+    Class AddModCommandParser LOGIC_COLOR_T2
+    Class DeleteModCommandParser LOGIC_COLOR_T2
+    Abstract Class "{abstract}\nCommand" as Command LOGIC_COLOR_T2
+    Interface Parser <<interface>> LOGIC_COLOR_T2
+}
+
+Command <|- AddModCommand LOGIC_COLOR_T2
+Command <|- DeleteModCommand LOGIC_COLOR_T2
+Parser <|.. AddModCommandParser LOGIC_COLOR_T2
+Parser <|.. DeleteModCommandParser LOGIC_COLOR_T2
+
+Parser .. Command LOGIC_COLOR_T2
+AddModCommandParser ..> AddModCommand LOGIC_COLOR_T2
+DeleteModCommandParser ..> DeleteModCommand LOGIC_COLOR_T2
+
+AddModCommand ..> Mod LOGIC_COLOR_T2
+DeleteModCommand ..> Mod LOGIC_COLOR_T2
+AddModCommandParser ..> Mod LOGIC_COLOR_T2
+DeleteModCommandParser ..> Mod LOGIC_COLOR_T2
+
+show Mod fields
+
+@enduml

@@ -97,6 +97,16 @@ public class ModTAble implements ReadOnlyMod {
         return mods.getMod(index);
     }
 
+    /**
+     * Returns {@code mod} from {@code TAble}.
+     * {@code module} must exist in the address book.
+     */
+    public void setMod(Mod target, Mod editedMod) {
+        requireNonNull(target);
+        requireNonNull(editedMod);
+        mods.setMod(target, editedMod);
+    }
+
     //// util methods
 
     @Override

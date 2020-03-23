@@ -12,7 +12,6 @@ import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 
 /**
@@ -165,15 +164,21 @@ public interface Model {
 
     /**
      * Adds the given student to the given tutorial.
-     * {@code tutorial} and student with unique {@code matric} must already exist in TAble.
+     * {@code tutorial} and {@code student} must already exist in TAble.
      */
-    void addTutorialStudent(Tutorial tutorial, MatricNumber matric);
+    void addTutorialStudent(Tutorial tutorial, Student student);
 
     /**
      * Deletes the given tutorial.
      * The tutorial must exist in TAble.
      */
     void deleteTutorial(Tutorial target);
+
+    /**
+     * Deletes the given student from  the given tutorial.
+     * {@code toDeleteFrom} and {@code target} must already exist in TutorialTAble.
+     */
+    void deleteTutorialStudent(Tutorial toDeleteFrom, Student target);
 
     /** Returns an unmodifiable view of the filtered tutorial list */
     ObservableList<Tutorial> getFilteredTutorialList();
@@ -210,6 +215,13 @@ public interface Model {
      * The module must exist in TAble.
      */
     void deleteMod(Mod mod);
+
+    /**
+     * Replaces the given module {@code target} with {@code editedMod}.
+     * {@code target} must exist in the address book.
+     * The module identity of {@code editedMod} must not be the same as another existing Mod in Table.
+     */
+    void setMod(Mod target, Mod editedMod);
 
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Mod> getFilteredModList();
