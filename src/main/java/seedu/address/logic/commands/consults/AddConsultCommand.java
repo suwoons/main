@@ -42,7 +42,7 @@ public class AddConsultCommand extends Command {
             + PREFIX_PLACE + "Outside SR1";
 
     public static final String MESSAGE_SUCCESS = "New consultation added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CONSULT = "There is already a consultation at that timing.";
+    public static final String MESSAGE_DUPLICATE_CONSULT = "There is already a consultation at that timing!";
 
     private final Index index;
     private final Consult toAdd;
