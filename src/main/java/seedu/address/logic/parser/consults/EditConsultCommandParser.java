@@ -15,7 +15,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditStudentCommand object
  */
 public class EditConsultCommandParser implements Parser<EditConsultCommand> {
 

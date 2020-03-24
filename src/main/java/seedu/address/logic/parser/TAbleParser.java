@@ -6,16 +6,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CalendarCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.consults.AddConsultCommand;
 import seedu.address.logic.commands.consults.DeleteConsultCommand;
@@ -31,6 +26,11 @@ import seedu.address.logic.commands.reminders.AddReminderCommand;
 import seedu.address.logic.commands.reminders.DeleteReminderCommand;
 import seedu.address.logic.commands.reminders.DoneReminderCommand;
 import seedu.address.logic.commands.reminders.EditReminderCommand;
+import seedu.address.logic.commands.students.AddStudentCommand;
+import seedu.address.logic.commands.students.DeleteStudentCommand;
+import seedu.address.logic.commands.students.EditStudentCommand;
+import seedu.address.logic.commands.students.FindStudentCommand;
+import seedu.address.logic.commands.students.ListStudentCommand;
 import seedu.address.logic.commands.tutorials.AddTutorialCommand;
 import seedu.address.logic.commands.tutorials.AddTutorialStudentCommand;
 import seedu.address.logic.commands.tutorials.DeleteTutorialCommand;
@@ -86,23 +86,23 @@ public class TAbleParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        case AddStudentCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
+        case EditStudentCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case DeleteStudentCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
+        case FindStudentCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListStudentCommand.COMMAND_WORD:
+            return new ListStudentCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

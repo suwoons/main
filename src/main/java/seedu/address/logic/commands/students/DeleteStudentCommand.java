@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.students;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,6 +6,8 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
@@ -13,7 +15,7 @@ import seedu.address.model.student.Student;
 /**
  * Deletes a student identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class DeleteStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -26,7 +28,7 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteStudentCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -47,7 +49,7 @@ public class DeleteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteStudentCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteStudentCommand) other).targetIndex)); // state check
     }
 }
