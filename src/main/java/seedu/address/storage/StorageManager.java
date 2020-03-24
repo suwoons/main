@@ -7,13 +7,13 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.reminder.ReadOnlyReminder;
+import seedu.address.model.student.ReadOnlyStudent;
 
 /**
  * Manages storage of StudentTAble data in local storage.

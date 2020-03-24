@@ -23,7 +23,6 @@ import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.StudentTAble;
 import seedu.address.testutil.AddressBookBuilder;
 
-//import seedu.address.model.event.consult.Consult;
 
 public class ModelManagerTest {
 

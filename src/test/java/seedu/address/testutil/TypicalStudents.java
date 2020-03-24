@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.student.StudentTAble;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.StudentTAble;
 
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.

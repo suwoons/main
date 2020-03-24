@@ -13,11 +13,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.TAbleParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.student.Student;
 import seedu.address.storage.Storage;
 

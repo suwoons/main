@@ -19,15 +19,14 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.consults.AddConsultCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.student.StudentTAble;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.consult.ConsultTAble;
@@ -42,7 +41,9 @@ import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderTAble;
+import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.StudentTAble;
 import seedu.address.testutil.ConsultBuilder;
 
 public class AddConsultCommandTest {
