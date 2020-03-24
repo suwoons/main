@@ -22,6 +22,8 @@ import seedu.address.logic.commands.consults.DeleteConsultCommand;
 import seedu.address.logic.commands.consults.EditConsultCommand;
 import seedu.address.logic.commands.consults.ListConsultCommand;
 import seedu.address.logic.commands.mods.AddModCommand;
+import seedu.address.logic.commands.mods.AddModLinkCommand;
+import seedu.address.logic.commands.mods.ClearModLinksCommand;
 import seedu.address.logic.commands.mods.DeleteModCommand;
 import seedu.address.logic.commands.mods.ListModCommand;
 import seedu.address.logic.commands.mods.NoteModCommand;
@@ -42,6 +44,8 @@ import seedu.address.logic.parser.consults.DeleteConsultCommandParser;
 import seedu.address.logic.parser.consults.EditConsultCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.mods.AddModCommandParser;
+import seedu.address.logic.parser.mods.AddModLinkCommandParser;
+import seedu.address.logic.parser.mods.ClearModLinksCommandParser;
 import seedu.address.logic.parser.mods.DeleteModCommandParser;
 import seedu.address.logic.parser.mods.NoteModCommandParser;
 import seedu.address.logic.parser.reminders.AddReminderCommandParser;
@@ -162,6 +166,12 @@ public class TAbleParser {
 
         case NoteModCommand.COMMAND_WORD:
             return new NoteModCommandParser().parse(arguments);
+
+        case AddModLinkCommand.COMMAND_WORD:
+            return new AddModLinkCommandParser().parse(arguments);
+
+        case ClearModLinksCommand.COMMAND_WORD:
+            return new ClearModLinksCommandParser().parse(arguments);
 
         // ======================================== Reminder Commands =============================
 

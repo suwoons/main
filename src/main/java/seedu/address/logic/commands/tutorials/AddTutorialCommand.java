@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.tutorials;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_MOD;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTORIAL_TIMING_CLASH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
@@ -40,7 +41,6 @@ public class AddTutorialCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New tutorial added!\n%1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in TAble.";
-    public static final String MESSAGE_MISSING_MOD = "This module code does not exist in TAble.";
 
     private final Tutorial toAdd;
 

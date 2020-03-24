@@ -2,10 +2,12 @@ package seedu.address.model.mod;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Objects;
+
+import javafx.util.Pair;
 
 
 /**
@@ -16,11 +18,11 @@ public class Mod {
 
     // Identity fields
     private final ModCode modCode;
-    private final String name;
+    private final String modName;
 
     // Data fields
-    private String note; //TODO update description
-    private final Map<String, ModLink> links = new HashMap<>();
+    private String note;
+    private ArrayList<Pair<String, ModLink>> links;
 
     /**
      * Every field must be present and not null.
@@ -28,23 +30,34 @@ public class Mod {
     public Mod(ModCode modCode, String name) {
         requireAllNonNull(modCode, name);
         this.modCode = modCode;
-        this.name = name;
+        this.modName = name;
         this.note = "";
+        this.links = new ArrayList<>();
     }
 
     public Mod(Mod mod, String note) {
         requireAllNonNull(mod, note);
         this.modCode = mod.getModCode();
-        this.name = mod.getName();
+        this.modName = mod.getModName();
         this.note = mod.getNote() + note;
+        this.links = new ArrayList<>(mod.getLinks());
+    }
+
+    public Mod(Mod mod, String linkName, ModLink link) {
+        requireAllNonNull(mod, linkName, link);
+        this.modCode = mod.getModCode();
+        this.modName = mod.getModName();
+        this.note = mod.getNote();
+        this.links = new ArrayList<>(mod.getLinks());
+        links.add(new Pair<>(linkName, link));
     }
 
     public ModCode getModCode() {
         return modCode;
     }
 
-    public String getName() {
-        return name;
+    public String getModName() {
+        return modName;
     }
 
     public String getNote() {
@@ -55,8 +68,15 @@ public class Mod {
      * Returns an immutable map of description and links, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Map<String, ModLink> getLinks() {
-        return Collections.unmodifiableMap(links);
+    public List<Pair<String, ModLink>> getLinks() {
+        return Collections.unmodifiableList(links);
+    }
+
+    /**
+     * Removes all modLinks associated with this module
+     */
+    public Mod clearLinks() {
+        return new Mod(new Mod(this.modCode, this.modName), this.getNote());
     }
 
     /**
@@ -73,8 +93,8 @@ public class Mod {
     }
 
     /**
-     * Returns true if both students have the same module code, description and tags.
-     * This defines a stronger notion of equality between two students.
+     * Returns true if both modules have the same module code, description and tags.
+     * This defines a stronger notion of equality between two modules.
      */
     @Override
     public boolean equals(Object other) {
@@ -88,24 +108,26 @@ public class Mod {
 
         seedu.address.model.mod.Mod otherMod = (seedu.address.model.mod.Mod) other;
         return otherMod.getModCode().equals(getModCode())
-            && otherMod.getName().equals(getName())
+            && otherMod.getModName().equals(getModName())
             && otherMod.getLinks().equals(getLinks());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(modCode, name, links);
+        return Objects.hash(modCode, modName, links);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(this.getModCode())
-            .append(" Description: ")
-            .append(getName())
-                .append(" Links: ");
-        getLinks().forEach((desc, link) -> builder.append(desc).append(" ").append(link).append("\n"));
+            .append(" Name: ")
+            .append(getModName())
+            .append(" Notes: ")
+            .append(getNote())
+            .append(" Links: ");
+        getLinks().forEach(p -> builder.append(p.getKey()).append("=").append(p.getValue()).append("; "));
         return builder.toString();
     }
 

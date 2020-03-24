@@ -33,7 +33,7 @@ public class JsonAdaptedMod {
      */
     public JsonAdaptedMod(Mod source) {
         modCode = source.getModCode().toString();
-        modName = source.getName();
+        modName = source.getModName();
     }
 
     /**

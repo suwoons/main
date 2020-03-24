@@ -34,6 +34,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_MODULE_CODE = new Prefix("modCode/");
     public static final Prefix PREFIX_MODULE_NAME = new Prefix("modName/");
     public static final Prefix PREFIX_MODULE_NOTE = new Prefix("modNote/");
+    public static final Prefix PREFIX_MODULE_LINK = new Prefix("modLink/");
+    public static final Prefix PREFIX_MODULE_LINK_NAME = new Prefix("modLinkName/");
 
     /* Reminder definitions */
     public static final Prefix PREFIX_REMINDER_DESCRIPTION = new Prefix("desc/");
