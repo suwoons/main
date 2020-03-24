@@ -47,7 +47,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ====
 *Command Format*
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `addStudent n/NAME`, `NAME` is a parameter which can be used as `addStudent n/John Doe`.
 * Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 * Parameters can be in any order e.g. if the command specifies `n/NAME e/EMAIL`, `e/EMAIL n/NAME` is also acceptable.
@@ -60,15 +60,15 @@ Format: `help`
 === Adding a student: `add`
 
 Adds a student to TAble +
-Format: `add n/NAME m/MATRIC_NUMBER e/EMAIL [t/TAG]...`
+Format: `addStudent n/NAME m/MATRIC_NUMBER e/EMAIL [t/TAG]...`
 
 [TIP]
 A person can have any number of tags (including 0)
 
 Examples:
 
-* `add n/John Doe m/A0123456X e/johnd@example.com`
-* `add n/Betsy Crowe m/A1234567X t/friend e/betsycrowe@example.com t/CS2103`
+* `addStudent n/John Doe m/A0123456X e/johnd@example.com`
+* `addStudent n/Betsy Crowe m/A1234567X t/friend e/betsycrowe@example.com t/CS2103`
 
 === Listing all students : `list`
 
@@ -552,8 +552,8 @@ _{explain how the user can enable/disable data encryption}_
 
 == Command Summary
 
-* *Add* `add n/NAME m/MATRIC_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `add n/James Ho m/A0123456X e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+* *Add* `addStudent n/NAME m/MATRIC_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
+e.g. `addStudent n/James Ho m/A0123456X e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 * *Clear* : `clear`
 * *Delete* : `delete INDEX` +
 e.g. `delete 3`
