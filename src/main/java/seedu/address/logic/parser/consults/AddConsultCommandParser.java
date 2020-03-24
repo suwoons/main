@@ -1,7 +1,9 @@
 package seedu.address.logic.parser.consults;
 
 import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME;
+import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_DIFFERENT_DATE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.util.ConsultUtil.checkSameDate;
 import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
@@ -54,6 +56,10 @@ public class AddConsultCommandParser implements Parser<AddConsultCommand> {
 
         if (!checkStartEndDateTime(beginDateTime, endDateTime)) {
             throw new ParseException(MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME);
+        }
+
+        if (!checkSameDate(beginDateTime, endDateTime)) {
+            throw new ParseException(MESSAGE_CONSULT_DIFFERENT_DATE);
         }
 
         Consult consult = new Consult(beginDateTime, endDateTime, location);

@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.reminder.Description;
 import seedu.address.model.reminder.Reminder;
 
 /**
@@ -16,12 +17,12 @@ public class ReminderBuilder {
     public static final String DEFAULT_DATE = "2020-03-18";
     public static final String DEFAULT_TIME = "15:00";
 
-    private String description;
+    private Description description;
     private LocalDate date;
     private LocalTime time;
 
     public ReminderBuilder() throws ParseException {
-        description = DEFAULT_DESCRIPTION;
+        description = ParserUtil.parseDescription(DEFAULT_DESCRIPTION);
         date = ParserUtil.parseDate(DEFAULT_DATE);
         time = ParserUtil.parseTime(DEFAULT_TIME);
     }
@@ -38,7 +39,7 @@ public class ReminderBuilder {
     /**
      * Sets the {@code Description} of the {@code Reminder} that we are building.
      */
-    public ReminderBuilder withDescription(String description) {
+    public ReminderBuilder withDescription(Description description) {
         this.description = description;
         return this;
     }

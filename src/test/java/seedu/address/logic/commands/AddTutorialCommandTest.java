@@ -112,7 +112,7 @@ public class AddTutorialCommandTest {
 
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that has all of the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -262,6 +262,16 @@ public class AddTutorialCommandTest {
         }
 
         @Override
+        public void markPresent(Tutorial tutorialToMark, Student studentToMark, int week) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markAbsent(Tutorial tutorialToMark, Student studentToMark, int week) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Tutorial> getFilteredTutorialList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -392,6 +402,11 @@ public class AddTutorialCommandTest {
         @Override
         public boolean hasSameTiming(Tutorial tutorial) {
             return tutorialsAdded.stream().anyMatch(tutorial::timeClash);
+        }
+
+        @Override
+        public boolean hasMod(Mod mod) {
+            return true;
         }
 
         @Override
