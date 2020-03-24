@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.students;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -17,6 +17,8 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Email;
@@ -29,9 +31,9 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing student in the address book.
  */
-public class EditCommand extends Command {
+public class EditStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editStudent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
             + "by the index number used in the displayed student list. "
@@ -57,7 +59,7 @@ public class EditCommand extends Command {
      * @param index of the student in the filtered student list to edit
      * @param editStudentDescriptor details to edit the student with
      */
-    public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
+    public EditStudentCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
         requireNonNull(editStudentDescriptor);
 
@@ -111,12 +113,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditStudentCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        EditStudentCommand e = (EditStudentCommand) other;
         return index.equals(e.index)
                 && editStudentDescriptor.equals(e.editStudentDescriptor);
     }

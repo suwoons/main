@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.students.DeleteStudentCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -34,23 +35,23 @@ public class DeleteCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getStudentTAble(), new UserPrefs(), new ConsultTAble(),
             new TutorialTAble(), new ModTAble(), new ReminderTAble());
         expectedModel.deleteStudent(studentToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteStudentCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -58,16 +59,16 @@ public class DeleteCommandTest {
         showStudentAtIndex(model, INDEX_FIRST);
 
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
+        DeleteStudentCommand deletestudentCommand = new DeleteStudentCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
         Model expectedModel = new ModelManager(model.getStudentTAble(), new UserPrefs(), new ConsultTAble(),
             new TutorialTAble(), new ModTAble(), new ReminderTAble());
         expectedModel.deleteStudent(studentToDelete);
         showNoStudent(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deletestudentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -78,21 +79,21 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getStudentTAble().getStudentList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteStudentCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND);
+        DeleteStudentCommand deleteFirstCommand = new DeleteStudentCommand(INDEX_FIRST);
+        DeleteStudentCommand deleteSecondCommand = new DeleteStudentCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST);
+        DeleteStudentCommand deleteFirstCommandCopy = new DeleteStudentCommand(INDEX_FIRST);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
