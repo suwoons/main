@@ -19,6 +19,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.tutorial.TutorialName;
 import seedu.address.model.mod.ModCode;
+import seedu.address.model.mod.ModLink;
 import seedu.address.model.reminder.Description;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.MatricNumber;
@@ -282,10 +283,26 @@ public class ParserUtil {
         String trimmedModCode = modCode.trim().toUpperCase();
 
         if (!ModCode.isValidModCode(trimmedModCode)) {
-            throw new ParseException(TutorialName.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ModCode.MESSAGE_CONSTRAINTS);
         }
 
         return new ModCode(trimmedModCode);
+    }
+
+    /**
+     * Parses a {@code String modLink} into a {@code ModLink}.
+     *
+     * @throws ParseException if the given {@code modLink} is invalid.
+     */
+    public static ModLink parseModLink(String modLink) throws ParseException {
+        requireNonNull(modLink);
+        String trimmedModLink = modLink.trim();
+
+        if (!ModLink.isValidModLink(trimmedModLink)) {
+            throw new ParseException(ModLink.MESSAGE_CONSTRAINTS);
+        }
+
+        return new ModLink(trimmedModLink);
     }
 
     /**

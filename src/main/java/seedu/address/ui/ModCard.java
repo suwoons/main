@@ -32,7 +32,7 @@ public class ModCard extends UiPart<Region> {
         this.mod = mod;
         id.setText(displayedIndex + ". ");
         modCode.setText(mod.getModCode().toString());
-        modName.setText(mod.getName());
+        modName.setText(mod.getModName());
     }
 
     @Override

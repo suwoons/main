@@ -10,13 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class ModLink {
 
-    public static final String MESSAGE_CONSTRAINTS = "Module links should follow a URL link";
+    public static final String MESSAGE_CONSTRAINTS = "Module links should follow a URL link (protocol optional)";
 
     /*
      * The entire string must fit the specifications for it to be valid.
      */
     public static final String VALIDATION_REGEX =
-            "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]$";
+            "^[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
     public final String modLink;
 

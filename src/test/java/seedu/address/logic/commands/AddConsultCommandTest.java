@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -35,7 +36,9 @@ import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.Mod;
+import seedu.address.model.mod.ModCode;
 import seedu.address.model.mod.ModTAble;
+import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderTAble;
@@ -294,6 +297,11 @@ public class AddConsultCommandTest {
         }
 
         @Override
+        public Optional<Mod> findMod(ModCode modCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteMod(Mod mod) {
             throw new AssertionError("This method should not be called.");
         }
@@ -310,6 +318,11 @@ public class AddConsultCommandTest {
 
         @Override
         public void updateFilteredModList(Predicate<Mod> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyMod getModTAble() {
             throw new AssertionError("This method should not be called.");
         }
 
