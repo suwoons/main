@@ -35,7 +35,6 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`listStudent`* : lists all students
-* **`addStudent`**`n/John Doe m/A0188888H e/johnd@example.com` : adds a student named `John Doe` to TAble.
 * **`deleteStudent`**`3` : deletes the 3rd student shown in the current list
 * *`exit`* : exits the app
 
@@ -57,7 +56,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 Format: `help`
 
-=== Adding a student: `add`
+===  Students Feature
+==== Adding a student: `add`
 
 Adds a student to TAble +
 Format: `addStudent n/NAME m/MATRIC_NUMBER e/EMAIL [t/TAG]...`
@@ -70,12 +70,12 @@ Examples:
 * `addStudent n/John Doe m/A0123456X e/johnd@example.com`
 * `addStudent n/Betsy Crowe m/A1234567X t/friend e/betsycrowe@example.com t/CS2103`
 
-=== Listing all students : `list`
+==== Listing all students : `list`
 
 Shows a list of all students in TAble. +
 Format: `list`
 
-=== Editing a student : `edit`
+==== Editing a student : `edit`
 
 Edits an existing student in TAble. +
 Format: `edit INDEX [n/NAME] [m/MATRIC_NUMBER] [e/EMAIL] [t/TAG]...`
