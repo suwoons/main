@@ -17,7 +17,6 @@ import seedu.address.model.event.tutorial.TutorialTAble;
  * An Immutable TutorialTAble that is serializable to JSON format.
  */
 @JsonRootName(value = "tutorials")
-
 public class JsonSerializableTutorials {
 
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "Tutorials list contains duplicate tutorial(s).";

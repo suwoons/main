@@ -1050,23 +1050,6 @@ Course that Teaching Assistant teaches and Students register for.
 Due to naming restrictions, Module is shortened to Mod in file names.
 
 [appendix]
-== Product Survey
-
-*Product Name*
-
-Author: ...
-
-Pros:
-
-* ...
-* ...
-
-Cons:
-
-* ...
-* ...
-
-[appendix]
 == Instructions for Manual Testing
 
 Given below are instructions to test the app manually.

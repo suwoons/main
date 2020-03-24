@@ -21,14 +21,13 @@ import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_MATRICNUMBER = "A0251";
+    private static final String INVALID_MATRIC_NUMBER = "A0251";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_MATRICNUMBER = "A0123456M";
+    private static final String VALID_MATRIC_NUMBER = "A0123456M";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_REMARK = "Test";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -84,19 +83,19 @@ public class ParserUtilTest {
 
     @Test
     public void parseMatricNumber_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseMatricNumber(INVALID_MATRICNUMBER));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMatricNumber(INVALID_MATRIC_NUMBER));
     }
 
     @Test
     public void parseMatricNumber_validValueWithoutWhitespace_returnsMatricNumber() throws Exception {
-        MatricNumber expectedMatricNumber = new MatricNumber(VALID_MATRICNUMBER);
-        assertEquals(expectedMatricNumber, ParserUtil.parseMatricNumber(VALID_MATRICNUMBER));
+        MatricNumber expectedMatricNumber = new MatricNumber(VALID_MATRIC_NUMBER);
+        assertEquals(expectedMatricNumber, ParserUtil.parseMatricNumber(VALID_MATRIC_NUMBER));
     }
 
     @Test
     public void parseMatricNumber_validValueWithWhitespace_returnsTrimmedMatricNumber() throws Exception {
-        String matricNumberWithWhitespace = WHITESPACE + VALID_MATRICNUMBER + WHITESPACE;
-        MatricNumber expectedMatricNumber = new MatricNumber(VALID_MATRICNUMBER);
+        String matricNumberWithWhitespace = WHITESPACE + VALID_MATRIC_NUMBER + WHITESPACE;
+        MatricNumber expectedMatricNumber = new MatricNumber(VALID_MATRIC_NUMBER);
         assertEquals(expectedMatricNumber, ParserUtil.parseMatricNumber(matricNumberWithWhitespace));
     }
 
