@@ -303,7 +303,6 @@ Enroll an existing student to an existing tutorial.
 Format: `addTutorialStudent tutorialIndex/INDEX student/STUDENT`
 
 ****
-* Shows the attendance for tutorial at the specified `INDEX`.
 * The index refers to the index number shown in the displayed tutorial list.
 * The index *must be a positive integer* 1, 2, 3, ...
 * The `STUDENT` should be referred to by index as referred to in the student list.
@@ -321,7 +320,6 @@ Remove an existing student from an existing tutorial.
 Format: `deleteTutorialStudent tutorialIndex/INDEX student/STUDENT`
 
 ****
-* Shows the attendance for tutorial at the specified `INDEX`.
 * The index refers to the index number shown in the displayed tutorial list.
 * The index *must be a positive integer* 1, 2, 3, ...
 * The `STUDENT` should be referred to by the index as referred to in the student list *relative to the specified tutorial*.
@@ -332,6 +330,24 @@ Format: `deleteTutorialStudent tutorialIndex/INDEX student/STUDENT`
 Example:
 
 * `deleteTutorialStudent tutorialIndex/3 student/12`
+
+=== Display students and attendance of a tutorial: `ListTutorial`
+
+Displays the list of students in a tutorial and their corresponding attendance for a particular week in the GUI.
+Format: `listTutorial tutorialIndex/INDEX week/INDEX`
+
+****
+* Shows the attendance for tutorial at the specified `INDEX`.
+* The index refers to the index number shown in the displayed tutorial list.
+* The index *must be a positive integer* 1, 2, 3, ...
+* The tutorial should already exist.
+* The week should be in numerical format, and accepts only numbers in the range 1 to 13 (inclusive)
+****
+
+Example:
+
+* `listTutorial tutorialIndex/2 week/10`
+
 //end::Tutorial[]
 
 //tag::Module[]
