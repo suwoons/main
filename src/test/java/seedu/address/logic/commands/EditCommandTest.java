@@ -22,7 +22,7 @@ import seedu.address.logic.commands.students.EditStudentCommand;
 import seedu.address.logic.commands.students.EditStudentCommand.EditStudentDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.StudentTAble;
+import seedu.address.model.student.StudentTAble;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.TutorialTAble;

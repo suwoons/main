@@ -52,6 +52,10 @@ import seedu.address.logic.parser.reminders.AddReminderCommandParser;
 import seedu.address.logic.parser.reminders.DeleteReminderCommandParser;
 import seedu.address.logic.parser.reminders.DoneReminderCommandParser;
 import seedu.address.logic.parser.reminders.EditReminderCommandParser;
+import seedu.address.logic.parser.students.AddStudentCommandParser;
+import seedu.address.logic.parser.students.DeleteStudentCommandParser;
+import seedu.address.logic.parser.students.EditStudentCommandParser;
+import seedu.address.logic.parser.students.FindStudentCommandParser;
 import seedu.address.logic.parser.tutorials.AddTutorialCommandParser;
 import seedu.address.logic.parser.tutorials.AddTutorialStudentCommandParser;
 import seedu.address.logic.parser.tutorials.DeleteTutorialCommandParser;
@@ -87,19 +91,19 @@ public class TAbleParser {
         switch (commandWord) {
 
         case AddStudentCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new AddStudentCommandParser().parse(arguments);
 
         case EditStudentCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            return new EditStudentCommandParser().parse(arguments);
 
         case DeleteStudentCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteStudentCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
         case FindStudentCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            return new FindStudentCommandParser().parse(arguments);
 
         case ListStudentCommand.COMMAND_WORD:
             return new ListStudentCommand();

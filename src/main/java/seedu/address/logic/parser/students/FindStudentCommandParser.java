@@ -1,17 +1,18 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.students;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
 import seedu.address.logic.commands.students.FindStudentCommand;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindStudentCommand object
  */
-public class FindCommandParser implements Parser<FindStudentCommand> {
+public class FindStudentCommandParser implements Parser<FindStudentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindStudentCommand

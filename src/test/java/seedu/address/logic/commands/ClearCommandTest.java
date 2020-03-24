@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.StudentTAble;
+import seedu.address.model.student.StudentTAble;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.TutorialTAble;

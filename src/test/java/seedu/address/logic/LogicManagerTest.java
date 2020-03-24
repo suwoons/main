@@ -23,7 +23,7 @@ import seedu.address.logic.commands.students.ListStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyStudent;
+import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.TutorialTAble;

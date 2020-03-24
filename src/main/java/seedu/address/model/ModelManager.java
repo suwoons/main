@@ -26,7 +26,9 @@ import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderTAble;
+import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.StudentTAble;
 
 
 /**

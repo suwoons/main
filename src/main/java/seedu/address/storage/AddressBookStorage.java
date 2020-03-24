@@ -5,8 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyStudent;
-import seedu.address.model.StudentTAble;
+import seedu.address.model.student.ReadOnlyStudent;
+import seedu.address.model.student.StudentTAble;
 
 /**
  * Represents a storage for {@link StudentTAble}.

@@ -20,6 +20,7 @@ import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.StudentTAble;
 import seedu.address.testutil.AddressBookBuilder;
 
 //import seedu.address.model.event.consult.Consult;

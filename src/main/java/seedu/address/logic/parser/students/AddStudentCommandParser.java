@@ -1,8 +1,8 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.students;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -11,6 +11,11 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.students.AddStudentCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.MatricNumber;
@@ -22,7 +27,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddStudentCommand object
  */
-public class AddCommandParser implements Parser<AddStudentCommand> {
+public class AddStudentCommandParser implements Parser<AddStudentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddStudentCommand
@@ -31,16 +36,16 @@ public class AddCommandParser implements Parser<AddStudentCommand> {
      */
     public AddStudentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MATRICNUMBER, PREFIX_EMAIL, PREFIX_TAG,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MATRIC_NUMBER, PREFIX_EMAIL, PREFIX_TAG,
                         PREFIX_REMARK);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MATRICNUMBER, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MATRIC_NUMBER, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        MatricNumber matricNumber = ParserUtil.parseMatricNumber(argMultimap.getValue(PREFIX_MATRICNUMBER).get());
+        MatricNumber matricNumber = ParserUtil.parseMatricNumber(argMultimap.getValue(PREFIX_MATRIC_NUMBER).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Remark remark = new Remark(""); // add command cannot add remarks straight away

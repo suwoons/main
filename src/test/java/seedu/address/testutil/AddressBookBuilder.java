@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.StudentTAble;
+import seedu.address.model.student.StudentTAble;
 import seedu.address.model.student.Student;
 
 /**

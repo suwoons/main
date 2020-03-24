@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.StudentTAble;
+import seedu.address.model.student.StudentTAble;
 import seedu.address.model.student.Student;
 
 /**
