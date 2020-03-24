@@ -78,7 +78,7 @@ Format: `list`
 === Editing a student : `edit`
 
 Edits an existing student in TAble. +
-Format: `edit INDEX [n/NAME] [m/MATRIC_NUMBER] [e/EMAIL] [t/TAG]...`
+Format: `editStudent INDEX [n/NAME] [m/MATRIC_NUMBER] [e/EMAIL] [t/TAG]...`
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
@@ -91,7 +91,7 @@ Format: `edit INDEX [n/NAME] [m/MATRIC_NUMBER] [e/EMAIL] [t/TAG]...`
 Examples:
 
 * `edit 1 e/johndoe@example.com` +
-Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+Edits the matric number and email address of the 1st person to be `A9999999Z` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
@@ -110,16 +110,16 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-* `find John` +
+* `findStudent John` +
 Returns `john` and `John Doe`
-* `find Betsy Tim John` +
+* `findStudent Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
 
 // tag::delete[]
 === Deleting a student : `delete`
 
 Deletes the specified student from TAble. +
-Format: `delete INDEX`
+Format: `deleteStudent INDEX`
 
 ****
 * Deletes the student at the specified `INDEX`.
@@ -129,11 +129,11 @@ Format: `delete INDEX`
 
 Examples:
 
-* `list` +
-`delete 2` +
+* `listStudent` +
+`deleteStudent 2` +
 Deletes the 2nd student in the address book.
-* `find Betsy` +
-`delete 1` +
+* `findStudent Betsy` +
+`deleteStudent 1` +
 Deletes the 1st student in the results of the `find` command.
 
 // end::delete[]
@@ -555,11 +555,11 @@ _{explain how the user can enable/disable data encryption}_
 * *Add* `addStudent n/NAME m/MATRIC_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
 e.g. `addStudent n/James Ho m/A0123456X e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 * *Clear* : `clear`
-* *Delete* : `delete INDEX` +
+* *Delete* : `deleteStudent INDEX` +
 e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [m/MATRIC_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
-* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake`
-* *List* : `list`
+* *Edit* : `editStudent INDEX [n/NAME] [m/MATRIC_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
+e.g. `editStudent 2 n/James Lee e/jameslee@example.com`
+* *Find* : `findStudent KEYWORD [MORE_KEYWORDS]` +
+e.g. `findStudent James Jake`
+* *List* : `listStudent`
 * *Help* : `help`
