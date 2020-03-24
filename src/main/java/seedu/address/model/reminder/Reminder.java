@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Reminder {
 
     // Identity fields
-    private final String description;
+    private final Description description;
     private final LocalDate date;
     private final LocalTime time;
 
@@ -23,7 +23,7 @@ public class Reminder {
     /**
      * Every field must be present and not null.
      */
-    public Reminder(String description, LocalDate date, LocalTime time, boolean done) {
+    public Reminder(Description description, LocalDate date, LocalTime time, boolean done) {
         requireAllNonNull(description, date, time);
         this.description = description;
         this.date = date;
@@ -31,7 +31,7 @@ public class Reminder {
         this.done = done;
     }
 
-    public String getDescription() {
+    public Description getDescription() {
         return description;
     }
 

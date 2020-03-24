@@ -276,6 +276,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markPresent(Tutorial tutorialToMark, Student studentToMark, int week) {
+        tutorialTAble.markPresent(tutorialToMark, studentToMark, week);
+    }
+
+    @Override
+    public void markAbsent(Tutorial tutorialToMark, Student studentToMark, int week) {
+        tutorialTAble.markAbsent(tutorialToMark, studentToMark, week);
+    }
+
+
+    @Override
     public ObservableList<Tutorial> getFilteredTutorialList() {
         return filteredTutorials;
     }

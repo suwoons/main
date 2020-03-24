@@ -114,6 +114,42 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
         }
     }
 
+    /**
+     * Marks the equivalent student in the given tutorial as present.
+     * The tutorial must exist in the list, and the student must exist in the tutorial.
+     */
+    public void markPresent(Tutorial tutorialToMark, Student studentToMark, int week) {
+        requireAllNonNull(tutorialToMark, studentToMark);
+        long matchCount = internalList.stream().filter(tutorialToMark::equals).count();
+
+        if (matchCount == 1) {
+            internalList.stream().filter(tutorialToMark::equals).forEach(tut -> tut.markPresent(studentToMark, week));
+        } else if (matchCount == 0) {
+            throw new TutorialNotFoundException();
+        } else {
+            // matchCount > 1
+            throw new DuplicateTutorialException();
+        }
+    }
+
+    /**
+     * Marks the equivalent student in the given tutorial as absent.
+     * The tutorial must exist in the list, and the student must exist in the tutorial.
+     */
+    public void markAbsent(Tutorial tutorialToMark, Student studentToMark, int week) {
+        requireAllNonNull(tutorialToMark, studentToMark);
+        long matchCount = internalList.stream().filter(tutorialToMark::equals).count();
+
+        if (matchCount == 1) {
+            internalList.stream().filter(tutorialToMark::equals).forEach(tut -> tut.markAbsent(studentToMark, week));
+        } else if (matchCount == 0) {
+            throw new TutorialNotFoundException();
+        } else {
+            // matchCount > 1
+            throw new DuplicateTutorialException();
+        }
+    }
+
     public void setTutorials(UniqueTutorialList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
