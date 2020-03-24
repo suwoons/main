@@ -35,7 +35,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`listStudent`* : lists all students
-* **`addStudent`**`n/John Doe p/98765432 e/johnd@example.com` : adds a student named `John Doe` to TAble.
+* **`addStudent`**`n/John Doe m/A0188888H e/johnd@example.com` : adds a student named `John Doe` to TAble.
 * **`deleteStudent`**`3` : deletes the 3rd student shown in the current list
 * *`exit`* : exits the app
 
@@ -47,7 +47,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ====
 *Command Format*
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `addStudent n/NAME`, `NAME` is a parameter which can be used as `addStudent n/John Doe`.
 * Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 * Parameters can be in any order e.g. if the command specifies `n/NAME e/EMAIL`, `e/EMAIL n/NAME` is also acceptable.
@@ -60,15 +60,15 @@ Format: `help`
 === Adding a student: `add`
 
 Adds a student to TAble +
-Format: `add n/NAME id/STUDENTID e/EMAIL [t/TAG]...`
+Format: `addStudent n/NAME m/MATRIC_NUMBER e/EMAIL [t/TAG]...`
 
 [TIP]
 A person can have any number of tags (including 0)
 
 Examples:
 
-* `add n/John Doe e/johnd@example.com`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com t/CS2103`
+* `addStudent n/John Doe m/A0123456X e/johnd@example.com`
+* `addStudent n/Betsy Crowe m/A1234567X t/friend e/betsycrowe@example.com t/CS2103`
 
 === Listing all students : `list`
 
@@ -78,7 +78,7 @@ Format: `list`
 === Editing a student : `edit`
 
 Edits an existing student in TAble. +
-Format: `edit INDEX [n/NAME] [id/STUDENTID] [e/EMAIL] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [m/MATRIC_NUMBER] [e/EMAIL] [t/TAG]...`
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
@@ -297,39 +297,12 @@ Marks only student at index 2 (for tutorial at index 3) as absent in week 7 for 
 * `markAbsent tutorialIndex/3 week/7 student/all` +
 Marks all students in week 7 as absent in tutorial at index 3 (oh no!)
 
-=== Display attendance list for a tutorial: `listAttendance`
-
-Displays the attendance list for a tutorial for a specified week. +
-Format: `listAttendance tutorialIndex/INDEX week/WEEK`
-
-****
-* Shows the attendance for tutorial at the specified `INDEX`, for the specified 'WEEK'
-* The index refers to the index number shown in the displayed tutorial list.
-* The index and week *must be a positive integer* 1, 2, 3, ...
-* The integer for week has to be in the range 1-13 (inclusive).
-****
-
-Example:
-
-* `listAttendance tutorialIndex/2 week/7` +
-Displays the attendance list for tutorial at index 2 on week 7
-
-=== List all tutorials: `listTutorial`
-
-Lists all the tutorials that the TA is teaching for the particular semester on TAble. +
-Format: `listTutorial`
-
-****
-* May be referred to to obtain the index of a particular tutorial
-****
-
 === Add student to tutorial: `addTutorialStudent`
 
 Enroll an existing student to an existing tutorial.
 Format: `addTutorialStudent tutorialIndex/INDEX student/STUDENT`
 
 ****
-* Shows the attendance for tutorial at the specified `INDEX`.
 * The index refers to the index number shown in the displayed tutorial list.
 * The index *must be a positive integer* 1, 2, 3, ...
 * The `STUDENT` should be referred to by index as referred to in the student list.
@@ -347,7 +320,6 @@ Remove an existing student from an existing tutorial.
 Format: `deleteTutorialStudent tutorialIndex/INDEX student/STUDENT`
 
 ****
-* Shows the attendance for tutorial at the specified `INDEX`.
 * The index refers to the index number shown in the displayed tutorial list.
 * The index *must be a positive integer* 1, 2, 3, ...
 * The `STUDENT` should be referred to by the index as referred to in the student list *relative to the specified tutorial*.
@@ -358,6 +330,24 @@ Format: `deleteTutorialStudent tutorialIndex/INDEX student/STUDENT`
 Example:
 
 * `deleteTutorialStudent tutorialIndex/3 student/12`
+
+=== Display students and attendance of a tutorial: `ListTutorial`
+
+Displays the list of students in a tutorial and their corresponding attendance for a particular week in the GUI.
+Format: `listTutorial tutorialIndex/INDEX week/INDEX`
+
+****
+* Shows the attendance for tutorial at the specified `INDEX`.
+* The index refers to the index number shown in the displayed tutorial list.
+* The index *must be a positive integer* 1, 2, 3, ...
+* The tutorial should already exist.
+* The week should be in numerical format, and accepts only numbers in the range 1 to 13 (inclusive)
+****
+
+Example:
+
+* `listTutorial tutorialIndex/2 week/10`
+
 //end::Tutorial[]
 
 //tag::Module[]
@@ -562,12 +552,12 @@ _{explain how the user can enable/disable data encryption}_
 
 == Command Summary
 
-* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+* *Add* `addStudent n/NAME m/MATRIC_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
+e.g. `addStudent n/James Ho m/A0123456X e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 * *Clear* : `clear`
 * *Delete* : `delete INDEX` +
 e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
+* *Edit* : `edit INDEX [n/NAME] [m/MATRIC_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
 e.g. `edit 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`

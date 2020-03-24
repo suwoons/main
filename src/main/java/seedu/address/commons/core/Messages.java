@@ -24,8 +24,10 @@ public class Messages {
             + "the End Time of the tutorial.";
     public static final String MESSAGE_TUTORIAL_TIMING_CLASH = "This tutorial's timing clash with another pre-existing"
             + " tutorial.";
+    public static final String MESSAGE_INVALID_WEEK = "The week specified is invalid. Please enter a value between"
+            + " 1 and 13 (inclusive).";
 
-    public static final String MESSAGE_INVALID_MOD_DISPLAYED_INDEX = "The module index provided is invalid.";
+    public static final String MESSAGE_MISSING_MOD = "The module code provided does not exist in TAble.";
 
     public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid.";
     public static final String MESSAGE_REMINDER_ALREADY_DONE = "This reminder is already done!";

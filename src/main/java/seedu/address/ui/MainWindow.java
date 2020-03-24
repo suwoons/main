@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -68,6 +70,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private SplitPane splitPanePlaceholder;
+
+    @FXML
+    private TabPane firstTabPanePlaceholder;
+
+    @FXML
+    private TabPane secondTabPanePlaceholder;
 
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -152,16 +163,24 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
+    void setSplitPane() {
+        splitPanePlaceholder.lookupAll(".split-pane-divider").stream()
+                .forEach(div -> div.setMouseTransparent(true));
+    }
+
     /**
      * Sets the default size based on {@code guiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
+        primaryStage.setMinHeight(guiSettings.getWindowHeight());
+        primaryStage.setMinWidth(guiSettings.getWindowWidth());
         primaryStage.setHeight(guiSettings.getWindowHeight());
         primaryStage.setWidth(guiSettings.getWindowWidth());
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+        primaryStage.setResizable(false);
     }
 
     /**
@@ -173,6 +192,29 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    /**
+     * Selects the corresponding command's tab based on {@code commandText}
+     */
+    @FXML
+    public void handleList(String commandText) {
+        switch(commandText) {
+        case "list":
+            firstTabPanePlaceholder.getSelectionModel().select(0);
+            break;
+        case "listTutorial":
+            firstTabPanePlaceholder.getSelectionModel().select(1);
+            break;
+        case "listMod":
+            firstTabPanePlaceholder.getSelectionModel().select(2);
+            break;
+        case "listConsult":
+            secondTabPanePlaceholder.getSelectionModel().select(0);
+            break;
+        default:
+            break;
         }
     }
 
@@ -225,6 +267,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowCalendar()) {
                 handleCalendar();
+            }
+
+            if (commandResult.isShowList()) {
+                handleList(commandText);
             }
 
             if (commandResult.isExit()) {

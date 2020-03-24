@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -10,6 +11,8 @@ import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
+import seedu.address.model.mod.ModCode;
+import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.student.Student;
@@ -180,6 +183,18 @@ public interface Model {
      */
     void deleteTutorialStudent(Tutorial toDeleteFrom, Student target);
 
+    /**
+     * Marks the given student in the given tutorial as present in {@code week}.
+     * {@code tutorialToMark} and {@code studentToMark} must already exist in TutorialTAble.
+     */
+    void markPresent(Tutorial tutorialToMark, Student studentToMark, int week);
+
+    /**
+     * Marks the given student in the given tutorial as absent in {@code week}.
+     * {@code tutorialToMark} and {@code studentToMark} must already exist in TutorialTAble.
+     */
+    void markAbsent(Tutorial tutorialToMark, Student studentToMark, int week);
+
     /** Returns an unmodifiable view of the filtered tutorial list */
     ObservableList<Tutorial> getFilteredTutorialList();
 
@@ -217,6 +232,13 @@ public interface Model {
     void deleteMod(Mod mod);
 
     /**
+     * Finds the corresponding module given a {@code modCode}.
+     * As the module may not exist in TAble, an optional Mod is returned.
+     * @param modCode module code of the module to be found
+     */
+    Optional<Mod> findMod(ModCode modCode);
+
+    /**
      * Replaces the given module {@code target} with {@code editedMod}.
      * {@code target} must exist in the address book.
      * The module identity of {@code editedMod} must not be the same as another existing Mod in Table.
@@ -231,6 +253,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModList(Predicate<Mod> predicate);
+
+    /** Returns the module TAble */
+    ReadOnlyMod getModTAble();
 
     // Reminder-level operations =====================================================================================
 

@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -18,6 +20,7 @@ import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.Mod;
+import seedu.address.model.mod.ModCode;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.reminder.ReadOnlyReminder;
@@ -276,6 +279,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markPresent(Tutorial tutorialToMark, Student studentToMark, int week) {
+        tutorialTAble.markPresent(tutorialToMark, studentToMark, week);
+    }
+
+    @Override
+    public void markAbsent(Tutorial tutorialToMark, Student studentToMark, int week) {
+        tutorialTAble.markAbsent(tutorialToMark, studentToMark, week);
+    }
+
+
+    @Override
     public ObservableList<Tutorial> getFilteredTutorialList() {
         return filteredTutorials;
     }
@@ -316,6 +330,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Optional<Mod> findMod(ModCode modCode) {
+        List<Mod> lastShownList = this.getFilteredModList();
+        Mod temp = new Mod(modCode, "");
+        return lastShownList.stream().filter(x -> x.isSameMod(temp)).findFirst();
+    }
+
+    @Override
     public void setMod(Mod target, Mod editedMod) {
         requireAllNonNull(target, editedMod);
         modTAble.setMod(target, editedMod);
@@ -330,6 +351,11 @@ public class ModelManager implements Model {
     public void updateFilteredModList(Predicate<Mod> predicate) {
         requireNonNull(predicate);
         filteredMods.setPredicate(predicate);
+    }
+
+    @Override
+    public ReadOnlyMod getModTAble() {
+        return modTAble;
     }
 
     // Reminders section ==========================================================================

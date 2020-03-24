@@ -20,13 +20,18 @@ public class CommandResult {
     /** The application should show the calendar. */
     private final boolean showCalendar;
 
+    /** The application should show the listed tab. */
+    private final boolean showList;
+
     /**
      * Constructs a {@code CommandResult} for a calendar command.
      */
-    public CommandResult(String feedbackToUser, boolean showCalendar, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showCalendar, boolean showHelp,
+                         boolean showList, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showCalendar = showCalendar;
         this.showHelp = showHelp;
+        this.showList = showList;
         this.exit = exit;
     }
 
@@ -38,6 +43,7 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.showCalendar = false;
+        this.showList = false;
     }
 
     /**
@@ -62,6 +68,10 @@ public class CommandResult {
 
     public boolean isShowCalendar() {
         return showCalendar;
+    }
+
+    public boolean isShowList() {
+        return showList;
     }
 
     @Override

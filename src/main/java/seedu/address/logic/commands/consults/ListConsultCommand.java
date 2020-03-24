@@ -22,6 +22,6 @@ public class ListConsultCommand extends Command {
         requireNonNull(model);
         model.updateFilteredConsultList(PREDICATE_SHOW_ALL_CONSULTS);
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
     }
 }

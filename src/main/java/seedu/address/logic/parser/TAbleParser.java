@@ -22,6 +22,8 @@ import seedu.address.logic.commands.consults.DeleteConsultCommand;
 import seedu.address.logic.commands.consults.EditConsultCommand;
 import seedu.address.logic.commands.consults.ListConsultCommand;
 import seedu.address.logic.commands.mods.AddModCommand;
+import seedu.address.logic.commands.mods.AddModLinkCommand;
+import seedu.address.logic.commands.mods.ClearModLinksCommand;
 import seedu.address.logic.commands.mods.DeleteModCommand;
 import seedu.address.logic.commands.mods.ListModCommand;
 import seedu.address.logic.commands.mods.NoteModCommand;
@@ -34,12 +36,16 @@ import seedu.address.logic.commands.tutorials.AddTutorialStudentCommand;
 import seedu.address.logic.commands.tutorials.DeleteTutorialCommand;
 import seedu.address.logic.commands.tutorials.DeleteTutorialStudentCommand;
 import seedu.address.logic.commands.tutorials.ListTutorialCommand;
+import seedu.address.logic.commands.tutorials.MarkAbsentCommand;
+import seedu.address.logic.commands.tutorials.MarkPresentCommand;
 import seedu.address.logic.parser.consults.AddConsultCommandParser;
 import seedu.address.logic.parser.consults.ClearConsultCommand;
 import seedu.address.logic.parser.consults.DeleteConsultCommandParser;
 import seedu.address.logic.parser.consults.EditConsultCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.mods.AddModCommandParser;
+import seedu.address.logic.parser.mods.AddModLinkCommandParser;
+import seedu.address.logic.parser.mods.ClearModLinksCommandParser;
 import seedu.address.logic.parser.mods.DeleteModCommandParser;
 import seedu.address.logic.parser.mods.NoteModCommandParser;
 import seedu.address.logic.parser.reminders.AddReminderCommandParser;
@@ -50,6 +56,8 @@ import seedu.address.logic.parser.tutorials.AddTutorialCommandParser;
 import seedu.address.logic.parser.tutorials.AddTutorialStudentCommandParser;
 import seedu.address.logic.parser.tutorials.DeleteTutorialCommandParser;
 import seedu.address.logic.parser.tutorials.DeleteTutorialStudentCommandParser;
+import seedu.address.logic.parser.tutorials.MarkAbsentCommandParser;
+import seedu.address.logic.parser.tutorials.MarkPresentCommandParser;
 
 /**
  * Parses user input.
@@ -133,6 +141,12 @@ public class TAbleParser {
         case DeleteTutorialStudentCommand.COMMAND_WORD:
             return new DeleteTutorialStudentCommandParser().parse(arguments);
 
+        case MarkPresentCommand.COMMAND_WORD:
+            return new MarkPresentCommandParser().parse(arguments);
+
+        case MarkAbsentCommand.COMMAND_WORD:
+            return new MarkAbsentCommandParser().parse(arguments);
+
         case DeleteTutorialCommand.COMMAND_WORD:
             return new DeleteTutorialCommandParser().parse(arguments);
 
@@ -152,6 +166,12 @@ public class TAbleParser {
 
         case NoteModCommand.COMMAND_WORD:
             return new NoteModCommandParser().parse(arguments);
+
+        case AddModLinkCommand.COMMAND_WORD:
+            return new AddModLinkCommandParser().parse(arguments);
+
+        case ClearModLinksCommand.COMMAND_WORD:
+            return new ClearModLinksCommandParser().parse(arguments);
 
         // ======================================== Reminder Commands =============================
 

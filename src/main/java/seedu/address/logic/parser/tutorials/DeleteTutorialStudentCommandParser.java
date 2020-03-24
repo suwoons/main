@@ -16,7 +16,7 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteTutorialStudent object
+ * Parses input arguments and creates a new DeleteTutorialStudentCommand object
  */
 public class DeleteTutorialStudentCommandParser implements Parser<DeleteTutorialStudentCommand> {
 
