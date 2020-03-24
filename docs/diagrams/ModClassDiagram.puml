@@ -1,52 +1,79 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor MODEL_COLOR
-skinparam classBackgroundColor MODEL_COLOR_T2
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR_T2
 skinparam classFontColor #white
 skinparam classAttributeFontColor #white
 skinparam classAttributeIconSize 0
+skinparam linetype ortho
 
 package seedu.address.model.mod {
 
-class Mod {
+class Mod MODEL_COLOR_T2 {
 -ModCode modcode
 -String modName
 -String description
--Map<String, ModLink> links
+-List<Pair<String, ModLink>> links
 }
-class ModCode
-class ModLink
-class ModTAble
+class ModCode MODEL_COLOR_T2
+class ModLink MODEL_COLOR_T2
+class ModTAble MODEL_COLOR_T2
 
 }
 
-Mod *-- "1" ModCode
-Mod ..> "*" ModLink
-ModTAble -- "*" Mod
+Mod *-up- "1" ModCode MODEL_COLOR_T2
+Mod ..up> "*" ModLink MODEL_COLOR_T2
+Mod -- "*" ModTAble MODEL_COLOR_T2
 
 Package Logic <<Rectangle>>{
-    Class AddModCommand LOGIC_COLOR_T2
-    Class DeleteModCommand LOGIC_COLOR_T2
-    Class AddModCommandParser LOGIC_COLOR_T2
-    Class DeleteModCommandParser LOGIC_COLOR_T2
-    Abstract Class "{abstract}\nCommand" as Command LOGIC_COLOR_T2
-    Interface Parser <<interface>> LOGIC_COLOR_T2
+
+    together commands {
+        Class AddModCommand
+        Class DeleteModCommand
+        Class NoteModCommand
+        Class AddModLinkCommand
+        Class ClearModLinksCommand
+    }
+
+    Class XYZCommandParsers
+
+    together big {
+        Abstract Class "{abstract}\nCommand" as Command
+        Interface Parser <<interface>>
+    }
 }
 
-Command <|- AddModCommand LOGIC_COLOR_T2
-Command <|- DeleteModCommand LOGIC_COLOR_T2
-Parser <|.. AddModCommandParser LOGIC_COLOR_T2
-Parser <|.. DeleteModCommandParser LOGIC_COLOR_T2
 
-Parser .. Command LOGIC_COLOR_T2
-AddModCommandParser ..> AddModCommand LOGIC_COLOR_T2
-DeleteModCommandParser ..> DeleteModCommand LOGIC_COLOR_T2
+note left of XYZCommandParsers: XYZCommandParsers are\nthe corresponding Parser\nclasses of the Commands
+Command <|- AddModCommand
+Command <|- DeleteModCommand
+Command <|- NoteModCommand
+Command <|- AddModLinkCommand
+Command <|- ClearModLinksCommand
+Parser <|.. XYZCommandParsers
 
-AddModCommand ..> Mod LOGIC_COLOR_T2
-DeleteModCommand ..> Mod LOGIC_COLOR_T2
-AddModCommandParser ..> Mod LOGIC_COLOR_T2
-DeleteModCommandParser ..> Mod LOGIC_COLOR_T2
+Parser .left. Command
+
+XYZCommandParsers <. AddModCommand
+XYZCommandParsers <. DeleteModCommand
+XYZCommandParsers <. NoteModCommand
+XYZCommandParsers <. AddModLinkCommand
+XYZCommandParsers <. ClearModLinksCommand
+
+AddModCommand ..> Mod
+DeleteModCommand ..> Mod
+NoteModCommand ..> Mod
+NoteModCommand ..> ModCode
+AddModLinkCommand ..> ModCode
+AddModLinkCommand ..> ModLink
+ClearModLinksCommand ..> ModCode
+ClearModLinksCommand ..> ModLink
+
+AddModCommand .[hidden]down. DeleteModCommand
+DeleteModCommand .[hidden]down. NoteModCommand
+NoteModCommand .[hidden]down. AddModLinkCommand
+AddModLinkCommand .[hidden]down. ClearModLinksCommand
 
 show Mod fields
 

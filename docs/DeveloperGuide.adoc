@@ -344,7 +344,7 @@ This allows attendance of a `Student` to be easily referenced and marked in a `t
 
 // tag::module[]
 === Module feature
-*TAble* allows NUS SoC teaching assistants to track and record all modules that they are teaching.
+*TAble* allows NUS SoC teaching assistants to track and record all modules that they are teaching. Users can leave notes on the modules that they are teaching and store a list of links for the module that are useful for reference.
 
 ==== Implementation
 A module can be stored as a Mod object in TAble (renamed due to naming restrictions on Java keywords). The main components are the module code, which is used to identify unique modules, and module name. Mod can also store the user's notes of the module through its description parameter, as well as a set of module links which are relevant to the course.
@@ -352,7 +352,15 @@ A module can be stored as a Mod object in TAble (renamed due to naming restricti
 .Class diagram of 'Mod' feature, displaying only directly related classes
 image::ModClassDiagram.png[]
 
-Module links are stored as ModLink objects in TAble. The collection of ModLinks are stored as HashMap<String, ModLink> since each module link can be described differently. This allows for more flexibility in naming the module links, rather than solely using an index based notation.
+The following sequence diagram shows how notes of a module can be updated with the `noteMod` command.
+
+.Sequence diagram of updating Mod notes
+image::NoteModSequenceDiagram.png[]
+
+Module links are stored as ModLink objects in TAble. The collection of ModLinks are stored as `List<Pair<String, ModLink>>` since each module link can be described differently. This allows for more flexibility in naming the module links, rather than solely using an index based notation, and ensures that the order of addition into the collection is maintained. The activity diagram of adding module links is shown below.
+
+.Activity diagram of adding ModLinks to Mod
+image::AddModLinkActivityDiagram.png[]
 
 ==== Design Considerations
 
