@@ -23,7 +23,7 @@
                         </image>
                      </ImageView>
                   </graphic></Button>
-                    <Label fx:id="calendarTitle" style="-fx-text-fill: white;" text="\$calenderTitle" /
+                    <Label fx:id="calendarTitle" style="-fx-text-fill: white;" text="\$calenderTitle" />
                     <Button id="btn-next" onAction="#nextMonthFx" style="-fx-background-color: transparent;">
                   <graphic>
                      <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
