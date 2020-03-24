@@ -297,39 +297,12 @@ Marks only student at index 2 (for tutorial at index 3) as absent in week 7 for 
 * `markAbsent tutorialIndex/3 week/7 student/all` +
 Marks all students in week 7 as absent in tutorial at index 3 (oh no!)
 
-=== Display attendance list for a tutorial: `listAttendance`
-
-Displays the attendance list for a tutorial for a specified week. +
-Format: `listAttendance tutorialIndex/INDEX week/WEEK`
-
-****
-* Shows the attendance for tutorial at the specified `INDEX`, for the specified 'WEEK'
-* The index refers to the index number shown in the displayed tutorial list.
-* The index and week *must be a positive integer* 1, 2, 3, ...
-* The integer for week has to be in the range 1-13 (inclusive).
-****
-
-Example:
-
-* `listAttendance tutorialIndex/2 week/7` +
-Displays the attendance list for tutorial at index 2 on week 7
-
-=== List all tutorials: `listTutorial`
-
-Lists all the tutorials that the TA is teaching for the particular semester on TAble. +
-Format: `listTutorial`
-
-****
-* May be referred to to obtain the index of a particular tutorial
-****
-
 === Add student to tutorial: `addTutorialStudent`
 
 Enroll an existing student to an existing tutorial.
 Format: `addTutorialStudent tutorialIndex/INDEX student/STUDENT`
 
 ****
-* Shows the attendance for tutorial at the specified `INDEX`.
 * The index refers to the index number shown in the displayed tutorial list.
 * The index *must be a positive integer* 1, 2, 3, ...
 * The `STUDENT` should be referred to by index as referred to in the student list.
@@ -347,7 +320,6 @@ Remove an existing student from an existing tutorial.
 Format: `deleteTutorialStudent tutorialIndex/INDEX student/STUDENT`
 
 ****
-* Shows the attendance for tutorial at the specified `INDEX`.
 * The index refers to the index number shown in the displayed tutorial list.
 * The index *must be a positive integer* 1, 2, 3, ...
 * The `STUDENT` should be referred to by the index as referred to in the student list *relative to the specified tutorial*.
@@ -358,6 +330,24 @@ Format: `deleteTutorialStudent tutorialIndex/INDEX student/STUDENT`
 Example:
 
 * `deleteTutorialStudent tutorialIndex/3 student/12`
+
+=== Display students and attendance of a tutorial: `ListTutorial`
+
+Displays the list of students in a tutorial and their corresponding attendance for a particular week in the GUI.
+Format: `listTutorial tutorialIndex/INDEX week/INDEX`
+
+****
+* Shows the attendance for tutorial at the specified `INDEX`.
+* The index refers to the index number shown in the displayed tutorial list.
+* The index *must be a positive integer* 1, 2, 3, ...
+* The tutorial should already exist.
+* The week should be in numerical format, and accepts only numbers in the range 1 to 13 (inclusive)
+****
+
+Example:
+
+* `listTutorial tutorialIndex/2 week/10`
+
 //end::Tutorial[]
 
 //tag::Module[]

@@ -111,6 +111,22 @@ public class Tutorial {
         }
     }
 
+    /**
+     * Marks the given {@code student} as present in the tutorial for the specified week.
+     */
+    public void markPresent(Student student, int week) {
+        int targetIndex = enrolledStudents.indexOf(student);
+        studentAttendance.get(week).set(targetIndex, true);
+    }
+
+    /**
+     * Marks the given {@code student} as absent in the tutorial for the specified week.
+     */
+    public void markAbsent(Student student, int week) {
+        int targetIndex = enrolledStudents.indexOf(student);
+        studentAttendance.get(week).set(targetIndex, false);
+    }
+
     public ModCode getModCode() {
         return modCode;
     }

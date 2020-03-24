@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -31,6 +32,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_STUDENT_ATTENDANCE_INDEX = "Index is not a non-zero unsigned integer,"
+            + " or \"all\".";
     public static final String MESSAGE_INVALID_DATE_TIME = "Format of date and time is not supported.";
     public static final String MESSAGE_INVALID_DATE = "Format of date is not supported.";
     public static final String MESSAGE_INVALID_TIME = "Format of time is not supported.";
@@ -45,6 +48,23 @@ public class ParserUtil {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code studentIndex} into an {@code Index} and returns it. If {@code studentIndex} is "all",
+     * a 0 index will be returned. Otherwise, it will be a one-based index.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseAttendanceStudent(String studentIndex) throws ParseException {
+        String trimmedIndex = studentIndex.trim();
+        if (trimmedIndex.toLowerCase().equals("all")) {
+            return Index.fromZeroBased(0);
+        }
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_STUDENT_ATTENDANCE_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
@@ -213,6 +233,28 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_DAY);
         }
         return parsedDay;
+    }
+
+    /**
+     * Parses a {@code String week} into an {@code int} which only accepts values which can be converted to an integer
+     * and is between 1 and 13 inclusive.
+     * @throws ParseException if the given {@code week} is invalid.
+     */
+    public static int parseTutorialWeek(String week) throws ParseException {
+        requireNonNull(week);
+        String trimmedWeek = week.trim();
+
+        int parsedWeek;
+        try {
+            parsedWeek = Integer.parseInt(trimmedWeek);
+            if (parsedWeek < 1 || parsedWeek > 13) {
+                throw new ParseException(Messages.MESSAGE_INVALID_WEEK);
+            }
+        } catch (NumberFormatException e) {
+            throw new ParseException(Messages.MESSAGE_INVALID_WEEK);
+        }
+
+        return parsedWeek - 1;
     }
 
     /**
