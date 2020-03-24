@@ -1,9 +1,13 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TabPane;
@@ -18,10 +22,13 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.model.student.Student;
 import seedu.address.ui.calendar.CalendarWindow;
 import seedu.address.ui.consult.ConsultListPanel;
 import seedu.address.ui.mod.ModListPanel;
 import seedu.address.ui.reminder.ReminderListPanel;
+import seedu.address.ui.tutorial.AttendanceListPanel;
 import seedu.address.ui.tutorial.TutorialListPanel;
 
 /**
@@ -43,6 +50,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private CalendarWindow calendarWindow;
     private TutorialListPanel tutorialListPanel;
+    private AttendanceListPanel attendanceListPanel;
     private ConsultListPanel consultListPanel;
     private ModListPanel modListPanel;
     private ReminderListPanel reminderListPanel;
@@ -58,6 +66,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane tutorialListPanelPlaceholder;
+
+    @FXML
+    private StackPane attendanceListPanelPlaceholder;
 
     @FXML
     private StackPane consultListPanelPlaceholder;
@@ -203,8 +214,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleList(String commandText) {
+        commandText = commandText.split(" ")[0];
         switch(commandText) {
-        case "list":
+        case "listStudent":
             firstTabPanePlaceholder.getSelectionModel().select(0);
             break;
         case "listTutorial":
@@ -215,6 +227,9 @@ public class MainWindow extends UiPart<Stage> {
             break;
         case "listConsult":
             secondTabPanePlaceholder.getSelectionModel().select(0);
+            break;
+        case "listAttendance":
+            secondTabPanePlaceholder.getSelectionModel().select(1);
             break;
         default:
             break;
@@ -235,6 +250,20 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
+    }
+
+    /**
+     * Loads AttendanceListPanel in the GUI with the appropriate data.
+     */
+    @FXML
+    private void handleAttendance(Tutorial tutorialToShow, int weekZeroBased) {
+        ArrayList<Boolean> attendanceToShow = tutorialToShow.getAttendanceWeek(weekZeroBased);
+        ArrayList<Student> studentsToShow = tutorialToShow.getEnrolledStudents();
+        ObservableList<Student> studentsList = FXCollections.observableArrayList(studentsToShow);
+
+        attendanceListPanel = new AttendanceListPanel(studentsList, attendanceToShow);
+        attendanceListPanelPlaceholder.getChildren().add(attendanceListPanel.getRoot());
+        secondTabPanePlaceholder.getSelectionModel().select(1);
     }
 
     /**
@@ -274,6 +303,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowList()) {
                 handleList(commandText);
+            }
+
+            if (commandResult.isShowAttendance()) {
+                handleAttendance(commandResult.getTutorialToShow(), commandResult.getWeekZeroBased());
             }
 
             if (commandResult.isExit()) {

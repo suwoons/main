@@ -227,6 +227,12 @@ Returns any consults that are held at SR3
 
 // tag::Tutorial[]
 === Tutorials Feature
+
+==== Switch GUI Display to Tutorial List View: `ListTutorial`
+
+Focuses the display in the GUI to the Tutorials list view, without requiring the user to click on the tab.
+Format: `ListTutorial`
+
 ==== Add a tutorial slot: `addTutorial`
 
 Add a tutorial slot for a particular module at the given time, day and place. +
@@ -336,10 +342,10 @@ Example:
 
 * `deleteTutorialStudent tutorialIndex/3 student/12`
 
-==== Display students and attendance of a tutorial: `ListTutorial`
+==== Display students and attendance of a tutorial: `ListAttendance`
 
 Displays the list of students in a tutorial and their corresponding attendance for a particular week in the GUI.
-Format: `listTutorial tutorialIndex/INDEX week/INDEX`
+Format: `listAttendance tutorialIndex/INDEX week/INDEX`
 
 ****
 * Shows the attendance for tutorial at the specified `INDEX`.
@@ -351,7 +357,7 @@ Format: `listTutorial tutorialIndex/INDEX week/INDEX`
 
 Example:
 
-* `listTutorial tutorialIndex/2 week/10`
+* `listAttendance tutorialIndex/2 week/10`
 
 //end::Tutorial[]
 
