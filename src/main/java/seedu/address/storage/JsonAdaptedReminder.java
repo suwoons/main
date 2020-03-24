@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.reminder.Description;
 import seedu.address.model.reminder.Reminder;
 
 /**
@@ -21,6 +22,7 @@ class JsonAdaptedReminder {
     private final String description;
     private final String date;
     private final String time;
+    private final String done;
 
     /**
      * Constructs a {@code JsonAdaptedReminder} with the given reminder details.
@@ -28,19 +30,22 @@ class JsonAdaptedReminder {
     @JsonCreator
     public JsonAdaptedReminder(@JsonProperty("description") String description,
                               @JsonProperty("date") String date,
-                              @JsonProperty("time") String time) {
+                              @JsonProperty("time") String time,
+                              @JsonProperty("done") String done) {
         this.description = description;
         this.date = date;
         this.time = time;
+        this.done = done;
     }
 
     /**
      * Converts a given {@code Reminder} into this class for Jackson use.
      */
     public JsonAdaptedReminder(Reminder source) {
-        description = source.getDescription();
+        description = source.getDescription().toString();
         date = source.getDate().toString();
         time = source.getTime().toString();
+        done = source.getDone() ? "Yes" : "No";
     }
 
     /**
@@ -62,11 +67,13 @@ class JsonAdaptedReminder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "TIME"));
         }
 
-        String modelDescription;
+        if (done == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "DONE"));
+        }
+
+        final Description modelDescription = new Description(description);
         LocalDate modelDate;
         LocalTime modelTime;
-
-        modelDescription = description;
 
         try {
             modelDate = LocalDate.parse(this.date);
@@ -75,6 +82,8 @@ class JsonAdaptedReminder {
             throw new IllegalValueException(INVALID_DATE_TIME_FORMAT);
         }
 
-        return new Reminder(modelDescription, modelDate, modelTime, false);
+        final boolean modelDone = done.equals("Yes");
+
+        return new Reminder(modelDescription, modelDate, modelTime, modelDone);
     }
 }

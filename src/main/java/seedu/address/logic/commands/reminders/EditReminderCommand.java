@@ -18,6 +18,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.reminder.Description;
 import seedu.address.model.reminder.Reminder;
 
 /**
@@ -87,7 +88,7 @@ public class EditReminderCommand extends Command {
             editReminderDescriptor) {
         assert reminderToEdit != null;
 
-        String updatedDescription = editReminderDescriptor.getDescription()
+        Description updatedDescription = editReminderDescriptor.getDescription()
                 .orElse(reminderToEdit.getDescription());
         LocalDate updatedDate = editReminderDescriptor.getDate()
                 .orElse(reminderToEdit.getDate());
@@ -121,7 +122,7 @@ public class EditReminderCommand extends Command {
      * corresponding field value of the reminder.
      */
     public static class EditReminderDescriptor {
-        private String description;
+        private Description description;
         private LocalDate date;
         private LocalTime time;
 
@@ -143,11 +144,11 @@ public class EditReminderCommand extends Command {
             return CollectionUtil.isAnyNonNull(description, date, time);
         }
 
-        public void setDescription(String description) {
+        public void setDescription(Description description) {
             this.description = description;
         }
 
-        public Optional<String> getDescription() {
+        public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
         }
 

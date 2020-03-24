@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -14,10 +15,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.Scene?>
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
-<fx:root height="400.0" minHeight="400.0" minWidth="810.0" onCloseRequest="#handleExit" resizable="false" title="TAble" type="javafx.stage.Stage" width="810.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root height="400.0" minHeight="400.0" minWidth="1000.0" onCloseRequest="#handleExit" resizable="false" title="TAble" type="javafx.stage.Stage" width="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -49,7 +49,7 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-            <SplitPane dividerPositions="0.3">
+            <SplitPane dividerPositions="0.3, 0.5">
               <items>
                 <AnchorPane>
                      <children>
@@ -60,7 +60,8 @@
                                     <VBox>
                                        <children>
                                           <StackPane fx:id="studentListPanelPlaceholder" maxHeight="300.0" maxWidth="300.0" minHeight="300.0" minWidth="300.0" prefHeight="300.0" prefWidth="300.0" />
-                                       </children></VBox>
+                                       </children>
+                                    </VBox>
                                  </content>
                               </Tab>
                             <Tab text="Tutorials">
@@ -68,7 +69,8 @@
                                     <VBox>
                                        <children>
                                            <StackPane fx:id="tutorialListPanelPlaceholder" maxHeight="300.0" maxWidth="300.0" minHeight="300.0" minWidth="300.0" prefHeight="300.0" prefWidth="300.0" />
-                                       </children></VBox>
+                                       </children>
+                                    </VBox>
                                  </content>
                               </Tab>
                               <Tab text="Modules">
@@ -92,7 +94,7 @@
                                  <content>
                                     <VBox>
                                        <children>
-                                           <StackPane fx:id="consultListPanelPlaceholder" maxHeight="300.0" maxWidth="300.0" minHeight="300.0" minWidth="300.0" prefHeight="300.0" prefWidth="300.0" />
+                                           <StackPane fx:id="consultListPanelPlaceholder" maxHeight="300.0" maxWidth="350.0" minHeight="300.0" minWidth="350.0" prefHeight="300.0" prefWidth="350.0" />
                                        </children></VBox>
                                  </content>
                               </Tab>
@@ -100,7 +102,7 @@
                                  <content>
                                     <VBox>
                                        <children>
-                                          <StackPane minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" />
+                                          <StackPane minHeight="300.0" minWidth="350.0" prefHeight="300.0" prefWidth="350.0" />
                                        </children></VBox>
                                  </content>
                               </Tab>
@@ -108,19 +110,31 @@
                                  <content>
                                     <VBox>
                                        <children>
-                                          <Label prefWidth="595.0" text="\$modCode" textFill="#f3f0f0">
+                                          <Label prefWidth="350.0" text="\$modCode" textFill="#f3f0f0">
                                              <font>
                                                 <Font size="36.0" />
                                              </font>
                                           </Label>
                                           <TextArea prefHeight="200.0" prefWidth="200.0" styleClass="result-display" text="\$modNote&#10;" />
-                                          <StackPane fx:id="modInfoPanelPlaceholder" minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" />
+                                          <StackPane fx:id="modInfoPanelPlaceholder" minHeight="300.0" minWidth="350.0" prefHeight="300.0" prefWidth="350.0" />
                                        </children></VBox>
                                  </content>
                               </Tab>
                           </tabs>
                         </TabPane>
                      </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                      <VBox>
+                          <children>
+                              <Label text="Your Reminders" style="-fx-text-fill: white; -fx-font-style: italic; -fx-font-weight: bold; -fx-font-size: 16;">
+                              <VBox.margin>
+                                  <Insets bottom="5.0" />
+                              </VBox.margin>
+                              </Label>
+                              <StackPane fx:id="reminderListPanelPlaceholder" maxHeight="300.0" maxWidth="314.0" minHeight="300.0" minWidth="314.0" prefHeight="300.0" prefWidth="314.0"/>
+                          </children>
+                      </VBox>
                   </AnchorPane>
               </items>
             </SplitPane>

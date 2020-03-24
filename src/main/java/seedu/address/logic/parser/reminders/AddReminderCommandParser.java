@@ -16,6 +16,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.reminder.Description;
 import seedu.address.model.reminder.Reminder;
 
 /**
@@ -40,13 +41,14 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
                     AddReminderCommand.MESSAGE_USAGE));
         }
 
-        String desc = argMultimap.getValue(PREFIX_REMINDER_DESCRIPTION).get();
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(
+                PREFIX_REMINDER_DESCRIPTION).get());
         LocalDate date = ParserUtil.parseDate(argMultimap.getValue(
                 PREFIX_REMINDER_DATE).get());
         LocalTime time = ParserUtil.parseTime(argMultimap.getValue(
                 PREFIX_REMINDER_TIME).get());
 
-        Reminder reminder = new Reminder(desc, date, time, false);
+        Reminder reminder = new Reminder(description, date, time, false);
 
         return new AddReminderCommand(reminder);
     }
