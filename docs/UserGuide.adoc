@@ -35,7 +35,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`listStudent`* : lists all students
-* **`addStudent`**`n/John Doe id/A0188888H e/johnd@example.com` : adds a student named `John Doe` to TAble.
+* **`addStudent`**`n/John Doe m/A0188888H e/johnd@example.com` : adds a student named `John Doe` to TAble.
 * **`deleteStudent`**`3` : deletes the 3rd student shown in the current list
 * *`exit`* : exits the app
 
@@ -60,7 +60,7 @@ Format: `help`
 === Adding a student: `add`
 
 Adds a student to TAble +
-Format: `add n/NAME id/MATRIC_NUMBER e/EMAIL [t/TAG]...`
+Format: `add n/NAME m/MATRIC_NUMBER e/EMAIL [t/TAG]...`
 
 [TIP]
 A person can have any number of tags (including 0)
@@ -78,7 +78,7 @@ Format: `list`
 === Editing a student : `edit`
 
 Edits an existing student in TAble. +
-Format: `edit INDEX [n/NAME] [id/MATRIC_NUMBER] [e/EMAIL] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [m/MATRIC_NUMBER] [e/EMAIL] [t/TAG]...`
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
@@ -552,12 +552,12 @@ _{explain how the user can enable/disable data encryption}_
 
 == Command Summary
 
-* *Add* `add n/NAME id/MATRIC_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `add n/James Ho id/A0123456X e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+* *Add* `add n/NAME m/MATRIC_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
+e.g. `add n/James Ho m/A0123456X e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 * *Clear* : `clear`
 * *Delete* : `delete INDEX` +
 e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [id/MATRIC_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
+* *Edit* : `edit INDEX [n/NAME] [m/MATRIC_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
 e.g. `edit 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
