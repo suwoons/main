@@ -56,6 +56,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 Format: `help`
 
+* A window containing the link to our User Guide will appear. Click on the Copy Link button to copy the link to our User Guide.
+
 ===  Students Feature
 ==== Adding a student: `add`
 
