@@ -67,8 +67,8 @@ A person can have any number of tags (including 0)
 
 Examples:
 
-* `add n/John Doe e/johnd@example.com`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com t/CS2103`
+* `add n/John Doe m/A0123456X e/johnd@example.com`
+* `add n/Betsy Crowe m/A1234567X t/friend e/betsycrowe@example.com t/CS2103`
 
 === Listing all students : `list`
 
