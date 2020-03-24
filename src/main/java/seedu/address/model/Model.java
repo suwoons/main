@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -10,6 +11,8 @@ import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
+import seedu.address.model.mod.ModCode;
+import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.student.Student;
@@ -229,6 +232,13 @@ public interface Model {
     void deleteMod(Mod mod);
 
     /**
+     * Finds the corresponding module given a {@code modCode}.
+     * As the module may not exist in TAble, an optional Mod is returned.
+     * @param modCode module code of the module to be found
+     */
+    Optional<Mod> findMod(ModCode modCode);
+
+    /**
      * Replaces the given module {@code target} with {@code editedMod}.
      * {@code target} must exist in the address book.
      * The module identity of {@code editedMod} must not be the same as another existing Mod in Table.
@@ -243,6 +253,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModList(Predicate<Mod> predicate);
+
+    /** Returns the module TAble */
+    ReadOnlyMod getModTAble();
 
     // Reminder-level operations =====================================================================================
 

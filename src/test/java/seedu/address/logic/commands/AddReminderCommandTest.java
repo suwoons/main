@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,8 @@ import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.mod.Mod;
+import seedu.address.model.mod.ModCode;
+import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.reminder.Description;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
@@ -285,6 +288,11 @@ public class AddReminderCommandTest {
         }
 
         @Override
+        public Optional<Mod> findMod(ModCode modCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setMod(Mod target, Mod editedMod) {
             throw new AssertionError("This method should not be called.");
         }
@@ -296,6 +304,11 @@ public class AddReminderCommandTest {
 
         @Override
         public void updateFilteredModList(Predicate<Mod> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyMod getModTAble() {
             throw new AssertionError("This method should not be called.");
         }
 
