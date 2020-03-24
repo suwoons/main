@@ -13,7 +13,6 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.mod.Mod;
 import seedu.address.model.mod.ModCode;
 
 /**
@@ -41,9 +40,7 @@ public class AddModCommandParser implements Parser<AddModCommand> {
         ModCode modCode = ParserUtil.parseModCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
         String modName = argMultimap.getValue(PREFIX_MODULE_NAME).get();
 
-        Mod mod = new Mod(modCode, modName);
-
-        return new AddModCommand(mod);
+        return new AddModCommand(modCode, modName);
     }
 
     /**
