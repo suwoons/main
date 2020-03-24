@@ -62,10 +62,10 @@ public class AddModLinkCommand extends Command {
         assert optionalMod.isPresent();
         Mod modToEdit = optionalMod.get();
 
-        Mod replacementMod = new Mod(modToEdit, linkName, link);
-        model.setMod(modToEdit, replacementMod);
+        Mod editedMod = new Mod(modToEdit, linkName, link);
+        model.setMod(modToEdit, editedMod);
         model.updateFilteredModList(PREDICATE_SHOW_ALL_MODS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, replacementMod));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedMod));
     }
 
     @Override

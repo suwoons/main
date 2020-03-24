@@ -9,6 +9,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.mod.Mod;
+import seedu.address.model.mod.ModCode;
 
 /**
  * Adds a module to TAble. Due to naming conflicts, this is reflected as "Mod".
@@ -30,11 +31,11 @@ public class AddModCommand extends Command {
     private final Mod toAdd;
 
     /**
-     * Creates an AddModCommand to add the specified {@code mod}
+     * Creates an AddModCommand to add the specified {@code modCode}
      */
-    public AddModCommand(Mod mod) {
-        requireNonNull(mod);
-        toAdd = mod;
+    public AddModCommand(ModCode modCode, String modName) {
+        requireNonNull(modCode);
+        toAdd = new Mod(modCode, modName);
     }
 
     @Override
