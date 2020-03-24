@@ -17,6 +17,6 @@ public class CalendarCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         return new
-            CommandResult(SHOWING_CALENDAR_MESSAGE, true, false, false);
+            CommandResult(SHOWING_CALENDAR_MESSAGE, true, false, false, false);
     }
 }
