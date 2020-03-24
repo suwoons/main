@@ -2,7 +2,9 @@ package seedu.address.logic.commands.consults;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME;
+import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_DIFFERENT_DATE;
 import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_TIMING_CLASH;
+import static seedu.address.commons.util.ConsultUtil.checkSameDate;
 import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
@@ -22,6 +24,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.consult.Consult;
+import seedu.address.model.student.MatricNumber;
+import seedu.address.model.student.Name;
 
 /**
  * Edits the details of an existing consult in TAble.
@@ -91,19 +95,29 @@ public class EditConsultCommand extends Command {
      */
     private static Consult createEditedConsult(Consult consultToEdit, EditConsultDescriptor editConsultDescriptor)
             throws CommandException {
+
         assert consultToEdit != null;
 
         LocalDateTime updatedBeginStartTime = editConsultDescriptor.getBeginDateTime()
                 .orElse(consultToEdit.getBeginDateTime());
+
         LocalDateTime updatedEndStartTime = editConsultDescriptor.getEndDateTime()
                 .orElse(consultToEdit.getEndDateTime());
-        Location updatedLocation = editConsultDescriptor.getLocation().orElse(consultToEdit.getLocation());
 
         if (!checkStartEndDateTime(updatedBeginStartTime, updatedEndStartTime)) {
             throw new CommandException(MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME);
         }
 
-        return new Consult(updatedBeginStartTime, updatedEndStartTime, updatedLocation);
+        if (!checkSameDate(updatedBeginStartTime, updatedEndStartTime)) {
+            throw new CommandException(MESSAGE_CONSULT_DIFFERENT_DATE);
+        }
+
+        Location updatedLocation = editConsultDescriptor.getLocation().orElse(consultToEdit.getLocation());
+        MatricNumber studentMatricNumber = consultToEdit.getMatricNumber();
+        Name studentName = consultToEdit.getStudentName();
+
+        return new Consult(updatedBeginStartTime, updatedEndStartTime,
+            updatedLocation, studentName, studentMatricNumber);
     }
 
     @Override

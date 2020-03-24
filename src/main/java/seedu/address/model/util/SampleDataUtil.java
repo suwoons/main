@@ -24,6 +24,7 @@ import seedu.address.model.mod.Mod;
 import seedu.address.model.mod.ModCode;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.mod.ReadOnlyMod;
+import seedu.address.model.reminder.Description;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderTAble;
@@ -73,8 +74,9 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyConsult getSampleConsults() {
-        LocalDateTime startDateTime = LocalDateTime.now();
-        LocalDateTime endDateTime = LocalDateTime.now().plusHours(3);
+        LocalDateTime startDateTime = LocalDateTime.parse("2020-04-03 10:00",
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        LocalDateTime endDateTime = startDateTime.plusHours(3);
         Location location = new Location("SR1");
         Name studentName = new Name("Alex Yeoh");
         MatricNumber matricNumber = new MatricNumber("A0187596R");
@@ -111,7 +113,7 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyReminder getSampleReminders() {
-        String description = "Mark T02 midterms papers.";
+        Description description = new Description("Mark T02 midterms papers");
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.parse("15:00", DateTimeFormatter.ofPattern("HH:mm"));
         Reminder reminder = new Reminder(description, date, time, false);

@@ -19,6 +19,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.tutorial.TutorialName;
 import seedu.address.model.mod.ModCode;
+import seedu.address.model.reminder.Description;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Name;
@@ -285,5 +286,20 @@ public class ParserUtil {
         }
 
         return new ModCode(trimmedModCode);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(description);
     }
 }

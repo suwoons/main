@@ -17,11 +17,18 @@ public class ConsultUtil {
     }
 
     /**
-     *
+     * Method to check that the {@code consultDateTime} is the same date as the {@code calendarDate} in the Calendar.
      */
-    public static boolean isSameDate(LocalDateTime consultDateTime, LocalDate calendarDate) {
+    public static boolean checkSameDate(LocalDateTime consultDateTime, LocalDate calendarDate) {
         LocalDate startDate = LocalDate.of(consultDateTime.getYear(), consultDateTime.getMonthValue(),
             consultDateTime.getDayOfMonth());
         return startDate.isEqual(calendarDate);
+    }
+
+    /**
+     * Method to check that the {@code beginConsultDateTime} is the same date as the {@code endConsultDateTime}.
+     */
+    public static boolean checkSameDate(LocalDateTime beginConsultDateTime, LocalDateTime endConsultDateTime) {
+        return beginConsultDateTime.toLocalDate().equals(endConsultDateTime.toLocalDate());
     }
 }
