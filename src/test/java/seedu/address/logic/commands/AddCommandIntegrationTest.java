@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.students.AddStudentCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -18,7 +19,7 @@ import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddStudentCommand}.
  */
 public class AddCommandIntegrationTest {
 
@@ -38,14 +39,14 @@ public class AddCommandIntegrationTest {
             new TutorialTAble(), new ModTAble(), new ReminderTAble());
         expectedModel.addStudent(validStudent);
 
-        assertCommandSuccess(new AddCommand(validStudent), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validStudent), expectedModel);
+        assertCommandSuccess(new AddStudentCommand(validStudent), model,
+                String.format(AddStudentCommand.MESSAGE_SUCCESS, validStudent), expectedModel);
     }
 
     @Test
     public void execute_duplicateStudent_throwsCommandException() {
         Student studentInList = model.getStudentTAble().getStudentList().get(0);
-        assertCommandFailure(new AddCommand(studentInList), model, AddCommand.MESSAGE_DUPLICATE_STUDENT);
+        assertCommandFailure(new AddStudentCommand(studentInList), model, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 
 }

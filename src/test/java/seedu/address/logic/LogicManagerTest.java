@@ -16,10 +16,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.students.AddStudentCommand;
+import seedu.address.logic.commands.students.ListStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -70,14 +70,14 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        String deleteStudentCommand = "deleteStudent 9";
+        assertCommandException(deleteStudentCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listStudentCommand = ListStudentCommand.COMMAND_WORD;
+        assertCommandSuccess(listStudentCommand, ListStudentCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -99,12 +99,13 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + MATRICNUMBER_DESC_AMY + EMAIL_DESC_AMY;
+        String addStudentCommand = AddStudentCommand.COMMAND_WORD + NAME_DESC_AMY + MATRICNUMBER_DESC_AMY
+                + EMAIL_DESC_AMY;
         Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStudent(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(addStudentCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
