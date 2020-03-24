@@ -90,9 +90,9 @@ Format: `editStudent INDEX [n/NAME] [m/MATRIC_NUMBER] [e/EMAIL] [t/TAG]...`
 
 Examples:
 
-* `edit 1 e/johndoe@example.com` +
+* `editStudent 1 e/johndoe@example.com` +
 Edits the matric number and email address of the 1st person to be `A9999999Z` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` +
+* `editStudent 2 n/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 === Locating students by name: `find`
