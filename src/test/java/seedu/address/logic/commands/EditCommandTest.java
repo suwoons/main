@@ -22,13 +22,13 @@ import seedu.address.logic.commands.students.EditStudentCommand;
 import seedu.address.logic.commands.students.EditStudentCommand.EditStudentDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.StudentTAble;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.StudentTAble;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
 

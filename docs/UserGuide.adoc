@@ -35,7 +35,6 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`listStudent`* : lists all students
-* **`addStudent`**`n/John Doe m/A0188888H e/johnd@example.com` : adds a student named `John Doe` to TAble.
 * **`deleteStudent`**`3` : deletes the 3rd student shown in the current list
 * *`exit`* : exits the app
 
@@ -57,10 +56,13 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 Format: `help`
 
-=== Adding a student: `add`
+* A window containing the link to our User Guide will appear. Click on the Copy Link button to copy the link to our User Guide.
+
+===  Students Feature
+==== Adding a student: `add`
 
 Adds a student to TAble +
-Format: `addStudent n/NAME m/MATRIC_NUMBER e/EMAIL [t/TAG]...`
+Format: `addStudent name/NAME matric/MATRIC_NUMBER email/EMAIL [tag/TAG]...`
 
 [TIP]
 A person can have any number of tags (including 0)
@@ -70,35 +72,35 @@ Examples:
 * `addStudent n/John Doe m/A0123456X e/johnd@example.com`
 * `addStudent n/Betsy Crowe m/A1234567X t/friend e/betsycrowe@example.com t/CS2103`
 
-=== Listing all students : `list`
+==== Listing all students : `listStudent`
 
 Shows a list of all students in TAble. +
-Format: `list`
+Format: `listStudent`
 
-=== Editing a student : `edit`
+==== Editing a student : `editStudent`
 
 Edits an existing student in TAble. +
-Format: `editStudent INDEX [n/NAME] [m/MATRIC_NUMBER] [e/EMAIL] [t/TAG]...`
+Format: `editStudent INDEX [name/NAME] [matric/MATRIC_NUMBER] [email/EMAIL] [tag/TAG]...`
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
-* You can remove all the person's tags by typing `t/` without specifying any tags after it.
+* You can remove all the person's tags by typing `tag/` without specifying any tags after it.
 ****
 
 Examples:
 
-* `editStudent 1 e/johndoe@example.com` +
-Edits the matric number and email address of the 1st person to be `A9999999Z` and `johndoe@example.com` respectively.
-* `editStudent 2 n/Betsy Crower t/` +
+* `editStudent 1 email/johndoe@example.com` +
+Edits the email address of the 1st person to be `johndoe@example.com`.
+* `editStudent 2 name/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-=== Locating students by name: `find`
+==== Locating students by name: `findStudent`
 
 Finds students whose names contain any of the given keywords. +
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findStudent KEYWORD [MORE_KEYWORDS]`
 
 ****
 * The search is case insensitive. e.g `hans` will match `Hans`
@@ -116,7 +118,7 @@ Returns `john` and `John Doe`
 Returns any person having names `Betsy`, `Tim`, or `John`
 
 // tag::delete[]
-=== Deleting a student : `delete`
+==== Deleting a student : `delete`
 
 Deletes the specified student from TAble. +
 Format: `deleteStudent INDEX`
@@ -139,7 +141,9 @@ Deletes the 1st student in the results of the `find` command.
 // end::delete[]
 
 // tag::Consult[]
-=== Adding a consult: `addConsult`
+
+=== Consults Feature
+==== Adding a consult: `addConsult`
 
 Add a consultation slot at the given time, date and place. +
 Format: `addConsult student/STUDENT_INDEX beginDateTime/BEGIN_DATE_TIME endDateTime/END_DATE_TIME place/PLACE`
@@ -154,7 +158,7 @@ Example:
 
 * `addConsult student/1 beginDateTime/2020-03-03 10:00 endDateTime/2020-03-03 12:00 place/Deck`
 
-=== Editing a consult: `editConsult`
+==== Editing a consult: `editConsult`
 
 Edit the time, date or place of an existing consultation slot. +
 Format: `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]`
@@ -170,15 +174,15 @@ Example:
 
 * `editConsult 1 beginDateTime/2020-03-03 15:00` +
 Edits the beginning time of the 1st consult to be at 2020-03-03, 15:00 hours i.e 3.00 p.m.
-* `edit 2 place/SR3` +
+* `editConsult 2 place/SR3` +
 Edits the place of the 2nd consult to be at SR3.
 
-=== Listing all consults : `listConsult`
+==== Listing all consults : `listConsult`
 
 Shows a list of all consultations in TAble. +
 Format: `listConsult`
 
-=== Deleting a consult: `deleteConsult`
+==== Deleting a consult: `deleteConsult`
 
 Removes an existing consultation slot. +
 Format: `deleteConsult INDEX`
@@ -195,12 +199,12 @@ Example:
 `deleteConsult 2` +
 Deletes the 2nd consultation in TAble.
 
-=== Clearing all consults : `clearConsult`
+==== Clearing all consults : `clearConsult`
 
 Clears all consultations slots in TAble. +
 Format: `clearConsults`
 
-=== Locating consultations by date or place: `findConsult`
+==== Locating consultations by date or place: `findConsult`
 
 Finds consultations whose date or place match any of the given keywords. +
 Format: `findConsult [DATE] [PLACE]`
@@ -222,7 +226,8 @@ Returns any consults that are held at SR3
 
 
 // tag::Tutorial[]
-=== Add a tutorial slot: `addTutorial`
+=== Tutorials Feature
+==== Add a tutorial slot: `addTutorial`
 
 Add a tutorial slot for a particular module at the given time, day and place. +
 Format: `addTutorial modCode/MODULE_CODE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE beginTime/START_TIME endTIme/END_TIME place/PLACE`
@@ -239,7 +244,7 @@ Example:
 * `addTutorial modCode/CS2103 tutorialName/T02 day/3 beginTime/12:00 endTime/13:00 place/SR3`
 * `addTutorial modCode/CS1101S tutorialName/T11 day/4 beginTime/12:00 endTime/13:00 place/SR3`
 
-=== Delete a tutorial slot: `deleteTutorial`
+==== Delete a tutorial slot: `deleteTutorial`
 
 Delete a tutorial slot for a particular module. +
 Format: `deleteTutorial INDEX`
@@ -255,7 +260,7 @@ Example:
 * `listTutorial` +
  `deleteTutorial 2`
 
-=== Marks students as present: `markPresent`
+==== Marks students as present: `markPresent`
 
 Takes attendance of students in a tutorial class by marking them as present for a particular week. Present students will be marked with a :heavy_check_mark:. +
 Format: `markPresent tutorialIndex/INDEX week/WEEK student/STUDENT [OPTIONAL]`
@@ -276,7 +281,7 @@ Marks only student at index 2 (for tutorial at index 3) as present in week 7 for
 * `markPresent tutorialIndex/2 tutorialName/T02 week/7 student/all` +
 Marks all students as present in week 7 in tutorial at index 2
 
-=== Marks students as absent: `markAbsent`
+==== Marks students as absent: `markAbsent`
 
 Takes attendance of students in a tutorial class by marking them as absent for a particular week. Absent students will be marked with a :x:. +
 Format: `markPresent tutorialIndex/INDEX week/WEEK student/STUDENT`
@@ -297,7 +302,7 @@ Marks only student at index 2 (for tutorial at index 3) as absent in week 7 for 
 * `markAbsent tutorialIndex/3 week/7 student/all` +
 Marks all students in week 7 as absent in tutorial at index 3 (oh no!)
 
-=== Add student to tutorial: `addTutorialStudent`
+==== Add student to tutorial: `addTutorialStudent`
 
 Enroll an existing student to an existing tutorial.
 Format: `addTutorialStudent tutorialIndex/INDEX student/STUDENT`
@@ -314,7 +319,7 @@ Example:
 
 * `addTutorialStudent tutorialIndex/3 student/12`
 
-=== Remove student from tutorial: `deleteTutorialStudent`
+==== Remove student from tutorial: `deleteTutorialStudent`
 
 Remove an existing student from an existing tutorial.
 Format: `deleteTutorialStudent tutorialIndex/INDEX student/STUDENT`
@@ -331,7 +336,7 @@ Example:
 
 * `deleteTutorialStudent tutorialIndex/3 student/12`
 
-=== Display students and attendance of a tutorial: `ListTutorial`
+==== Display students and attendance of a tutorial: `ListTutorial`
 
 Displays the list of students in a tutorial and their corresponding attendance for a particular week in the GUI.
 Format: `listTutorial tutorialIndex/INDEX week/INDEX`
@@ -351,7 +356,8 @@ Example:
 //end::Tutorial[]
 
 //tag::Module[]
-=== Add Module into database: `addModule`
+=== Module Feature
+==== Add Module into database: `addModule`
 Adds module into TAble. +
 Format: `addModule modCode/MODULE_CODE modName/MODULE_NAME`
 
@@ -364,7 +370,7 @@ Example:
 
 * `addModule modCode/CS1010S modName/Programming Methodology`
 
-=== Edit Module description: `editModule`
+==== Edit Module description: `editModule`
 Edits corresponding description of module. +
 Format: `editModule modCode/MODULE_CODE d/DESCRIPTION`
 
@@ -377,7 +383,7 @@ Example:
 * `editModule modCode/CS1010S d/How cool is that?` +
 When viewing the module page for CS1010S, the description will be updated to show "How cool is that?"
 
-=== Add link to module with appropriate tag: `linkModule`
+==== Add link to module with appropriate tag: `linkModule`
 Edit module to include links to appropriate websites (e.g. Google Drive Folder, Module Website etc.) +
 Format: `linkModule modCode/MODULE_CODE l/LINK t/TAG`
 
@@ -391,7 +397,7 @@ Example:
 * `linkModule modCode/CS1231 l/https://comp.nus.edu.sg/~cs1231 t/Website` +
 When viewing he module page for CS1231, there will be an additional clickable link that is labelled "Website" and points to https://comp.nus.edu.sg/~cs1231.
 
-=== Add lecture timeslot: `addLecture` [coming in v2.0]
+==== Add lecture timeslot: `addLecture` [coming in v2.0]
 Adds lecture timeslot to module. +
 Format: `addLecture m/MODULE d/DAY from/TIME to/TIME p/LOCATION`
 
@@ -399,7 +405,7 @@ Example:
 
 * `addLecture m/CS1010S d/WED from/1400 to/1600 p/LT27`
 
-=== Clear all lecture timeslots: `clearLecture` [coming in v2.0]
+==== Clear all lecture timeslots: `clearLecture` [coming in v2.0]
 Clears all lectures associated with a certain module. +
 Format: `clearLecture m/MODULE`
 
@@ -407,14 +413,15 @@ Example:
 
 * `clearLecture m/CS1010S`
 
-=== View Module: `viewModule`
+==== View Module: `viewModule`
 Opens the view for the selected module to view module description, links and lecture timeslots.
 
 Format: `viewModule modCode/MODULE_CODE`
 //end::Module[]
 
 // tag::Reminder[]
-=== Adding a reminder: `addReminder`
+=== Reminder Feature
+==== Adding a reminder: `addReminder`
 
 Adds a reminder to the reminder list. +
 Format: `addReminder desc/DESCRIPTION date/DATE time/TIME`
@@ -432,12 +439,12 @@ Examples:
 
 * `addReminder desc/Mark midterms papers date/2020-03-05 time/14:00`
 
-=== List all reminders: `listReminder`
+==== List all reminders: `listReminder`
 
 Lists all the reminders that the TA have added on TAble. +
 Format: `listReminder`
 
-=== Marking a reminder as done: `doneReminder`
+==== Marking a reminder as done: `doneReminder`
 
 Marks the reminder from the reminder list as done. +
 Format: `doneReminder INDEX`
@@ -457,7 +464,7 @@ Examples:
 `doneReminder 3` +
 Mark the 3rd reminder in TAble as done.
 
-=== Deleting a reminder: `deleteReminder`
+==== Deleting a reminder: `deleteReminder`
 
 Deletes the specified reminder from the reminder list. +
 Format: `deleteReminder INDEX`
@@ -474,7 +481,7 @@ Examples:
 `deleteReminder 3` +
 Deletes the 3rd reminder in TAble.
 
-=== Editing a reminder: `editReminder`
+==== Editing a reminder: `editReminder`
 
 Edits an existing reminder in the reminder list. +
 Format: `editReminder INDEX [desc/DESCRIPTION] [date/DATE] [time/TIME]`
@@ -493,7 +500,7 @@ Edits the description of the 1st reminder to "Return midterms paper".
 * `editReminder 3 date/2020-05-20 time/18:00` +
 Edits the date of the 3rd reminder to 20th May 2020 18:00 hours i.e. 6.00 p.m.
 
-=== Finding reminders by information or date: `findReminder`
+==== Finding reminders by information or date: `findReminder`
 Finds reminders matching with the given keyword or date.
 Format: `findReminder [desc/DESCRIPTION] [date/DATE]`
 
@@ -510,7 +517,7 @@ Returns reminders containing the keyword 'mark'.
 * `findReminder date/2020-05-05` +
 Returns all reminders on 05 May 2020.
 
-=== Snoozing a reminder: `snoozeReminder`
+==== Snoozing a reminder: `snoozeReminder`
 
 Snoozes a reminder in the reminder list. +
 Format: `snoozeReminder INDEX [day/DAY] [hour/HOUR] [minute/MINUTE]`
@@ -529,6 +536,23 @@ Postpone the second reminder to 3 days and 2 hours later.
 Postpone the fourth reminder to 30 minutes later.
 //end::Reminder[]
 
+// tag::Calendar[]
+=== Calendar Feature
+==== Display the calendar window: `calendar`
+
+Brings up the calendar window.
+Format: `calendar`
+
+****
+* The calendar will be brought up, displaying the current month and year.
+* For each month, the number of tutorials and consults each day will be displayed in the calendar.
+* Click on the left and right arrows to change the month displayed.
+****
+
+==== View consults and tutorials on a particular day [Coming in v2.0]
+
+// end::Calendar[]
+
 === Exiting the program : `exit`
 
 Exits the program. +
@@ -539,11 +563,6 @@ Format: `exit`
 Data are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
-// tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
-
-_{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
 
 == FAQ
 

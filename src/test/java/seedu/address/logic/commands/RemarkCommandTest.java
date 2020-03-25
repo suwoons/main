@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.StudentTAble;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.tutorial.TutorialTAble;
@@ -16,6 +15,7 @@ import seedu.address.model.mod.ModTAble;
 import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.StudentTAble;
 import seedu.address.testutil.StudentBuilder;
 
 class RemarkCommandTest {

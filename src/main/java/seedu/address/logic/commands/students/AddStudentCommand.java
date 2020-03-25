@@ -2,7 +2,7 @@ package seedu.address.logic.commands.students;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -23,13 +23,13 @@ public class AddStudentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_MATRICNUMBER + "MATRICNUMBER "
+            + PREFIX_MATRIC_NUMBER + "MATRICNUMBER "
             + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + PREFIX_REMARK + "REMARK "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_MATRICNUMBER + "A0111111X "
+            + PREFIX_MATRIC_NUMBER + "A0111111X "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";

@@ -10,8 +10,6 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.ReadOnlyStudent;
-import seedu.address.model.StudentTAble;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.consult.ConsultTAble;
@@ -31,8 +29,10 @@ import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Name;
+import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.StudentTAble;
 import seedu.address.model.tag.Tag;
 
 /**

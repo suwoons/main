@@ -28,6 +28,7 @@ import static seedu.address.testutil.TypicalStudents.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.students.AddStudentCommand;
+import seedu.address.logic.parser.students.AddStudentCommandParser;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Name;
@@ -35,8 +36,8 @@ import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.StudentBuilder;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class AddStudentCommandParserTest {
+    private AddStudentCommandParser parser = new AddStudentCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
