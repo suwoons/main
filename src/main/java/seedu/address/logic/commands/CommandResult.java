@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.event.tutorial.Tutorial;
+
 /**
  * Represents the result of a command execution.
  */
@@ -23,8 +25,15 @@ public class CommandResult {
     /** The application should show the listed tab. */
     private final boolean showList;
 
+    /** The application should show the relevant attendance list. */
+    private final boolean showAttendace;
+
+    /** Information for the application to show the correct attendance list. */
+    private final Tutorial tutorialToShow;
+    private final int weekZeroBased;
+
     /**
-     * Constructs a {@code CommandResult} for a calendar command.
+     * Constructs a {@code CommandResult} for a command which requires a list to be shown.
      */
     public CommandResult(String feedbackToUser, boolean showCalendar, boolean showHelp,
                          boolean showList, boolean exit) {
@@ -32,7 +41,24 @@ public class CommandResult {
         this.showCalendar = showCalendar;
         this.showHelp = showHelp;
         this.showList = showList;
+        this.showAttendace = false;
         this.exit = exit;
+        this.tutorialToShow = null;
+        this.weekZeroBased = 0;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} for displaying attendance.
+     */
+    public CommandResult(String feedbackToUser, Tutorial tutorial, int weekZeroBased) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showCalendar = false;
+        this.showHelp = false;
+        this.exit = false;
+        this.showList = false;
+        this.showAttendace = true;
+        this.tutorialToShow = tutorial;
+        this.weekZeroBased = weekZeroBased;
     }
 
     /**
@@ -44,6 +70,9 @@ public class CommandResult {
         this.exit = exit;
         this.showCalendar = false;
         this.showList = false;
+        this.showAttendace = false;
+        this.tutorialToShow = null;
+        this.weekZeroBased = 0;
     }
 
     /**
@@ -72,6 +101,18 @@ public class CommandResult {
 
     public boolean isShowList() {
         return showList;
+    }
+
+    public boolean isShowAttendance() {
+        return showAttendace;
+    }
+
+    public Tutorial getTutorialToShow() {
+        return tutorialToShow;
+    }
+
+    public int getWeekZeroBased() {
+        return weekZeroBased;
     }
 
     @Override

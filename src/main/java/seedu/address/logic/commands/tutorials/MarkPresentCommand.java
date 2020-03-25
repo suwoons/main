@@ -70,14 +70,27 @@ public class MarkPresentCommand extends Command {
             if (!isMarkAll) {
                 Student studentToMark = tutorialToMark.getEnrolledStudents().get(studentIndex.getZeroBased());
                 model.markPresent(tutorialToMark, studentToMark, week);
+
+                // Refresh the list to update the GUI attendance
+                List<Tutorial> updatedShownList = model.getFilteredTutorialList();
+                Tutorial updatedTutorial = updatedShownList.get(tutorialIndex.getZeroBased());
+
                 return new CommandResult(String.format(MESSAGE_SUCCESS, studentToMark.getName().fullName,
-                        tutorialToMark.getModCode(), tutorialToMark.getTutorialName(), week + 1));
+                        tutorialToMark.getModCode(), tutorialToMark.getTutorialName(), week + 1), updatedTutorial,
+                        week);
             } else {
                 for (Student student : tutorialToMark.getEnrolledStudents()) {
                     model.markPresent(tutorialToMark, student, week);
                 }
+
+                // Refresh the list to update the GUI attendance
+                List<Tutorial> updatedShownList = model.getFilteredTutorialList();
+                Tutorial updatedTutorial = updatedShownList.get(tutorialIndex.getZeroBased());
+                System.out.println(updatedTutorial.getAttendanceWeek(week));
+
                 return new CommandResult(String.format(MESSAGE_ALL_SUCCESS,
-                        tutorialToMark.getModCode(), tutorialToMark.getTutorialName(), week + 1));
+                        tutorialToMark.getModCode(), tutorialToMark.getTutorialName(), week + 1), updatedTutorial,
+                        week);
             }
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_INVALID_TUTORIAL_STUDENT_INDEX);
