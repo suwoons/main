@@ -25,7 +25,6 @@
                 </Label>
                 <Label fx:id="attendanceName" text="\$attendanceName" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance" />
         </VBox>
     </GridPane>
 </HBox>
