@@ -156,6 +156,11 @@
     -fx-text-fill: white;
 }
 
+.list-cell-header {
+    -fx-padding: 5;
+    -fx-text-fill: white;
+}
+
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;

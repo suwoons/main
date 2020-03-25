@@ -254,11 +254,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleAttendance(Tutorial tutorialToShow, int weekZeroBased) {
-        ArrayList<Boolean> attendanceToShow = tutorialToShow.getAttendanceWeek(weekZeroBased);
-        ArrayList<Student> studentsToShow = tutorialToShow.getEnrolledStudents();
-        ObservableList<Student> studentsList = FXCollections.observableArrayList(studentsToShow);
-
-        attendanceListPanel = new AttendanceListPanel(studentsList, attendanceToShow);
+        attendanceListPanel = new AttendanceListPanel(tutorialToShow, weekZeroBased);
         attendanceListPanelPlaceholder.getChildren().add(attendanceListPanel.getRoot());
         secondTabPanePlaceholder.getSelectionModel().select(1);
     }
