@@ -258,6 +258,16 @@ public interface Model {
     /** Returns the module TAble */
     ReadOnlyMod getModTAble();
 
+    /**
+     * Returns currently viewed Mod.
+     */
+    Mod getViewedMod();
+
+    /**
+     * Sets current view to a different {@code mod}.
+     */
+    void setViewedMod(Mod mod);
+
     // Reminder-level operations =====================================================================================
 
     /**

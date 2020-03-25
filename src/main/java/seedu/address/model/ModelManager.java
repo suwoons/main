@@ -360,6 +360,17 @@ public class ModelManager implements Model {
         return modTAble;
     }
 
+    @Override
+    public Mod getViewedMod() {
+        return modTAble.getViewedMod();
+    }
+
+    @Override
+    public void setViewedMod(Mod mod) {
+        modTAble.setViewedMod(mod);
+    }
+
+
     // Reminders section ==========================================================================
 
     @Override
