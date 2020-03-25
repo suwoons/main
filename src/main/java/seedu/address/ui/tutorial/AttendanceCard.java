@@ -24,8 +24,8 @@ public class AttendanceCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on StudentTAble level 4</a>
      */
 
-    public final Student student;
-    public ArrayList<Boolean> attendanceList = new ArrayList<Boolean>();
+    private final Student student;
+    private ArrayList<Boolean> attendanceList = new ArrayList<Boolean>();
 
     @FXML
     private HBox cardPane;
@@ -44,6 +44,10 @@ public class AttendanceCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         attendanceName.setText(student.getName().fullName);
         attendance.setText(attendanceList.get(displayedIndex - 1).toString());
+    }
+
+    public ArrayList<Boolean> getAttendanceList() {
+        return attendanceList;
     }
 
     @Override
