@@ -40,7 +40,6 @@ public class MarkPresentCommandParser implements Parser<MarkPresentCommand> {
         Index studentIndex = ParserUtil.parseAttendanceStudent(argMultimap.getValue(PREFIX_STUDENT).get());
         int week = ParserUtil.parseTutorialWeek(argMultimap.getValue(PREFIX_TUTORIAL_WEEK).get());
         boolean isMarkAll = argMultimap.getValue(PREFIX_STUDENT).get().toLowerCase().equals("all");
-        System.out.println(isMarkAll);
 
         return new MarkPresentCommand(tutorialIndex, studentIndex, week, isMarkAll);
     }
