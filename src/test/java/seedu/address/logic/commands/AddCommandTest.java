@@ -15,7 +15,6 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.students.AddStudentCommand;
@@ -303,6 +302,16 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyMod getModTAble() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Mod getViewedMod() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setViewedMod(Mod mod) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -12,6 +12,8 @@ import javafx.collections.ObservableList;
  */
 
 public class ModTAble implements ReadOnlyMod {
+    private static Mod emptyMod = new Mod(new Mod(new ModCode("TA8135"), "TAble"),
+        "Use the viewModInfo command on a module to view it!");
 
     private final UniqueModList mods;
 
@@ -25,6 +27,7 @@ public class ModTAble implements ReadOnlyMod {
     {
         mods = new UniqueModList();
     }
+    private Mod viewedMod = ModTAble.emptyMod;
 
     public ModTAble() {}
 
@@ -86,6 +89,9 @@ public class ModTAble implements ReadOnlyMod {
      */
     public void removeMod(Mod key) {
         mods.remove(key);
+        if (viewedMod.equals(key)) {
+            viewedMod = ModTAble.emptyMod;
+        }
     }
 
 
@@ -105,6 +111,27 @@ public class ModTAble implements ReadOnlyMod {
         requireNonNull(target);
         requireNonNull(editedMod);
         mods.setMod(target, editedMod);
+    }
+
+    /**
+     * Gets the currently viewed Mod, and finds the most recent state of the mod in TAble.
+     * @return Mod of the current view.
+     */
+    public Mod getViewedMod() {
+        if (viewedMod != emptyMod && !mods.contains(viewedMod)) {
+            assert mods.getAllMods().stream().anyMatch(m -> m.isSameMod(viewedMod));
+            viewedMod = mods.getAllMods().stream().filter(m -> m.isSameMod(viewedMod)).findAny().get();
+        }
+        return viewedMod;
+    }
+
+    /**
+     * Changes viewed mod to {@code mod}.
+     * @param mod Module to change current view to.
+     */
+    public void setViewedMod(Mod mod) {
+        assert mods.contains(mod);
+        viewedMod = mod;
     }
 
     //// util methods
