@@ -209,7 +209,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleList(String commandText) {
-        commandText = commandText.split(" ")[0];
+        if (commandText.contains(" ")) {
+            commandText = commandText.substring(0, commandText.indexOf(" "));
+        }
+
         switch(commandText) {
         case "listStudent":
             firstTabPanePlaceholder.getSelectionModel().select(0);
@@ -222,6 +225,9 @@ public class MainWindow extends UiPart<Stage> {
             break;
         case "listConsult":
             secondTabPanePlaceholder.getSelectionModel().select(0);
+            break;
+        case "viewModInfo":
+            secondTabPanePlaceholder.getSelectionModel().select(2);
             break;
         default:
             break;

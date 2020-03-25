@@ -298,10 +298,10 @@ Reason for choosing Alternative 1:  We believe that the user experience will be 
 
 Reason for choosing Alternative 1: Due to the time constraint of this project, our group has decided to choose alternative 1, as it not only reduces coupling, but is sufficient for us to uniquely identify the `Student` participating in the `consult` as the `MatricNumber` would be unique.
 
-// end:consult[]
+// end::consult[]
 
 
-// tag:tutorial[]
+// tag::tutorial[]
 
 === Tutorial feature
 *TAble* allows NUS teaching assistants to track and record all the tutorials they are teaching, and maintain details of the tutorial, such as the module it is under, start and end time of the tutorial, and the location it is held.
@@ -340,7 +340,7 @@ From a software engineering perspective, it is the responsibility of the `tutori
 This allows attendance of a `Student` to be easily referenced and marked in a `tutorial` without requiring the `Student` to be privy to that information, and allows for convenient retrieval of attendance by week or by student.
 
 
-// end:tutorial[]
+// end::tutorial[]
 
 // tag::module[]
 === Module feature
@@ -382,7 +382,7 @@ image::AddModLinkActivityDiagram.png[]
 
 Reason for choosing Alternative 1: On a user design perspective, it is less jarring to copy link into the user's clipboard, since the user can choose when they want to access the link and have the flexibility to share the link to others. Additionally, opening a new browser page requires more complicated code that depends on another program.
 
-// end:module[]
+// end::module[]
 
 === Logging
 
