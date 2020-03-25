@@ -39,7 +39,7 @@ public class MarkAbsentCommandParser implements Parser<MarkAbsentCommand> {
         Index tutorialIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TUTORIAL_INDEX).get());
         Index studentIndex = ParserUtil.parseAttendanceStudent(argMultimap.getValue(PREFIX_STUDENT).get());
         int week = ParserUtil.parseTutorialWeek(argMultimap.getValue(PREFIX_TUTORIAL_WEEK).get());
-        boolean isMarkAll = studentIndex.equals(0);
+        boolean isMarkAll = argMultimap.getValue(PREFIX_STUDENT).get().toLowerCase().equals("all");
 
         return new MarkAbsentCommand(tutorialIndex, studentIndex, week, isMarkAll);
     }

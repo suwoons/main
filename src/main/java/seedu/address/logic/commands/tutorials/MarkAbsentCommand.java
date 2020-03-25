@@ -55,7 +55,6 @@ public class MarkAbsentCommand extends Command {
         this.week = week;
     }
 
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -71,14 +70,26 @@ public class MarkAbsentCommand extends Command {
             if (!isMarkAll) {
                 Student studentToMark = tutorialToMark.getEnrolledStudents().get(studentIndex.getZeroBased());
                 model.markAbsent(tutorialToMark, studentToMark, week);
+
+                // Refresh the list to update the GUI attendance
+                lastShownList = model.getFilteredTutorialList();
+                tutorialToMark = lastShownList.get(tutorialIndex.getZeroBased());
+
                 return new CommandResult(String.format(MESSAGE_SUCCESS, studentToMark.getName().fullName,
-                        tutorialToMark.getModCode(), tutorialToMark.getTutorialName(), week + 1));
+                        tutorialToMark.getModCode(), tutorialToMark.getTutorialName(), week + 1), tutorialToMark,
+                        week);
             } else {
                 for (Student student : tutorialToMark.getEnrolledStudents()) {
                     model.markAbsent(tutorialToMark, student, week);
                 }
+
+                // Refresh the list to update the GUI attendance
+                lastShownList = model.getFilteredTutorialList();
+                tutorialToMark = lastShownList.get(tutorialIndex.getZeroBased());
+
                 return new CommandResult(String.format(MESSAGE_ALL_SUCCESS,
-                        tutorialToMark.getModCode(), tutorialToMark.getTutorialName(), week + 1));
+                        tutorialToMark.getModCode(), tutorialToMark.getTutorialName(), week + 1), tutorialToMark,
+                        week);
             }
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_INVALID_TUTORIAL_STUDENT_INDEX);

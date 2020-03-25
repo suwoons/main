@@ -27,12 +27,12 @@ public class AttendanceCard extends UiPart<Region> {
     public final Student student;
     public ArrayList<Boolean> attendanceList = new ArrayList<Boolean>();
 
-    @javafx.fxml.FXML
+    @FXML
     private HBox cardPane;
     @FXML
     private Label id;
     @FXML
-    private Label attendName;
+    private Label attendanceName;
     @FXML
     private Label attendance;
 
@@ -42,7 +42,7 @@ public class AttendanceCard extends UiPart<Region> {
         this.attendanceList = attendanceList;
 
         id.setText(displayedIndex + ". ");
-        attendName.setText(student.getName().fullName);
+        attendanceName.setText(student.getName().fullName);
         attendance.setText(attendanceList.get(displayedIndex - 1).toString());
     }
 

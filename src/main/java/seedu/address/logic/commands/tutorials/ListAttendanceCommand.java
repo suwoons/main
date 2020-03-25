@@ -56,6 +56,6 @@ public class ListAttendanceCommand extends Command {
         Tutorial tutorialToShow = lastShownList.get(tutorialIndex.getZeroBased());
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutorialToShow.getModCode(),
-                tutorialToShow.getTutorialName(), weekZeroBased + 1), false, false, true, false);
+                tutorialToShow.getTutorialName(), weekZeroBased + 1), tutorialToShow, weekZeroBased);
     }
 }

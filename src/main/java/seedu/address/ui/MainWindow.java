@@ -228,9 +228,6 @@ public class MainWindow extends UiPart<Stage> {
         case "listConsult":
             secondTabPanePlaceholder.getSelectionModel().select(0);
             break;
-        case "listAttendance":
-            secondTabPanePlaceholder.getSelectionModel().select(1);
-            break;
         default:
             break;
         }
