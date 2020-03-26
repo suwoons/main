@@ -268,7 +268,7 @@ Example:
 
 ==== Marks students as present: `markPresent`
 
-Takes attendance of students in a tutorial class by marking them as present for a particular week. Present students will be marked with a :heavy_check_mark:. +
+Takes attendance of students in a tutorial class by marking them as present for a particular week. Present students will be marked by a green background in the respective attendance list. +
 Format: `markPresent tutorialIndex/INDEX week/WEEK student/STUDENT [OPTIONAL]`
 
 ****
@@ -289,7 +289,7 @@ Marks all students as present in week 7 in tutorial at index 2
 
 ==== Marks students as absent: `markAbsent`
 
-Takes attendance of students in a tutorial class by marking them as absent for a particular week. Absent students will be marked with a :x:. +
+Takes attendance of students in a tutorial class by marking them as absent for a particular week. Absent students will be marked by a red background in the respective attendance list. +
 Format: `markPresent tutorialIndex/INDEX week/WEEK student/STUDENT`
 
 ****

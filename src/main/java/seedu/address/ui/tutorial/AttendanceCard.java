@@ -33,8 +33,6 @@ public class AttendanceCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label attendanceName;
-    @FXML
-    private Label attendance;
 
     public AttendanceCard(Student student, int displayedIndex, ArrayList<Boolean> attendanceList) {
         super(FXML);
@@ -43,7 +41,6 @@ public class AttendanceCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         attendanceName.setText(student.getName().fullName);
-        attendance.setText(attendanceList.get(displayedIndex - 1).toString());
     }
 
     public ArrayList<Boolean> getAttendanceList() {
