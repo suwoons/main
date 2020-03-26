@@ -20,6 +20,7 @@ import seedu.address.model.event.tutorial.TutorialName;
 import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.mod.ModCode;
+import seedu.address.model.mod.ModLink;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.reminder.Description;
@@ -115,6 +116,10 @@ public class SampleDataUtil {
         ModCode modCode = new ModCode("CS2103");
         String modName = "Software Engineering";
         Mod mod = new Mod(modCode, modName);
+        mod = new Mod(mod, "SE is fun!!");
+        mod = new Mod(mod, "Module Website", new ModLink("http://www.comp.nus.edu.sg/~cs2103"));
+        mod = new Mod(mod, "Best Student Project",
+            new ModLink("https://github.com/AY1920S2-CS2103-W15-3/main"));
         ArrayList<Mod> modList = new ArrayList<>();
         modList.add(mod);
         ModTAble sampleModTAble = new ModTAble(modList);

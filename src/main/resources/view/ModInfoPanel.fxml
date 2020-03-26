@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <VBox>
-      <children>
-         <Label fx:id="modCodeLabel" prefHeight="40.0" stylesheets="@DarkTheme.css" text="\$modCode">
-            <font>
-               <Font name="System Bold" size="20.0" />
-            </font>
-         </Label>
-         <Label fx:id="modNoteLabel" prefHeight="20.0" stylesheets="@DarkTheme.css" text="\$modNote" />
-         <VBox>
-            <children>
-               <ListView fx:id="modLinkListView" />
-            </children>
-         </VBox>
-      </children>
-   </VBox>
+   <children>
+      <ListView fx:id="modInfoListView" />
+   </children>
 </StackPane>

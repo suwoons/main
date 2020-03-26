@@ -3,11 +3,11 @@ package seedu.address.model.mod;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import javafx.util.Pair;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -22,7 +22,8 @@ public class Mod {
 
     // Data fields
     private String note;
-    private ArrayList<Pair<String, ModLink>> links;
+    private List<ModLinkPair> links;
+    private ObservableList<ModLinkPair> observableLinkList;
 
     /**
      * Every field must be present and not null.
@@ -49,7 +50,7 @@ public class Mod {
         this.modName = mod.getModName();
         this.note = mod.getNote();
         this.links = new ArrayList<>(mod.getLinks());
-        links.add(new Pair<>(linkName, link));
+        links.add(new ModLinkPair(linkName, link));
     }
 
     public ModCode getModCode() {
@@ -68,8 +69,9 @@ public class Mod {
      * Returns an immutable map of description and links, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public List<Pair<String, ModLink>> getLinks() {
-        return Collections.unmodifiableList(links);
+    public ObservableList<ModLinkPair> getLinks() {
+        observableLinkList = FXCollections.observableList(links);
+        return observableLinkList;
     }
 
     /**

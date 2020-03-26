@@ -312,7 +312,7 @@ public class AddReminderCommandTest {
         }
 
         @Override
-        public Mod getViewedMod() {
+        public ObservableList<Mod> getViewedMod() {
             throw new AssertionError("This method should not be called.");
         }
 
