@@ -19,6 +19,7 @@ import seedu.address.logic.commands.consults.ListConsultCommand;
 import seedu.address.logic.commands.mods.AddModCommand;
 import seedu.address.logic.commands.mods.AddModLinkCommand;
 import seedu.address.logic.commands.mods.ClearModLinksCommand;
+import seedu.address.logic.commands.mods.CopyModLinkCommand;
 import seedu.address.logic.commands.mods.DeleteModCommand;
 import seedu.address.logic.commands.mods.ListModCommand;
 import seedu.address.logic.commands.mods.NoteModCommand;
@@ -48,6 +49,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.mods.AddModCommandParser;
 import seedu.address.logic.parser.mods.AddModLinkCommandParser;
 import seedu.address.logic.parser.mods.ClearModLinksCommandParser;
+import seedu.address.logic.parser.mods.CopyModLinkCommandParser;
 import seedu.address.logic.parser.mods.DeleteModCommandParser;
 import seedu.address.logic.parser.mods.NoteModCommandParser;
 import seedu.address.logic.parser.mods.ViewModInfoCommandParser;
@@ -186,6 +188,9 @@ public class TAbleParser {
 
         case ViewModInfoCommand.COMMAND_WORD:
             return new ViewModInfoCommandParser().parse(arguments);
+
+        case CopyModLinkCommand.COMMAND_WORD:
+            return new CopyModLinkCommandParser().parse(arguments);
 
         // ======================================== Reminder Commands =============================
 
