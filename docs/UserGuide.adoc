@@ -363,66 +363,116 @@ Example:
 
 //tag::Module[]
 === Module Feature
-==== Add Module into database: `addModule`
+==== Add Module into database: `addMod`
 Adds module into TAble. +
-Format: `addModule modCode/MODULE_CODE modName/MODULE_NAME`
+Format: `addMod modCode/MODULE_CODE modName/MODULE_NAME`
 
 ****
 * The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`. It should be prefixed by at most three characters, then four numbers, and finally no more than two characters as suffix.
-* The module name provided should be any valid string
+* The module name provided should be any valid string.
+
 ****
 
 Example:
 
 * `addModule modCode/CS1010S modName/Programming Methodology`
 
-==== Edit Module description: `editModule`
-Edits corresponding description of module. +
-Format: `editModule modCode/MODULE_CODE d/DESCRIPTION`
+==== Delete Module from database: `deleteMod`
+Deletes a module from TAble. +
+Format: `deleteMod modCode/MODULE_CODE`
 
 ****
-* The description provided should be any valid string.
+* The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`. It should be prefixed by at most three characters, then four numbers, and finally no more than two characters as suffix.
+* The module code should correspond to an existing module in the database.
 ****
 
 Example:
 
-* `editModule modCode/CS1010S d/How cool is that?` +
-When viewing the module page for CS1010S, the description will be updated to show "How cool is that?"
+* `addModule modCode/CS1010S modName/Programming Methodology`
 
-==== Add link to module with appropriate tag: `linkModule`
-Edit module to include links to appropriate websites (e.g. Google Drive Folder, Module Website etc.) +
-Format: `linkModule modCode/MODULE_CODE l/LINK t/TAG`
+==== Edit Module note: `noteMod`
+Edits corresponding note of module. +
+Format: `noteMod modCode/MODULE_CODE modNote/NOTE`
 
 ****
-* The module link should correspond to a valid URL format.
+* The module code should correspond to an existing module in the database.
+* The note provided should be any valid string, and replaces the current note of the module.
+****
+
+Example:
+
+* `noteModule modCode/CS1010S modNote/How cool is that?` +
+When viewing the module info for CS1010S, the note will be updated to show "How cool is that?"
+
+==== Add link to module with appropriate name: `addModLink`
+Edit module to include links to appropriate websites (e.g. Google Drive Folder, Module Website etc.) +
+Format: `addModLink modCode/MODULE_CODE modLink/LINK modLinkName/NAME`
+
+****
+* The module code should correspond to an existing module in the database.
+* The module link should correspond to a valid URL format (protocol optional). Hence the first character should be alphanumeric, followed by any character in the set [-a-zA-Z0-9+&@\#/%?=~\_|!:,.;], and end with [-a-zA-Z0-9+&@#/%=~_|].
 * The tag provided should be any valid string.
 ****
 
 Example:
 
-* `linkModule modCode/CS1231 l/https://comp.nus.edu.sg/~cs1231 t/Website` +
-When viewing he module page for CS1231, there will be an additional clickable link that is labelled "Website" and points to https://comp.nus.edu.sg/~cs1231.
+* `addModLink modCode/CS1231` +
+When viewing the module page for CS1231, there will be an additional label with "Module Website" and points to https://comp.nus.edu.sg/~cs1231.
 
-==== Add lecture timeslot: `addLecture` [coming in v2.0]
-Adds lecture timeslot to module. +
-Format: `addLecture m/MODULE d/DAY from/TIME to/TIME p/LOCATION`
+
+==== Clear all module links from module in database: `clearModLink`
+Removes all module links from a module in TAble. +
+Format: `deleteMod modCode/MODULE_CODE`
+
+****
+* The module code should correspond to an existing module in the database.
+****
 
 Example:
 
-* `addLecture m/CS1010S d/WED from/1400 to/1600 p/LT27`
+* `clearModLink modCode/CS1231` +
+When viewing the module page for CS1231, there will not be any module links shown.
 
-==== Clear all lecture timeslots: `clearLecture` [coming in v2.0]
+==== Copy Module Link into Clipboard: `copyModLink`
+Copies a module link from the links currently associated with a module. Index corresponding to module link can be seen when viewing the module info using `viewModInfo`.
+
+Format: `copyModLink INDEX modCode/MODULE_CODE`
+
+****
+* The module code should correspond to an existing module in the database.
+* The index should correspond to a valid index in the module links.
+****
+
+Example:
+
+* `copyModLink 1 modCode/CS1231` +
+The module website for CS1231 is copied into the user's clipboard.
+
+==== View Module: `viewModInfo`
+Opens the view for the selected module to view module description, links and (coming in v2.0) lecture timeslots.
+
+Format: `viewModInfo modCode/MODULE_CODE`
+
+****
+* The module code should correspond to an existing module in the database.
+****
+
+==== Add lecture timeslot: `addModLecture` [coming in v2.0]
+Adds lecture timeslot to module. This is to be included to integrate with the consultation finding feature. +
+Format: `addModLecture modCode/MODULE_CODE d/DAY from/TIME to/TIME p/LOCATION`
+
+Example:
+
+* `addModLecture modCode/CS1010S d/WED from/1400 to/1600 p/LT27`
+
+==== Clear all lecture timeslots: `clearModLecture` [coming in v2.0]
 Clears all lectures associated with a certain module. +
-Format: `clearLecture m/MODULE`
+Format: `clearModLecture modCode/MODULE_CODE`
 
 Example:
 
-* `clearLecture m/CS1010S`
+* `clearModLecture modCode/CS1010S`
 
-==== View Module: `viewModule`
-Opens the view for the selected module to view module description, links and lecture timeslots.
-
-Format: `viewModule modCode/MODULE_CODE`
 //end::Module[]
 
 // tag::Reminder[]
