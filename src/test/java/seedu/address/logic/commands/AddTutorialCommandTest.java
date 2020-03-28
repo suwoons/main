@@ -384,6 +384,11 @@ public class AddTutorialCommandTest {
         public ReadOnlyReminder getReminderTAble() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setConsultTAble(ReadOnlyConsult consultTAble) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
 

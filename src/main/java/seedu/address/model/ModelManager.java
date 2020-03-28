@@ -246,6 +246,12 @@ public class ModelManager implements Model {
         return consultTAble;
     }
 
+    @Override
+    public void setConsultTAble(ReadOnlyConsult consultTAble) {
+        this.consultTAble.resetData(consultTAble);
+    }
+
+
     // Tutorials section ==========================================================================
 
     @Override
