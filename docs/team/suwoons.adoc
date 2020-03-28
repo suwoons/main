@@ -1,4 +1,4 @@
-= Nigel Neo - Project Portfolio
+= Sarah Lim - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
@@ -7,24 +7,25 @@
 
 == Overview
 
-TAble is your handy desktop app, optimized for TAs who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)! Mark attendance, arrange consults, add module notes, and more with TAble! It has a GUI created with JavaFX and written in Java, and has about 10 kLoC.
+TAble is your handy desktop app, optimized for TAs who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)! Mark attendance, arrange consults, add module notes, and more with TAble! It has a GUI created with JavaFX and written in Java, and has about 20 kLoC.
 
 == Summary of contributions
 
-* *Major enhancement*: added
-** What it does:
+* *Major enhancement*: added the ability to *insert Tutorials, including students enrolled and their attendance*.
+** What it does: Tutorial in TAble represents a tutorial that the user, a Teaching Assistant, is assigned to. With Tutorial features, he is able to manage the enrolled students in his tutorial, as well as keep track of their attendance for convenient reference.
 ** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
 
-* *Code contributed*: [https://github.com[Dead link - Functional code]] [https://github.com[Dead link - Test code]] _{give links to collated code files}_
+* *Code contributed*: https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=suwoons&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false[As seen on RepoSense]
 
 * *Other contributions*:
 
 ** Project management:
 *** To be updated
 ** Enhancements to existing features:
-*** To be updated
+*** `Tutorial` is not simply a CRUD feature, but integrates other components in the project such as `Student` and attendance to increase functionality of the feature.
+*** Viewing of attendance in the GUI is made more intuitive for the user by having different coloured backgrounds depending on whether a student in a given tutorial is present or not.
 ** Documentation:
-*** To be updated
+*** Updated User Guide and Developer Guide for Tutorial features, including adding relevant PlantUML diagrams in the Develop Guide to enhance comprehensibility of the codebase and the structure of the feature.
 ** Tools:
 *** To be updated
 
