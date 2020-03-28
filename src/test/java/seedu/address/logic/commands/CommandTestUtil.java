@@ -2,9 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -54,6 +58,30 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    // consult valid entries
+    public static final String VALID_START_TIME = "2020-03-03 15:00";
+    public static final String VALID_END_TIME = "2020-03-03 17:00";
+    public static final String VALID_PLACE = "SR1";
+    public static final int VALID_INDEX = 1;
+
+    // consult invalid entries
+    public static final String INVALID_TIME = PREFIX_CONSULT_BEGIN_DATE_TIME + "2020-03-03 26:00";
+    public static final String INVALID_END_TIME_DIFFERENT_DATE = PREFIX_CONSULT_END_DATE_TIME + "2020-03-04 14:00";
+    public static final String INVALID_PLACE = PREFIX_PLACE + "home!";
+
+    // consult valid command line inputs
+    public static final String VALID_START_TIME_INPUT = " " + PREFIX_CONSULT_BEGIN_DATE_TIME + VALID_START_TIME;
+    public static final String VALID_END_TIME_INPUT = " " + PREFIX_CONSULT_END_DATE_TIME + VALID_END_TIME;
+    public static final String VALID_PLACE_INPUT = " " + PREFIX_PLACE + VALID_PLACE;
+    public static final String VALID_INDEX_INPUT = " " + PREFIX_STUDENT + VALID_INDEX;
+
+    // consult invalid command line inputs
+    public static final String INVALID_START_TIME_INPUT = " " + PREFIX_CONSULT_BEGIN_DATE_TIME + INVALID_TIME;
+    public static final String INVALID_END_TIME_INPUT = " " + PREFIX_CONSULT_END_DATE_TIME
+        + INVALID_END_TIME_DIFFERENT_DATE;
+    public static final String INVALID_PLACE_INPUT = " " + PREFIX_PLACE + INVALID_PLACE;
+    public static final String INVALID_INDEX_INPUT = PREFIX_STUDENT + "-2";
 
     public static final EditStudentCommand.EditStudentDescriptor DESC_AMY;
     public static final EditStudentCommand.EditStudentDescriptor DESC_BOB;
