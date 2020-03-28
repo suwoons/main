@@ -361,13 +361,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Mod getViewedMod() {
-        return modTAble.getViewedMod();
+    public ObservableList<Mod> getViewedMod() {
+        return modTAble.getViewedModSingletonList();
     }
 
     @Override
     public void setViewedMod(Mod mod) {
-        modTAble.setViewedMod(mod);
+        modTAble.setViewedModSingletonList(mod);
     }
 
 

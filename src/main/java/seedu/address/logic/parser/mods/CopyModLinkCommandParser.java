@@ -6,36 +6,46 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.mods.DeleteModCommand;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.mods.CopyModLinkCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.mod.ModCode;
 
 /**
- * Parses input arguments and creates a new DeleteModCommand object
+ * Parses input arguments and creates a new CopyModLinkCommand object
  */
-public class DeleteModCommandParser implements Parser<DeleteModCommand> {
+public class CopyModLinkCommandParser implements Parser<CopyModLinkCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteModCommand
-     * and returns a DeleteModCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the CopyModLinkCommand
+     * and returns a CopyModLinkCommand object for execution.
      * @throws ParseException if the user input does not conform to the expected format
      */
-    public DeleteModCommand parse(String args) throws ParseException {
+    public CopyModLinkCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE);
 
+        Index index;
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyModLinkCommand.MESSAGE_USAGE),
+                pe);
+        }
+
         if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteModCommand.MESSAGE_USAGE));
+                CopyModLinkCommand.MESSAGE_USAGE));
         }
 
         ModCode modCode = new ModCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
-        return new DeleteModCommand(modCode);
+        return new CopyModLinkCommand(index, modCode);
     }
 
     /**

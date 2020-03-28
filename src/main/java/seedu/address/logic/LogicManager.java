@@ -84,6 +84,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Mod> getViewedMod() {
+        return model.getViewedMod();
+    }
+
+    @Override
     public ObservableList<Reminder> getFilteredReminderList() {
         return model.getFilteredReminderList();
     }

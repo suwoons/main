@@ -16,7 +16,7 @@ public class ModLink {
      * The entire string must fit the specifications for it to be valid.
      */
     public static final String VALIDATION_REGEX =
-            "^[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+            "^[a-zA-Z0-9][-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
     public final String modLink;
 

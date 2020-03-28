@@ -53,6 +53,11 @@ public interface Logic {
     ObservableList<Mod> getFilteredModList();
 
     /**
+     * Returns the currently viewed mod
+     */
+    ObservableList<Mod> getViewedMod();
+
+    /**
      * Returns an unmodifiable view of the filtered list of reminders
      */
     ObservableList<Reminder> getFilteredReminderList();

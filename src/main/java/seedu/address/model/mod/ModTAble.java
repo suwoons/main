@@ -2,8 +2,10 @@ package seedu.address.model.mod;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collections;
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -27,7 +29,8 @@ public class ModTAble implements ReadOnlyMod {
     {
         mods = new UniqueModList();
     }
-    private Mod viewedMod = ModTAble.emptyMod;
+    private final ObservableList<Mod> viewedModSingletonList =
+        FXCollections.observableArrayList(Collections.singletonList(emptyMod));
 
     public ModTAble() {}
 
@@ -50,7 +53,7 @@ public class ModTAble implements ReadOnlyMod {
 
     /**
      * Replaces the contents of the module list with {@code mods}.
-     * {@code tutorials} must not contain duplicate modules.
+     * {@code mods} must not contain duplicate modules.
      */
     public void setMods(List<Mod> mods) {
         this.mods.setMods(mods);
@@ -89,8 +92,9 @@ public class ModTAble implements ReadOnlyMod {
      */
     public void removeMod(Mod key) {
         mods.remove(key);
-        if (viewedMod.equals(key)) {
-            viewedMod = ModTAble.emptyMod;
+        if (viewedModSingletonList.contains(key)) {
+            viewedModSingletonList.clear();
+            viewedModSingletonList.add(ModTAble.emptyMod);
         }
     }
 
@@ -111,27 +115,37 @@ public class ModTAble implements ReadOnlyMod {
         requireNonNull(target);
         requireNonNull(editedMod);
         mods.setMod(target, editedMod);
+        if (editedMod.isSameMod(viewedModSingletonList.get(0))) {
+            viewedModSingletonList.clear();
+            viewedModSingletonList.add(editedMod);
+        }
     }
 
     /**
      * Gets the currently viewed Mod, and finds the most recent state of the mod in TAble.
      * @return Mod of the current view.
      */
-    public Mod getViewedMod() {
-        if (viewedMod != emptyMod && !mods.contains(viewedMod)) {
-            assert mods.getAllMods().stream().anyMatch(m -> m.isSameMod(viewedMod));
-            viewedMod = mods.getAllMods().stream().filter(m -> m.isSameMod(viewedMod)).findAny().get();
+    public ObservableList<Mod> getViewedModSingletonList() {
+        if (!viewedModSingletonList.contains(emptyMod) && !mods.contains(viewedModSingletonList.get(0))) {
+            Mod temp = viewedModSingletonList.get(0);
+            assert mods.getAllMods().stream().anyMatch(m -> m.isSameMod(temp));
+            viewedModSingletonList.clear();
+            viewedModSingletonList.add(mods.getAllMods()
+                .stream()
+                .filter(m -> m.isSameMod(temp))
+                .findAny().get());
         }
-        return viewedMod;
+        return viewedModSingletonList;
     }
 
     /**
      * Changes viewed mod to {@code mod}.
      * @param mod Module to change current view to.
      */
-    public void setViewedMod(Mod mod) {
+    public void setViewedModSingletonList(Mod mod) {
         assert mods.contains(mod);
-        viewedMod = mod;
+        viewedModSingletonList.clear();
+        viewedModSingletonList.add(mod);
     }
 
     //// util methods

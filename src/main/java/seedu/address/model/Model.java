@@ -261,7 +261,7 @@ public interface Model {
     /**
      * Returns currently viewed Mod.
      */
-    Mod getViewedMod();
+    ObservableList<Mod> getViewedMod();
 
     /**
      * Sets current view to a different {@code mod}.

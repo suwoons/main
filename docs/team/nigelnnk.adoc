@@ -7,30 +7,30 @@
 
 == Overview
 
-TAble is your handy desktop app, optimized for TAs who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)! Mark attendance, arrange consults, add module notes, and more with TAble! It has a GUI created with JavaFX and written in Java, and has about 10 kLoC.
+TAble is your handy desktop app, optimized for TAs who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)! Mark attendance, arrange consults, add module notes, and more with TAble! It has a GUI created with JavaFX and written in Java, and has about 20 kLoC.
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to insert Module description/links/time*
-** What it does:
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+* *Major enhancement*: added the ability to *insert Module description/links/time*
+** What it does: Represents module information critical to a Teaching Assistant's role in their work, from notes of the module to handling module links.
+** Justification: Teaching Assistants need to view general module information and associate Tutorials with modules. This helps consolidate general information about the module (through its notes and module links).
+** Highlights: Module links can be stored in TAble and shared easily with the command to copy links into the user's clipboard. Additionally, note of the module can also be updated to store important information like grade breakdown.
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* *Code contributed*: [https://github.com[Dead link - Functional code]] [https://github.com[Dead link - Test code]] _{give links to collated code files}_
+* *Code contributed*: https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=Nigelnnk&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false[As seen on RepoSense]
 
 * *Other contributions*:
 
 ** Project management:
-*** Managed Graphical User Interface :''''''(
+*** Managed Graphical User Interface for the Main Window of the application https://github.com/AY1920S2-CS2103-W15-3/main/pull/30[#30] https://github.com/AY1920S2-CS2103-W15-3/main/pull/85[#85]
 ** Enhancements to existing features:
 *** To be Updated
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
+*** Updated graphics for Developer's Guide, for PlantUML diagrams: https://github.com/AY1920S2-CS2103-W15-3/main/pull/97[#97]
 ** Community:
 *** To be updated
 ** Tools:
-*** Fix and Maintain Product Website
+*** Fix and Maintain Product Website https://github.com/AY1920S2-CS2103-W15-3/main/pull/29[#29]
+*** Maintain Travis and Coveralls Integration https://github.com/AY1920S2-CS2103-W15-3/main/pull/95[#95]
 
 _{you can add/remove categories in the list above}_
 

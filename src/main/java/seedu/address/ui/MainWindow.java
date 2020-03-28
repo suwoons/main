@@ -21,6 +21,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.ui.calendar.CalendarWindow;
 import seedu.address.ui.consult.ConsultListPanel;
+import seedu.address.ui.mod.ModInfoPanel;
 import seedu.address.ui.mod.ModListPanel;
 import seedu.address.ui.reminder.ReminderListPanel;
 import seedu.address.ui.tutorial.AttendanceListPanel;
@@ -48,6 +49,7 @@ public class MainWindow extends UiPart<Stage> {
     private AttendanceListPanel attendanceListPanel;
     private ConsultListPanel consultListPanel;
     private ModListPanel modListPanel;
+    private ModInfoPanel modInfoPanel;
     private ReminderListPanel reminderListPanel;
 
     @FXML
@@ -70,6 +72,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane modListPanelPlaceholder;
+
+    @FXML
+    private StackPane modInfoPanelPlaceholder;
 
     @FXML
     private StackPane reminderListPanelPlaceholder;
@@ -158,6 +163,9 @@ public class MainWindow extends UiPart<Stage> {
 
         modListPanel = new ModListPanel(logic.getFilteredModList());
         modListPanelPlaceholder.getChildren().add(modListPanel.getRoot());
+
+        modInfoPanel = new ModInfoPanel(logic.getViewedMod());
+        modInfoPanelPlaceholder.getChildren().add(modInfoPanel.getRoot());
 
         reminderListPanel = new ReminderListPanel(logic.getFilteredReminderList());
         reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
