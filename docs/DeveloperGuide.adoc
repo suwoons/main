@@ -339,6 +339,10 @@ Reason for choosing Alternative 2:  From a user design perspective, it is more l
 From a software engineering perspective, it is the responsibility of the `tutorial` to keep track of the attendance, not the `Student` 's.
 This allows attendance of a `Student` to be easily referenced and marked in a `tutorial` without requiring the `Student` to be privy to that information, and allows for convenient retrieval of attendance by week or by student.
 
+As such, the following activity diagram of the system illustrates what occurs when the user calls the markPresent command to mark a student in a tutorial as present, for a specified week in the school semester.
+
+.Activity diagram for the command markPresent in the tutorial feature
+image::TutorialMarkPresentActivityDiagram.png[]
 
 // end::tutorial[]
 
