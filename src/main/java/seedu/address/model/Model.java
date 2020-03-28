@@ -311,4 +311,7 @@ public interface Model {
 
     /** Returns the Reminder TAble */
     ReadOnlyReminder getReminderTAble();
+
+
+    void setConsultTAble(ReadOnlyConsult consultTAble);
 }
