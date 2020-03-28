@@ -59,7 +59,7 @@ Format: `help`
 * A window containing the link to our User Guide will appear. Click on the Copy Link button to copy the link to our User Guide.
 
 ===  Students Feature
-==== Adding a student: `add`
+==== Adding a student: `addStudent`
 
 Adds a student to TAble +
 Format: `addStudent name/NAME matric/MATRIC_NUMBER email/EMAIL [tag/TAG]...`
@@ -118,7 +118,7 @@ Returns `john` and `John Doe`
 Returns any person having names `Betsy`, `Tim`, or `John`
 
 // tag::delete[]
-==== Deleting a student : `delete`
+==== Deleting a student : `deleteStudent`
 
 Deletes the specified student from TAble. +
 Format: `deleteStudent INDEX`
@@ -127,6 +127,7 @@ Format: `deleteStudent INDEX`
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
 * The index *must be a positive integer* 1, 2, 3, ...
+* Deleting the student from TAble also deletes the student from any tutorial they are enrolled in.
 ****
 
 Examples:
@@ -204,7 +205,7 @@ Deletes the 2nd consultation in TAble.
 Clears all consultations slots in TAble. +
 Format: `clearConsults`
 
-==== Locating consultations by date or place: `findConsult`
+==== Locating consultations by date or place: `findConsult` [coming in v1.4]
 
 Finds consultations whose date or place match any of the given keywords. +
 Format: `findConsult [DATE] [PLACE]`
@@ -228,10 +229,10 @@ Returns any consults that are held at SR3
 // tag::Tutorial[]
 === Tutorials Feature
 
-==== Switch GUI Display to Tutorial List View: `ListTutorial`
+==== Switch GUI Display to Tutorial List View: `listTutorial`
 
 Focuses the display in the GUI to the Tutorials list view, without requiring the user to click on the tab.
-Format: `ListTutorial`
+Format: `listTutorial`
 
 ==== Add a tutorial slot: `addTutorial`
 
@@ -243,6 +244,7 @@ Format: `addTutorial modCode/MODULE_CODE tutorialName/TUTORIAL_NAME day/WEEKDAY_
 * The day provided is the value of the weekday (ie. MONDAY = 1, TUESDAY = 2, ... SUNDAY = 7)
 * The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`
 * The place provided should be any valid string
+* Note that you are not allowed to add tutorials with clashing times (ie. periods overlap)
 ****
 
 Example:
@@ -266,17 +268,34 @@ Example:
 * `listTutorial` +
  `deleteTutorial 2`
 
+==== Add student to tutorial: `addTutorialStudent`
+
+Enroll an existing student to an existing tutorial.
+Format: `addTutorialStudent tutorialIndex/INDEX student/STUDENT_INDEX`
+
+****
+* The index refers to the index number shown in the displayed tutorial list.
+* The index *must be a positive integer* 1, 2, 3, ...
+* The `STUDENT_INDEX` should be referred to by index as referred to in the student list.
+* The student should already exist in TAble.
+* The tutorial should already exist in TAble.
+****
+
+Example:
+
+* `addTutorialStudent tutorialIndex/3 student/12`
+
 ==== Marks students as present: `markPresent`
 
-Takes attendance of students in a tutorial class by marking them as present for a particular week. Present students will be marked by a green background in the respective attendance list. +
-Format: `markPresent tutorialIndex/INDEX week/WEEK student/STUDENT [OPTIONAL]`
+Takes attendance of students in a tutorial class by marking them as present for a particular week. Present students will be marked by a *green* background in the respective attendance list. +
+Format: `markPresent tutorialIndex/INDEX week/WEEK student/STUDENT_INDEX`
 
 ****
 * Updates the tutorial at the specified `INDEX`.
 * The index refers to the index number shown in the displayed tutorial list.
 * The index *must be a positive integer* 1, 2, 3, ...
-* The `STUDENT` may either be an integer index *or* `all` to select all students in the specified tutorial.
-* The `STUDENT`, if an integer, should be referred to by the index as referred to in the student list *relative to the specified tutorial*.
+* The `STUDENT_INDEX` may either be an integer index *or* `all` to select all students in the specified tutorial.
+* The `STUDENT_INDEX`, if an integer, should be referred to by the index as referred to in the student list *relative to the specified tutorial*.
 * The week should be in numerical format, and accepts only numbers in the range 1 to 13 (inclusive)
 ****
 
@@ -289,15 +308,15 @@ Marks all students as present in week 7 in tutorial at index 2
 
 ==== Marks students as absent: `markAbsent`
 
-Takes attendance of students in a tutorial class by marking them as absent for a particular week. Absent students will be marked by a red background in the respective attendance list. +
-Format: `markPresent tutorialIndex/INDEX week/WEEK student/STUDENT`
+Takes attendance of students in a tutorial class by marking them as absent for a particular week. Absent students will be marked by a *red* background in the respective attendance list. +
+Format: `markPresent tutorialIndex/INDEX week/WEEK student/STUDENT_INDEX`
 
 ****
 * Updates the tutorial at the specified `INDEX`.
 * The index refers to the index number shown in the displayed tutorial list.
 * The index *must be a positive integer* 1, 2, 3, ...
-* The `STUDENT` may either be an integer index *or* `all` to select all students in the specified tutorial.
-* The `STUDENT`, if an integer, should be referred to by the index as referred to in the student list *relative to the specified tutorial*.
+* The `STUDENT_INDEX` may either be an integer index *or* `all` to select all students in the specified tutorial.
+* The `STUDENT_INDEX`, if an integer, should be referred to by the index as referred to in the student list *relative to the specified tutorial*.
 * The week should be in numerical format, and accepts only numbers in the range 1 to 13 (inclusive)
 ****
 
@@ -308,41 +327,25 @@ Marks only student at index 2 (for tutorial at index 3) as absent in week 7 for 
 * `markAbsent tutorialIndex/3 week/7 student/all` +
 Marks all students in week 7 as absent in tutorial at index 3 (oh no!)
 
-==== Add student to tutorial: `addTutorialStudent`
-
-Enroll an existing student to an existing tutorial.
-Format: `addTutorialStudent tutorialIndex/INDEX student/STUDENT`
-
-****
-* The index refers to the index number shown in the displayed tutorial list.
-* The index *must be a positive integer* 1, 2, 3, ...
-* The `STUDENT` should be referred to by index as referred to in the student list.
-* The student should already exist.
-* The tutorial should already exist.
-****
-
-Example:
-
-* `addTutorialStudent tutorialIndex/3 student/12`
-
 ==== Remove student from tutorial: `deleteTutorialStudent`
 
 Remove an existing student from an existing tutorial.
-Format: `deleteTutorialStudent tutorialIndex/INDEX student/STUDENT`
+Format: `deleteTutorialStudent tutorialIndex/INDEX student/STUDENT_INDEX`
 
 ****
 * The index refers to the index number shown in the displayed tutorial list.
 * The index *must be a positive integer* 1, 2, 3, ...
-* The `STUDENT` should be referred to by the index as referred to in the student list *relative to the specified tutorial*.
-* The student should already exist *and* exist in the tutorial being deleted from.
-* The tutorial should already exist.
+* The `STUDENT_INDEX` should be referred to by the index as referred to in the student list *relative to the specified tutorial*.
+* The student should already exist in TAble *and* exist in the tutorial being deleted from.
+* The tutorial should already exist in TAble.
+* Note that deleting the student from the tutorial does _not_ delete the student from the TAble database.
 ****
 
 Example:
 
 * `deleteTutorialStudent tutorialIndex/3 student/12`
 
-==== Display students and attendance of a tutorial: `ListAttendance`
+==== Display students and attendance of a tutorial: `listAttendance`
 
 Displays the list of students in a tutorial and their corresponding attendance for a particular week in the GUI.
 Format: `listAttendance tutorialIndex/INDEX week/INDEX`
@@ -351,7 +354,7 @@ Format: `listAttendance tutorialIndex/INDEX week/INDEX`
 * Shows the attendance for tutorial at the specified `INDEX`.
 * The index refers to the index number shown in the displayed tutorial list.
 * The index *must be a positive integer* 1, 2, 3, ...
-* The tutorial should already exist.
+* The tutorial should already exist in TAble.
 * The week should be in numerical format, and accepts only numbers in the range 1 to 13 (inclusive)
 ****
 
@@ -627,14 +630,39 @@ There is no need to save manually.
 
 == Command Summary
 
-* *Add* `addStudent n/NAME m/MATRIC_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
+=== Student
+* *Add* : `addStudent n/NAME m/MATRIC_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
 e.g. `addStudent n/James Ho m/A0123456X e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 * *Clear* : `clear`
 * *Delete* : `deleteStudent INDEX` +
-e.g. `delete 3`
+e.g. `deleteStudent 3`
 * *Edit* : `editStudent INDEX [n/NAME] [m/MATRIC_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
 e.g. `editStudent 2 n/James Lee e/jameslee@example.com`
 * *Find* : `findStudent KEYWORD [MORE_KEYWORDS]` +
 e.g. `findStudent James Jake`
 * *List* : `listStudent`
+
+=== Consult
+
+=== Tutorial
+* *Add* : `addTutorial modCode/MODULE_CODE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE beginTime/START_TIME endTIme/END_TIME place/PLACE` +
+e.g. `addTutorial modCode/CS2103 tutorialName/T02 day/3 beginTime/12:00 endTime/13:00 place/SR3`
+* *Delete* : `deleteTutorial INDEX` +
+e.g. `deleteTutorial 2`
+* *Add Tutorial Student* : `addTutorialStudent tutorialIndex/INDEX student/STUDENT_INDEX` +
+e.g. `addTutorialStudent tutorialIndex/1 student/3`
+* *Mark Present* : `markPresent tutorialIndex/INDEX week/WEEK student/STUDENT_INDEX` +
+e.g. `markPresent tutorialIndex/3 week/7 student/2`
+* *Mark Absent* : `markPresent tutorialIndex/INDEX week/WEEK student/STUDENT_INDEX` +
+e.g. `markAbsent tutorialIndex/3 week/7 student/2`
+* *Delete Tutorial Student* : `deleteTutorialStudent tutorialIndex/INDEX student/STUDENT_INDEX` +
+e.g. `deleteTutorialStudent tutorialIndex/3 student/12`
+* *List Tutorial* : `listTutorial`
+* *List Attendance* : `listAttendance tutorialIndex/INDEX week/INDEX` +
+e.g. `listAttendance tutorialIndex/2 week/10`
+
+=== Module
+
+=== Reminder
+
 * *Help* : `help`

@@ -253,12 +253,12 @@ A `Consult` class stores all of the relevant information of consults. The class 
 .Class diagram of 'Consults' feature
 image::ConsultsCommandClassDiagram.png[]
 
-A consultation slot is represented by the `consult` class which contains 5 key attributes, the beginDateTime, endDateTime, location, studentMatricNumber and studentName.
-The beginDateTime and endDateTime attributes are represented using Java's `LocalDateTime` class. The studentMatricNumber and studentName attributes are classes that belong to a certain `Student`. The studentMatricNumber is used to uniquely identify the `Student` involved in the consultation, while the studentName is used in the front end of the application, displayed to the TA.
+A consultation slot is represented by the `Consult` class which contains 5 key attributes, the `beginDateTime`, `endDateTime`, `location`, `studentMatricNumber` and `studentName`.
+The `beginDateTime` and `endDateTime` attributes are represented using Java's `LocalDateTime` class. The `studentMatricNumber` and `studentName` attributes are classes that belong to a certain `Student`. The `studentMatricNumber` is used to uniquely identify the `Student` involved in the consultation, while the studentName is used in the front end of the application, displayed to the TA.
 
-The `XYZConsultCommand` class represent classes that extend the abstract class `Command` and allows the TA to add, edit, delete, view and clear consultations added to TAble. These `XYZConsultCommands` are created by the respective `XYZConsultCommandParsers`.
+The `XYZConsultCommand` class represent classes that extend the abstract class `Command` and allows the TA to add, edit, delete, view and clear consultations added to TAble. These `XYZConsultCommandS` are created by the respective `XYZConsultCommandParserS`.
 
-A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `Consults`. When a `consult` is added to the ConsultTAble, there will first be a check that the `consult` does not already exist in the `UniqueConsultList`.
+A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `ConsultS`. When a `consult` is added to the ConsultTAble, there will first be a check that the `consult` does not already exist in the `UniqueConsultList`.
 
 ==== Design Considerations
 
@@ -339,6 +339,10 @@ Reason for choosing Alternative 2:  From a user design perspective, it is more l
 From a software engineering perspective, it is the responsibility of the `tutorial` to keep track of the attendance, not the `Student` 's.
 This allows attendance of a `Student` to be easily referenced and marked in a `tutorial` without requiring the `Student` to be privy to that information, and allows for convenient retrieval of attendance by week or by student.
 
+As such, the following activity diagram of the system illustrates what occurs when the user calls the markPresent command to mark a student in a tutorial as present, for a specified week in the school semester.
+
+.Activity diagram for the command markPresent in the tutorial feature
+image::TutorialMarkPresentActivityDiagram.png[]
 
 // end::tutorial[]
 
