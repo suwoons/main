@@ -8,7 +8,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Location;
 import seedu.address.model.mod.ModCode;
 import seedu.address.model.student.Student;
