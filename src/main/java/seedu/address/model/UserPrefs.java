@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data", "addressbook.json");
+    private Path addressBookFilePath = Paths.get("data", "TAble.json");
     private Path consultTAbleFilePath = Paths.get("data", "consults.json");
     private Path tutorialTAbleFilePath = Paths.get("data", "tutorials.json");
     private Path modTAbleFilePath = Paths.get("data", "mods.json");

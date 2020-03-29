@@ -10,7 +10,7 @@ import seedu.address.model.student.Student;
 import seedu.address.ui.UiPart;
 
 /**
- * A UI component that displays information of a {@code Tutorial}.
+ * A UI component that displays information of the attendance of a {@code Tutorial}.
  */
 public class AttendanceCard extends UiPart<Region> {
 
