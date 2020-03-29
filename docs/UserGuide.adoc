@@ -633,7 +633,7 @@ There is no need to save manually.
 === Student
 * *Add* : `addStudent n/NAME m/MATRIC_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
 e.g. `addStudent n/James Ho m/A0123456X e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-* *Clear* : `clear`
+* *Clear* : `clearStudent`
 * *Delete* : `deleteStudent INDEX` +
 e.g. `deleteStudent 3`
 * *Edit* : `editStudent INDEX [n/NAME] [m/MATRIC_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
@@ -643,6 +643,14 @@ e.g. `findStudent James Jake`
 * *List* : `listStudent`
 
 === Consult
+* *Add* : `addConsult student/STUDENT_INDEX beginDateTime/BEGIN_DATE_TIME endDateTime/END_DATE_TIME place/PLACE` +
+e.g. `addConsult student/1 beginDateTime/2020-03-03 10:00 endDateTime/2020-03-03 12:00 place/Deck`
+* *Clear* : `clearConsult`
+* *Delete* : `deleteConsult INDEX` +
+e.g. `deleteConsult 3`
+* *Edit* : `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]`
++ e.g `editConsult 3 place/The Deck
+* *List* : `listConsult`
 
 === Tutorial
 * *Add* : `addTutorial modCode/MODULE_CODE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE beginTime/START_TIME endTIme/END_TIME place/PLACE` +
@@ -664,5 +672,8 @@ e.g. `listAttendance tutorialIndex/2 week/10`
 === Module
 
 === Reminder
+
+=== Calendar
+* *View Calendar* : `calendar`
 
 * *Help* : `help`
