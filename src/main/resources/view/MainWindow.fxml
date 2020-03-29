@@ -107,7 +107,6 @@
                                     <VBox>
                                        <children>
                                           <StackPane fx:id="attendanceListPanelPlaceholder" minHeight="300.0" minWidth="350.0" prefHeight="300.0" prefWidth="350.0" maxHeight="300.0"/>
-
                                        </children></VBox>
                                  </content>
                               </Tab>

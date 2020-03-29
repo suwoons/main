@@ -159,6 +159,7 @@
 .list-cell-header {
     -fx-padding: 5;
     -fx-text-fill: white;
+    -fx-background-color: #3c3e3f;
 }
 
 .cell_big_label {
