@@ -309,6 +309,12 @@ public interface Model {
      */
     void updateFilteredReminderList(Predicate<Reminder> predicate);
 
+    /**
+     * Updates the filter of the filtered reminder list to filter by the given {@code predicates}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredReminderList(Predicate<Reminder> firstPredicate, Predicate<Reminder> secondPredicate);
+
     /** Returns the Reminder TAble */
     ReadOnlyReminder getReminderTAble();
 

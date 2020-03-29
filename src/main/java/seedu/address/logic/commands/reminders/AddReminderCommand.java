@@ -21,7 +21,7 @@ public class AddReminderCommand extends Command {
                 + "Parameters: "
                 + PREFIX_REMINDER_DESCRIPTION + "DESC "
                 + PREFIX_REMINDER_DATE + "DATE "
-                + PREFIX_REMINDER_TIME + "TIME "
+                + PREFIX_REMINDER_TIME + "TIME\n"
                 + "Example: " + COMMAND_WORD + " "
                 + PREFIX_REMINDER_DESCRIPTION + "Mark midterms papers "
                 + PREFIX_REMINDER_DATE + "2020-03-05 "

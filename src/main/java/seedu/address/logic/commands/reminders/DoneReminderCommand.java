@@ -1,8 +1,6 @@
 package seedu.address.logic.commands.reminders;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDERS;
 
 import java.util.List;
 
@@ -22,9 +20,7 @@ public class DoneReminderCommand extends Command {
     public static final String COMMAND_WORD = "doneReminder";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the identified reminder as done by the index number used in the displayed Reminder TAble.\n"
-            + "Parameters: " + PREFIX_INDEX + "\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Marks the reminder identified by the index number used in the displayed reminder list as done.\n";
 
     public static final String MESSAGE_DONE_REMINDER_SUCCESS = "Reminder Done: %1$s";
 
@@ -49,7 +45,6 @@ public class DoneReminderCommand extends Command {
         }
 
         Reminder doneReminder = model.doneReminder(reminderToMark);
-        model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
         return new CommandResult(String.format(MESSAGE_DONE_REMINDER_SUCCESS, doneReminder));
     }
 

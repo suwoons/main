@@ -381,6 +381,12 @@ public class AddTutorialCommandTest {
         }
 
         @Override
+        public void updateFilteredReminderList(Predicate<Reminder> firstPredicate,
+                                               Predicate<Reminder> secondPredicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyReminder getReminderTAble() {
             throw new AssertionError("This method should not be called.");
         }
