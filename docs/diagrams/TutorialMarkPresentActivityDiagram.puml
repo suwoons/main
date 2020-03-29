@@ -2,18 +2,31 @@
 start
 :User executes markPresent command;
 
-if () then ([given week is valid])
-:Find student in specified tutorial;
+if () then ([all prefixes present])
+    if () then ([given week is valid])
+        if () then ([tutorial exists in TAble])
+            :Find student in the specified tutorial;
 
-if () then ([student exists in the tutorial])
-    :Update studentAttendance for specified student
-    and given week to present;
-    :Save updated tutorial in TutorialTAble;
+            if () then ([student exists in the tutorial])
+                :Update studentAttendance for specified student
+                and given week to present;
+                :Save updated tutorial in TutorialTAble;
+            else ([else])
+                :Display error message that
+                student index provided is invalid;
+            endif
+        else ([else])
+            :Display error message that
+            tutorial cannot be found;
+        endif
+    else ([else])
+        :Display error message on
+        invalid prefix format, telling user
+        to input a week between 1-13 (inclusive);
+    endif
 else ([else])
-    :Throw exception;
-endif
-else ([else])
-    :Throw exception;
+   :Display error message
+   and show command format;
 endif
 
 stop
