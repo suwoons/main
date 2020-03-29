@@ -28,9 +28,6 @@ public class AttendanceListPanel extends UiPart<Region> {
     private ListView<Student> studentListView;
     private ArrayList<Boolean> attendanceList;
 
-    @javafx.fxml.FXML
-    private Label attendanceHeader;
-
     private Tutorial tutorial;
     private String tutorialCode;
     private String tutorialName;
@@ -48,12 +45,11 @@ public class AttendanceListPanel extends UiPart<Region> {
         this.tutorialCode = tutorialToShow.getModCode().toString();
         this.tutorialName = tutorialToShow.getTutorialName().toString();
         this.weekOneBased = weekZeroBased + 1;
-        this.attendanceHeader.setText(tutorialCode + " " + tutorialName + ": Week " + weekOneBased);
 
         studentListView.setItems(studentsList);
         studentListView.setCellFactory(listView -> new AttendanceListPanel.AttendanceListViewCell());
-    }
 
+    }
     /**
      * Custom {@code ListCell} that displays the graphics of a student's attendance in a {@code Tutorial} using an
      * {@code AttendanceCard}.

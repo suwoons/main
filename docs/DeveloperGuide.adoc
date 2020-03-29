@@ -308,27 +308,27 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 Tutorials in *TAble* also allow teaching assistants to enroll students in a tutorial and mark their attendance for every week of the semester, and allows for convenient referencing (particularly when there's a pandemic and contact tracing is critical).
 
 === Implementation
-Since a `tutorial` in *TAble* has to manage many parameters and attributes, different components of *TAble* were distinctly separated in order to ensure maintainability and adhere to good coding practices.
+Since a `Tutorial` in *TAble* has to manage many parameters and attributes, different components of *TAble* were distinctly separated in order to ensure maintainability and adhere to good coding practices.
 The following illustrates the sequence diagram for AddTutorialCommand, in which a tutorial is added to *TAble*.
 
 .Sequence diagram for the command to add a tutorial
-image::AddTutorialCommandSequenceDiagram.png[]
+image::TutorialCommandSequenceDiagram.png[]
 
 As can be observed, each step of the process is clearly separated, with each component only responsible for single task (eg. parsing user input, executing the actual command etc.)
 This enables bugs to be easily caught, and for the process to be structured and comprehensible.
 
 ==== Design Considerations
-As a `tutorial` in TAble should be able to keep track of enrolled students and mark their attendance, the `tutorial` object will have to contain a list of `Student` objects (ie. the enrolled students).
+As a `Tutorial` in TAble should be able to keep track of enrolled students and mark their attendance, the `Tutorial` object will have to contain a list of `Student` objects (ie. the enrolled students).
 However, a `Student` object, as we are implementing it, does not contain the attribute of whether they are present or not for a particular `tutorial`.
 
 [width="100%", cols="1, 5, 5"]
 |===
 ||*Alternative 1:* Include an attendance attribute to each `Student` such that they keep track of their own attendance for every tutorial they are enrolled in.
-|*Alternative 2 : (Current Choice)* Each `tutorial` contains an attendance sheet, comprised of a list of 13 nested lists of booleans. Each nested list represents each week of a typical NUS school semester, while the size in each of the nested lists corresponds to the number of enrolled students.
+|*Alternative 2 : (Current Choice)* Each `Tutorial` contains an attendance sheet, comprised of a list of 13 nested lists of booleans. Each nested list represents each week of a typical NUS school semester, while the size in each of the nested lists corresponds to the number of enrolled students.
 
 |*Pros*
 |Efficient to mark the attendance of just a single student, and retrieve all attendance information of a particular `Student`.
-|Efficient to mark the attendance of all students in a given tutorial as the whole attendance sheet is stored in `tutorial`.
+|Efficient to mark the attendance of all students in a given tutorial as the whole attendance sheet is stored in `Tutorial`.
 
 |*Cons*
 |Difficult to mark attendance of all students in a tutorial as the system will have to individually search and modify the correct boolean in each `Student` in the tutorial.
@@ -336,8 +336,8 @@ However, a `Student` object, as we are implementing it, does not contain the att
 |===
 
 Reason for choosing Alternative 2:  From a user design perspective, it is more likely that a teaching assistant will want to mark his attendance by tutorial and week rather than by student, hence it is more practical and efficient to choose Alternative 2.
-From a software engineering perspective, it is the responsibility of the `tutorial` to keep track of the attendance, not the `Student` 's.
-This allows attendance of a `Student` to be easily referenced and marked in a `tutorial` without requiring the `Student` to be privy to that information, and allows for convenient retrieval of attendance by week or by student.
+From a software engineering perspective, it is the responsibility of the `Tutorial` to keep track of the attendance, not the `Student` 's.
+This allows attendance of a `Student` to be easily referenced and marked in a `Tutorial` without requiring the `Student` to be privy to that information, and allows for convenient retrieval of attendance by week or by student.
 
 As such, the following activity diagram of the system illustrates what occurs when the user calls the markPresent command to mark a student in a tutorial as present, for a specified week in the school semester.
 
