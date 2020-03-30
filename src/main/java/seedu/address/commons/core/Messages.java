@@ -32,4 +32,6 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid.";
     public static final String MESSAGE_REMINDER_ALREADY_DONE = "This reminder is already done!";
+
+    public static final String NO_CALENDAR_OPEN_MESSAGE = "There is no calendar window that is currently open.";
 }
