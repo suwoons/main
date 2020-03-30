@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalConsults.consult1;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
 
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.consult.ConsultTAble;
+import seedu.address.model.event.consult.exceptions.ConsultNotFoundException;
 import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.reminder.ReminderTAble;
@@ -98,6 +100,30 @@ public class ModelManagerTest {
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
     }
+
+    @Test
+    public void hasConsult_consultNotInTAble_returnsFalse() {
+        assertFalse(modelManager.hasConsult(consult1));
+    }
+
+    @Test
+    public void deleteConsult_consultNotInTAble_throwsUnsupportedOperationException() {
+        assertThrows(ConsultNotFoundException.class, () -> modelManager.deleteConsult(consult1));
+    }
+
+    @Test
+    public void hasConsult_consultInTAble_returnsTrue() {
+        modelManager.addConsult(consult1);
+        assertTrue(modelManager.hasConsult(consult1));
+    }
+
+    @Test
+    public void deleteConsult_consultInTAble_deletesConsult1() {
+        modelManager.addConsult(consult1);
+        modelManager.deleteConsult(consult1);
+        assertTrue(!modelManager.hasConsult(consult1));
+    }
+
 
     @Test
     public void equals() {
