@@ -29,7 +29,7 @@ public class CommandResult {
     private final boolean showList;
 
     /** The application should show the relevant attendance list. */
-    private final boolean showAttendace;
+    private final boolean showAttendance;
 
 
 
@@ -47,7 +47,7 @@ public class CommandResult {
         this.showCalendar = showCalendar;
         this.showHelp = showHelp;
         this.showList = showList;
-        this.showAttendace = false;
+        this.showAttendance = false;
         this.exit = exit;
         this.tutorialToShow = null;
         this.weekZeroBased = 0;
@@ -63,7 +63,7 @@ public class CommandResult {
         this.showHelp = false;
         this.exit = false;
         this.showList = false;
-        this.showAttendace = true;
+        this.showAttendance = true;
         this.tutorialToShow = tutorial;
         this.weekZeroBased = weekZeroBased;
         this.closeCalendar = false;
@@ -78,7 +78,7 @@ public class CommandResult {
         this.exit = exit;
         this.showCalendar = false;
         this.showList = false;
-        this.showAttendace = false;
+        this.showAttendance = false;
         this.tutorialToShow = null;
         this.weekZeroBased = 0;
         this.closeCalendar = false;
@@ -132,7 +132,7 @@ public class CommandResult {
     }
 
     public boolean isShowAttendance() {
-        return showAttendace;
+        return showAttendance;
     }
 
     public Tutorial getTutorialToShow() {
