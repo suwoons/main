@@ -130,9 +130,17 @@ public class CalendarWindow extends UiPart<Stage> {
      * Shows the Calendar window.
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.fine("Showing Calendar Window.");
         getRoot().show();
         getRoot().centerOnScreen();
+    }
+
+    /**
+     * Closes the Calendar window.
+     */
+    public void close() {
+        logger.fine("Closing Calendar Window.");
+        getRoot().close();
     }
 
     /**
