@@ -33,7 +33,8 @@ public class DeleteTutorialStudentCommand extends Command {
             + PREFIX_STUDENT + "2";
 
     public static final String MESSAGE_DELETE_TUTORIAL_STUDENT_SUCCESS = "Deleted tutorial student %1$s "
-            + "from %2$s %3$s";
+            + "from %2$s %3$s\n"
+            + "Please use listAttendance command to view updated list of students.";
 
     private final Index tutorialIndex;
     private final Index studentIndex;
