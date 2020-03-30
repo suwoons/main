@@ -608,6 +608,16 @@ Format: `calendar`
 * Click on the left and right arrows to change the month displayed.
 ****
 
+==== Closes the calendar window: `closeCalendar`
+
+Closes the calendar window.
+Format: `closeCalendar`
+
+****
+* The calendar will be closed, if a current calendar window is displayed.
+* Alternatively, clicking the cross can also close the calendar window.
+****
+
 ==== View consults and tutorials on a particular day [Coming in v2.0]
 
 // end::Calendar[]
@@ -675,5 +685,6 @@ e.g. `listAttendance tutorialIndex/2 week/10`
 
 === Calendar
 * *View Calendar* : `calendar`
+* *Close Calendar*: `closeCalendar`
 
 * *Help* : `help`
