@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.testutil.TypicalConsults.getTypicalConsultTAble;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import java.nio.file.Path;
@@ -12,6 +13,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.event.consult.ConsultTAble;
+import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.student.StudentTAble;
 
@@ -53,6 +56,14 @@ public class StorageManagerTest {
     }
 
     @Test
+    public void consultsTAbleReadSave() throws Exception {
+        ConsultTAble original = getTypicalConsultTAble();
+        storageManager.saveConsults(original);
+        ReadOnlyConsult retrieved = storageManager.readConsults().get();
+        assertEquals(original, new ConsultTAble(retrieved));
+    }
+
+    @Test
     public void addressBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
@@ -68,6 +79,16 @@ public class StorageManagerTest {
     @Test
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void getUserPrefsFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
+    }
+
+    @Test
+    public void getConsultTAbleFilePath() {
+        assertNotNull(storageManager.getConsultsFilePath());
     }
 
 }
