@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalConsults.consult1;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
 
@@ -16,6 +15,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.consult.exceptions.ConsultNotFoundException;
 import seedu.address.model.event.tutorial.TutorialTAble;
@@ -24,6 +25,7 @@ import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.StudentTAble;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.ConsultBuilder;
 
 
 public class ModelManagerTest {
@@ -102,23 +104,27 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasConsult_consultNotInTAble_returnsFalse() {
+    public void hasConsult_consultNotInTAble_returnsFalse() throws ParseException {
+        Consult consult1 = new ConsultBuilder().build();
         assertFalse(modelManager.hasConsult(consult1));
     }
 
     @Test
-    public void deleteConsult_consultNotInTAble_throwsUnsupportedOperationException() {
+    public void deleteConsult_consultNotInTAble_throwsUnsupportedOperationException() throws ParseException {
+        Consult consult1 = new ConsultBuilder().build();
         assertThrows(ConsultNotFoundException.class, () -> modelManager.deleteConsult(consult1));
     }
 
     @Test
-    public void hasConsult_consultInTAble_returnsTrue() {
+    public void hasConsult_consultInTAble_returnsTrue() throws ParseException {
+        Consult consult1 = new ConsultBuilder().build();
         modelManager.addConsult(consult1);
         assertTrue(modelManager.hasConsult(consult1));
     }
 
     @Test
-    public void deleteConsult_consultInTAble_deletesConsult1() {
+    public void deleteConsult_consultInTAble_deletesConsult1() throws ParseException {
+        Consult consult1 = new ConsultBuilder().build();
         modelManager.addConsult(consult1);
         modelManager.deleteConsult(consult1);
         assertTrue(!modelManager.hasConsult(consult1));
