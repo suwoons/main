@@ -1,14 +1,17 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalReminders.getTypicalReminderTAble;
+import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -16,27 +19,35 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.reminders.AddReminderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.Consult;
+import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.mod.ModCode;
+import seedu.address.model.mod.ModTAble;
 import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.reminder.Description;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentTAble;
 import seedu.address.testutil.ReminderBuilder;
 
 public class AddReminderCommandTest {
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ConsultTAble(),
+            new TutorialTAble(), new ModTAble(), getTypicalReminderTAble());
 
     @Test
     public void constructor_nullReminder_throwsNullPointerException() {
@@ -45,25 +56,24 @@ public class AddReminderCommandTest {
 
     @Test
     public void execute_reminderAcceptedByModel_addSuccessful() throws Exception {
-        AddReminderCommandTest.ModelStubAcceptingReminderAdded modelStub =
-                new AddReminderCommandTest.ModelStubAcceptingReminderAdded();
         Reminder validReminder = new ReminderBuilder().build();
 
-        CommandResult commandResult = new AddReminderCommand(validReminder).execute(modelStub);
+        AddReminderCommand addReminderCommand = new AddReminderCommand(validReminder);
+        String expectedMessage = String.format(AddReminderCommand.MESSAGE_SUCCESS, validReminder);
+        Model expectedModel = new ModelManager(new StudentTAble(model.getStudentTAble()),
+                new UserPrefs(), new ConsultTAble(), new TutorialTAble(), new ModTAble(), new ReminderTAble());
+        expectedModel.addReminder(validReminder);
 
-        assertEquals(String.format(AddReminderCommand.MESSAGE_SUCCESS, validReminder),
-                commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validReminder), modelStub.remindersAdded);
+        assertCommandSuccess(addReminderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateReminder_throwsCommandException() throws ParseException {
-        Reminder validReminder = new ReminderBuilder().build();
-        AddReminderCommand addReminderCommand = new AddReminderCommand(validReminder);
-        AddReminderCommandTest.ModelStub modelStub = new AddReminderCommandTest.ModelStubWithReminder(validReminder);
+        Reminder firstReminder = model.getFilteredReminderList().get(INDEX_FIRST.getZeroBased());
 
-        assertThrows(CommandException.class, AddReminderCommand.MESSAGE_DUPLICATE_REMINDER, ()
-            -> addReminderCommand.execute(modelStub));
+        AddReminderCommand addReminderCommand = new AddReminderCommand(firstReminder);
+
+        assertCommandFailure(addReminderCommand, model, addReminderCommand.MESSAGE_DUPLICATE_REMINDER);
     }
 
     @Test
@@ -348,6 +358,11 @@ public class AddReminderCommandTest {
 
         @Override
         public ObservableList<Reminder> getFilteredReminderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Reminder> getUnFilteredReminderList() {
             throw new AssertionError("This method should not be called.");
         }
 
