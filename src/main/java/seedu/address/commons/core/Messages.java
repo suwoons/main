@@ -36,4 +36,6 @@ public class Messages {
     public static final String MESSAGE_REMINDERS_EMPTY_DESCRIPTION = "Description cannot be empty!";
     public static final String MESSAGE_REMINDER_INVALID_SNOOZE_DURATION = "Duration to be snoozed by must be a "
             + "positive integer.";
+
+    public static final String NO_CALENDAR_OPEN_MESSAGE = "There is no calendar window that is currently open.";
 }

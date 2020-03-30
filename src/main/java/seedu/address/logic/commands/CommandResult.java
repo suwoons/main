@@ -25,8 +25,14 @@ public class CommandResult {
     /** The application should show the listed tab. */
     private final boolean showList;
 
+    /** The application should close the calendar window. */
+    private final boolean closeCalendar;
+
     /** The application should show the relevant attendance list. */
-    private final boolean showAttendace;
+    private final boolean showAttendance;
+
+
+
 
     /** Information for the application to show the correct attendance list. */
     private final Tutorial tutorialToShow;
@@ -41,10 +47,11 @@ public class CommandResult {
         this.showCalendar = showCalendar;
         this.showHelp = showHelp;
         this.showList = showList;
-        this.showAttendace = false;
+        this.showAttendance = false;
         this.exit = exit;
         this.tutorialToShow = null;
         this.weekZeroBased = 0;
+        this.closeCalendar = false;
     }
 
     /**
@@ -56,9 +63,10 @@ public class CommandResult {
         this.showHelp = false;
         this.exit = false;
         this.showList = false;
-        this.showAttendace = true;
+        this.showAttendance = true;
         this.tutorialToShow = tutorial;
         this.weekZeroBased = weekZeroBased;
+        this.closeCalendar = false;
     }
 
     /**
@@ -70,9 +78,25 @@ public class CommandResult {
         this.exit = exit;
         this.showCalendar = false;
         this.showList = false;
-        this.showAttendace = false;
+        this.showAttendance = false;
         this.tutorialToShow = null;
         this.weekZeroBased = 0;
+        this.closeCalendar = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with all default false, except to close Calendar.
+     */
+    public CommandResult(String feedbackToUser, boolean closeCalendar) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showAttendance = false;
+        this.showHelp = false;
+        this.exit = false;
+        this.showCalendar = false;
+        this.showList = false;
+        this.tutorialToShow = null;
+        this.weekZeroBased = 0;
+        this.closeCalendar = true;
     }
 
     /**
@@ -99,12 +123,16 @@ public class CommandResult {
         return showCalendar;
     }
 
+    public boolean isCloseCalendar() {
+        return closeCalendar;
+    }
+
     public boolean isShowList() {
         return showList;
     }
 
     public boolean isShowAttendance() {
-        return showAttendace;
+        return showAttendance;
     }
 
     public Tutorial getTutorialToShow() {

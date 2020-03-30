@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.CalendarCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CloseCalendarCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -224,6 +225,9 @@ public class TAbleParser {
 
         case CalendarCommand.COMMAND_WORD:
             return new CalendarCommand();
+
+        case CloseCalendarCommand.COMMAND_WORD:
+            return new CloseCalendarCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

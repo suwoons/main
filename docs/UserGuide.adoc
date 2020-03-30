@@ -46,10 +46,10 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ====
 *Command Format*
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `addStudent n/NAME`, `NAME` is a parameter which can be used as `addStudent n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `addStudent name/NAME`, `NAME` is a parameter which can be used as `addStudent name/John Doe`.
+* Items in square brackets are optional e.g `name/NAME [t/TAG]` can be used as `name/John Doe t/friend` or as `name/John Doe`.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME e/EMAIL`, `e/EMAIL n/NAME` is also acceptable.
+* Parameters can be in any order e.g. if the command specifies `name/NAME email/EMAIL`, `email/EMAIL name/NAME` is also acceptable.
 ====
 
 === Viewing help : `help`
@@ -65,12 +65,12 @@ Adds a student to TAble +
 Format: `addStudent name/NAME matric/MATRIC_NUMBER email/EMAIL [tag/TAG]...`
 
 [TIP]
-A person can have any number of tags (including 0)
+A student can have any number of tags (including 0)
 
 Examples:
 
-* `addStudent n/John Doe m/A0123456X e/johnd@example.com`
-* `addStudent n/Betsy Crowe m/A1234567X t/friend e/betsycrowe@example.com t/CS2103`
+* `addStudent name/John Doe matric/A0123456X email/johnd@example.com`
+* `addStudent name/Betsy Crowe Daphne matric/A1234567X t/friend email/betsycrowe@example.com t/CS2103`
 
 ==== Listing all students : `listStudent`
 
@@ -83,19 +83,21 @@ Edits an existing student in TAble. +
 Format: `editStudent INDEX [name/NAME] [matric/MATRIC_NUMBER] [email/EMAIL] [tag/TAG]...`
 
 ****
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index *must be a positive integer* 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
-* You can remove all the person's tags by typing `tag/` without specifying any tags after it.
+* You can remove all the student's tags by typing `tag/` without specifying any tags after it.
 ****
 
 Examples:
 
 * `editStudent 1 email/johndoe@example.com` +
-Edits the email address of the 1st person to be `johndoe@example.com`.
+Edits the email address of the 1st student to be `johndoe@example.com`.
 * `editStudent 2 name/Betsy Crower t/` +
-Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+* `editStudent 3 matric/A0123456X` +
+Edits the matric number of the 3rd student to be `A0123456X`.
 
 ==== Locating students by name: `findStudent`
 
@@ -107,7 +109,7 @@ Format: `findStudent KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Students matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 ****
 
 Examples:
@@ -115,12 +117,13 @@ Examples:
 * `findStudent John` +
 Returns `john` and `John Doe`
 * `findStudent Betsy Tim John` +
-Returns any person having names `Betsy`, `Tim`, or `John`
+Returns any student having names `Betsy`, `Tim`, or `John`
 
 // tag::delete[]
 ==== Deleting a student : `deleteStudent`
 
 Deletes the specified student from TAble. +
+This removes the student from all enrolled tutorials as well. +
 Format: `deleteStudent INDEX`
 
 ****
@@ -608,6 +611,16 @@ Format: `calendar`
 * Click on the left and right arrows to change the month displayed.
 ****
 
+==== Closes the calendar window: `closeCalendar`
+
+Closes the calendar window.
+Format: `closeCalendar`
+
+****
+* The calendar will be closed, if a current calendar window is displayed.
+* Alternatively, clicking the cross can also close the calendar window.
+****
+
 ==== View consults and tutorials on a particular day [Coming in v2.0]
 
 // end::Calendar[]
@@ -631,13 +644,13 @@ There is no need to save manually.
 == Command Summary
 
 === Student
-* *Add* : `addStudent n/NAME m/MATRIC_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `addStudent n/James Ho m/A0123456X e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-* *Clear* : `clearStudent`
+* *Add* : `addStudent name/NAME matric/MATRIC_NUMBER email/EMAIL [t/TAG]...` +
+e.g. `addStudent name/James Tan matric/A0123456X email/jamesho@example.com t/friend t/colleague`
+* *Clear* : `clear`
 * *Delete* : `deleteStudent INDEX` +
 e.g. `deleteStudent 3`
-* *Edit* : `editStudent INDEX [n/NAME] [m/MATRIC_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-e.g. `editStudent 2 n/James Lee e/jameslee@example.com`
+* *Edit* : `editStudent INDEX [name/NAME] [matric/MATRIC_NUMBER] [email/EMAIL] [t/TAG]...` +
+e.g. `editStudent 2 name/James Lee email/jameslee@example.com`
 * *Find* : `findStudent KEYWORD [MORE_KEYWORDS]` +
 e.g. `findStudent James Jake`
 * *List* : `listStudent`
@@ -688,5 +701,6 @@ e.g `findReminder desc/midterms date/2020-03-15`
 
 === Calendar
 * *View Calendar* : `calendar`
+* *Close Calendar*: `closeCalendar`
 
 * *Help* : `help`
