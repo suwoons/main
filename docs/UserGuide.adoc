@@ -486,7 +486,7 @@ Adds a reminder to the reminder list. +
 Format: `addReminder desc/DESCRIPTION date/DATE time/TIME`
 
 [TIP]
-Reminders will alert the user during the stipulated date and time.
+Reminders will be automatically sorted according to their date and time, with the earliest at the top of the list.
 
 ****
 * The description provided should be any valid string.
@@ -509,7 +509,7 @@ Marks the reminder from the reminder list as done. +
 Format: `doneReminder INDEX`
 
 [TIP]
-Reminders marked as done will no longer alert the user during the stipulated date and time.
+Reminders marked as done will automatically be sorted to the bottom of the list.
 
 ****
 * Marks the reminder at the specified `INDEX` as done.
@@ -604,7 +604,7 @@ Format: `calendar`
 
 ****
 * The calendar will be brought up, displaying the current month and year.
-* For each month, the number of tutorials and consults each day will be displayed in the calendar.
+* For each month, the number of tutorials, consults and reminders for each day will be displayed in the calendar.
 * Click on the left and right arrows to change the month displayed.
 ****
 
@@ -648,8 +648,8 @@ e.g. `addConsult student/1 beginDateTime/2020-03-03 10:00 endDateTime/2020-03-03
 * *Clear* : `clearConsult`
 * *Delete* : `deleteConsult INDEX` +
 e.g. `deleteConsult 3`
-* *Edit* : `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]`
-+ e.g `editConsult 3 place/The Deck
+* *Edit* : `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]` + 
+e.g `editConsult 3 place/The Deck`
 * *List* : `listConsult`
 
 === Tutorial
@@ -672,6 +672,19 @@ e.g. `listAttendance tutorialIndex/2 week/10`
 === Module
 
 === Reminder
+* *Add* : `addReminder desc/DESCRIPTION date/DATE time/TIME` +
+e.g. `addReminder desc/Upload week 11 tutorial answers date/2020-03-31 time/15:00`
+* *Done* : `doneReminder INDEX` +
+e.g. `doneReminder 2`
+* *Delete* : `deleteReminder INDEX` +
+e.g. `deleteReminder 2`
+* *Edit* : `editReminder INDEX [desc/DESCRIPTION] [date/DATE] [time/TIME]` + 
+e.g `editReminder 3 date/2020-04-05`
+* *Snooze* : `snoozeReminder INDEX [day/DAY] [hour/HOUR] [minute/MINUTE]` + 
+e.g `snoozeReminder 4 hour/2 minute/30`
+* *Find* : `findReminder [desc/DESCRIPTION] [date/DATE]` + 
+e.g `findReminder desc/midterms date/2020-03-15`
+* *List* : `listReminder`
 
 === Calendar
 * *View Calendar* : `calendar`

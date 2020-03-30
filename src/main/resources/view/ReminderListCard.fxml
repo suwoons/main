@@ -17,16 +17,16 @@
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="id" styleClass="cell_big_label">
+                <Label fx:id="id" styleClass="cell_big_label" style="-fx-text-fill: #353535;">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="description" text="\$description" styleClass="cell_big_label" wrapText="true"/>
+                <Label fx:id="description" text="\$description" styleClass="cell_big_label" wrapText="true" style="-fx-text-fill: #353535;" />
             </HBox>
-            <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
-            <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
+            <Label fx:id="dueIn" styleClass="cell_small_label" text="\$dueIn" style="-fx-text-fill: #353535;" />
+            <Label fx:id="dateTime" styleClass="cell_small_label" text="\$dateTime" style="-fx-text-fill: #353535;" />
         </VBox>
     </GridPane>
 </HBox>

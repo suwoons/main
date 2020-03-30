@@ -5,6 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_TIME;
 
+import java.time.LocalDateTime;
+
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -43,6 +46,10 @@ public class AddReminderCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (LocalDateTime.of(toAdd.getDate(), toAdd.getTime()).isBefore(LocalDateTime.now())) {
+            throw new CommandException(Messages.MESSAGE_REMINDER_PAST_REMINDER);
+        }
 
         if (model.hasReminder(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_REMINDER);

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalReminders.getTypicalReminderTAble;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -46,7 +45,7 @@ import seedu.address.testutil.ReminderBuilder;
 
 public class AddReminderCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ConsultTAble(),
+    private Model model = new ModelManager(new StudentTAble(), new UserPrefs(), new ConsultTAble(),
             new TutorialTAble(), new ModTAble(), getTypicalReminderTAble());
 
     @Test
@@ -60,7 +59,7 @@ public class AddReminderCommandTest {
 
         AddReminderCommand addReminderCommand = new AddReminderCommand(validReminder);
         String expectedMessage = String.format(AddReminderCommand.MESSAGE_SUCCESS, validReminder);
-        Model expectedModel = new ModelManager(new StudentTAble(model.getStudentTAble()),
+        Model expectedModel = new ModelManager(new StudentTAble(),
                 new UserPrefs(), new ConsultTAble(), new TutorialTAble(), new ModTAble(), new ReminderTAble());
         expectedModel.addReminder(validReminder);
 
@@ -79,7 +78,7 @@ public class AddReminderCommandTest {
     @Test
     public void equals() throws ParseException {
         Reminder r1 = new ReminderBuilder().withDescription(new Description("Email T03 tutorial 4 solutions")).build();
-        Reminder r2 = new ReminderBuilder().withDate("2020-03-25").withTime("14:00").build();
+        Reminder r2 = new ReminderBuilder().withDate("2022-03-25").withTime("14:00").build();
 
         AddReminderCommand addR1Command = new AddReminderCommand(r1);
         AddReminderCommand addR2Command = new AddReminderCommand(r2);

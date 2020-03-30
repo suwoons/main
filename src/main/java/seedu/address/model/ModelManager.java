@@ -413,6 +413,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Reminder> getUnFilteredReminderList() {
+        return reminderTAble.getAllReminders();
+    }
+
+    @Override
     public void updateFilteredReminderList(Predicate<Reminder> predicate) {
         requireNonNull(predicate);
         filteredReminders.predicateProperty().bind(Bindings.createObjectBinding(() -> predicate));

@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_TIME;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
@@ -69,6 +70,10 @@ public class EditReminderCommand extends Command {
 
         Reminder reminderToEdit = lastShownList.get(index.getZeroBased());
         Reminder editedReminder = createEditedReminder(reminderToEdit, editReminderDescriptor);
+
+        if (LocalDateTime.of(editedReminder.getDate(), editedReminder.getTime()).isBefore(LocalDateTime.now())) {
+            throw new CommandException(Messages.MESSAGE_REMINDER_PAST_REMINDER);
+        }
 
         if (!reminderToEdit.equals(editedReminder) && model.hasReminder(editedReminder)) {
             throw new CommandException(MESSAGE_DUPLICATE_REMINDER);

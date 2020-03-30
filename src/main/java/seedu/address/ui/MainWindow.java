@@ -107,7 +107,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        calendarWindow = new CalendarWindow(logic.getFilteredConsultList(), logic.getFilteredTutorialList());
+        calendarWindow = new CalendarWindow(logic.getFilteredConsultList(),
+                logic.getFilteredTutorialList(), logic.getUnFilteredReminderList());
     }
 
     public Stage getPrimaryStage() {

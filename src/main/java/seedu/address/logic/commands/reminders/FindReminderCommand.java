@@ -50,16 +50,12 @@ public class FindReminderCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        if (descriptionPredicate == null) {
-            model.updateFilteredReminderList(datePredicate);
-        }
-
-        if (datePredicate == null) {
-            model.updateFilteredReminderList(descriptionPredicate);
-        }
-
         if (descriptionPredicate != null && datePredicate != null) {
             model.updateFilteredReminderList(datePredicate, descriptionPredicate);
+        } else if (descriptionPredicate != null) {
+            model.updateFilteredReminderList(descriptionPredicate);
+        } else if (datePredicate != null) {
+            model.updateFilteredReminderList(datePredicate);
         }
 
         return new CommandResult(

@@ -367,6 +367,11 @@ public class AddConsultCommandTest {
         }
 
         @Override
+        public ObservableList<Reminder> getUnFilteredReminderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredReminderList(Predicate<Reminder> predicate) {
             throw new AssertionError("This method should not be called.");
         }

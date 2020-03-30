@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.ui.UiPart;
 
 /**
@@ -25,6 +26,7 @@ public class CalendarDay extends UiPart<Region> {
     private LocalDate date;
     private ObservableList<Consult> consults;
     private ObservableList<Tutorial> tutorials;
+    private ObservableList<Reminder> reminders;
 
     @FXML
     private StackPane calendarDayStackPane;
@@ -36,6 +38,7 @@ public class CalendarDay extends UiPart<Region> {
         super(FXML);
         consults = FXCollections.observableArrayList();
         tutorials = FXCollections.observableArrayList();
+        reminders = FXCollections.observableArrayList();
     }
 
     public StackPane getCalendarDayStackPane() {
@@ -119,6 +122,37 @@ public class CalendarDay extends UiPart<Region> {
             }
             StackPane.setAlignment(tutorialsCount, Pos.CENTER);
             calendarDayStackPane.getChildren().add(tutorialsCount);
+        }
+    }
+
+    /**
+     * Adds the reminder that is happening on this day to the {@Code CalendarDay}.
+     */
+    public void addReminder(Reminder reminder) {
+        reminders.add(reminder);
+    }
+
+    /**
+     * Remove all reminders on this {@Code CalendarDay}.
+     */
+    public void removeReminders() {
+        reminders.clear();
+    }
+
+    /**
+     * Updates the number of reminders on this CalendarDay.
+     */
+    public void updateNumReminders() {
+        int noReminders = reminders.size();
+        if (noReminders > 0) {
+            Text remindersCount;
+            if (noReminders == 1) {
+                remindersCount = new Text("1 reminder");
+            } else {
+                remindersCount = new Text(noReminders + " reminders");
+            }
+            StackPane.setAlignment(remindersCount, Pos.TOP_CENTER);
+            calendarDayStackPane.getChildren().add(remindersCount);
         }
     }
 }
