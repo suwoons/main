@@ -22,11 +22,11 @@ public class CommandResult {
     /** The application should show the calendar. */
     private final boolean showCalendar;
 
-    /** The application should close the calendar window. */
-    private final boolean closeCalendar;
-
     /** The application should show the listed tab. */
     private final boolean showList;
+
+    /** The application should close the calendar window. */
+    private final boolean closeCalendar;
 
     /** The application should show the relevant attendance list. */
     private final boolean showAttendance;
@@ -89,11 +89,11 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, boolean closeCalendar) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showAttendance = false;
         this.showHelp = false;
         this.exit = false;
         this.showCalendar = false;
         this.showList = false;
-        this.showAttendace = false;
         this.tutorialToShow = null;
         this.weekZeroBased = 0;
         this.closeCalendar = true;
