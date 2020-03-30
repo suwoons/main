@@ -305,16 +305,16 @@ Reason for choosing Alternative 1: On a user design perspective, it is less jarr
 ==== Implementation
 A reminder is make up of a description, date and time which uniquely identify each reminder. Each reminder has a boolean attribute to indicate if the task is done.
 
-To find a reminder in the reminder list, user must key in at least one of the optional predicates, `DescriptionContainsKeywordsPredicate` or `DatePredicate`. `DescriptionContainsKeywordsPredicate` contains a list of strings entered by the user while `DatePredicate` contains the input `LocalDate`. 
+To find a reminder in the reminder list, user must key in at least one of the optional predicates, `DescriptionContainsKeywordsPredicate` or `DatePredicate`. `DescriptionContainsKeywordsPredicate` contains a list of strings entered by the user while `DatePredicate` contains the input `LocalDate`.
 
 The list of strings are matched against the description of the reminders in the reminder list while the `LocalDate` is matched against the date field. The reminder list is then updated with the list of matching reminders via `updatedFilteredReminderList` in `Model`. Below shows a sequence diagram of the execution.
 
 .Sequence diagram for finding reminders
 image::FindReminderSequenceDiagram.png[]
 
-A snooze reminder feature is also implemented for the users to easily postpone a reminder. It's implementation is similar to the `editReminderCommand` where it creates a new reminder to replace the specified reminder instead of editing the current reminder directly. This is to ensure the reminders are immutable which improves the stability of the application. 
+A snooze reminder feature is also implemented for the users to easily postpone a reminder. It's implementation is similar to the `editReminderCommand` where it creates a new reminder to replace the specified reminder instead of editing the current reminder directly. This is to ensure the reminders are immutable which improves the stability of the application.
 
-User can choose to snooze the reminder in any/all of the following time units: days, hours and/or minutes. Only positive integer are allowed as the user are not supposed to snooze the reminders backwards or snooze it by zero duration. Following is an activity digram for the command. 
+User can choose to snooze the reminder in any/all of the following time units: days, hours and/or minutes. Only positive integer are allowed as the user are not supposed to snooze the reminders backwards or snooze it by zero duration. Following is an activity digram for the command.
 
 .Activity diagram for the command snoozeReminder in the reminder feature
 image::SnoozeReminderActivityDiagram.png[]
@@ -334,7 +334,7 @@ image::SnoozeReminderActivityDiagram.png[]
 
 |*Cons*
 |User are not able to sort the list according to their preferences.
-|User have to type the sort command each time a new task is added. 
+|User have to type the sort command each time a new task is added.
 |===
 
 Reason for choosing Alternative 1:  We believe that automatically sorting the list provide with a better user experience as they could immediately see the most urgent tasks in the reminder's list upon startup without first typing a sort command.

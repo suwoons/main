@@ -661,7 +661,7 @@ e.g. `addConsult student/1 beginDateTime/2020-03-03 10:00 endDateTime/2020-03-03
 * *Clear* : `clearConsult`
 * *Delete* : `deleteConsult INDEX` +
 e.g. `deleteConsult 3`
-* *Edit* : `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]` + 
+* *Edit* : `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]` +
 e.g `editConsult 3 place/The Deck`
 * *List* : `listConsult`
 
@@ -691,11 +691,11 @@ e.g. `addReminder desc/Upload week 11 tutorial answers date/2020-03-31 time/15:0
 e.g. `doneReminder 2`
 * *Delete* : `deleteReminder INDEX` +
 e.g. `deleteReminder 2`
-* *Edit* : `editReminder INDEX [desc/DESCRIPTION] [date/DATE] [time/TIME]` + 
+* *Edit* : `editReminder INDEX [desc/DESCRIPTION] [date/DATE] [time/TIME]` +
 e.g `editReminder 3 date/2020-04-05`
-* *Snooze* : `snoozeReminder INDEX [day/DAY] [hour/HOUR] [minute/MINUTE]` + 
+* *Snooze* : `snoozeReminder INDEX [day/DAY] [hour/HOUR] [minute/MINUTE]` +
 e.g `snoozeReminder 4 hour/2 minute/30`
-* *Find* : `findReminder [desc/DESCRIPTION] [date/DATE]` + 
+* *Find* : `findReminder [desc/DESCRIPTION] [date/DATE]` +
 e.g `findReminder desc/midterms date/2020-03-15`
 * *List* : `listReminder`
 
