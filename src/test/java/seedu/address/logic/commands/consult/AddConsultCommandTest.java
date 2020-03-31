@@ -262,12 +262,12 @@ public class AddConsultCommandTest {
         }
 
         @Override
-        public void markPresent(Tutorial tutorialToMark, Student studentToMark, int week) {
+        public void markPresent(Tutorial tutorialToMark, Student studentToMark, int weekZeroBased) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void markAbsent(Tutorial tutorialToMark, Student studentToMark, int week) {
+        public void markAbsent(Tutorial tutorialToMark, Student studentToMark, int weekZeroBased) {
             throw new AssertionError("This method should not be called.");
         }
 

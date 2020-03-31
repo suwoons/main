@@ -36,9 +36,9 @@ public class ListAttendanceCommandParser implements Parser<ListAttendanceCommand
         }
 
         Index tutorialIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TUTORIAL_INDEX).get());
-        int weekZeroBased = ParserUtil.parseTutorialWeek(argMultimap.getValue(PREFIX_TUTORIAL_WEEK).get());
+        int week = ParserUtil.parseTutorialWeek(argMultimap.getValue(PREFIX_TUTORIAL_WEEK).get());
 
-        return new ListAttendanceCommand(tutorialIndex, weekZeroBased);
+        return new ListAttendanceCommand(tutorialIndex, week);
     }
 
     /**

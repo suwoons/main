@@ -69,18 +69,23 @@ public class MarkAbsentCommand extends Command {
         try {
             if (!isMarkAll) {
                 Student studentToMark = tutorialToMark.getEnrolledStudents().get(studentIndex.getZeroBased());
-                model.markAbsent(tutorialToMark, studentToMark, week);
+                model.markAbsent(tutorialToMark, studentToMark, week - 3);
 
                 // Refresh the list to update the GUI attendance
                 lastShownList = model.getFilteredTutorialList();
                 tutorialToMark = lastShownList.get(tutorialIndex.getZeroBased());
 
-                return new CommandResult(String.format(MESSAGE_SUCCESS, studentToMark.getName().fullName,
-                        tutorialToMark.getModCode(), tutorialToMark.getTutorialName(), week + 1), tutorialToMark,
-                        week);
+                return new CommandResult(
+                    String.format(MESSAGE_SUCCESS,
+                        studentToMark.getName().fullName,
+                        tutorialToMark.getModCode(),
+                        tutorialToMark.getTutorialName(),
+                        week),
+                    tutorialToMark,
+                    week - 3);
             } else {
                 for (Student student : tutorialToMark.getEnrolledStudents()) {
-                    model.markAbsent(tutorialToMark, student, week);
+                    model.markAbsent(tutorialToMark, student, week - 3);
                 }
 
                 // Refresh the list to update the GUI attendance
@@ -88,8 +93,8 @@ public class MarkAbsentCommand extends Command {
                 tutorialToMark = lastShownList.get(tutorialIndex.getZeroBased());
 
                 return new CommandResult(String.format(MESSAGE_ALL_SUCCESS,
-                        tutorialToMark.getModCode(), tutorialToMark.getTutorialName(), week + 1), tutorialToMark,
-                        week);
+                        tutorialToMark.getModCode(), tutorialToMark.getTutorialName(), week), tutorialToMark,
+                        week - 3);
             }
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_INVALID_TUTORIAL_STUDENT_INDEX);

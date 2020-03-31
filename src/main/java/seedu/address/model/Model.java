@@ -190,16 +190,16 @@ public interface Model {
     void deleteTutorialStudent(Tutorial toDeleteFrom, Student target);
 
     /**
-     * Marks the given student in the given tutorial as present in {@code week}.
+     * Marks the given student in the given tutorial as present in {@code weekZeroBased}.
      * {@code tutorialToMark} and {@code studentToMark} must already exist in TutorialTAble.
      */
-    void markPresent(Tutorial tutorialToMark, Student studentToMark, int week);
+    void markPresent(Tutorial tutorialToMark, Student studentToMark, int weekZeroBased);
 
     /**
-     * Marks the given student in the given tutorial as absent in {@code week}.
+     * Marks the given student in the given tutorial as absent in {@code weekZeroBased}.
      * {@code tutorialToMark} and {@code studentToMark} must already exist in TutorialTAble.
      */
-    void markAbsent(Tutorial tutorialToMark, Student studentToMark, int week);
+    void markAbsent(Tutorial tutorialToMark, Student studentToMark, int weekZeroBased);
 
     /** Returns an unmodifiable view of the filtered tutorial list */
     ObservableList<Tutorial> getFilteredTutorialList();
