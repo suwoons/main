@@ -2,12 +2,11 @@ package seedu.address.logic.parser.tutorials;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_WEEK;
 
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.tutorials.ListAttendanceCommand;
+import seedu.address.logic.commands.tutorials.CopyTutorialEmailsCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -16,29 +15,28 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input commands and creates a new ListAttendanceCommand object
+ * Parses input commands and creates a new CopyTutorialEmailsCommand object
  */
-public class ListAttendanceCommandParser implements Parser<ListAttendanceCommand> {
+public class CopyTutorialEmailsCommandParser implements Parser<CopyTutorialEmailsCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ListAttendanceCommand
-     * and returns a ListAttendanceCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the CopyTutorialEmailsCommand
+     * and returns a CopyTutorialEmailsCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public ListAttendanceCommand parse(String args) throws ParseException {
+    public CopyTutorialEmailsCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL_INDEX, PREFIX_TUTORIAL_WEEK);
+                ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TUTORIAL_INDEX, PREFIX_TUTORIAL_WEEK)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TUTORIAL_INDEX)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ListAttendanceCommand.MESSAGE_USAGE));
+                    CopyTutorialEmailsCommand.MESSAGE_USAGE));
         }
 
         Index tutorialIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TUTORIAL_INDEX).get());
-        int weekZeroBased = ParserUtil.parseTutorialWeek(argMultimap.getValue(PREFIX_TUTORIAL_WEEK).get());
 
-        return new ListAttendanceCommand(tutorialIndex, weekZeroBased);
+        return new CopyTutorialEmailsCommand(tutorialIndex);
     }
 
     /**
