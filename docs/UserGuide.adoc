@@ -651,7 +651,7 @@ Format: `calendar`
 * Click on the left and right arrows to change the month displayed.
 ****
 
-==== Closes the calendar window: `closeCalendar`
+==== Close the calendar window: `closeCalendar`
 
 Closes the calendar window.
 Format: `closeCalendar`
