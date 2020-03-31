@@ -213,7 +213,8 @@ public class CalendarWindow extends UiPart<Stage> {
         //Remove all tutorials to restart the count.
         calendarDay.removeTutorials();
         for (Tutorial tutorial : tutorials) {
-            if (TutorialUtil.checkDayOfWeek(tutorial.getDay(), calendarDate)) {
+            if (TutorialUtil.checkDayOfWeek(tutorial.getDay(), calendarDate)
+                && TutorialUtil.checkDuringSemester(calendarDate)) {
                 calendarDay.addTutorial(tutorial);
                 logger.fine("Same date detected.");
             }
