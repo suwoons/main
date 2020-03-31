@@ -29,7 +29,8 @@ public class AddTutorialStudentCommand extends Command {
             + PREFIX_TUTORIAL_INDEX + "1 "
             + PREFIX_STUDENT + "3";
 
-    public static final String MESSAGE_SUCCESS = "New student %1$s added to %2$s %3$s";
+    public static final String MESSAGE_SUCCESS = "New student %1$s added to %2$s %3$s.\n"
+            + "Please use listAttendance command to view updated list of students.";
     public static final String MESSAGE_DUPLICATE_TUTORIAL_STUDENT = "This student already exists in this tutorial";
 
     private final Index tutorialIndex;

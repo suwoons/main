@@ -147,101 +147,11 @@ The `Storage` component,
 [[Design-Commons]]
 === Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 == Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
-
-
-// tag:undoredo[]
-=== [Proposed] Undo/Redo Feature
-==== Proposed Implementation
-
-The undo/redo mechanism is facilitated by `VersionedAddressBook`.
-It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`.
-Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` -- Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-image::UndoRedoState0.png[]
-
-Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-image::UndoRedoState1.png[]
-
-Step 3. The user executes `add n/David ...` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-image::UndoRedoState2.png[]
-
-[NOTE]
-If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-image::UndoRedoState3.png[]
-
-[NOTE]
-If the `currentStatePointer` is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
-
-The following sequence diagram shows how the undo operation works:
-
-image::UndoSequenceDiagram.png[]
-
-NOTE: The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-[NOTE]
-If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-image::UndoRedoState4.png[]
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
-
-image::UndoRedoState5.png[]
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-image::CommitActivityDiagram.png[]
-
-==== Design Considerations
-
-===== Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-** Pros: Easy to implement.
-** Cons: May have performance issues in terms of memory usage.
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-** Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-** Cons: We must ensure that the implementation of each individual command are correct.
-
-===== Aspect: Data structure to support the undo/redo commands
-
-* **Alternative 1 (current choice):** Use a list to store the history of address book states.
-** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.
-** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`.
-* **Alternative 2:** Use `HistoryManager` for undo/redo
-** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.
-** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
-// end::undoredo[]
-
-// tag::dataencryption[]
-=== [Proposed] Data Encryption
-
-_{Explain here how the data encryption feature will be implemented}_
-
-// end::dataencryption[]
 
 // tag::consult[]
 === Consult feature
@@ -307,28 +217,28 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 *TAble* allows NUS teaching assistants to track and record all the tutorials they are teaching, and maintain details of the tutorial, such as the module it is under, start and end time of the tutorial, and the location it is held.
 Tutorials in *TAble* also allow teaching assistants to enroll students in a tutorial and mark their attendance for every week of the semester, and allows for convenient referencing (particularly when there's a pandemic and contact tracing is critical).
 
-=== Implementation
-Since a `tutorial` in *TAble* has to manage many parameters and attributes, different components of *TAble* were distinctly separated in order to ensure maintainability and adhere to good coding practices.
+==== Implementation
+Since a `Tutorial` in *TAble* has to manage many parameters and attributes, different components of *TAble* were distinctly separated in order to ensure maintainability and adhere to good coding practices.
 The following illustrates the sequence diagram for AddTutorialCommand, in which a tutorial is added to *TAble*.
 
 .Sequence diagram for the command to add a tutorial
-image::AddTutorialCommandSequenceDiagram.png[]
+image::TutorialCommandSequenceDiagram.png[]
 
 As can be observed, each step of the process is clearly separated, with each component only responsible for single task (eg. parsing user input, executing the actual command etc.)
 This enables bugs to be easily caught, and for the process to be structured and comprehensible.
 
 ==== Design Considerations
-As a `tutorial` in TAble should be able to keep track of enrolled students and mark their attendance, the `tutorial` object will have to contain a list of `Student` objects (ie. the enrolled students).
+As a `Tutorial` in TAble should be able to keep track of enrolled students and mark their attendance, the `Tutorial` object will have to contain a list of `Student` objects (ie. the enrolled students).
 However, a `Student` object, as we are implementing it, does not contain the attribute of whether they are present or not for a particular `tutorial`.
 
 [width="100%", cols="1, 5, 5"]
 |===
 ||*Alternative 1:* Include an attendance attribute to each `Student` such that they keep track of their own attendance for every tutorial they are enrolled in.
-|*Alternative 2 : (Current Choice)* Each `tutorial` contains an attendance sheet, comprised of a list of 13 nested lists of booleans. Each nested list represents each week of a typical NUS school semester, while the size in each of the nested lists corresponds to the number of enrolled students.
+|*Alternative 2 : (Current Choice)* Each `Tutorial` contains an attendance sheet, comprised of a list of 13 nested lists of booleans. Each nested list represents each week of a typical NUS school semester, while the size in each of the nested lists corresponds to the number of enrolled students.
 
 |*Pros*
 |Efficient to mark the attendance of just a single student, and retrieve all attendance information of a particular `Student`.
-|Efficient to mark the attendance of all students in a given tutorial as the whole attendance sheet is stored in `tutorial`.
+|Efficient to mark the attendance of all students in a given tutorial as the whole attendance sheet is stored in `Tutorial`.
 
 |*Cons*
 |Difficult to mark attendance of all students in a tutorial as the system will have to individually search and modify the correct boolean in each `Student` in the tutorial.
@@ -336,8 +246,8 @@ However, a `Student` object, as we are implementing it, does not contain the att
 |===
 
 Reason for choosing Alternative 2:  From a user design perspective, it is more likely that a teaching assistant will want to mark his attendance by tutorial and week rather than by student, hence it is more practical and efficient to choose Alternative 2.
-From a software engineering perspective, it is the responsibility of the `tutorial` to keep track of the attendance, not the `Student` 's.
-This allows attendance of a `Student` to be easily referenced and marked in a `tutorial` without requiring the `Student` to be privy to that information, and allows for convenient retrieval of attendance by week or by student.
+From a software engineering perspective, it is the responsibility of the `Tutorial` to keep track of the attendance, not the `Student` 's.
+This allows attendance of a `Student` to be easily referenced and marked in a `Tutorial` without requiring the `Student` to be privy to that information, and allows for convenient retrieval of attendance by week or by student.
 
 As such, the following activity diagram of the system illustrates what occurs when the user calls the markPresent command to mark a student in a tutorial as present, for a specified week in the school semester.
 
@@ -387,6 +297,68 @@ image::AddModLinkActivityDiagram.png[]
 Reason for choosing Alternative 1: On a user design perspective, it is less jarring to copy link into the user's clipboard, since the user can choose when they want to access the link and have the flexibility to share the link to others. Additionally, opening a new browser page requires more complicated code that depends on another program.
 
 // end::module[]
+
+// tag::reminder[]
+=== Reminder feature
+*TAble* allows NUS SoC teaching assistants to create reminders to help them in keeping track of their ongoing or upcoming tasks.
+
+==== Implementation
+A reminder is make up of a description, date and time which uniquely identify each reminder. Each reminder has a boolean attribute to indicate if the task is done.
+
+To find a reminder in the reminder list, user must key in at least one of the optional predicates, `DescriptionContainsKeywordsPredicate` or `DatePredicate`. `DescriptionContainsKeywordsPredicate` contains a list of strings entered by the user while `DatePredicate` contains the input `LocalDate`.
+
+The list of strings are matched against the description of the reminders in the reminder list while the `LocalDate` is matched against the date field. The reminder list is then updated with the list of matching reminders via `updatedFilteredReminderList` in `Model`. Below shows a sequence diagram of the execution.
+
+.Sequence diagram for finding reminders
+image::FindReminderSequenceDiagram.png[]
+
+A snooze reminder feature is also implemented for the users to easily postpone a reminder. It's implementation is similar to the `editReminderCommand` where it creates a new reminder to replace the specified reminder instead of editing the current reminder directly. This is to ensure the reminders are immutable which improves the stability of the application.
+
+User can choose to snooze the reminder in any/all of the following time units: days, hours and/or minutes. Only positive integer are allowed as the user are not supposed to snooze the reminders backwards or snooze it by zero duration. Following is an activity digram for the command.
+
+.Activity diagram for the command snoozeReminder in the reminder feature
+image::SnoozeReminderActivityDiagram.png[]
+
+==== Design Considerations
+
+===== Sorting the reminders
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1 (Current Choice):* Automatically sorts the reminder list whenever a reminder is added
+|*Alternative 2 :* Sorts the reminder list only when user enters a sort command
+
+|*Pros*
+|It is intuitive for the reminder list to be sorted according to their done status and deadline.
+|User can decide how they want the list to be sorted (e.g. in alphabetical order).
+
+|*Cons*
+|User are not able to sort the list according to their preferences.
+|User have to type the sort command each time a new task is added.
+|===
+
+Reason for choosing Alternative 1:  We believe that automatically sorting the list provide with a better user experience as they could immediately see the most urgent tasks in the reminder's list upon startup without first typing a sort command.
+
+===== Ways to inform user about their upcoming tasks
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1: (Current Choice)* Each reminder displays the duration left before the task is due
+|*Alternative 2 :* A pop-up notification when a reminder is due or about to due
+
+|*Pros*
+| User could see clearly the duration left for each task at a glance.
+| User are notified of upcoming tasks without having to look through the list of reminders.
+
+|*Cons*
+| Reminders that are about to due could be missed out.
+| Multiple pop-up notifications from the reminders could cause annoyance for the user.
+|===
+
+Reason for choosing Alternative 1: Pop-up notifications can be intrusive and potentially cause lag to the program which negatively impacts user's experience.
+Furthermore, they are hard to test due to their volatile nature and including them might decrease the stability of the application.
+
+// end:reminder[]
 
 === Logging
 
@@ -842,7 +814,7 @@ Use case ends.
 +
 Use case ends.
 [none]
-* 1b. The description, date and time of reminder is not included.
+* 1b. The description, date and time of reminder are not included.
 +
 [none]
 ** 1b1. System shows an error message that at least one of description, date or time must be included.
@@ -875,12 +847,36 @@ Use case ends.
 *MSS*
 
 1.  User requests to list all existing reminders
-2.  System returns a list with all the existing reminders information from the database
+2.  System returns a list with all the existing reminders from the database
 +
 Use case ends.
 
 *Extensions*
 
+[none]
+* 2a. The list is empty.
++
+Use case ends.
+
+[discrete]
+=== Use case: Find reminders (UXX)
+
+*MSS*
+
+1.  User requests to find all reminders matching with some particular keywords and/or date.
+2.  System returns a list with all the matching reminders from the database
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The keyword and date are not included.
++
+[none]
+** 1a1. System shows an error message that at least a keyword or date must be included.
++
+Use case ends.
 [none]
 * 2a. The list is empty.
 +
@@ -1053,6 +1049,10 @@ The primary user of this application.
 Course that Teaching Assistant teaches and Students register for.
 Due to naming restrictions, Module is shortened to Mod in file names.
 
+[[reminder]] Reminders::
+Additional notes or tasking the Teaching Assistant wants to keep track of.
+Each reminder has a deadline and status attached to them.
+
 [appendix]
 == Instructions for Manual Testing
 
@@ -1091,10 +1091,12 @@ _{ more test cases ... }_
 
 _{ more test cases ... }_
 
-=== Saving data
+=== Viewing calendar
 
-. Dealing with missing/corrupted data files
-
-.. _{explain how to simulate a missing/corrupted file and the expected behavior}_
-
-_{ more test cases ... }_
+. Displaying the calendar for the current month and year.
+.. Test case: `calendar` +
+   Expected: A new `Calendar` window is brought up at the current year and month. A success message "Opened Calendar window." will appear.
+.. Test case: `CALENDAR` +
+   Expected: No new `Calendar` window appears. Error details shown in the status message.
+.. Test case: Click on the left/right arrow in the `Calendar` window. +
+   Expected: The new month before/after the current displayed month is displayed in the new `Calendar` window.

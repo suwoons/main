@@ -319,4 +319,25 @@ public class ParserUtil {
         }
         return new Description(description);
     }
+
+    /**
+     * Parses a {@code String snoozeDuration} into a {@code long} which only accepts values which can be
+     * converted to a long and is positive.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static long parseSnoozeDuration(String snoozeDuration) throws ParseException {
+        requireNonNull(snoozeDuration);
+        String trimmedSnoozeDuration = snoozeDuration.trim();
+        long duration;
+        try {
+            duration = Long.parseLong(trimmedSnoozeDuration);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Messages.MESSAGE_REMINDER_INVALID_SNOOZE_DURATION);
+        }
+        if (duration <= 0) {
+            throw new ParseException(Messages.MESSAGE_REMINDER_INVALID_SNOOZE_DURATION);
+        }
+        return duration;
+    }
 }

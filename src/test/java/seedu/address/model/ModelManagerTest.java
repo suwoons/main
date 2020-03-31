@@ -15,13 +15,17 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.consult.ConsultTAble;
+import seedu.address.model.event.consult.exceptions.ConsultNotFoundException;
 import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.StudentTAble;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.ConsultBuilder;
 
 
 public class ModelManagerTest {
@@ -98,6 +102,34 @@ public class ModelManagerTest {
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
     }
+
+    @Test
+    public void hasConsult_consultNotInTAble_returnsFalse() throws ParseException {
+        Consult consult1 = new ConsultBuilder().build();
+        assertFalse(modelManager.hasConsult(consult1));
+    }
+
+    @Test
+    public void deleteConsult_consultNotInTAble_throwsUnsupportedOperationException() throws ParseException {
+        Consult consult1 = new ConsultBuilder().build();
+        assertThrows(ConsultNotFoundException.class, () -> modelManager.deleteConsult(consult1));
+    }
+
+    @Test
+    public void hasConsult_consultInTAble_returnsTrue() throws ParseException {
+        Consult consult1 = new ConsultBuilder().build();
+        modelManager.addConsult(consult1);
+        assertTrue(modelManager.hasConsult(consult1));
+    }
+
+    @Test
+    public void deleteConsult_consultInTAble_deletesConsult1() throws ParseException {
+        Consult consult1 = new ConsultBuilder().build();
+        modelManager.addConsult(consult1);
+        modelManager.deleteConsult(consult1);
+        assertTrue(!modelManager.hasConsult(consult1));
+    }
+
 
     @Test
     public void equals() {
