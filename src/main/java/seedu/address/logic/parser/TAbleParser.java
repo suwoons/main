@@ -42,6 +42,7 @@ import seedu.address.logic.commands.tutorials.AddTutorialStudentCommand;
 import seedu.address.logic.commands.tutorials.CopyTutorialEmailsCommand;
 import seedu.address.logic.commands.tutorials.DeleteTutorialCommand;
 import seedu.address.logic.commands.tutorials.DeleteTutorialStudentCommand;
+import seedu.address.logic.commands.tutorials.ExportTutorialAttendanceCommand;
 import seedu.address.logic.commands.tutorials.ListAttendanceCommand;
 import seedu.address.logic.commands.tutorials.ListTutorialCommand;
 import seedu.address.logic.commands.tutorials.MarkAbsentCommand;
@@ -73,6 +74,7 @@ import seedu.address.logic.parser.tutorials.AddTutorialStudentCommandParser;
 import seedu.address.logic.parser.tutorials.CopyTutorialEmailsCommandParser;
 import seedu.address.logic.parser.tutorials.DeleteTutorialCommandParser;
 import seedu.address.logic.parser.tutorials.DeleteTutorialStudentCommandParser;
+import seedu.address.logic.parser.tutorials.ExportTutorialAttendanceCommandParser;
 import seedu.address.logic.parser.tutorials.ListAttendanceCommandParser;
 import seedu.address.logic.parser.tutorials.MarkAbsentCommandParser;
 import seedu.address.logic.parser.tutorials.MarkPresentCommandParser;
@@ -176,6 +178,9 @@ public class TAbleParser {
 
         case CopyTutorialEmailsCommand.COMMAND_WORD:
             return new CopyTutorialEmailsCommandParser().parse(arguments);
+
+        case ExportTutorialAttendanceCommand.COMMAND_WORD:
+            return new ExportTutorialAttendanceCommandParser().parse(arguments);
 
         // ======================================== Mod Commands ==================================
 
