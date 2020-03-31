@@ -13,8 +13,9 @@ public class MatricNumber {
     public static final String MESSAGE_CONSTRAINTS =
             "Matric number should be of the format A[Number][Letter], for example A1234567Y."
                     + " And adhere to the following constraints:\n"
-                    + "1. Student ID must only be 9 characters long"
-                    + "2. The numerical part must be 7 characters long and contain only numbers";
+                    + "1. Student ID must only be 9 characters long\n"
+                    + "2. The numerical part must be 7 characters long and contain only numbers\n"
+                    + "1. Both A and Letter must be in CAPS.";
 
     private static final String INITIAL_REGEX = "[A]";
     private static final String NUMBER_REGEX = "\\d{7}";
