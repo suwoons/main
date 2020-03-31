@@ -42,5 +42,11 @@
     "email" : "anna@example.com",
     "remark" : "4th street",
     "tagged" : [ ]
+  }, {
+    "name" : "Harry Merry",
+    "matricNumber" : "A0101010A",
+    "email" : "harryisverymerry@example.com",
+    "remark" : "too merry",
+    "tagged" : [ ]
   } ]
 }

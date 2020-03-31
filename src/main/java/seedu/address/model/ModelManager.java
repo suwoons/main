@@ -133,6 +133,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasSameMatricNumber(Student student) {
+        requireNonNull(student);
+        return studentTAble.hasSameMatricNumber(student);
+    }
+
+    @Override
     public void deleteStudent(Student target) {
         studentTAble.removeStudent(target);
     }
