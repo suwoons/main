@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -412,9 +413,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Reminder> getUnFilteredReminderList() {
+        return reminderTAble.getAllReminders();
+    }
+
+    @Override
     public void updateFilteredReminderList(Predicate<Reminder> predicate) {
         requireNonNull(predicate);
-        filteredReminders.setPredicate(predicate);
+        filteredReminders.predicateProperty().bind(Bindings.createObjectBinding(() -> predicate));
+    }
+
+    @Override
+    public void updateFilteredReminderList(Predicate<Reminder> firstPredicate, Predicate<Reminder> secondPredicate) {
+        requireAllNonNull(firstPredicate, secondPredicate);
+        filteredReminders.predicateProperty().bind(Bindings.createObjectBinding
+                (() -> firstPredicate.and(secondPredicate)));
     }
 
     @Override

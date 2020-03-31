@@ -63,6 +63,11 @@ public interface Logic {
     ObservableList<Reminder> getFilteredReminderList();
 
     /**
+     * Returns an unmodifiable view of the unfiltered list of reminders
+     */
+    ObservableList<Reminder> getUnFilteredReminderList();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();

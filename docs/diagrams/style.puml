@@ -40,6 +40,8 @@
 !define TUTORIAL_COLOUR #1975B3
 !define TUTORIAL_COLOUR_T1 #339BE1
 
+!define REMINDER_COLOUR #FF5825
+
 skinparam BackgroundColor #FFFFFFF
 
 skinparam Shadowing false

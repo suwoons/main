@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_TIME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDERS;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
@@ -34,10 +34,10 @@ public class EditReminderCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_REMINDER_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_REMINDER_DATE + "DATE] "
-            + "[" + PREFIX_REMINDER_TIME + "TIME] "
+            + "[" + PREFIX_REMINDER_TIME + "TIME]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_REMINDER_DESCRIPTION + "Return T02 midterms paper"
-            + PREFIX_REMINDER_DATE + "2020-03-15"
+            + PREFIX_REMINDER_DESCRIPTION + "Return T02 midterms paper "
+            + PREFIX_REMINDER_DATE + "2020-03-15 "
             + PREFIX_REMINDER_TIME + "15:00";
 
     public static final String MESSAGE_EDIT_REMINDER_SUCCESS = "Edited Reminder: %1$s";
@@ -71,12 +71,15 @@ public class EditReminderCommand extends Command {
         Reminder reminderToEdit = lastShownList.get(index.getZeroBased());
         Reminder editedReminder = createEditedReminder(reminderToEdit, editReminderDescriptor);
 
+        if (LocalDateTime.of(editedReminder.getDate(), editedReminder.getTime()).isBefore(LocalDateTime.now())) {
+            throw new CommandException(Messages.MESSAGE_REMINDER_PAST_REMINDER);
+        }
+
         if (!reminderToEdit.equals(editedReminder) && model.hasReminder(editedReminder)) {
             throw new CommandException(MESSAGE_DUPLICATE_REMINDER);
         }
 
         model.setReminder(reminderToEdit, editedReminder);
-        model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
         return new CommandResult(String.format(MESSAGE_EDIT_REMINDER_SUCCESS, editedReminder));
     }
 

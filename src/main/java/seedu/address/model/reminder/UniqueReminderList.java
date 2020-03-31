@@ -46,6 +46,7 @@ public class UniqueReminderList implements Iterable<Reminder> {
             throw new DuplicateReminderException();
         }
         internalList.add(toAdd);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -66,6 +67,7 @@ public class UniqueReminderList implements Iterable<Reminder> {
         }
 
         internalList.set(index, editedReminder);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -98,6 +100,7 @@ public class UniqueReminderList implements Iterable<Reminder> {
         Reminder markedReminder = new Reminder(toMark.getDescription(), toMark.getDate(),
                 toMark.getTime(), true);
         internalList.set(index, markedReminder);
+        FXCollections.sort(internalList);
         return markedReminder;
     }
 

@@ -303,11 +303,20 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered reminder list */
     ObservableList<Reminder> getFilteredReminderList();
 
+    /** Returns an unmodifiable view of the unfiltered reminder list */
+    ObservableList<Reminder> getUnFilteredReminderList();
+
     /**
      * Updates the filter of the filtered reminder list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredReminderList(Predicate<Reminder> predicate);
+
+    /**
+     * Updates the filter of the filtered reminder list to filter by the given {@code predicates}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredReminderList(Predicate<Reminder> firstPredicate, Predicate<Reminder> secondPredicate);
 
     /** Returns the Reminder TAble */
     ReadOnlyReminder getReminderTAble();

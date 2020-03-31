@@ -40,4 +40,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_REMINDER_DESCRIPTION = new Prefix("desc/");
     public static final Prefix PREFIX_REMINDER_DATE = new Prefix("date/");
     public static final Prefix PREFIX_REMINDER_TIME = new Prefix("time/");
+    public static final Prefix PREFIX_REMINDER_DAY = new Prefix("day/");
+    public static final Prefix PREFIX_REMINDER_HOUR = new Prefix("hour/");
+    public static final Prefix PREFIX_REMINDER_MINUTE = new Prefix("minute/");
 }
