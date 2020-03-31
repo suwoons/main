@@ -398,12 +398,12 @@ Refer to the guide <<DevOps#, here>>.
 *Target user profile*:
 
 * Is a NUS SoC Teaching Assistant
-* prefer desktop apps over other types
-* can type fast
-* prefers typing over mouse input
-* is reasonably comfortable using CLI apps
+* Prefers desktop apps over other types
+* Can type fast
+* Prefers typing over mouse input
+* Is reasonably comfortable using CLI apps
 
-*Value proposition*: manage students faster than a typical mouse/GUI driven app
+*Value proposition*: Manage students faster than a typical mouse/GUI driven app
 
 [appendix]
 == User Stories
@@ -464,6 +464,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |teaching assistant |add module links |update module resources
 
+|`* * *` |teaching assistant |have a calendar view |track all of my consults, tutorials and reminders in a single calendar window.
+
 |`* *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
 
@@ -502,11 +504,11 @@ Use case ends.
 Use case resumes at step 2.
 
 [discrete]
-=== Use case: Schedule consult (UXX)
+=== Use case: Add consult (U02)
 
 *MSS*
 
-1.  User requests to add consult with date, time and location of consult included
+1.  User requests to add consult with student, date, time and location of consult included
 2.  System saves the new consult into the database
 +
 Use case ends.
@@ -514,15 +516,15 @@ Use case ends.
 *Extensions*
 
 [none]
-* 1a. The date, time or location of consult is not included.
+* 1a. The student, date, time or location of consult is not included.
 +
 [none]
-** 1a1. System shows an error message that date, time and location must all be included.
+** 1a1. System shows an error message that student, date, time and location must all be included.
 +
 Use case ends.
 
 [discrete]
-=== Use case: Update consult (UXX)
+=== Use case: Edit consult (U03)
 
 *MSS*
 
@@ -540,9 +542,16 @@ Use case ends.
 ** 1a1. System shows an error message that the consult does not exist.
 +
 Use case ends.
+[none]
+* 1b. The time, date or place provided is in the wrong format.
++
+[none]
+** 1b1. System shows an error message that time, date or place must be provided in the correct format.
++
+Use case ends.
 
 [discrete]
-=== Use case: Delete consult (UXX)
+=== Use case: Delete consult (U04)
 
 *MSS*
 
@@ -560,14 +569,21 @@ Use case ends.
 ** 1a1. System shows an error message that the consult does not exist.
 +
 Use case ends.
+[none]
+* 1b. The user enters the delete consult command in the wrong format.
++
+[none]
+** 1b1. System shows an error message that the wrong delete consult command format was given.
++
+Use case ends.
 
 [discrete]
-=== Use case: List consults (UXX)
+=== Use case: List consults (U05)
 
 *MSS*
 
 1.  User requests to list all existing consults
-2.  System returns a list with all the existing consult information from the database
+2.  System brings up the panel that stores all of the existing consults in the database
 +
 Use case ends.
 
@@ -579,7 +595,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Add tutorial (UXX)
+=== Use case: Add tutorial (U06)
 
 *MSS*
 
@@ -599,7 +615,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Delete tutorial (UXX)
+=== Use case: Delete tutorial (U07)
 
 *MSS*
 
@@ -627,7 +643,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: List tutorials (UXX)
+=== Use case: List tutorials (U08)
 
 *MSS*
 
@@ -637,7 +653,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Add a student to an existing tutorial (UXX)
+=== Use case: Add a student to an existing tutorial (U09)
 
 *MSS*
 
@@ -673,7 +689,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Remove a student from an existing tutorial (UXX)
+=== Use case: Remove a student from an existing tutorial (U10)
 
 *MSS*
 
@@ -709,7 +725,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Mark attendance of student (UXX)
+=== Use case: Mark attendance of student (U11)
 
 *MSS*
 
@@ -737,18 +753,18 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: View attendance sheet (UXX)
+=== Use case: View attendance sheet (U12)
 
 *MSS*
 
 1. User requests to view attendance of students from a particular tutorial.
-2. System returns the list of students and their attendance from the database.
+2. System brings up the attendance panel, and shows all students in a tutorial and their attendance from the database.
 +
 Use case ends.
 
 
 [discrete]
-=== Use case: Add reminder (UXX)
+=== Use case: Add reminder (U13)
 
 *MSS*
 
@@ -768,7 +784,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Mark reminder as done (UXX)
+=== Use case: Mark reminder as done (U14)
 
 *MSS*
 
@@ -795,7 +811,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Update reminder (UXX)
+=== Use case: Update reminder (U15)
 
 *MSS*
 
@@ -822,7 +838,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Delete reminder (UXX)
+=== Use case: Delete reminder (U16)
 
 *MSS*
 
@@ -842,12 +858,12 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: List reminders (UXX)
+=== Use case: List reminders (U17)
 
 *MSS*
 
 1.  User requests to list all existing reminders
-2.  System returns a list with all the existing reminders from the database
+2.  System returns all the existing reminders from the database
 +
 Use case ends.
 
@@ -859,7 +875,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Find reminders (UXX)
+=== Use case: Find reminders (U18)
 
 *MSS*
 
@@ -883,7 +899,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Snooze reminder (UXX)
+=== Use case: Snooze reminder (U19)
 
 *MSS*
 
@@ -910,7 +926,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Create Module (UXX)
+=== Use case: Create Module (U20)
 
 *MSS*
 
@@ -935,7 +951,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: View Module (UXX)
+=== Use case: View Module (U21)
 
 *MSS*
 
@@ -955,7 +971,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Update Module (UXX)
+=== Use case: Update Module (U22)
 
 *MSS*
 
@@ -975,7 +991,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Include Module links (UXX)
+=== Use case: Include Module links (U23)
 
 *MSS*
 
@@ -995,7 +1011,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Clear All Module links (UXX)
+=== Use case: Clear All Module links (U24)
 
 *MSS*
 
@@ -1014,7 +1030,16 @@ Use case ends.
 +
 Use case ends.
 
-_{More to be added}_
+
+[discrete]
+=== Use case: Open Calendar Window (U25)
+
+*MSS*
+
+1.  User requests to open the calendar window
+2.  System displays a calendar window with all of the user's reminders, consults and tutorials.
++
+Use case ends.
 
 [appendix]
 == Non Functional Requirements
@@ -1026,12 +1051,13 @@ _{More to be added}_
 .  Should not force shutdown regardless of commands inputted by user.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 .  Data stored into TAble should be available to users without any data corruption.
+. Teaching assistant is able to teach as many tutorial slots as possible, with no limit.
 
 [appendix]
 == Glossary
 
 [[events]] Events::
-Events are things which the Teaching Assistant is required to take note of.
+Events are things which the <<teaching-assistant, Teaching Assistant>> is required to take note of.
 The Teaching Assistant will be required to attend these events, which can be in the form of tutorials or consultations.
 
 [[mainstream-os]] Mainstream OS::
@@ -1042,6 +1068,7 @@ The primary group of people which the Teaching Assistant wil have to keep track 
 
 [[events]] TA::
 Refers to Teaching Assistant. See Teaching Assistant for more information.
+
 [[teaching-assistant]] Teaching Assistant::
 The primary user of this application.
 
@@ -1100,3 +1127,5 @@ _{ more test cases ... }_
    Expected: No new `Calendar` window appears. Error details shown in the status message.
 .. Test case: Click on the left/right arrow in the `Calendar` window. +
    Expected: The new month before/after the current displayed month is displayed in the new `Calendar` window.
+.. Test case: `closeCalendar` +
+    Expected: The `Calendar` window will be closed. Alternatively, the user may choose to click the cross on the top right corner of the `Calendar` window to close it.

@@ -88,12 +88,7 @@ public class CalendarWindow extends UiPart<Stage> {
      * Fill the calendar based on the created CalendarDays.
      */
     private void fillDays() {
-        // Get the date we want to start with on the calendar
-        LocalDate calendarDate = LocalDate.of(currentYearMonth.getYear(), currentYearMonth.getMonthValue(), 1);
-        // Dial back the day until it is SUNDAY (unless the month starts on a sunday)
-        while (!calendarDate.getDayOfWeek().toString().equals("SUNDAY")) {
-            calendarDate = calendarDate.minusDays(1);
-        }
+        LocalDate calendarDate = firstDateOfCalendar();
         for (CalendarDay calendarDay : calendarDays) {
             StackPane calendarDayStackPane = calendarDay.getCalendarDayStackPane();
             calendarDayStackPane.getChildren().clear();
@@ -109,6 +104,20 @@ public class CalendarWindow extends UiPart<Stage> {
             calendarDay.updateNumReminders();
             calendarDate = calendarDate.plusDays(1);
         }
+    }
+
+    /**
+     * Find the first date that will appear in the calendar window, i.e the date of the first Sunday that will appear.
+     * @return The date of the first Sunday in the calendar window. This will often be a date of the previous month.
+     */
+    private LocalDate firstDateOfCalendar() {
+        // Get the date we want to start with on the calendar
+        LocalDate calendarDate = LocalDate.of(currentYearMonth.getYear(), currentYearMonth.getMonthValue(), 1);
+        // Dial back the day until it is SUNDAY (unless the month starts on a sunday)
+        while (!calendarDate.getDayOfWeek().toString().equals("SUNDAY")) {
+            calendarDate = calendarDate.minusDays(1);
+        }
+        return calendarDate;
     }
 
     /**

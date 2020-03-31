@@ -3,6 +3,9 @@ package seedu.address.model.event.tutorial;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.commons.util.TutorialUtil.checkStartEndTime;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -125,6 +128,21 @@ public class Tutorial {
     public void markAbsent(Student student, int week) {
         int targetIndex = enrolledStudents.indexOf(student);
         studentAttendance.get(week).set(targetIndex, false);
+    }
+
+    /**
+     * Copies the list of students' emails onto the user's OS clipboard.
+     */
+    public void copyTutorialEmails() {
+        String[] emails = new String[enrolledStudents.size()];
+        for (int i = 0; i < enrolledStudents.size(); i++) {
+            emails[i] = enrolledStudents.get(i).getEmail().toString();
+        }
+        String emailStr = String.join("; ", emails);
+
+        StringSelection stringSelection = new StringSelection(emailStr);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);
     }
 
     public ModCode getModCode() {
