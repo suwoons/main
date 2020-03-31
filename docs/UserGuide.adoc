@@ -345,6 +345,22 @@ Example:
 
 * `deleteTutorialStudent tutorialIndex/3 student/12`
 
+==== Copy tutorial students' emails to user clipboard: `copyTutorialEmails`
+
+Copies all student emails in the given tutorial to the user clipboard, for easy mass-emailing purposes.
+Format: `copyTutorialEmails tutorialIndex/INDEX`
+
+****
+* The index refers to the index number shown in the displayed tutorial list.
+* The index *must be a positive integer* 1, 2, 3, ...
+* The tutorial should already exist in TAble.
+* The emails will be delimited by a semicolon (eg. \hello@email.com; \bye@email.com)
+****
+
+Example:
+
+* `copyTutorialEmails tutorialIndex/3`
+
 ==== Display students and attendance of a tutorial: `listAttendance`
 
 Displays the list of students in a tutorial and their corresponding attendance for a particular week in the GUI.
