@@ -30,7 +30,8 @@ public class ClearModLinksCommandParser implements Parser<ClearModLinksCommand> 
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE)
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ClearModLinksCommand.MESSAGE_USAGE));
         }

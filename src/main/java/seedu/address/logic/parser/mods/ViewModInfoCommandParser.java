@@ -31,7 +31,8 @@ public class ViewModInfoCommandParser implements Parser<ViewModInfoCommand> {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE)
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ViewModInfoCommand.MESSAGE_USAGE));
         }

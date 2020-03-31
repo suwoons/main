@@ -14,7 +14,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/AY1920-CS2103-W15-3/main/master
 
-By: `AY1920-CS2103-W15-3`      Since: `Feb 2020`      Licence: `MIT`
+By: `AY1920-CS2103-W15-3`      Since: `Apr 2020`      Licence: `MIT`
 
 == Introduction
 
@@ -364,6 +364,26 @@ Example:
 
 * `copyTutorialEmails tutorialIndex/3`
 
+//tag::ExportTutorialAttendance[]
+==== Export tutorial attendance to csv file: `exportAttendance`
+
+Exports the attendance data of all enrolled students in a tutorial group to a csv file, where the filepath is specified by the user.
+Format: `exportAttendance tutorialIndex/INDEX csvFilePath/FILEPATH`
+
+****
+* The index refers to the index number shown in the displayed tutorial list.
+* The index *must be a positive integer* 1, 2, 3, ...
+* The tutorial should already exist in TAble.
+* TAble must be able to write to the file specified.
+* The filepath must end in ".csv" as it is a csv file.
+* Attendance data from all weeks are exported into a csv file, where a 0 indicates absence and 1 indicates presence.
+****
+
+Example:
+
+* `exportAttendance tutorialIndex/1 csvFilePath/./data/attendance.csv`
+//end::ExportTutorialAttendance[]
+
 ==== Display students and attendance of a tutorial: `listAttendance`
 
 Displays the list of students in a tutorial and their corresponding attendance for a particular week in the GUI.
@@ -386,7 +406,11 @@ Example:
 //tag::Module[]
 === Module Feature
 ==== Add Module into database: `addMod`
-Adds module into TAble. +
+Adds a module into TAble.
+
+[NOTE]
+Due to naming restrictions in java, all code references to modules are named Mod instead of Module.
+
 Format: `addMod modCode/MODULE_CODE modName/MODULE_NAME`
 
 ****
@@ -697,8 +721,23 @@ e.g. `deleteTutorialStudent tutorialIndex/3 student/12`
 * *List Tutorial* : `listTutorial`
 * *List Attendance* : `listAttendance tutorialIndex/INDEX week/INDEX` +
 e.g. `listAttendance tutorialIndex/2 week/10`
+* *Export attendance to CSV file* : `exportAttendance tutorialIndex/INDEX csvFilePath/CSV_FILEPATH`
+e.g. `exportAttendance tutorialIndex/1 csvFilePath/./data/attendance.csv`
 
 === Module
+* *Add* : `addMod modCode/MODULE_CODE modName/MODULE_NAME` +
+e.g. `addMod modCode/CS2103 modName/Software Engineering`
+* *Delete* : `deleteMod modCode/MODULE_CODE` +
+e.g. `deleteMod modCode/CS2103`
+* *Edit module Note* : `noteMod modCode/MODULE_CODE modNote/MODULE_NOTE` +
+e.g. `noteMod modCode/CS2103 modNote/SWE is fun!`
+* *Add module website link* : `addModLink modCode/MODULE_CODE modLink/MODULE_LINK modLinkName/MODULE_LINK_NAME` +
+e.g. `addModLink modCode/CS2103 modLink/comp.nus.edu.sg/~cs2103 modLinkName/Module Website`
+* *Clear all module links* : `clearModLink modCode/MODULE_CODE`
+* *View module info* : `viewModInfo modCode/MODULE_CODE`
+* *Copy module link into clipboard* : `copyModLink INDEX modCode/MODULE_CODE` +
+e.g. `copyModLink 1 modCode/CS2013`
+* *List Mods* : `listMod`
 
 === Reminder
 * *Add* : `addReminder desc/DESCRIPTION date/DATE time/TIME` +

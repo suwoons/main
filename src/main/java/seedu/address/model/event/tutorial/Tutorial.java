@@ -3,14 +3,13 @@ package seedu.address.model.event.tutorial;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.commons.util.TutorialUtil.checkStartEndTime;
 
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import seedu.address.model.event.Location;
 import seedu.address.model.mod.ModCode;
 import seedu.address.model.student.Student;
@@ -21,7 +20,7 @@ import seedu.address.model.student.Student;
  */
 public class Tutorial {
 
-    public static final int NUM_OF_WEEKS = 13;
+    public static final int NUM_OF_WEEKS = 11;
 
     private ModCode modCode;
     private TutorialName tutorialName;
@@ -95,7 +94,7 @@ public class Tutorial {
      */
     public void setEnrolledStudents(Student student) {
         enrolledStudents.add(student);
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < NUM_OF_WEEKS; i++) {
             ArrayList<Boolean> week = studentAttendance.get(i);
             week.add(false);
         }
@@ -140,9 +139,10 @@ public class Tutorial {
         }
         String emailStr = String.join("; ", emails);
 
-        StringSelection stringSelection = new StringSelection(emailStr);
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        clipboard.setContents(stringSelection, null);
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent emailListString = new ClipboardContent();
+        emailListString.putString(emailStr);
+        clipboard.setContent(emailListString);
     }
 
     public ModCode getModCode() {

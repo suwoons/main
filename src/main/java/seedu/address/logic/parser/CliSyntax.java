@@ -28,6 +28,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TUTORIAL_END_TIME = new Prefix("endTime/");
     public static final Prefix PREFIX_TUTORIAL_INDEX = new Prefix("tutorialIndex/");
     public static final Prefix PREFIX_TUTORIAL_WEEK = new Prefix("week/");
+    public static final Prefix PREFIX_CSV_FILEPATH = new Prefix("csvFilePath/");
 
     /* Module definitions */
     public static final Prefix PREFIX_MODULE_CODE = new Prefix("modCode/");

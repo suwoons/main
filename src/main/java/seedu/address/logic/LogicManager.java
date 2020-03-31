@@ -49,6 +49,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getStudentTAble());
             storage.saveConsults(model.getConsultTAble());
+            storage.saveMods(model.getModTAble());
             storage.saveTutorials(model.getTutorialTAble());
             storage.saveReminders(model.getReminderTAble());
         } catch (IOException ioe) {
