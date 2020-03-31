@@ -15,7 +15,8 @@ public class Messages {
             + "after the End Date Time of the consult.";
     public static final String MESSAGE_CONSULT_TIMING_CLASH = "This consult's timing clash with another pre-existing"
             + " consult.";
-    public static final String MESSAGE_CONSULT_DIFFERENT_DATE = "The start and end date of the consult is different.";
+    public static final String MESSAGE_CONSULT_DIFFERENT_DATE = "The start and end date of the consult is different."
+            + "\nThe consult must be held within the same day.";
 
     public static final String MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX = "The tutorial index provided is invalid.";
     public static final String MESSAGE_INVALID_TUTORIAL_STUDENT_INDEX = "The student index provided is invalid.";
@@ -24,7 +25,7 @@ public class Messages {
     public static final String MESSAGE_TUTORIAL_TIMING_CLASH = "This tutorial's timing clash with another pre-existing"
             + " tutorial.";
     public static final String MESSAGE_INVALID_WEEK = "The week specified is invalid. Please enter a value between"
-            + " 1 and 13 (inclusive).";
+            + " 3 and 13 (inclusive).";
 
     public static final String MESSAGE_MISSING_MOD = "The module code provided does not exist in TAble.";
     public static final String MESSAGE_INVALID_MODLINK_INDEX = "This index does not correspond to a ModLink in TAble.";

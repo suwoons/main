@@ -294,13 +294,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void markPresent(Tutorial tutorialToMark, Student studentToMark, int week) {
-        tutorialTAble.markPresent(tutorialToMark, studentToMark, week);
+    public void markPresent(Tutorial tutorialToMark, Student studentToMark, int weekZeroBased) {
+        tutorialTAble.markPresent(tutorialToMark, studentToMark, weekZeroBased);
     }
 
     @Override
-    public void markAbsent(Tutorial tutorialToMark, Student studentToMark, int week) {
-        tutorialTAble.markAbsent(tutorialToMark, studentToMark, week);
+    public void markAbsent(Tutorial tutorialToMark, Student studentToMark, int weekZeroBased) {
+        tutorialTAble.markAbsent(tutorialToMark, studentToMark, weekZeroBased);
     }
 
 

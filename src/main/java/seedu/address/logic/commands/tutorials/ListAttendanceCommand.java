@@ -24,7 +24,7 @@ public class ListAttendanceCommand extends Command {
             + "an existing tutorial in a given week.\n"
             + "Parameters: "
             + PREFIX_TUTORIAL_INDEX + "TUTORIAL_INDEX (must be a positive integer) "
-            + PREFIX_TUTORIAL_WEEK + "SEMESTER_WEEK (between 1 to 13 inclusive)\n"
+            + PREFIX_TUTORIAL_WEEK + "SEMESTER_WEEK (between 3 to 13 inclusive)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TUTORIAL_INDEX + "1 "
             + PREFIX_TUTORIAL_WEEK + "10";
@@ -33,14 +33,14 @@ public class ListAttendanceCommand extends Command {
             + "in week %3$s\n";
 
     private final Index tutorialIndex;
-    private final int weekZeroBased;
+    private final int week;
 
     /**
      * Creates a ListAttendanceCommand to list students and attendance of {@code tutorial} in a given {@code week}.
      */
-    public ListAttendanceCommand(Index tutorialIndex, int weekZeroBased) {
+    public ListAttendanceCommand(Index tutorialIndex, int week) {
         this.tutorialIndex = tutorialIndex;
-        this.weekZeroBased = weekZeroBased;
+        this.week = week;
     }
 
     @Override
@@ -56,6 +56,6 @@ public class ListAttendanceCommand extends Command {
         Tutorial tutorialToShow = lastShownList.get(tutorialIndex.getZeroBased());
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutorialToShow.getModCode(),
-                tutorialToShow.getTutorialName(), weekZeroBased + 1), tutorialToShow, weekZeroBased);
+                tutorialToShow.getTutorialName(), week), tutorialToShow, week - 3);
     }
 }

@@ -120,7 +120,7 @@ public class Student {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Tags: ")
-                .append(" Remarks")
+                .append(" Remarks: ")
                 .append(getRemark());
         getTags().forEach(builder::append);
         return builder.toString();

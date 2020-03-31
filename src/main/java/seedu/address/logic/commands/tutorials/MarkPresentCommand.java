@@ -69,28 +69,33 @@ public class MarkPresentCommand extends Command {
         try {
             if (!isMarkAll) {
                 Student studentToMark = tutorialToMark.getEnrolledStudents().get(studentIndex.getZeroBased());
-                model.markPresent(tutorialToMark, studentToMark, week);
+                model.markPresent(tutorialToMark, studentToMark, week - 3);
 
                 // Refresh the list to update the GUI attendance
                 List<Tutorial> updatedShownList = model.getFilteredTutorialList();
                 Tutorial updatedTutorial = updatedShownList.get(tutorialIndex.getZeroBased());
 
-                return new CommandResult(String.format(MESSAGE_SUCCESS, studentToMark.getName().fullName,
-                        tutorialToMark.getModCode(), tutorialToMark.getTutorialName(), week + 1), updatedTutorial,
-                        week);
+                return new CommandResult(
+                    String.format(MESSAGE_SUCCESS,
+                        studentToMark.getName().fullName,
+                        tutorialToMark.getModCode(),
+                        tutorialToMark.getTutorialName(),
+                        week),
+                    updatedTutorial,
+                    week - 3);
             } else {
                 for (Student student : tutorialToMark.getEnrolledStudents()) {
-                    model.markPresent(tutorialToMark, student, week);
+                    model.markPresent(tutorialToMark, student, week - 3);
                 }
 
                 // Refresh the list to update the GUI attendance
                 List<Tutorial> updatedShownList = model.getFilteredTutorialList();
                 Tutorial updatedTutorial = updatedShownList.get(tutorialIndex.getZeroBased());
-                System.out.println(updatedTutorial.getAttendanceWeek(week));
+                //System.out.println(updatedTutorial.getAttendanceWeek(week));
 
                 return new CommandResult(String.format(MESSAGE_ALL_SUCCESS,
-                        tutorialToMark.getModCode(), tutorialToMark.getTutorialName(), week + 1), updatedTutorial,
-                        week);
+                        tutorialToMark.getModCode(), tutorialToMark.getTutorialName(), week), updatedTutorial,
+                        week - 3);
             }
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_INVALID_TUTORIAL_STUDENT_INDEX);

@@ -52,7 +52,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 6, 0, true);
+    public static final Version VERSION = new Version(1, 3, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -118,16 +118,16 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample StudentTAble");
             }
             if (!consultsOptional.isPresent()) {
-                logger.info("Consults file not found. Will be starting with no consults");
+                logger.info("Consults file not found. Will be starting with a sample consultTAble");
             }
             if (!tutorialsOptional.isPresent()) {
-                logger.info("Tutorials file not found. Will be starting with no tutorials.");
+                logger.info("Tutorials file not found. Will be starting with a sample tutorialTAble");
             }
             if (!modsOptional.isPresent()) {
-                logger.info("Modules file not found. Will be starting with no modules.");
+                logger.info("Modules file not found. Will be starting with a sample modTAble");
             }
             if (!remindersOptional.isPresent()) {
-                logger.info("Reminders file not found. Will be starting with no reminders");
+                logger.info("Reminders file not found. Will be starting with a sample reminderTAble");
             }
 
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
