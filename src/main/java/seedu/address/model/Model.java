@@ -73,6 +73,11 @@ public interface Model {
     boolean hasStudent(Student student);
 
     /**
+     * Returns true if a student with the same matric number as {@code student} exists in the address book.
+     */
+    boolean hasSameMatricNumber(Student student);
+
+    /**
      * Deletes the given student.
      * The student must exist in the address book.
      */
