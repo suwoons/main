@@ -17,7 +17,7 @@ public class TutorialUtil {
      * @return true if beginTime is before endTime
      */
     public static boolean isStartEarlierThanEndTime(LocalTime startTime, LocalTime endTime) {
-      requireAllNonNull(startTime, endTime);
+        requireAllNonNull(startTime, endTime);
         return startTime.compareTo(endTime) < 0;
     }
 
