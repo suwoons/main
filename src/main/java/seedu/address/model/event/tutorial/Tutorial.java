@@ -1,7 +1,7 @@
 package seedu.address.model.event.tutorial;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.commons.util.TutorialUtil.checkStartEndTime;
+import static seedu.address.commons.util.TutorialUtil.isStartEarlierThanEndTime;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -258,14 +258,14 @@ public class Tutorial {
         }
 
         Tutorial otherTutorial = (Tutorial) other;
-        if (!otherTutorial.getDay().equals(getDay())) {
+        if (otherTutorial.getDay().getValue() != this.getDay().getValue()) {
             return false;
         }
 
-        return (!checkStartEndTime(otherTutorial.getBeginTime(), getEndTime())
-                && !checkStartEndTime(getBeginTime(), otherTutorial.getBeginTime()))
-                || (!checkStartEndTime(otherTutorial.getEndTime(), getBeginTime())
-                && !checkStartEndTime(getEndTime(), otherTutorial.getEndTime()));
+        // true if other tutorial starts before current one ends
+        // true if other tutorial ends after current one starts
+        return isStartEarlierThanEndTime(otherTutorial.getBeginTime(), getEndTime())
+                || isStartEarlierThanEndTime(getBeginTime(), otherTutorial.getEndTime());
     }
 
     /**

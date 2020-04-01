@@ -158,6 +158,9 @@ public class MainWindow extends UiPart<Stage> {
         tutorialListPanel = new TutorialListPanel(logic.getFilteredTutorialList());
         tutorialListPanelPlaceholder.getChildren().add(tutorialListPanel.getRoot());
 
+        attendanceListPanel = new AttendanceListPanel();
+        attendanceListPanelPlaceholder.getChildren().add(attendanceListPanel.getRoot());
+
         consultListPanel = new ConsultListPanel(logic.getFilteredConsultList());
         consultListPanelPlaceholder.getChildren().add(consultListPanel.getRoot());
 
@@ -264,6 +267,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleAttendance(Tutorial tutorialToShow, int weekZeroBased) {
         attendanceListPanel = new AttendanceListPanel(tutorialToShow, weekZeroBased);
+        attendanceListPanelPlaceholder.getChildren().clear();
         attendanceListPanelPlaceholder.getChildren().add(attendanceListPanel.getRoot());
         secondTabPanePlaceholder.getSelectionModel().select(1);
     }

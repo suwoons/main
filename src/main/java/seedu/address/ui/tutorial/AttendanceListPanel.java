@@ -3,8 +3,11 @@ package seedu.address.ui.tutorial;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -27,10 +30,21 @@ public class AttendanceListPanel extends UiPart<Region> {
     private ListView<Student> studentListView;
     private ArrayList<Boolean> attendanceList;
 
+    @javafx.fxml.FXML
+    private Label attendanceHeader;
+
     private Tutorial tutorial;
     private String tutorialCode;
     private String tutorialName;
     private int weekOneBased;
+
+    /**
+     * Constructor to load an empty attendance list
+     */
+    public AttendanceListPanel() {
+        super(FXML);
+        attendanceHeader.setText("Use listAttendance to display!");
+    }
 
     public AttendanceListPanel(Tutorial tutorialToShow, int weekZeroBased) {
         super(FXML);
@@ -45,6 +59,8 @@ public class AttendanceListPanel extends UiPart<Region> {
         this.tutorialName = tutorialToShow.getTutorialName().toString();
         this.weekOneBased = weekZeroBased + 1;
 
+        String headerStr = tutorialCode + " " + tutorialName + ": Week " + weekOneBased;
+        attendanceHeader.setText(headerStr);
         studentListView.setItems(studentsList);
         studentListView.setCellFactory(listView -> new AttendanceListPanel.AttendanceListViewCell());
 
