@@ -228,6 +228,7 @@ public class MainWindow extends UiPart<Stage> {
 
         switch(commandText) {
         case "listStudent":
+        case "findStudent":
             firstTabPanePlaceholder.getSelectionModel().select(0);
             break;
         case "listTutorial":

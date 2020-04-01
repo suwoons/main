@@ -97,9 +97,9 @@ public class CommandTestUtil {
     public static final String VALID_TIME2 = "18:00";
 
     // reminder invalid entries
-    public static final String INVALID_DESCRIPTION = PREFIX_REMINDER_DESCRIPTION + "Sleep?";
-    public static final String INVALID_DATE = PREFIX_REMINDER_DATE + "2020-20-04";
-    public static final String INVALID_TIME = PREFIX_REMINDER_TIME + "27:00";
+    public static final String INVALID_DESCRIPTION = " ";
+    public static final String INVALID_DATE = "2020-20-04";
+    public static final String INVALID_TIME = "27:00";
 
     // reminder valid command line inputs
     public static final String VALID_DESCRIPTION_INPUT = " " + PREFIX_REMINDER_DESCRIPTION + VALID_DESCRIPTION1;
