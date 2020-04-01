@@ -215,6 +215,24 @@ Reason for choosing Alternative 1:  We believe that the user experience will be 
 
 Reason for choosing Alternative 1: Due to the time constraint of this project, our group has decided to choose alternative 1, as it not only reduces coupling, but is sufficient for us to uniquely identify the `Student` participating in the `consult` as the `MatricNumber` would be unique.
 
+===== Sorting the consults
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1 (Current Choice):* Automatically sorts the consult list by the time of the consult, whenever a consult is added
+|*Alternative 2 :* Sorts the consult list only when user enters a sort command
+
+|*Pros*
+|It is intuitive for the consult list to be sorted according to their date and time.
+|User can decide how they want the list to be sorted (e.g. by alphabetical order for location).
+
+|*Cons*
+|User are not able to sort the list according to their preferences.
+|User have to type the sort command each time a new consult is added.
+|===
+
+Reason for choosing Alternative 1:  We believe that automatically sorting the consult list provides  a better user experience as the user can immediately see the upcoming consults in the panel, without having to type a sort command.
+
 // end::consult[]
 
 
