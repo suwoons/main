@@ -19,7 +19,7 @@ public class AddModCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to TAble.\n"
         + "Parameters: "
-        + PREFIX_MODULE_CODE + "MODULE_CODE"
+        + PREFIX_MODULE_CODE + "MODULE_CODE "
         + PREFIX_MODULE_NAME + "MODULE_NAME\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_MODULE_CODE + "CS2103 "

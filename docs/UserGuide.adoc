@@ -642,10 +642,10 @@ Returns all reminders on 05 May 2020.
 
 // tag::Calendar[]
 === Calendar Feature
-==== Display the calendar window: `calendar`
+==== Display the calendar window: `viewCalendar`
 
 Brings up the calendar window.
-Format: `calendar`
+Format: `viewCalendar`
 
 ****
 * The calendar will be brought up, displaying the current month and year.
