@@ -60,6 +60,7 @@ public class UniqueConsultList implements Iterable<Consult> {
             throw new DuplicateConsultException();
         }
         internalList.add(toAdd);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -80,6 +81,7 @@ public class UniqueConsultList implements Iterable<Consult> {
         }
 
         internalList.set(index, editedConsult);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -96,6 +98,7 @@ public class UniqueConsultList implements Iterable<Consult> {
     public void setConsults(UniqueConsultList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -107,8 +110,8 @@ public class UniqueConsultList implements Iterable<Consult> {
         if (!consultsAreUnique(consults)) {
             throw new DuplicateConsultException();
         }
-
         internalList.setAll(consults);
+        FXCollections.sort(internalList);
     }
 
     /**

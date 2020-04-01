@@ -8,7 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Lists all students in the address book to the user.
+ * Lists all students in TAble.
  */
 public class ListStudentCommand extends Command {
 

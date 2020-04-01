@@ -217,7 +217,7 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 *TAble* allows NUS teaching assistants to track and record all the tutorials they are teaching, and maintain details of the tutorial, such as the module it is under, start and end time of the tutorial, and the location it is held.
 Tutorials in *TAble* also allow teaching assistants to enroll students in a tutorial and mark their attendance for every week of the semester, and allows for convenient referencing (particularly when there's a pandemic and contact tracing is critical).
 
-=== Implementation
+==== Implementation
 Since a `Tutorial` in *TAble* has to manage many parameters and attributes, different components of *TAble* were distinctly separated in order to ensure maintainability and adhere to good coding practices.
 The following illustrates the sequence diagram for AddTutorialCommand, in which a tutorial is added to *TAble*.
 
@@ -298,6 +298,68 @@ Reason for choosing Alternative 1: On a user design perspective, it is less jarr
 
 // end::module[]
 
+// tag::reminder[]
+=== Reminder feature
+*TAble* allows NUS SoC teaching assistants to create reminders to help them in keeping track of their ongoing or upcoming tasks.
+
+==== Implementation
+A reminder is make up of a description, date and time which uniquely identify each reminder. Each reminder has a boolean attribute to indicate if the task is done.
+
+To find a reminder in the reminder list, user must key in at least one of the optional predicates, `DescriptionContainsKeywordsPredicate` or `DatePredicate`. `DescriptionContainsKeywordsPredicate` contains a list of strings entered by the user while `DatePredicate` contains the input `LocalDate`.
+
+The list of strings are matched against the description of the reminders in the reminder list while the `LocalDate` is matched against the date field. The reminder list is then updated with the list of matching reminders via `updatedFilteredReminderList` in `Model`. Below shows a sequence diagram of the execution.
+
+.Sequence diagram for finding reminders
+image::FindReminderSequenceDiagram.png[]
+
+A snooze reminder feature is also implemented for the users to easily postpone a reminder. It's implementation is similar to the `editReminderCommand` where it creates a new reminder to replace the specified reminder instead of editing the current reminder directly. This is to ensure the reminders are immutable which improves the stability of the application.
+
+User can choose to snooze the reminder in any/all of the following time units: days, hours and/or minutes. Only positive integer are allowed as the user are not supposed to snooze the reminders backwards or snooze it by zero duration. Following is an activity digram for the command.
+
+.Activity diagram for the command snoozeReminder in the reminder feature
+image::SnoozeReminderActivityDiagram.png[]
+
+==== Design Considerations
+
+===== Sorting the reminders
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1 (Current Choice):* Automatically sorts the reminder list whenever a reminder is added
+|*Alternative 2 :* Sorts the reminder list only when user enters a sort command
+
+|*Pros*
+|It is intuitive for the reminder list to be sorted according to their done status and deadline.
+|User can decide how they want the list to be sorted (e.g. in alphabetical order).
+
+|*Cons*
+|User are not able to sort the list according to their preferences.
+|User have to type the sort command each time a new task is added.
+|===
+
+Reason for choosing Alternative 1:  We believe that automatically sorting the list provide with a better user experience as they could immediately see the most urgent tasks in the reminder's list upon startup without first typing a sort command.
+
+===== Ways to inform user about their upcoming tasks
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1: (Current Choice)* Each reminder displays the duration left before the task is due
+|*Alternative 2 :* A pop-up notification when a reminder is due or about to due
+
+|*Pros*
+| User could see clearly the duration left for each task at a glance.
+| User are notified of upcoming tasks without having to look through the list of reminders.
+
+|*Cons*
+| Reminders that are about to due could be missed out.
+| Multiple pop-up notifications from the reminders could cause annoyance for the user.
+|===
+
+Reason for choosing Alternative 1: Pop-up notifications can be intrusive and potentially cause lag to the program which negatively impacts user's experience.
+Furthermore, they are hard to test due to their volatile nature and including them might decrease the stability of the application.
+
+// end:reminder[]
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
@@ -336,12 +398,12 @@ Refer to the guide <<DevOps#, here>>.
 *Target user profile*:
 
 * Is a NUS SoC Teaching Assistant
-* prefer desktop apps over other types
-* can type fast
-* prefers typing over mouse input
-* is reasonably comfortable using CLI apps
+* Prefers desktop apps over other types
+* Can type fast
+* Prefers typing over mouse input
+* Is reasonably comfortable using CLI apps
 
-*Value proposition*: manage students faster than a typical mouse/GUI driven app
+*Value proposition*: Manage students faster than a typical mouse/GUI driven app
 
 [appendix]
 == User Stories
@@ -402,6 +464,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |teaching assistant |add module links |update module resources
 
+|`* * *` |teaching assistant |have a calendar view |track all of my consults, tutorials and reminders in a single calendar window.
+
 |`* *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
 
@@ -440,11 +504,11 @@ Use case ends.
 Use case resumes at step 2.
 
 [discrete]
-=== Use case: Schedule consult (UXX)
+=== Use case: Add consult (U02)
 
 *MSS*
 
-1.  User requests to add consult with date, time and location of consult included
+1.  User requests to add consult with student, date, time and location of consult included
 2.  System saves the new consult into the database
 +
 Use case ends.
@@ -452,15 +516,15 @@ Use case ends.
 *Extensions*
 
 [none]
-* 1a. The date, time or location of consult is not included.
+* 1a. The student, date, time or location of consult is not included.
 +
 [none]
-** 1a1. System shows an error message that date, time and location must all be included.
+** 1a1. System shows an error message that student, date, time and location must all be included.
 +
 Use case ends.
 
 [discrete]
-=== Use case: Update consult (UXX)
+=== Use case: Edit consult (U03)
 
 *MSS*
 
@@ -478,9 +542,16 @@ Use case ends.
 ** 1a1. System shows an error message that the consult does not exist.
 +
 Use case ends.
+[none]
+* 1b. The time, date or place provided is in the wrong format.
++
+[none]
+** 1b1. System shows an error message that time, date or place must be provided in the correct format.
++
+Use case ends.
 
 [discrete]
-=== Use case: Delete consult (UXX)
+=== Use case: Delete consult (U04)
 
 *MSS*
 
@@ -498,14 +569,21 @@ Use case ends.
 ** 1a1. System shows an error message that the consult does not exist.
 +
 Use case ends.
+[none]
+* 1b. The user enters the delete consult command in the wrong format.
++
+[none]
+** 1b1. System shows an error message that the wrong delete consult command format was given.
++
+Use case ends.
 
 [discrete]
-=== Use case: List consults (UXX)
+=== Use case: List consults (U05)
 
 *MSS*
 
 1.  User requests to list all existing consults
-2.  System returns a list with all the existing consult information from the database
+2.  System brings up the panel that stores all of the existing consults in the database
 +
 Use case ends.
 
@@ -517,7 +595,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Add tutorial (UXX)
+=== Use case: Add tutorial (U06)
 
 *MSS*
 
@@ -537,7 +615,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Delete tutorial (UXX)
+=== Use case: Delete tutorial (U07)
 
 *MSS*
 
@@ -565,7 +643,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: List tutorials (UXX)
+=== Use case: List tutorials (U08)
 
 *MSS*
 
@@ -575,7 +653,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Add a student to an existing tutorial (UXX)
+=== Use case: Add a student to an existing tutorial (U09)
 
 *MSS*
 
@@ -611,7 +689,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Remove a student from an existing tutorial (UXX)
+=== Use case: Remove a student from an existing tutorial (U10)
 
 *MSS*
 
@@ -647,7 +725,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Mark attendance of student (UXX)
+=== Use case: Mark attendance of student (U11)
 
 *MSS*
 
@@ -675,18 +753,18 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: View attendance sheet (UXX)
+=== Use case: View attendance sheet (U12)
 
 *MSS*
 
 1. User requests to view attendance of students from a particular tutorial.
-2. System returns the list of students and their attendance from the database.
+2. System brings up the attendance panel, and shows all students in a tutorial and their attendance from the database.
 +
 Use case ends.
 
 
 [discrete]
-=== Use case: Add reminder (UXX)
+=== Use case: Add reminder (U13)
 
 *MSS*
 
@@ -706,7 +784,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Mark reminder as done (UXX)
+=== Use case: Mark reminder as done (U14)
 
 *MSS*
 
@@ -733,7 +811,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Update reminder (UXX)
+=== Use case: Update reminder (U15)
 
 *MSS*
 
@@ -752,7 +830,7 @@ Use case ends.
 +
 Use case ends.
 [none]
-* 1b. The description, date and time of reminder is not included.
+* 1b. The description, date and time of reminder are not included.
 +
 [none]
 ** 1b1. System shows an error message that at least one of description, date or time must be included.
@@ -760,7 +838,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Delete reminder (UXX)
+=== Use case: Delete reminder (U16)
 
 *MSS*
 
@@ -780,12 +858,12 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: List reminders (UXX)
+=== Use case: List reminders (U17)
 
 *MSS*
 
 1.  User requests to list all existing reminders
-2.  System returns a list with all the existing reminders information from the database
+2.  System returns all the existing reminders from the database
 +
 Use case ends.
 
@@ -797,7 +875,31 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Snooze reminder (UXX)
+=== Use case: Find reminders (U18)
+
+*MSS*
+
+1.  User requests to find all reminders matching with some particular keywords and/or date.
+2.  System returns a list with all the matching reminders from the database
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The keyword and date are not included.
++
+[none]
+** 1a1. System shows an error message that at least a keyword or date must be included.
++
+Use case ends.
+[none]
+* 2a. The list is empty.
++
+Use case ends.
+
+[discrete]
+=== Use case: Snooze reminder (U19)
 
 *MSS*
 
@@ -824,7 +926,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Create Module (UXX)
+=== Use case: Create Module (U20)
 
 *MSS*
 
@@ -849,7 +951,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: View Module (UXX)
+=== Use case: View Module (U21)
 
 *MSS*
 
@@ -869,7 +971,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Update Module (UXX)
+=== Use case: Update Module (U22)
 
 *MSS*
 
@@ -889,7 +991,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Include Module links (UXX)
+=== Use case: Include Module links (U23)
 
 *MSS*
 
@@ -909,7 +1011,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Clear All Module links (UXX)
+=== Use case: Clear All Module links (U24)
 
 *MSS*
 
@@ -928,7 +1030,16 @@ Use case ends.
 +
 Use case ends.
 
-_{More to be added}_
+
+[discrete]
+=== Use case: Open Calendar Window (U25)
+
+*MSS*
+
+1.  User requests to open the calendar window
+2.  System displays a calendar window with all of the user's reminders, consults and tutorials.
++
+Use case ends.
 
 [appendix]
 == Non Functional Requirements
@@ -940,12 +1051,13 @@ _{More to be added}_
 .  Should not force shutdown regardless of commands inputted by user.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 .  Data stored into TAble should be available to users without any data corruption.
+. Teaching assistant is able to teach as many tutorial slots as possible, with no limit.
 
 [appendix]
 == Glossary
 
 [[events]] Events::
-Events are things which the Teaching Assistant is required to take note of.
+Events are things which the <<teaching-assistant, Teaching Assistant>> is required to take note of.
 The Teaching Assistant will be required to attend these events, which can be in the form of tutorials or consultations.
 
 [[mainstream-os]] Mainstream OS::
@@ -956,12 +1068,17 @@ The primary group of people which the Teaching Assistant wil have to keep track 
 
 [[events]] TA::
 Refers to Teaching Assistant. See Teaching Assistant for more information.
+
 [[teaching-assistant]] Teaching Assistant::
 The primary user of this application.
 
 [[module]] Module::
 Course that Teaching Assistant teaches and Students register for.
 Due to naming restrictions, Module is shortened to Mod in file names.
+
+[[reminder]] Reminders::
+Additional notes or tasking the Teaching Assistant wants to keep track of.
+Each reminder has a deadline and status attached to them.
 
 [appendix]
 == Instructions for Manual Testing
@@ -1009,4 +1126,6 @@ _{ more test cases ... }_
 .. Test case: `CALENDAR` +
    Expected: No new `Calendar` window appears. Error details shown in the status message.
 .. Test case: Click on the left/right arrow in the `Calendar` window. +
-    Exepected: The new month before/after the current displayed month is displayed in the new `Calendar` window.
+   Expected: The new month before/after the current displayed month is displayed in the new `Calendar` window.
+.. Test case: `closeCalendar` +
+    Expected: The `Calendar` window will be closed. Alternatively, the user may choose to click the cross on the top right corner of the `Calendar` window to close it.

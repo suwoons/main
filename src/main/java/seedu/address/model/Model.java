@@ -73,6 +73,11 @@ public interface Model {
     boolean hasStudent(Student student);
 
     /**
+     * Returns true if a student with the same matric number as {@code student} exists in the address book.
+     */
+    boolean hasSameMatricNumber(Student student);
+
+    /**
      * Deletes the given student.
      * The student must exist in the address book.
      */
@@ -185,16 +190,16 @@ public interface Model {
     void deleteTutorialStudent(Tutorial toDeleteFrom, Student target);
 
     /**
-     * Marks the given student in the given tutorial as present in {@code week}.
+     * Marks the given student in the given tutorial as present in {@code weekZeroBased}.
      * {@code tutorialToMark} and {@code studentToMark} must already exist in TutorialTAble.
      */
-    void markPresent(Tutorial tutorialToMark, Student studentToMark, int week);
+    void markPresent(Tutorial tutorialToMark, Student studentToMark, int weekZeroBased);
 
     /**
-     * Marks the given student in the given tutorial as absent in {@code week}.
+     * Marks the given student in the given tutorial as absent in {@code weekZeroBased}.
      * {@code tutorialToMark} and {@code studentToMark} must already exist in TutorialTAble.
      */
-    void markAbsent(Tutorial tutorialToMark, Student studentToMark, int week);
+    void markAbsent(Tutorial tutorialToMark, Student studentToMark, int weekZeroBased);
 
     /** Returns an unmodifiable view of the filtered tutorial list */
     ObservableList<Tutorial> getFilteredTutorialList();
@@ -303,11 +308,20 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered reminder list */
     ObservableList<Reminder> getFilteredReminderList();
 
+    /** Returns an unmodifiable view of the unfiltered reminder list */
+    ObservableList<Reminder> getUnFilteredReminderList();
+
     /**
      * Updates the filter of the filtered reminder list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredReminderList(Predicate<Reminder> predicate);
+
+    /**
+     * Updates the filter of the filtered reminder list to filter by the given {@code predicates}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredReminderList(Predicate<Reminder> firstPredicate, Predicate<Reminder> secondPredicate);
 
     /** Returns the Reminder TAble */
     ReadOnlyReminder getReminderTAble();

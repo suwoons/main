@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,6 +16,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Location;
@@ -39,6 +42,8 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_DATE = "Format of date is not supported.";
     public static final String MESSAGE_INVALID_TIME = "Format of time is not supported.";
     public static final String MESSAGE_INVALID_DAY = "Format of day is not supported.";
+    public static final String MESSAGE_INVALID_FILEPATH = "Filepath specified is invalid.";
+    public static final String MESSAGE_INVALID_FILEPATH_EXTENSION = "Filepath specified does not end in .csv";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -238,7 +243,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String week} into an {@code int} which only accepts values which can be converted to an integer
-     * and is between 1 and 13 inclusive.
+     * and is between 3 and 13 inclusive.
      * @throws ParseException if the given {@code week} is invalid.
      */
     public static int parseTutorialWeek(String week) throws ParseException {
@@ -248,14 +253,14 @@ public class ParserUtil {
         int parsedWeek;
         try {
             parsedWeek = Integer.parseInt(trimmedWeek);
-            if (parsedWeek < 1 || parsedWeek > 13) {
+            if (parsedWeek < 3 || parsedWeek > 13) {
                 throw new ParseException(Messages.MESSAGE_INVALID_WEEK);
             }
         } catch (NumberFormatException e) {
             throw new ParseException(Messages.MESSAGE_INVALID_WEEK);
         }
 
-        return parsedWeek - 1;
+        return parsedWeek;
     }
 
     /**
@@ -271,6 +276,27 @@ public class ParserUtil {
         }
 
         return new TutorialName(trimmedTutorialName);
+    }
+
+    /**
+     * Parses a {@code String csvFilePath} into a {@code Path} object, ensuring that it points to a csv file.
+     * @throws ParseException if the given {@code csvFilePath} is invalid.
+     */
+    public static Path parseCsvFilePath(String csvFilePath) throws ParseException {
+        requireNonNull(csvFilePath);
+        String trimmedCsvFilePath = csvFilePath.trim();
+
+        if (!FileUtil.isValidPath(csvFilePath)) {
+            throw new ParseException(MESSAGE_INVALID_FILEPATH);
+        }
+
+        if (!trimmedCsvFilePath
+            .substring(trimmedCsvFilePath.length() - 4)
+            .equals(".csv")) {
+            throw new ParseException(MESSAGE_INVALID_FILEPATH_EXTENSION);
+        }
+
+        return Paths.get(csvFilePath);
     }
 
     /**
@@ -318,5 +344,26 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(description);
+    }
+
+    /**
+     * Parses a {@code String snoozeDuration} into a {@code long} which only accepts values which can be
+     * converted to a long and is positive.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static long parseSnoozeDuration(String snoozeDuration) throws ParseException {
+        requireNonNull(snoozeDuration);
+        String trimmedSnoozeDuration = snoozeDuration.trim();
+        long duration;
+        try {
+            duration = Long.parseLong(trimmedSnoozeDuration);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Messages.MESSAGE_REMINDER_INVALID_SNOOZE_DURATION);
+        }
+        if (duration <= 0) {
+            throw new ParseException(Messages.MESSAGE_REMINDER_INVALID_SNOOZE_DURATION);
+        }
+        return duration;
     }
 }

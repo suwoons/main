@@ -8,6 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -18,11 +21,13 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.reminders.EditReminderCommand;
 import seedu.address.logic.commands.students.EditStudentCommand;
 import seedu.address.model.Model;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentTAble;
+import seedu.address.testutil.EditReminderDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -66,7 +71,7 @@ public class CommandTestUtil {
     public static final int VALID_INDEX = 1;
 
     // consult invalid entries
-    public static final String INVALID_TIME = PREFIX_CONSULT_BEGIN_DATE_TIME + "2020-03-03 26:00";
+    public static final String INVALID_DATE_TIME = PREFIX_CONSULT_BEGIN_DATE_TIME + "2020-03-03 26:00";
     public static final String INVALID_END_TIME_DIFFERENT_DATE = PREFIX_CONSULT_END_DATE_TIME + "2020-03-04 14:00";
     public static final String INVALID_PLACE = PREFIX_PLACE + "home!";
 
@@ -77,11 +82,37 @@ public class CommandTestUtil {
     public static final String VALID_INDEX_INPUT = " " + PREFIX_STUDENT + VALID_INDEX;
 
     // consult invalid command line inputs
-    public static final String INVALID_START_TIME_INPUT = " " + PREFIX_CONSULT_BEGIN_DATE_TIME + INVALID_TIME;
+    public static final String INVALID_START_TIME_INPUT = " " + PREFIX_CONSULT_BEGIN_DATE_TIME + INVALID_DATE_TIME;
     public static final String INVALID_END_TIME_INPUT = " " + PREFIX_CONSULT_END_DATE_TIME
         + INVALID_END_TIME_DIFFERENT_DATE;
     public static final String INVALID_PLACE_INPUT = " " + PREFIX_PLACE + INVALID_PLACE;
     public static final String INVALID_INDEX_INPUT = PREFIX_STUDENT + "-2";
+
+    // reminder valid entries
+    public static final String VALID_DESCRIPTION1 = "Return midterms paper to T02";
+    public static final String VALID_DESCRIPTION2 = "Makeup tutorial for T03";
+    public static final String VALID_DATE1 = "2022-03-18";
+    public static final String VALID_DATE2 = "2022-04-10";
+    public static final String VALID_TIME1 = "15:00";
+    public static final String VALID_TIME2 = "18:00";
+
+    // reminder invalid entries
+    public static final String INVALID_DESCRIPTION = PREFIX_REMINDER_DESCRIPTION + "Sleep?";
+    public static final String INVALID_DATE = PREFIX_REMINDER_DATE + "2020-20-04";
+    public static final String INVALID_TIME = PREFIX_REMINDER_TIME + "27:00";
+
+    // reminder valid command line inputs
+    public static final String VALID_DESCRIPTION_INPUT = " " + PREFIX_REMINDER_DESCRIPTION + VALID_DESCRIPTION1;
+    public static final String VALID_DATE_INPUT = " " + PREFIX_REMINDER_DATE + VALID_DATE1;
+    public static final String VALID_TIME_INPUT = " " + PREFIX_REMINDER_TIME + VALID_TIME1;
+
+    // reminder invalid command line inputs
+    public static final String INVALID_DESCRIPTION_INPUT = " " + PREFIX_REMINDER_DESCRIPTION + INVALID_DESCRIPTION;
+    public static final String INVALID_DATE_INPUT = " " + PREFIX_REMINDER_DATE + INVALID_DATE;
+    public static final String INVALID_TIME_INPUT = " " + PREFIX_REMINDER_TIME + INVALID_TIME;
+
+    public static final EditReminderCommand.EditReminderDescriptor DESC_REMINDER1;
+    public static final EditReminderCommand.EditReminderDescriptor DESC_REMINDER2;
 
     public static final EditStudentCommand.EditStudentDescriptor DESC_AMY;
     public static final EditStudentCommand.EditStudentDescriptor DESC_BOB;
@@ -93,6 +124,13 @@ public class CommandTestUtil {
         DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withMatricNumber(VALID_MATRICNUMBER_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    static {
+        DESC_REMINDER1 = new EditReminderDescriptorBuilder().withDescription(VALID_DESCRIPTION1)
+                .withDate(VALID_DATE1).withTime(VALID_TIME1).build();
+        DESC_REMINDER2 = new EditReminderDescriptorBuilder().withDescription(VALID_DESCRIPTION2)
+                .withDate(VALID_DATE2).withTime(VALID_TIME2).build();
     }
 
     /**

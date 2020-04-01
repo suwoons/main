@@ -10,7 +10,7 @@ import java.util.Objects;
  * Represents a Reminder in TAble.
  * Guarantees: details are present and not null, field values are validated.
  */
-public class Reminder {
+public class Reminder implements Comparable<Reminder> {
 
     // Identity fields
     private final Description description;
@@ -85,4 +85,20 @@ public class Reminder {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Reminder other) {
+        if ((getDone() && other.getDone()) || (!getDone() && !other.getDone())) {
+            if (getDate().compareTo(other.getDate()) == 0) {
+                return getTime().compareTo(other.getTime());
+            } else {
+                return getDate().compareTo(other.getDate());
+            }
+        } else {
+            if (getDone()) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+    }
 }

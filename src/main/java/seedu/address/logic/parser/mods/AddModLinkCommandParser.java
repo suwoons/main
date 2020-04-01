@@ -33,7 +33,8 @@ public class AddModLinkCommandParser implements Parser<AddModLinkCommand> {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE, PREFIX_MODULE_LINK, PREFIX_MODULE_LINK_NAME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE, PREFIX_MODULE_LINK, PREFIX_MODULE_LINK_NAME)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE, PREFIX_MODULE_LINK, PREFIX_MODULE_LINK_NAME)
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddModLinkCommand.MESSAGE_USAGE));
         }

@@ -1,0 +1,32 @@
+@startuml
+start
+:User executes snoozeReminderCommand;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([all prefixes present])
+    :Parse prefixes;
+    if () then (    [all prefixes
+    formatted correctly])
+        :Find corresponding
+        reminder in Model;
+        if () then ([reminder is found])
+            :Create a new reminder
+                with snoozed date;
+            :Replace reminder in Model
+                with updated reminder;
+        else ([else])
+            :Display error message that
+            reminder cannot be found;
+        endif
+    else ([else])
+        :Display error message on
+        invalid prefix format;
+    endif
+else ([else])
+    :Display error message
+    and show command format;
+endif
+stop
+@enduml

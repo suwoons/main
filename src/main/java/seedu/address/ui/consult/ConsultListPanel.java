@@ -38,7 +38,7 @@ public class ConsultListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ConsultCard(consult).getRoot());
+                setGraphic(new ConsultCard(consult, getIndex() + 1).getRoot());
             }
         }
     }

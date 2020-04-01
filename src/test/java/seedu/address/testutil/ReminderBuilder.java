@@ -14,7 +14,7 @@ import seedu.address.model.reminder.Reminder;
  */
 public class ReminderBuilder {
     public static final String DEFAULT_DESCRIPTION = "Return midterms paper to T02";
-    public static final String DEFAULT_DATE = "2020-03-18";
+    public static final String DEFAULT_DATE = "2022-03-18";
     public static final String DEFAULT_TIME = "15:00";
 
     private Description description;

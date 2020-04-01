@@ -1,11 +1,16 @@
 package seedu.address.ui.reminder;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.util.Duration;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.ui.UiPart;
 
@@ -15,6 +20,9 @@ import seedu.address.ui.UiPart;
 public class ReminderCard extends UiPart<Region> {
 
     private static final String FXML = "ReminderListCard.fxml";
+    private static final String ONGOING_REMINDER_BACKGROUND = "#FFED87";
+    private static final String DONE_REMINDER_BACKGROUND = "#9FFFB1";
+    private static final String OVERDUE_REMINDER_BACKGROUND = "#FFA5AA";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -33,29 +41,54 @@ public class ReminderCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private Label date;
+    private Label dateTime;
     @FXML
-    private Label time;
+    private Label dueIn;
 
     public ReminderCard(Reminder reminder, int displayedIndex) {
         super(FXML);
         this.reminder = reminder;
         id.setText(displayedIndex + ". ");
         description.setText(reminder.getDescription().toString());
-        date.setText(reminder.getDate().format(DateTimeFormatter.ofPattern("dd-MMM-YY")));
-        time.setText(reminder.getTime().format(DateTimeFormatter.ofPattern("HH:mm")));
-        setDone(reminder.getDone());
+        setStyle(reminder);
     }
 
-    public void setDone(boolean done) {
-        id.setStyle("-fx-text-fill: #353535;");
-        description.setStyle("-fx-text-fill: #353535;");
-        date.setStyle("-fx-text-fill: #353535;");
-        time.setStyle("-fx-text-fill: #353535;");
-        if (done) {
-            cardPane.setStyle("-fx-background-color: #9fffb1;");
+    @FXML
+    private void setStyle(Reminder reminder) {
+        LocalDateTime dueDateTime = LocalDateTime.of(reminder.getDate(), reminder.getTime());
+        dateTime.setText("DEADLINE: " + dueDateTime.format(DateTimeFormatter.ofPattern("dd-MMM-YY HH:mm")));
+        LocalDateTime nowDateTime = LocalDateTime.now();
+
+        if (reminder.getDone()) {
+            dueIn.setText("DUE IN: DONE");
+            cardPane.setStyle("-fx-background-color:  " + DONE_REMINDER_BACKGROUND + ";");
         } else {
-            cardPane.setStyle("-fx-background-color: #FFA5AA;");
+            if (!dueDateTime.isAfter(nowDateTime)) {
+                dueIn.setText("DUE IN: OVERDUE");
+                cardPane.setStyle("-fx-background-color:  " + OVERDUE_REMINDER_BACKGROUND + ";");
+            } else {
+                cardPane.setStyle("-fx-background-color:  " + ONGOING_REMINDER_BACKGROUND + ";");
+                long dayDifferences = ChronoUnit.DAYS.between(nowDateTime, dueDateTime);
+                if (dayDifferences > 0) {
+                    dueIn.setText("DUE IN: " + dayDifferences + " days");
+                } else {
+                    Timeline due = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+                        LocalDateTime frameDateTime = LocalDateTime.now();
+                        long hourDifference = ChronoUnit.HOURS.between(frameDateTime, dueDateTime);
+                        LocalDateTime tempDateTime = frameDateTime.plusHours(hourDifference);
+                        long minuteDifference = ChronoUnit.MINUTES.between(tempDateTime, dueDateTime);
+                        tempDateTime = tempDateTime.plusMinutes(minuteDifference);
+                        long secondDifference = ChronoUnit.SECONDS.between(tempDateTime, dueDateTime);
+                        if (secondDifference != 0) {
+                            minuteDifference++;
+                        }
+                        dueIn.setText("DUE IN: " + hourDifference + " hour(s) "
+                                + minuteDifference + " minute(s) ");
+                    }), new KeyFrame(Duration.seconds(5)));
+                    due.setCycleCount((int) ChronoUnit.SECONDS.between(nowDateTime, dueDateTime) + 1);
+                    due.play();
+                }
+            }
         }
     }
 

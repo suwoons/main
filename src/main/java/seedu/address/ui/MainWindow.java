@@ -14,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -107,7 +108,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        calendarWindow = new CalendarWindow(logic.getFilteredConsultList(), logic.getFilteredTutorialList());
+        calendarWindow = new CalendarWindow(logic.getFilteredConsultList(),
+                logic.getFilteredTutorialList(), logic.getUnFilteredReminderList());
     }
 
     public Stage getPrimaryStage() {
@@ -257,6 +259,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Closes the Calendar window if it's already opened.
+     */
+    @FXML
+    public void closeCalendar() throws CommandException {
+        if (calendarWindow.isShowing()) {
+            calendarWindow.close();
+        } else {
+            throw new CommandException(Messages.NO_CALENDAR_OPEN_MESSAGE);
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -307,6 +321,9 @@ public class MainWindow extends UiPart<Stage> {
                 handleCalendar();
             }
 
+            if (commandResult.isCloseCalendar()) {
+                closeCalendar();
+            }
             if (commandResult.isShowList()) {
                 handleList(commandText);
             }

@@ -1,6 +1,7 @@
 package seedu.address.ui.calendar;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import seedu.address.commons.util.ConsultUtil;
 import seedu.address.commons.util.TutorialUtil;
 import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.ui.UiPart;
 
 /**
@@ -42,14 +44,17 @@ public class CalendarWindow extends UiPart<Stage> {
     private YearMonth currentYearMonth;
     private List<Consult> consults;
     private List<Tutorial> tutorials;
+    private List<Reminder> reminders;
 
     /**
      * Constructs a calendar window with the current month as reference.
      */
-    public CalendarWindow(Stage root, ObservableList<Consult> consults, ObservableList<Tutorial> tutorials) {
+    public CalendarWindow(Stage root, ObservableList<Consult> consults, ObservableList<Tutorial> tutorials,
+                          ObservableList<Reminder> reminders) {
         super(FXML, root);
         this.consults = consults;
         this.tutorials = tutorials;
+        this.reminders = reminders;
         calendarDays = new ArrayList<>();
         currentYearMonth = YearMonth.now();
         createUi();
@@ -60,8 +65,9 @@ public class CalendarWindow extends UiPart<Stage> {
     /**
      * Creates a new CalendarWindow.
      */
-    public CalendarWindow(ObservableList<Consult> consults, ObservableList<Tutorial> tutorials) {
-        this(new Stage(), consults, tutorials);
+    public CalendarWindow(ObservableList<Consult> consults, ObservableList<Tutorial> tutorials,
+                          ObservableList<Reminder> reminders) {
+        this(new Stage(), consults, tutorials, reminders);
     }
 
     /**
@@ -82,12 +88,7 @@ public class CalendarWindow extends UiPart<Stage> {
      * Fill the calendar based on the created CalendarDays.
      */
     private void fillDays() {
-        // Get the date we want to start with on the calendar
-        LocalDate calendarDate = LocalDate.of(currentYearMonth.getYear(), currentYearMonth.getMonthValue(), 1);
-        // Dial back the day until it is SUNDAY (unless the month starts on a sunday)
-        while (!calendarDate.getDayOfWeek().toString().equals("SUNDAY")) {
-            calendarDate = calendarDate.minusDays(1);
-        }
+        LocalDate calendarDate = firstDateOfCalendar();
         for (CalendarDay calendarDay : calendarDays) {
             StackPane calendarDayStackPane = calendarDay.getCalendarDayStackPane();
             calendarDayStackPane.getChildren().clear();
@@ -97,10 +98,26 @@ public class CalendarWindow extends UiPart<Stage> {
             calendarDay.setDate(calendarDate);
             addAllConsults(calendarDay, calendarDate);
             addAllTutorials(calendarDay, calendarDate);
+            addAllReminders(calendarDay, calendarDate);
             calendarDay.updateNumConsults();
             calendarDay.updateNumTutorials();
+            calendarDay.updateNumReminders();
             calendarDate = calendarDate.plusDays(1);
         }
+    }
+
+    /**
+     * Find the first date that will appear in the calendar window, i.e the date of the first Sunday that will appear.
+     * @return The date of the first Sunday in the calendar window. This will often be a date of the previous month.
+     */
+    private LocalDate firstDateOfCalendar() {
+        // Get the date we want to start with on the calendar
+        LocalDate calendarDate = LocalDate.of(currentYearMonth.getYear(), currentYearMonth.getMonthValue(), 1);
+        // Dial back the day until it is SUNDAY (unless the month starts on a sunday)
+        while (!calendarDate.getDayOfWeek().toString().equals("SUNDAY")) {
+            calendarDate = calendarDate.minusDays(1);
+        }
+        return calendarDate;
     }
 
     /**
@@ -130,9 +147,17 @@ public class CalendarWindow extends UiPart<Stage> {
      * Shows the Calendar window.
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.fine("Showing Calendar Window.");
         getRoot().show();
         getRoot().centerOnScreen();
+    }
+
+    /**
+     * Closes the Calendar window.
+     */
+    public void close() {
+        logger.fine("Closing Calendar Window.");
+        getRoot().close();
     }
 
     /**
@@ -197,8 +222,23 @@ public class CalendarWindow extends UiPart<Stage> {
         //Remove all tutorials to restart the count.
         calendarDay.removeTutorials();
         for (Tutorial tutorial : tutorials) {
-            if (TutorialUtil.checkDayOfWeek(tutorial.getDay(), calendarDate)) {
+            if (TutorialUtil.checkDayOfWeek(tutorial.getDay(), calendarDate)
+                && TutorialUtil.checkDuringSemester(calendarDate)) {
                 calendarDay.addTutorial(tutorial);
+                logger.fine("Same date detected.");
+            }
+        }
+    }
+
+    /**
+     * Adds all the reminders on the {@Code calendarDate} to the {@Code calendarDay}.
+     */
+    public void addAllReminders(CalendarDay calendarDay, LocalDate calendarDate) {
+        //Remove all reminders to restart the count.
+        calendarDay.removeReminders();
+        for (Reminder reminder : reminders) {
+            if (ConsultUtil.checkSameDate(LocalDateTime.of(reminder.getDate(), reminder.getTime()), calendarDate)) {
+                calendarDay.addReminder(reminder);
                 logger.fine("Same date detected.");
             }
         }

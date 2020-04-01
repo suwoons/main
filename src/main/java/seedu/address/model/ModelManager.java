@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -129,6 +130,12 @@ public class ModelManager implements Model {
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return studentTAble.hasStudent(student);
+    }
+
+    @Override
+    public boolean hasSameMatricNumber(Student student) {
+        requireNonNull(student);
+        return studentTAble.hasSameMatricNumber(student);
     }
 
     @Override
@@ -287,13 +294,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void markPresent(Tutorial tutorialToMark, Student studentToMark, int week) {
-        tutorialTAble.markPresent(tutorialToMark, studentToMark, week);
+    public void markPresent(Tutorial tutorialToMark, Student studentToMark, int weekZeroBased) {
+        tutorialTAble.markPresent(tutorialToMark, studentToMark, weekZeroBased);
     }
 
     @Override
-    public void markAbsent(Tutorial tutorialToMark, Student studentToMark, int week) {
-        tutorialTAble.markAbsent(tutorialToMark, studentToMark, week);
+    public void markAbsent(Tutorial tutorialToMark, Student studentToMark, int weekZeroBased) {
+        tutorialTAble.markAbsent(tutorialToMark, studentToMark, weekZeroBased);
     }
 
 
@@ -412,9 +419,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Reminder> getUnFilteredReminderList() {
+        return reminderTAble.getAllReminders();
+    }
+
+    @Override
     public void updateFilteredReminderList(Predicate<Reminder> predicate) {
         requireNonNull(predicate);
-        filteredReminders.setPredicate(predicate);
+        filteredReminders.predicateProperty().bind(Bindings.createObjectBinding(() -> predicate));
+    }
+
+    @Override
+    public void updateFilteredReminderList(Predicate<Reminder> firstPredicate, Predicate<Reminder> secondPredicate) {
+        requireAllNonNull(firstPredicate, secondPredicate);
+        filteredReminders.predicateProperty().bind(Bindings.createObjectBinding
+                (() -> firstPredicate.and(secondPredicate)));
     }
 
     @Override

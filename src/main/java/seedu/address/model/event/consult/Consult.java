@@ -17,7 +17,7 @@ import seedu.address.model.student.Name;
  * Represents a Consultation in TAble.
  * Guarantees: details are present and not null, field values are validated.
  */
-public class Consult {
+public class Consult implements Comparable<Consult> {
 
     private LocalDateTime beginDateTime;
     private LocalDateTime endDateTime;
@@ -129,5 +129,10 @@ public class Consult {
                 .append(" Place: ")
                 .append(getLocation());
         return builder.toString();
+    }
+
+    @Override
+    public int compareTo(Consult o) {
+        return getBeginDateTime().compareTo(o.getBeginDateTime());
     }
 }

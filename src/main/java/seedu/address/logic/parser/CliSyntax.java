@@ -28,6 +28,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TUTORIAL_END_TIME = new Prefix("endTime/");
     public static final Prefix PREFIX_TUTORIAL_INDEX = new Prefix("tutorialIndex/");
     public static final Prefix PREFIX_TUTORIAL_WEEK = new Prefix("week/");
+    public static final Prefix PREFIX_CSV_FILEPATH = new Prefix("csvFilePath/");
 
     /* Module definitions */
     public static final Prefix PREFIX_MODULE_CODE = new Prefix("modCode/");
@@ -40,4 +41,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_REMINDER_DESCRIPTION = new Prefix("desc/");
     public static final Prefix PREFIX_REMINDER_DATE = new Prefix("date/");
     public static final Prefix PREFIX_REMINDER_TIME = new Prefix("time/");
+    public static final Prefix PREFIX_REMINDER_DAY = new Prefix("day/");
+    public static final Prefix PREFIX_REMINDER_HOUR = new Prefix("hour/");
+    public static final Prefix PREFIX_REMINDER_MINUTE = new Prefix("minute/");
 }
