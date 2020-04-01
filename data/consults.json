@@ -1,0 +1,9 @@
+{
+  "consults" : [ {
+    "beginDateTime" : "2020-04-03T10:00",
+    "endDateTime" : "2020-04-03T13:00",
+    "eventLocation" : "SR1",
+    "studentName" : "Alex Yeoh",
+    "matricNumber" : "A0187596R"
+  } ]
+}

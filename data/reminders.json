@@ -1,0 +1,23 @@
+{
+  "reminders" : [ {
+    "description" : "Review project progress of group 3",
+    "date" : "2020-03-31",
+    "time" : "20:05:58.678135400",
+    "done" : "No"
+  }, {
+    "description" : "Mark T03 midterms papers",
+    "date" : "2020-04-01",
+    "time" : "22:05:58.678135400",
+    "done" : "No"
+  }, {
+    "description" : "Submit students' attendance for week 7",
+    "date" : "2020-04-03",
+    "time" : "20:05:58.678135400",
+    "done" : "No"
+  }, {
+    "description" : "Email T03 tutorial 6 solutions",
+    "date" : "2020-03-31",
+    "time" : "20:05:58.678135400",
+    "done" : "Yes"
+  } ]
+}

@@ -1,0 +1,38 @@
+{
+  "tutorials" : [ {
+    "moduleCode" : "CS2103",
+    "tutorialName" : "T03",
+    "weekday" : "3",
+    "beginTime" : "20:05:58.665168300",
+    "endTime" : "22:05:58.665168300",
+    "location" : "SR1",
+    "enrolledStudents" : [ ],
+    "studentAttendance" : [ {
+      "attendanceWeek" : [ false, false, false ]
+    }, {
+      "attendanceWeek" : [ false, false, false ]
+    }, {
+      "attendanceWeek" : [ false, false, false ]
+    }, {
+      "attendanceWeek" : [ false, false, false ]
+    }, {
+      "attendanceWeek" : [ false, false, false ]
+    }, {
+      "attendanceWeek" : [ false, false, false ]
+    }, {
+      "attendanceWeek" : [ false, false, false ]
+    }, {
+      "attendanceWeek" : [ false, false, false ]
+    }, {
+      "attendanceWeek" : [ false, false, false ]
+    }, {
+      "attendanceWeek" : [ false, false, false ]
+    }, {
+      "attendanceWeek" : [ false, false, false ]
+    }, {
+      "attendanceWeek" : [ ]
+    }, {
+      "attendanceWeek" : [ ]
+    } ]
+  } ]
+}
