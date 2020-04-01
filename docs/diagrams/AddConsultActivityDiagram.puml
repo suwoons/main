@@ -2,7 +2,6 @@
 start
 :User executes addConsultCommand;
 
-
 if () then ([all prefixes present])
     :Parse prefixes;
     if () then ([all prefixes
