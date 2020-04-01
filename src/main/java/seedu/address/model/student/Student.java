@@ -77,6 +77,14 @@ public class Student {
     }
 
     /**
+     * Returns true if two students have the same matric number.
+     */
+    public boolean hasSameMatricNum(Student otherStudent) {
+        return otherStudent != null
+                && otherStudent.getMatricNumber().equals(getMatricNumber());
+    }
+
+    /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */
@@ -112,7 +120,7 @@ public class Student {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Tags: ")
-                .append(" Remarks")
+                .append(" Remarks: ")
                 .append(getRemark());
         getTags().forEach(builder::append);
         return builder.toString();

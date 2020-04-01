@@ -34,6 +34,8 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentTAble;
 import seedu.address.testutil.StudentBuilder;
 
+
+
 public class AddCommandTest {
 
     @Test
@@ -52,6 +54,7 @@ public class AddCommandTest {
         assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
     }
 
+
     @Test
     public void execute_duplicateStudent_throwsCommandException() {
         Student validStudent = new StudentBuilder().build();
@@ -61,6 +64,7 @@ public class AddCommandTest {
         assertThrows(CommandException.class,
                 AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, ()-> addStudentCommand.execute(modelStub));
     }
+
 
     @Test
     public void equals() {
@@ -137,6 +141,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasStudent(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSameMatricNumber(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -237,12 +246,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void markPresent(Tutorial tutorialToMark, Student studentToMark, int week) {
+        public void markPresent(Tutorial tutorialToMark, Student studentToMark, int weekZeroBased) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void markAbsent(Tutorial tutorialToMark, Student studentToMark, int week) {
+        public void markAbsent(Tutorial tutorialToMark, Student studentToMark, int weekZeroBased) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -398,6 +407,12 @@ public class AddCommandTest {
 
         @Override
         public boolean hasStudent(Student student) {
+            requireNonNull(student);
+            return studentsAdded.stream().anyMatch(student::isSameStudent);
+        }
+
+        @Override
+        public boolean hasSameMatricNumber(Student student) {
             requireNonNull(student);
             return studentsAdded.stream().anyMatch(student::isSameStudent);
         }

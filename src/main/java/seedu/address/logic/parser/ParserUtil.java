@@ -243,7 +243,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String week} into an {@code int} which only accepts values which can be converted to an integer
-     * and is between 1 and 13 inclusive.
+     * and is between 3 and 13 inclusive.
      * @throws ParseException if the given {@code week} is invalid.
      */
     public static int parseTutorialWeek(String week) throws ParseException {
@@ -253,14 +253,14 @@ public class ParserUtil {
         int parsedWeek;
         try {
             parsedWeek = Integer.parseInt(trimmedWeek);
-            if (parsedWeek < 1 || parsedWeek > 13) {
+            if (parsedWeek < 3 || parsedWeek > 13) {
                 throw new ParseException(Messages.MESSAGE_INVALID_WEEK);
             }
         } catch (NumberFormatException e) {
             throw new ParseException(Messages.MESSAGE_INVALID_WEEK);
         }
 
-        return parsedWeek - 1;
+        return parsedWeek;
     }
 
     /**

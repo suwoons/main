@@ -34,6 +34,8 @@ public class ConsultCard extends UiPart<Region> {
     @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
+    private Label id;
+    @FXML
     private Label studentName;
     @FXML
     private Label beginDateTime;
@@ -42,10 +44,11 @@ public class ConsultCard extends UiPart<Region> {
     @FXML
     private Label eventLocation;
 
-    public ConsultCard(Consult consult) {
+    public ConsultCard(Consult consult, int displayedIndex) {
         super(FXML);
         this.consult = consult;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MMM-YY");
+        id.setText(displayedIndex + ". ");
         beginDateTime.setText("Start: " + consult.getBeginDateTime().format(formatter));
         endDateTime.setText("End: " + consult.getEndDateTime().format(formatter));
         eventLocation.setText("Location: " + consult.getLocation().toString());

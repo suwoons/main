@@ -66,6 +66,14 @@ public class StudentTAble implements ReadOnlyStudent {
     }
 
     /**
+     * Returns true if a student with the same matric number as {@code students} exists in the address book.
+     */
+    public boolean hasSameMatricNumber(Student student) {
+        requireNonNull(student);
+        return students.containsSameMatricNum(student);
+    }
+
+    /**
      * Adds a student to the address book.
      * The student must not already exist in the address book.
      */

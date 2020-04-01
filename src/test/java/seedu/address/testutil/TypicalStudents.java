@@ -38,6 +38,8 @@ public class TypicalStudents {
             .withEmail("lydia@example.com").build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best").withMatricNumber("A7777777G")
             .withEmail("anna@example.com").build();
+    public static final Student HARRY = new StudentBuilder().withName("Harry Merry").withMatricNumber("A0101010A")
+            .withEmail("harryisverymerry@example.com").build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withMatricNumber("A8888888H")
@@ -69,6 +71,6 @@ public class TypicalStudents {
     }
 
     public static List<Student> getTypicalStudents() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HARRY));
     }
 }
