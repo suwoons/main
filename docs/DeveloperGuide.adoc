@@ -173,9 +173,14 @@ A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `ConsultS
 Given the class diagram and the understanding of how the `Consult` class interacts with other classes, let us examine how an `addConsult` command behaves, by using the following activity diagram of the system.
 
 .Activity diagram for the command addConsult in the `Consult` feature
-image::TutorialMarkPresentActivityDiagram.png[]
+image::AddConsultActivityDiagram.png[]
 
 The workflow above shows how a `Consult` is added and the various checks that occurs at the different points throughout the workflow.
+
+To summarize the above activity diagram, there are 5 key checks which TAble checks for when the user is adding a `consult`. Firstly, TAble checks if all 4 prefixes are present in the command.
+Then, TAble checks if all prefixes present are formatted correctly. Following which, TAble will check if each of the data passed for the prefixes are in the right format. Firstly, it checks if
+the `Student` index provided is within the range of the `Student` list. Then, it checks if the timing and `Location` provided are in the correct format. Lastly, and most importantly, it checks if the
+`Consult` timing provided clashes with other existing `Consult` timings.
 
 ==== Design Considerations
 
