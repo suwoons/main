@@ -7,7 +7,7 @@ import seedu.address.model.Model;
  */
 public class CalendarCommand extends Command {
 
-    public static final String COMMAND_WORD = "calendar";
+    public static final String COMMAND_WORD = "viewCalendar";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a calendar view of all tutorials and consults.\n"
         + "Example: " + COMMAND_WORD;

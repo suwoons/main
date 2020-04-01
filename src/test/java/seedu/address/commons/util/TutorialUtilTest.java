@@ -15,14 +15,14 @@ class TutorialUtilTest {
     void checkStartEndTime_matchingInput_returnTrue() {
         LocalTime midnight = LocalTime.of(0, 0);
         LocalTime twoThreeFiveNine = LocalTime.of(23, 59);
-        assertTrue(TutorialUtil.checkStartEndTime(midnight, twoThreeFiveNine));
+        assertTrue(TutorialUtil.isStartEarlierThanEndTime(midnight, twoThreeFiveNine));
     }
 
     @Test
     void checkStartEndTime_wrongInput_returnFalse() {
         LocalTime midnight = LocalTime.of(0, 0);
         LocalTime twoThreeFiveNine = LocalTime.of(23, 59);
-        assertFalse(TutorialUtil.checkStartEndTime(twoThreeFiveNine, midnight));
+        assertFalse(TutorialUtil.isStartEarlierThanEndTime(twoThreeFiveNine, midnight));
     }
 
     @Test
