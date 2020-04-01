@@ -15559,3 +15559,138 @@ Apr 01, 2020 8:14:26 PM seedu.address.ui.MainWindow executeCommand
 INFO: Result: New student added: many many many spaces Matric Number: A0187591R Email: haha@gmail.com Tags:  Remarks: 
 Apr 01, 2020 8:14:36 PM seedu.address.MainApp stop
 INFO: ============================ [ Stopping TAble ] =============================
+Apr 01, 2020 8:14:39 PM seedu.address.MainApp init
+INFO: =============================[ Initializing StudentTAble ]===========================
+Apr 01, 2020 8:14:39 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Apr 01, 2020 8:14:40 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Apr 01, 2020 8:14:40 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Apr 01, 2020 8:14:40 PM seedu.address.MainApp start
+INFO: Starting TAble V1.3.0ea
+Apr 01, 2020 8:14:40 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Apr 01, 2020 8:14:41 PM seedu.address.ui.calendar.CalendarWindow fillTitle
+INFO: APRIL 2020
+Apr 01, 2020 8:14:46 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][deleteStudent 7]
+Apr 01, 2020 8:14:46 PM seedu.address.ui.MainWindow executeCommand
+INFO: Result: Deleted Student: many many many spaces Matric Number: A0187591R Email: haha@gmail.com Tags:  Remarks: .
+Please use listAttendance command to view updated list of students.
+Apr 01, 2020 8:19:10 PM seedu.address.MainApp init
+INFO: =============================[ Initializing StudentTAble ]===========================
+Apr 01, 2020 8:19:10 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Apr 01, 2020 8:19:10 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Apr 01, 2020 8:19:10 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Apr 01, 2020 8:19:11 PM seedu.address.MainApp start
+INFO: Starting TAble V1.3.0ea
+Apr 01, 2020 8:19:11 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Apr 01, 2020 8:19:12 PM seedu.address.ui.calendar.CalendarWindow fillTitle
+INFO: APRIL 2020
+Apr 01, 2020 8:19:27 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][listAttendance tutorialIndex/1 week/11]
+Apr 01, 2020 8:19:27 PM seedu.address.ui.MainWindow executeCommand
+INFO: Result: listAttendance: Listed students and attendance for CS2103 T03 in week 11
+
+Apr 01, 2020 8:19:45 PM seedu.address.MainApp init
+INFO: =============================[ Initializing StudentTAble ]===========================
+Apr 01, 2020 8:19:45 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Apr 01, 2020 8:19:45 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Apr 01, 2020 8:19:45 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Apr 01, 2020 8:19:45 PM seedu.address.MainApp start
+INFO: Starting TAble V1.3.0ea
+Apr 01, 2020 8:19:45 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Apr 01, 2020 8:19:46 PM seedu.address.ui.calendar.CalendarWindow fillTitle
+INFO: APRIL 2020
+Apr 01, 2020 8:19:59 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][listAttendance tutorialIndex/1 week/11]
+Apr 01, 2020 8:19:59 PM seedu.address.ui.MainWindow executeCommand
+INFO: Result: listAttendance: Listed students and attendance for CS2103 T03 in week 11
+
+Apr 01, 2020 8:20:36 PM seedu.address.MainApp init
+INFO: =============================[ Initializing StudentTAble ]===========================
+Apr 01, 2020 8:20:36 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Apr 01, 2020 8:20:36 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Apr 01, 2020 8:20:36 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Apr 01, 2020 8:20:36 PM seedu.address.MainApp start
+INFO: Starting TAble V1.3.0ea
+Apr 01, 2020 8:20:36 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Apr 01, 2020 8:20:37 PM seedu.address.ui.calendar.CalendarWindow fillTitle
+INFO: APRIL 2020
+Apr 01, 2020 8:20:57 PM seedu.address.MainApp init
+INFO: =============================[ Initializing StudentTAble ]===========================
+Apr 01, 2020 8:20:57 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Apr 01, 2020 8:20:57 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Apr 01, 2020 8:20:57 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Apr 01, 2020 8:20:57 PM seedu.address.MainApp start
+INFO: Starting TAble V1.3.0ea
+Apr 01, 2020 8:20:57 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Apr 01, 2020 8:20:58 PM seedu.address.ui.calendar.CalendarWindow fillTitle
+INFO: APRIL 2020
+Apr 01, 2020 8:21:09 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][listAttendance tutorialIndex/1 week/11]
+Apr 01, 2020 8:21:09 PM seedu.address.ui.MainWindow executeCommand
+INFO: Result: listAttendance: Listed students and attendance for CS2103 T03 in week 11
+
+Apr 01, 2020 8:21:50 PM seedu.address.MainApp init
+INFO: =============================[ Initializing StudentTAble ]===========================
+Apr 01, 2020 8:21:50 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Apr 01, 2020 8:21:50 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file config.json not found
+Apr 01, 2020 8:21:50 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Apr 01, 2020 8:21:50 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file preferences.json not found
+Apr 01, 2020 8:21:50 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Apr 01, 2020 8:21:50 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file data\TAble.json not found
+Apr 01, 2020 8:21:50 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file data\consults.json not found
+Apr 01, 2020 8:21:50 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file data\tutorials.json not found
+Apr 01, 2020 8:21:50 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file data\mods.json not found
+Apr 01, 2020 8:21:50 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file data\reminders.json not found
+Apr 01, 2020 8:21:50 PM seedu.address.MainApp initModelManager
+INFO: Data file not found. Will be starting with a sample StudentTAble
+Apr 01, 2020 8:21:50 PM seedu.address.MainApp initModelManager
+INFO: Consults file not found. Will be starting with a sample consultTAble
+Apr 01, 2020 8:21:50 PM seedu.address.MainApp initModelManager
+INFO: Tutorials file not found. Will be starting with a sample tutorialTAble
+Apr 01, 2020 8:21:50 PM seedu.address.MainApp initModelManager
+INFO: Modules file not found. Will be starting with a sample modTAble
+Apr 01, 2020 8:21:50 PM seedu.address.MainApp initModelManager
+INFO: Reminders file not found. Will be starting with a sample reminderTAble
+Apr 01, 2020 8:21:50 PM seedu.address.MainApp start
+INFO: Starting TAble V1.3.0ea
+Apr 01, 2020 8:21:50 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Apr 01, 2020 8:21:51 PM seedu.address.ui.calendar.CalendarWindow fillTitle
+INFO: APRIL 2020
+Apr 01, 2020 8:22:07 PM seedu.address.logic.LogicManager execute
+INFO: ----------------[USER COMMAND][listAttendance tutorialIndex/1 week/11]
+Apr 01, 2020 8:22:08 PM seedu.address.ui.MainWindow executeCommand
+INFO: Result: listAttendance: Listed students and attendance for CS2103 T03 in week 11
+
+Apr 01, 2020 8:22:30 PM seedu.address.MainApp stop
+INFO: ============================ [ Stopping TAble ] =============================

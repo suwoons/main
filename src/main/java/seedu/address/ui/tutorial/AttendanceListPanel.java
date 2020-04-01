@@ -57,7 +57,7 @@ public class AttendanceListPanel extends UiPart<Region> {
         this.tutorialName = tutorialToShow.getTutorialName().toString();
         this.weekOneBased = weekZeroBased + 1;
 
-        String headerStr = tutorialCode + " " + tutorialName + ": Week " + weekOneBased;
+        String headerStr = tutorialCode + " " + tutorialName + ": Week " + (weekOneBased + 2);
         attendanceHeader.setText(headerStr);
         studentListView.setItems(studentsList);
         studentListView.setCellFactory(listView -> new AttendanceListPanel.AttendanceListViewCell());
