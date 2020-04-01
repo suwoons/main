@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -20,7 +19,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
@@ -36,8 +34,7 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
      */
     public AddStudentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MATRIC_NUMBER, PREFIX_EMAIL, PREFIX_TAG,
-                        PREFIX_REMARK);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MATRIC_NUMBER, PREFIX_EMAIL, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MATRIC_NUMBER, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -48,9 +45,8 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
         MatricNumber matricNumber = ParserUtil.parseMatricNumber(argMultimap.getValue(PREFIX_MATRIC_NUMBER).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Remark remark = new Remark(""); // add command cannot add remarks straight away
 
-        Student student = new Student(name, matricNumber, email, tagList, remark);
+        Student student = new Student(name, matricNumber, email, tagList);
 
         return new AddStudentCommand(student);
     }

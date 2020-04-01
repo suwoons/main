@@ -4,49 +4,41 @@
     "name" : "Alice Pauline",
     "matricNumber" : "A0111111A",
     "email" : "alice@example.com",
-    "remark" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "matricNumber" : "A0222222B",
     "email" : "johnd@example.com",
-    "remark" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "matricNumber" : "A3333333C",
     "email" : "heinz@example.com",
-    "remark" : "wall street",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "matricNumber" : "A4444444D",
     "email" : "cornelia@example.com",
-    "remark" : "10th street",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "matricNumber" : "A5555555E",
     "email" : "werner@example.com",
-    "remark" : "michegan ave",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "matricNumber" : "A6666666F",
     "email" : "lydia@example.com",
-    "remark" : "little tokyo",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "matricNumber" : "A7777777G",
     "email" : "anna@example.com",
-    "remark" : "4th street",
     "tagged" : [ ]
   }, {
     "name" : "Harry Merry",
     "matricNumber" : "A0101010A",
     "email" : "harryisverymerry@example.com",
-    "remark" : "too merry",
     "tagged" : [ ]
   } ]
 }

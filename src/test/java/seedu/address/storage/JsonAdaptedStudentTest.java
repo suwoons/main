@@ -28,7 +28,6 @@ public class JsonAdaptedStudentTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final String VALID_REMARK = BENSON.getRemark().toString();
 
 
     @Test
@@ -40,15 +39,14 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedStudent student =
-                new JsonAdaptedStudent(INVALID_NAME, VALID_MATRICNUMBER, VALID_EMAIL, VALID_TAGS, VALID_REMARK);
+                new JsonAdaptedStudent(INVALID_NAME, VALID_MATRICNUMBER, VALID_EMAIL, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedStudent student = new JsonAdaptedStudent(null, VALID_MATRICNUMBER, VALID_EMAIL, VALID_TAGS,
-                VALID_REMARK);
+        JsonAdaptedStudent student = new JsonAdaptedStudent(null, VALID_MATRICNUMBER, VALID_EMAIL, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
@@ -56,15 +54,14 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_invalidMatricNumber_throwsIllegalValueException() {
         JsonAdaptedStudent student =
-                new JsonAdaptedStudent(VALID_NAME, INVALID_MATRICNUMBER, VALID_EMAIL, VALID_TAGS, VALID_REMARK);
+                new JsonAdaptedStudent(VALID_NAME, INVALID_MATRICNUMBER, VALID_EMAIL, VALID_TAGS);
         String expectedMessage = MatricNumber.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 
     @Test
     public void toModelType_nullMatricNumber_throwsIllegalValueException() {
-        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, null, VALID_EMAIL, VALID_TAGS,
-                VALID_REMARK);
+        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, null, VALID_EMAIL, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, MatricNumber.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
@@ -72,15 +69,14 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedStudent student =
-                new JsonAdaptedStudent(VALID_NAME, VALID_MATRICNUMBER, INVALID_EMAIL, VALID_TAGS, VALID_REMARK);
+                new JsonAdaptedStudent(VALID_NAME, VALID_MATRICNUMBER, INVALID_EMAIL, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_MATRICNUMBER, null, VALID_TAGS,
-                VALID_REMARK);
+        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_MATRICNUMBER, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
@@ -90,7 +86,7 @@ public class JsonAdaptedStudentTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedStudent student =
-                new JsonAdaptedStudent(VALID_NAME, VALID_MATRICNUMBER, VALID_EMAIL, invalidTags, VALID_REMARK);
+                new JsonAdaptedStudent(VALID_NAME, VALID_MATRICNUMBER, VALID_EMAIL, invalidTags);
         assertThrows(IllegalValueException.class, student::toModelType);
     }
 

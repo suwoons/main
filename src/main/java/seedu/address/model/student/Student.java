@@ -19,7 +19,6 @@ public class Student {
     private final Name name;
     private final MatricNumber matricNumber;
     private final Email email;
-    private final Remark remark;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -27,13 +26,12 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, MatricNumber matricNumber, Email email, Set<Tag> tags, Remark remark) {
+    public Student(Name name, MatricNumber matricNumber, Email email, Set<Tag> tags) {
         requireAllNonNull(name, matricNumber, email, tags);
         this.name = name;
         this.matricNumber = matricNumber;
         this.email = email;
         this.tags.addAll(tags);
-        this.remark = remark;
     }
 
     public Name getName() {
@@ -46,10 +44,6 @@ public class Student {
 
     public Email getEmail() {
         return email;
-    }
-
-    public Remark getRemark() {
-        return remark;
     }
 
 
@@ -119,9 +113,7 @@ public class Student {
                 .append(getMatricNumber())
                 .append(" Email: ")
                 .append(getEmail())
-                .append(" Tags: ")
-                .append(" Remarks: ")
-                .append(getRemark());
+                .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }

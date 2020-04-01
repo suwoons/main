@@ -23,7 +23,6 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
@@ -105,9 +104,8 @@ public class EditStudentCommand extends Command {
                 editStudentDescriptor.getMatricNumber().orElse(studentToEdit.getMatricNumber());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
-        Remark updatedRemark = editStudentDescriptor.getRemarks().orElse(studentToEdit.getRemark());
 
-        return new Student(updatedName, updatedMatricNumber, updatedEmail, updatedTags, updatedRemark);
+        return new Student(updatedName, updatedMatricNumber, updatedEmail, updatedTags);
     }
 
     @Override
@@ -137,7 +135,6 @@ public class EditStudentCommand extends Command {
         private MatricNumber matricNumber;
         private Email email;
         private Set<Tag> tags;
-        private Remark remark;
 
         public EditStudentDescriptor() {}
 
@@ -150,7 +147,6 @@ public class EditStudentCommand extends Command {
             setMatricNumber(toCopy.matricNumber);
             setEmail(toCopy.email);
             setTags(toCopy.tags);
-            setRemark(toCopy.remark);
         }
 
         /**
@@ -184,13 +180,6 @@ public class EditStudentCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public Optional<Remark> getRemarks() {
-            return Optional.ofNullable(remark);
-        }
-
-        private void setRemark(Remark remark) {
-            this.remark = remark;
-        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
