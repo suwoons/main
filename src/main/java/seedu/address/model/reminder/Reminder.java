@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
@@ -79,7 +80,7 @@ public class Reminder implements Comparable<Reminder> {
                 .append(" Date: ")
                 .append(getDate())
                 .append(" Time: ")
-                .append(getTime())
+                .append(getTime().format(DateTimeFormatter.ofPattern("HH:mm")))
                 .append(" Done: ")
                 .append(getDone() ? "Yes" : "No");
         return builder.toString();
@@ -87,7 +88,7 @@ public class Reminder implements Comparable<Reminder> {
 
     @Override
     public int compareTo(Reminder other) {
-        if ((getDone() && other.getDone()) || (!getDone() && !other.getDone())) {
+        if (getDone() == other.getDone()) {
             if (getDate().compareTo(other.getDate()) == 0) {
                 return getTime().compareTo(other.getTime());
             } else {

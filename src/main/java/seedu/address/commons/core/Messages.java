@@ -30,7 +30,7 @@ public class Messages {
     public static final String MESSAGE_MISSING_MOD = "The module code provided does not exist in TAble.";
     public static final String MESSAGE_INVALID_MODLINK_INDEX = "This index does not correspond to a ModLink in TAble.";
 
-    public static final String MESSAGE_REMINDER_PAST_REMINDER = "The reminder must not be in the past.";
+    public static final String MESSAGE_REMINDER_PAST_REMINDER = "The reminder must be in the future.";
     public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid.";
     public static final String MESSAGE_REMINDER_ALREADY_DONE = "This reminder is already done!";
     public static final String MESSAGE_REMINDERS_LISTED_OVERVIEW = "%1$d reminders listed!";
