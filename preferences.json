@@ -1,0 +1,15 @@
+{
+  "guiSettings" : {
+    "windowWidth" : 1000.0,
+    "windowHeight" : 610.4000244140625,
+    "windowCoordinates" : {
+      "x" : 268,
+      "y" : 71
+    }
+  },
+  "addressBookFilePath" : "data\\TAble.json",
+  "consultTAbleFilePath" : "data\\consults.json",
+  "tutorialTAbleFilePath" : "data\\tutorials.json",
+  "modTAbleFilePath" : "data\\mods.json",
+  "reminderTableFilePath" : "data\\reminders.json"
+}

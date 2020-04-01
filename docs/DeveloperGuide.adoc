@@ -170,6 +170,13 @@ The `XYZConsultCommand` class represent classes that extend the abstract class `
 
 A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `ConsultS`. When a `consult` is added to the ConsultTAble, there will first be a check that the `consult` does not already exist in the `UniqueConsultList`.
 
+Given the class diagram and the understanding of how the `Consult` class interacts with other classes, let us examine how an `addConsult` command behaves, by using the following activity diagram of the system.
+
+.Activity diagram for the command addConsult in the `Consult` feature
+image::TutorialMarkPresentActivityDiagram.png[]
+
+The workflow above shows how a `Consult` is added and the various checks that occurs at the different points throughout the workflow.
+
 ==== Design Considerations
 
 ===== Length of command prefixes (For all features)
@@ -202,7 +209,7 @@ Reason for choosing Alternative 1:  We believe that the user experience will be 
 |It is easier to visualise as the entire `Student` related to the `consult` will be stored.
 
 |*Cons*
-|It is not as intuitive as currently, the `consult` class only stores certain attributes of the `Student` that is attending the `consult`.
+|It is not as intuitive as currently, the `Consult` class only stores certain attributes of the `Student` that is attending the `consult`.
 |It will be harder to test due to the high degree of coupling.
 |===
 
@@ -359,6 +366,72 @@ Reason for choosing Alternative 1: Pop-up notifications can be intrusive and pot
 Furthermore, they are hard to test due to their volatile nature and including them might decrease the stability of the application.
 
 // end:reminder[]
+
+// tag::calendar[]
+=== Calendar feature
+*TAble* allows NUS SoC teaching assistants to bring up a calendar view of all their upcoming consults, tutorials and reminders.
+
+==== Implementation
+The key command which users can call is the `calendar` command.
+
+The following sequence diagram demonstrates how the `calendar` command works, as a `Calendar` window is displayed to the user.
+
+.Sequence diagram of 'viewCalendar' command
+image::ConsultsCommandClassDiagram.png[]
+
+A consultation slot is represented by the `Consult` class which contains 5 key attributes, the `beginDateTime`, `endDateTime`, `location`, `studentMatricNumber` and `studentName`.
+The `beginDateTime` and `endDateTime` attributes are represented using Java's `LocalDateTime` class. The `studentMatricNumber` and `studentName` attributes are classes that belong to a certain `Student`. The `studentMatricNumber` is used to uniquely identify the `Student` involved in the consultation, while the studentName is used in the front end of the application, displayed to the TA.
+
+The `XYZConsultCommand` class represent classes that extend the abstract class `Command` and allows the TA to add, edit, delete, view and clear consultations added to TAble. These `XYZConsultCommandS` are created by the respective `XYZConsultCommandParserS`.
+
+A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `ConsultS`. When a `consult` is added to the ConsultTAble, there will first be a check that the `consult` does not already exist in the `UniqueConsultList`.
+
+Given the class diagram and the understanding of how the `Consult` class interacts with other classes, let us examine how an `addConsult` command behaves, by using the following activity diagram of the system.
+
+.Activity diagram for the command addConsult in the `Consult` feature
+image::TutorialMarkPresentActivityDiagram.png[]
+
+The workflow above shows how a `Consult` is added and the various checks that occurs at the different points throughout the workflow.
+
+==== Design Considerations
+
+===== Length of command prefixes (For all features)
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1 (Current Choice):* Make the prefixes of the command descriptive, such as `student/`.
+|*Alternative 2 :* Make the prefixes of the commands short, by using the first few letters of the command word, such as `s/` for students.
+
+|*Pros*
+|It is more clear and intuitive for the user to type in the full prefix.
+|It is easier for the user to type in shorter command prefixes, so that it is less tedious to input the commands.
+
+|*Cons*
+|Lower user experience as the user has to type in longer commands to use the TAble application.
+|It may be confusing for the user, as certain command prefixes may share similar initials, such as `tags` and `time`.
+|===
+
+Reason for choosing Alternative 1:  We believe that the user experience will be better when using more descriptive command prefixes, as the user will not be required to constantly check on the user guide since the command prefixes are intuitive.
+
+===== Consult storing Matric Number and Name
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1 (Current Choice):* Make the consult store the matric number and name of the student that is attending the consult.
+|*Alternative 2 :* Make the consult store the entire Student class that is attending the consult.
+
+|*Pros*
+|It is easier to implement and coupling will be reduced as `Student` will not be directly related to the `consult` class.
+|It is easier to visualise as the entire `Student` related to the `consult` will be stored.
+
+|*Cons*
+|It is not as intuitive as currently, the `Consult` class only stores certain attributes of the `Student` that is attending the `consult`.
+|It will be harder to test due to the high degree of coupling.
+|===
+
+Reason for choosing Alternative 1: Due to the time constraint of this project, our group has decided to choose alternative 1, as it not only reduces coupling, but is sufficient for us to uniquely identify the `Student` participating in the `consult` as the `MatricNumber` would be unique.
+
+// end::calendar[]
 
 === Logging
 
