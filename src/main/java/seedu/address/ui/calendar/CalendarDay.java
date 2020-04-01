@@ -147,9 +147,9 @@ public class CalendarDay extends UiPart<Region> {
         if (noReminders > 0) {
             Text remindersCount;
             if (noReminders == 1) {
-                remindersCount = new Text("1 reminder");
+                remindersCount = new Text("  1 reminder");
             } else {
-                remindersCount = new Text(noReminders + " reminders");
+                remindersCount = new Text("  " + noReminders + " reminders");
             }
             StackPane.setAlignment(remindersCount, Pos.TOP_CENTER);
             calendarDayStackPane.getChildren().add(remindersCount);

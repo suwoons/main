@@ -70,7 +70,7 @@ public class ReminderCard extends UiPart<Region> {
                 cardPane.setStyle("-fx-background-color:  " + ONGOING_REMINDER_BACKGROUND + ";");
                 long dayDifferences = ChronoUnit.DAYS.between(nowDateTime, dueDateTime);
                 if (dayDifferences > 0) {
-                    dueIn.setText("DUE IN: " + dayDifferences + " days");
+                    dueIn.setText("DUE IN: " + dayDifferences + " day(s)");
                 } else {
                     Timeline due = new Timeline(new KeyFrame(Duration.ZERO, e -> {
                         LocalDateTime frameDateTime = LocalDateTime.now();
@@ -81,10 +81,14 @@ public class ReminderCard extends UiPart<Region> {
                         long secondDifference = ChronoUnit.SECONDS.between(tempDateTime, dueDateTime);
                         if (secondDifference != 0) {
                             minuteDifference++;
+                            if (minuteDifference == 60) {
+                                hourDifference++;
+                                minuteDifference = 0;
+                            }
                         }
                         dueIn.setText("DUE IN: " + hourDifference + " hour(s) "
                                 + minuteDifference + " minute(s) ");
-                    }), new KeyFrame(Duration.seconds(5)));
+                    }), new KeyFrame(Duration.seconds(1)));
                     due.setCycleCount((int) ChronoUnit.SECONDS.between(nowDateTime, dueDateTime) + 1);
                     due.play();
                 }
