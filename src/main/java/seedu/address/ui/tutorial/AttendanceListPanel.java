@@ -3,8 +3,6 @@ package seedu.address.ui.tutorial;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
