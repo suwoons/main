@@ -9,6 +9,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX = "The student index provided is invalid.";
     public static final String MESSAGE_STUDENTS_LISTED_OVERVIEW = "%1$d students listed!";
+    public static final String MESSAGE_STUDENT_EMPTY_MATRIC_NUMBER = "Matric Number to be searched cannot be empty!\n";
 
     public static final String MESSAGE_INVALID_CONSULT_DISPLAYED_INDEX = "The consult index provided is invalid.";
     public static final String MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME = "The Begin Date Time of the consult is "
