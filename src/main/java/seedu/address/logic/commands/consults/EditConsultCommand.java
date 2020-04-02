@@ -42,7 +42,7 @@ public class EditConsultCommand extends Command {
             + "[" + PREFIX_CONSULT_END_DATE_TIME + "ENDDATETIME] "
             + "[" + PREFIX_PLACE + "PLACE] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_CONSULT_BEGIN_DATE_TIME + "2020-03-03 15:00"
+            + PREFIX_CONSULT_BEGIN_DATE_TIME + "2020-03-03 15:00 "
             + PREFIX_PLACE + "The Deck";
 
     public static final String MESSAGE_EDIT_CONSULT_SUCCESS = "Edited Consult: %1$s";
