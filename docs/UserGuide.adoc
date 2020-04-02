@@ -119,6 +119,24 @@ Returns `john` and `John Doe`
 * `findStudent Betsy Tim John` +
 Returns any student having names `Betsy`, `Tim`, or `John`
 
+==== Locating students by matric number: `findStudentMatricNumber`
+
+Finds students whose matric number matches the given matric number. +
+Format: `findStudentMatricNumber matric/MATRIC_NUMBER`
+
+****
+* The search is case insensitive. e.g `a0123456a` will match `A0123456A`
+* Only the matric number is searched.
+* Only full matric number will be matched e.g. `A01234` will not match `A0123456A`, conversely
+ `A0123456A` will only return the student with matric number 'A0123456A'
+* Students with matric number matching the given matric number will be returned.
+****
+
+Examples:
+
+* `findStudentMatricNumber matric/A0111111X` +
+Returns the student with matric number "A0111111X"
+
 // tag::delete[]
 ==== Deleting a student : `deleteStudent`
 
@@ -695,6 +713,8 @@ e.g. `deleteStudent 3`
 e.g. `editStudent 2 name/James Lee email/jameslee@example.com`
 * *Find* : `findStudent KEYWORD [MORE_KEYWORDS]` +
 e.g. `findStudent James Jake`
+* *Find Student with a certain matric number* : `findStudentMatricNumber matric/matric_number` +
+e.g. `findStudentMatricNumber matric/A0123456A`
 * *List* : `listStudent`
 
 === Consult

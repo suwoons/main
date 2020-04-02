@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.students;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDENT_EMPTY_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 
@@ -25,16 +26,25 @@ public class FindStudentMatricNumberCommandParser implements Parser<FindStudentM
     public FindStudentMatricNumberCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MATRIC_NUMBER);
-        String trimmedArgs = argMultimap.getValue(PREFIX_MATRIC_NUMBER).get().trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_STUDENT_EMPTY_MATRIC_NUMBER + FindStudentMatricNumberCommand.MESSAGE_USAGE));
+
+        boolean matricNumberProvided = argMultimap.getValue(PREFIX_MATRIC_NUMBER).isPresent();
+
+        if (matricNumberProvided) {
+            String trimmedArgs = argMultimap.getValue(PREFIX_MATRIC_NUMBER).get().trim();
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_STUDENT_EMPTY_MATRIC_NUMBER
+                                + FindStudentMatricNumberCommand.MESSAGE_USAGE));
+            }
+
+            String[] matricKeywords = trimmedArgs.split("\\s+");
+
+            return new FindStudentMatricNumberCommand(
+                    new MatricNumberContainsKeywordsPredicate(Arrays.asList(matricKeywords)));
         }
 
-        String[] matricKeywords = trimmedArgs.split("\\s+");
-
-        return new FindStudentMatricNumberCommand(
-                new MatricNumberContainsKeywordsPredicate(Arrays.asList(matricKeywords)));
+        throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindStudentMatricNumberCommand.MESSAGE_USAGE));
     }
 
 }
