@@ -284,6 +284,10 @@ As such, the following activity diagram of the system illustrates what occurs wh
 .Activity diagram for the command markPresent in the tutorial feature
 image::TutorialMarkPresentActivityDiagram.png[]
 
+When executing the markPresent command, the system will first ensure that all prefixes are present and formatted correctly, before subsequently checking if the specified tutorial exists in the TAble database.
+If the tutorial does exist, then the system attempts to retrieve and update the attendance of the respective student in the tutorial. If the student does not exist, an error message is shown, informing the user.
+If successful, the updated information is then saved.
+
 // end::tutorial[]
 
 // tag::module[]
@@ -537,6 +541,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* * *` |teaching assistant |mark students in my tutorial as absent or present| record attendance of my students
 
 |`* * *` |teaching assistant |view attendance sheet for my tutorial| track attendance of my students
+
+|`* *` |teaching assistant |easily copy all students' emails from a tutorial group onto my clipboard| mass email my students quickly
 
 |`* *` |teaching assistant |find consults based on the date or place |easily locate my consults without having to go through the entire list
 

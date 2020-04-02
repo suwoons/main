@@ -789,6 +789,8 @@ e.g. `deleteTutorialStudent tutorialIndex/3 student/12`
 * *List Tutorial* : `listTutorial`
 * *List Attendance* : `listAttendance tutorialIndex/INDEX week/INDEX` +
 e.g. `listAttendance tutorialIndex/2 week/10`
+* *Copy Tutorial Students' Emails* : `copyTutorialEmails tutorialIndex/INDEX` +
+e.g. `copyTutorialEmails tutorialIndex/3`
 * *Export attendance to CSV file* : `exportAttendance tutorialIndex/INDEX csvFilePath/CSV_FILEPATH` +
 e.g. `exportAttendance tutorialIndex/1 csvFilePath/./data/attendance.csv`
 
