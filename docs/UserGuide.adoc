@@ -40,6 +40,24 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 .  Refer to <<Features>> for details of each command.
 
+. Example of the Tutorial and Consult panels.
+
++
+image::TutConsult.png[width="750"]
++
+
+. Example of the Module and ModInfo panels.
+
++
+image::Mods.png[width="750"]
++
+
+. Example of the Calendar window.
+
++
+image::CalendarWindow.png[width="750"]
++
+
 [[Features]]
 == Features
 
