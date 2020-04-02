@@ -256,6 +256,8 @@ Returns any consults that are held at SR3
 Focuses the display in the GUI to the Tutorials list view, without requiring the user to click on the tab.
 Format: `listTutorial`
 
+image::listTutorial.png[]
+
 ==== Add a tutorial slot: `addTutorial`
 
 Add a tutorial slot for a particular module at the given time, day and place. +
@@ -275,6 +277,8 @@ Example:
 * `addTutorial modCode/CS2103 tutorialName/T02 day/3 beginTime/12:00 endTime/13:00 place/SR3`
 * `addTutorial modCode/CS1101S tutorialName/T11 day/4 beginTime/12:00 endTime/13:00 place/SR3`
 
+image::addTutorial.png[]
+
 ==== Delete a tutorial slot: `deleteTutorial`
 
 Delete a tutorial slot for a particular module. +
@@ -291,6 +295,8 @@ Example:
 * `listTutorial` +
  `deleteTutorial 2`
 
+image::deleteTutorial.png[]
+
 ==== Add student to tutorial: `addTutorialStudent`
 
 Enroll an existing student to an existing tutorial.
@@ -302,11 +308,15 @@ Format: `addTutorialStudent tutorialIndex/INDEX student/STUDENT_INDEX`
 * The `STUDENT_INDEX` should be referred to by index as referred to in the student list.
 * The student should already exist in TAble.
 * The tutorial should already exist in TAble.
+* Note that `listAttendance` (see Section 3.4.9) has to be called after adding a student to view the updated list
 ****
 
 Example:
 
 * `addTutorialStudent tutorialIndex/3 student/12`
+
+.After adding student Roy and calling `listAttendance`
+image::addTutorialStudent.png[]
 
 ==== Marks students as present: `markPresent`
 
@@ -329,6 +339,12 @@ Marks only student at index 2 (for tutorial at index 3) as present in week 7 for
 * `markPresent tutorialIndex/2 week/7 student/all` +
 Marks all students as present in week 7 in tutorial at index 2
 
+.Only mark the student at index 2 of the tutorial as present
+image::markPresent_indiv.png[]
+
+.Mark all students present
+image::markPresent_all.png[]
+
 ==== Marks students as absent: `markAbsent`
 
 Takes attendance of students in a tutorial class by marking them as absent for a particular week. Absent students will be marked by a *red* background in the respective attendance list. +
@@ -350,6 +366,12 @@ Marks only student at index 2 (for tutorial at index 3) as absent in week 7 for 
 * `markAbsent tutorialIndex/3 week/7 student/all` +
 Marks all students in week 7 as absent in tutorial at index 3 (oh no!)
 
+.Only mark the student at index 3 of the tutorial as absent
+image::markAbsent_indiv.png[]
+
+.Mark all students absent
+image::markPresent_all.png[]
+
 ==== Remove student from tutorial: `deleteTutorialStudent`
 
 Remove an existing student from an existing tutorial.
@@ -362,11 +384,15 @@ Format: `deleteTutorialStudent tutorialIndex/INDEX student/STUDENT_INDEX`
 * The student should already exist in TAble *and* exist in the tutorial being deleted from.
 * The tutorial should already exist in TAble.
 * Note that deleting the student from the tutorial does _not_ delete the student from the TAble database.
+* Note that `listAttendance` (see Section 3.4.9) has to be called after deleting a student to view the updated list
 ****
 
 Example:
 
 * `deleteTutorialStudent tutorialIndex/3 student/12`
+
+.After deleting student Alex from a tutorial and calling `listAttendance`
+image::deleteTutorialStudent.png[]
 
 ==== Copy tutorial students' emails to user clipboard: `copyTutorialEmails`
 
@@ -383,6 +409,27 @@ Format: `copyTutorialEmails tutorialIndex/INDEX`
 Example:
 
 * `copyTutorialEmails tutorialIndex/3`
+
+==== Display students and attendance of a tutorial: `listAttendance`
+
+Displays the list of students in a tutorial and their corresponding attendance for a particular week in the GUI.
+Format: `listAttendance tutorialIndex/INDEX week/INDEX`
+
+****
+* Shows the attendance for tutorial at the specified `INDEX`.
+* The index refers to the index number shown in the displayed tutorial list.
+* The index *must be a positive integer* 1, 2, 3, ...
+* The tutorial should already exist in TAble.
+* The week should be in numerical format, and accepts only numbers in the range 1 to 13 (inclusive)
+****
+
+Example:
+
+* `listAttendance tutorialIndex/2 week/10`
+
+image::listAttendance.png[]
+
+//end::Tutorial[]
 
 //tag::ExportTutorialAttendance[]
 ==== Export tutorial attendance to csv file: `exportAttendance`
@@ -403,25 +450,6 @@ Example:
 
 * `exportAttendance tutorialIndex/1 csvFilePath/./data/attendance.csv`
 //end::ExportTutorialAttendance[]
-
-==== Display students and attendance of a tutorial: `listAttendance`
-
-Displays the list of students in a tutorial and their corresponding attendance for a particular week in the GUI.
-Format: `listAttendance tutorialIndex/INDEX week/INDEX`
-
-****
-* Shows the attendance for tutorial at the specified `INDEX`.
-* The index refers to the index number shown in the displayed tutorial list.
-* The index *must be a positive integer* 1, 2, 3, ...
-* The tutorial should already exist in TAble.
-* The week should be in numerical format, and accepts only numbers in the range 1 to 13 (inclusive)
-****
-
-Example:
-
-* `listAttendance tutorialIndex/2 week/10`
-
-//end::Tutorial[]
 
 //tag::Module[]
 === Module Feature
@@ -743,7 +771,7 @@ e.g. `deleteTutorialStudent tutorialIndex/3 student/12`
 * *List Tutorial* : `listTutorial`
 * *List Attendance* : `listAttendance tutorialIndex/INDEX week/INDEX` +
 e.g. `listAttendance tutorialIndex/2 week/10`
-* *Export attendance to CSV file* : `exportAttendance tutorialIndex/INDEX csvFilePath/CSV_FILEPATH`
+* *Export attendance to CSV file* : `exportAttendance tutorialIndex/INDEX csvFilePath/CSV_FILEPATH` +
 e.g. `exportAttendance tutorialIndex/1 csvFilePath/./data/attendance.csv`
 
 === Module
