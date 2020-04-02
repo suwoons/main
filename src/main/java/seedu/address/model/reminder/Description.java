@@ -13,13 +13,12 @@ public class Description {
      * The first character of the description must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9 ]+$";
+    public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
 
     private static final int CHAR_LIMIT = 80;
 
     public static final String MESSAGE_CONSTRAINTS =
-            String.format("Description should only contain alphanumeric characters "
-                    + "and spaces, and it should not be blank or exceeds %d characters", CHAR_LIMIT);
+            String.format("Description should not be blank or exceeds %d characters", CHAR_LIMIT);
 
     public final String description;
 

@@ -31,7 +31,6 @@ import seedu.address.model.student.Email;
 import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.ReadOnlyStudent;
-import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentTAble;
 import seedu.address.model.tag.Tag;
@@ -43,17 +42,17 @@ public class SampleDataUtil {
     public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new MatricNumber("A0187596R"), new Email("alexyeoh@example.com"),
-                getTagSet("friends"), new Remark("Nice")),
+                getTagSet("friends")),
             new Student(new Name("Bernice Yu"), new MatricNumber("A0125875G"), new Email("berniceyu@example.com"),
-                getTagSet("colleagues", "friends"), new Remark("Pretty")),
+                getTagSet("colleagues", "friends")),
             new Student(new Name("Charlotte Oliveiro"), new MatricNumber("A0123456A"),
-                    new Email("charlotte@example.com"), getTagSet("neighbours"), new Remark("Italian")),
+                    new Email("charlotte@example.com"), getTagSet("neighbours")),
             new Student(new Name("David Li"), new MatricNumber("A0356982H"), new Email("lidavid@example.com"),
-                getTagSet("family"), new Remark("Handsome")),
+                getTagSet("family")),
             new Student(new Name("Irfan Ibrahim"), new MatricNumber("A0167954H"), new Email("irfan@example.com"),
-                getTagSet("classmates"), new Remark("Kind")),
+                getTagSet("classmates")),
             new Student(new Name("Roy Balakrishnan"), new MatricNumber("A0136975F"), new Email("royb@example.com"),
-                getTagSet("colleagues"), new Remark("Fake"))
+                getTagSet("colleagues"))
         };
     }
 
@@ -98,11 +97,11 @@ public class SampleDataUtil {
         Location location = new Location("SR1");
         Tutorial tutorial = new Tutorial(modCode, tutorialName, weekday, startTime, endTime, location);
         Student alex = new Student(new Name("Alex Yeoh"), new MatricNumber("A0187596R"),
-                new Email("alexyeoh@example.com"), getTagSet("friends"), new Remark("Nice"));
+                new Email("alexyeoh@example.com"), getTagSet("friends"));
         Student bernice = new Student(new Name("Bernice Yu"), new MatricNumber("A0125875G"),
-                new Email("berniceyu@example.com"), getTagSet("colleagues", "friends"), new Remark("Pretty"));
+                new Email("berniceyu@example.com"), getTagSet("colleagues", "friends"));
         Student charlotte = new Student(new Name("Charlotte Oliveiro"), new MatricNumber("A0123456A"),
-                new Email("charlotte@example.com"), getTagSet("neighbours"), new Remark("Italian"));
+                new Email("charlotte@example.com"), getTagSet("neighbours"));
         tutorial.setEnrolledStudents(alex);
         tutorial.setEnrolledStudents(bernice);
         tutorial.setEnrolledStudents(charlotte);
@@ -127,14 +126,19 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyReminder getSampleReminders() {
-        Description description = new Description("Mark T02 midterms papers");
-        LocalDate date = LocalDate.now();
-        LocalTime time = LocalTime.parse("15:00", DateTimeFormatter.ofPattern("HH:mm"));
-        Reminder reminder = new Reminder(description, date, time, false);
-        ArrayList<Reminder> reminderList = new ArrayList<>();
-        reminderList.add(reminder);
-        ReminderTAble sampleReminderTAble = new ReminderTAble(reminderList);
-        return sampleReminderTAble;
+        Reminder[] sampleReminderList = new Reminder[] {
+            new Reminder(new Description("Review project progress of group 3"),
+                    LocalDate.now().minusDays(1), LocalTime.now(), false),
+            new Reminder(new Description("Mark T03 midterms papers"), LocalDate.now(),
+                    LocalTime.now().plusHours(2), false),
+            new Reminder(new Description("Submit students' attendance for week 7"),
+                    LocalDate.now().plusDays(2), LocalTime.now(), false),
+            new Reminder(new Description("Email T03 tutorial 6 solutions"),
+                    LocalDate.now().minusDays(1), LocalTime.now(), true)
+        };
+
+        ArrayList<Reminder> reminderList = new ArrayList<>(Arrays.asList(sampleReminderList));
+        return new ReminderTAble(reminderList);
     }
 
 }

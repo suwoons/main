@@ -12,7 +12,6 @@ import seedu.address.logic.commands.CloseCalendarCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.consults.AddConsultCommand;
 import seedu.address.logic.commands.consults.DeleteConsultCommand;
 import seedu.address.logic.commands.consults.EditConsultCommand;
@@ -36,6 +35,7 @@ import seedu.address.logic.commands.students.AddStudentCommand;
 import seedu.address.logic.commands.students.DeleteStudentCommand;
 import seedu.address.logic.commands.students.EditStudentCommand;
 import seedu.address.logic.commands.students.FindStudentCommand;
+import seedu.address.logic.commands.students.FindStudentMatricNumberCommand;
 import seedu.address.logic.commands.students.ListStudentCommand;
 import seedu.address.logic.commands.tutorials.AddTutorialCommand;
 import seedu.address.logic.commands.tutorials.AddTutorialStudentCommand;
@@ -69,6 +69,7 @@ import seedu.address.logic.parser.students.AddStudentCommandParser;
 import seedu.address.logic.parser.students.DeleteStudentCommandParser;
 import seedu.address.logic.parser.students.EditStudentCommandParser;
 import seedu.address.logic.parser.students.FindStudentCommandParser;
+import seedu.address.logic.parser.students.FindStudentMatricNumberCommandParser;
 import seedu.address.logic.parser.tutorials.AddTutorialCommandParser;
 import seedu.address.logic.parser.tutorials.AddTutorialStudentCommandParser;
 import seedu.address.logic.parser.tutorials.CopyTutorialEmailsCommandParser;
@@ -121,6 +122,9 @@ public class TAbleParser {
         case FindStudentCommand.COMMAND_WORD:
             return new FindStudentCommandParser().parse(arguments);
 
+        case FindStudentMatricNumberCommand.COMMAND_WORD:
+            return new FindStudentMatricNumberCommandParser().parse(arguments);
+
         case ListStudentCommand.COMMAND_WORD:
             return new ListStudentCommand();
 
@@ -129,9 +133,6 @@ public class TAbleParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case RemarkCommand.COMMAND_WORD:
-            return new RemarkCommandParser().parse(arguments);
 
         // ======================================== Consult Commands ==============================
 

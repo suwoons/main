@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MATRICNUMBER_AM
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MATRICNUMBER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_NICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 
 import java.util.ArrayList;
@@ -49,11 +48,9 @@ public class TypicalStudents {
 
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY)
-            .withMatricNumber(VALID_MATRICNUMBER_AMY).withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND)
-            .withRemark(VALID_REMARK_NICE).build();
+            .withMatricNumber(VALID_MATRICNUMBER_AMY).withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB)
-            .withMatricNumber(VALID_MATRICNUMBER_BOB).withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_FRIEND)
-            .withRemark(VALID_REMARK_NICE).build();
+            .withMatricNumber(VALID_MATRICNUMBER_BOB).withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

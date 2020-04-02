@@ -9,6 +9,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX = "The student index provided is invalid.";
     public static final String MESSAGE_STUDENTS_LISTED_OVERVIEW = "%1$d students listed!";
+    public static final String MESSAGE_STUDENT_EMPTY_MATRIC_NUMBER = "Matric Number to be searched cannot be empty!\n";
 
     public static final String MESSAGE_INVALID_CONSULT_DISPLAYED_INDEX = "The consult index provided is invalid.";
     public static final String MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME = "The Begin Date Time of the consult is "
@@ -30,7 +31,7 @@ public class Messages {
     public static final String MESSAGE_MISSING_MOD = "The module code provided does not exist in TAble.";
     public static final String MESSAGE_INVALID_MODLINK_INDEX = "This index does not correspond to a ModLink in TAble.";
 
-    public static final String MESSAGE_REMINDER_PAST_REMINDER = "The reminder must not be in the past.";
+    public static final String MESSAGE_REMINDER_PAST_REMINDER = "The reminder must be in the future.";
     public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid.";
     public static final String MESSAGE_REMINDER_ALREADY_DONE = "This reminder is already done!";
     public static final String MESSAGE_REMINDERS_LISTED_OVERVIEW = "%1$d reminders listed!";
