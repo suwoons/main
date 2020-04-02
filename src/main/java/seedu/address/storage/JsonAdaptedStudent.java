@@ -13,7 +13,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
@@ -27,7 +26,6 @@ class JsonAdaptedStudent {
     private final String name;
     private final String matricNumber;
     private final String email;
-    private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,11 +34,10 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("matricNumber") String matricNumber,
             @JsonProperty("email") String email,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("remark") String remark) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.matricNumber = matricNumber;
         this.email = email;
-        this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -53,7 +50,6 @@ class JsonAdaptedStudent {
         name = source.getName().fullName;
         matricNumber = source.getMatricNumber().value;
         email = source.getEmail().value;
-        remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -97,12 +93,7 @@ class JsonAdaptedStudent {
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
 
-        if (remark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
-        }
-        final Remark modelRemark = new Remark(remark);
-
-        return new Student(modelName, modelMatricNumber, modelEmail, modelTags, modelRemark);
+        return new Student(modelName, modelMatricNumber, modelEmail, modelTags);
     }
 
 }

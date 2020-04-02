@@ -35,6 +35,10 @@ public class MatricNumberTest {
         assertFalse(MatricNumber.isValidMatricNumber("a0123456b")); // alphabets must be capitalised
         assertFalse(MatricNumber.isValidMatricNumber("A012345678B")); // more than 7 numbers
         assertFalse(MatricNumber.isValidMatricNumber("0123456B")); // does not start with capital A
+        assertFalse(MatricNumber.isValidMatricNumber("a0183936R")); // does not start with capital A
+        assertFalse(MatricNumber.isValidMatricNumber("A0183936r")); // does not end with capital letter
+
+
 
 
 

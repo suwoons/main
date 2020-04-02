@@ -27,7 +27,6 @@ import seedu.address.model.reminder.Description;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -145,14 +144,6 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
-    }
-
-    /**
-     * Parses a {@code String remark} into a {@code Remark}.
-     */
-    public static Remark parseRemark(String remark) {
-        requireNonNull(remark);
-        return new Remark(remark);
     }
 
     /**
