@@ -10,7 +10,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_MATRIC_NUMBER = new Prefix("matric/");
     public static final Prefix PREFIX_EMAIL = new Prefix("email/");
     public static final Prefix PREFIX_TAG = new Prefix("tag/");
-    public static final Prefix PREFIX_REMARK = new Prefix("remark/");
 
     public static final Prefix PREFIX_PLACE = new Prefix("place/");
     public static final Prefix PREFIX_STUDENT = new Prefix("student/");

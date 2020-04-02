@@ -31,7 +31,6 @@ import seedu.address.model.student.Email;
 import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.ReadOnlyStudent;
-import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentTAble;
 import seedu.address.model.tag.Tag;
@@ -43,17 +42,17 @@ public class SampleDataUtil {
     public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new MatricNumber("A0187596R"), new Email("alexyeoh@example.com"),
-                getTagSet("friends"), new Remark("Nice")),
+                getTagSet("friends")),
             new Student(new Name("Bernice Yu"), new MatricNumber("A0125875G"), new Email("berniceyu@example.com"),
-                getTagSet("colleagues", "friends"), new Remark("Pretty")),
+                getTagSet("colleagues", "friends")),
             new Student(new Name("Charlotte Oliveiro"), new MatricNumber("A0123456A"),
-                    new Email("charlotte@example.com"), getTagSet("neighbours"), new Remark("Italian")),
+                    new Email("charlotte@example.com"), getTagSet("neighbours")),
             new Student(new Name("David Li"), new MatricNumber("A0356982H"), new Email("lidavid@example.com"),
-                getTagSet("family"), new Remark("Handsome")),
+                getTagSet("family")),
             new Student(new Name("Irfan Ibrahim"), new MatricNumber("A0167954H"), new Email("irfan@example.com"),
-                getTagSet("classmates"), new Remark("Kind")),
+                getTagSet("classmates")),
             new Student(new Name("Roy Balakrishnan"), new MatricNumber("A0136975F"), new Email("royb@example.com"),
-                getTagSet("colleagues"), new Remark("Fake"))
+                getTagSet("colleagues"))
         };
     }
 
@@ -98,11 +97,11 @@ public class SampleDataUtil {
         Location location = new Location("SR1");
         Tutorial tutorial = new Tutorial(modCode, tutorialName, weekday, startTime, endTime, location);
         Student alex = new Student(new Name("Alex Yeoh"), new MatricNumber("A0187596R"),
-                new Email("alexyeoh@example.com"), getTagSet("friends"), new Remark("Nice"));
+                new Email("alexyeoh@example.com"), getTagSet("friends"));
         Student bernice = new Student(new Name("Bernice Yu"), new MatricNumber("A0125875G"),
-                new Email("berniceyu@example.com"), getTagSet("colleagues", "friends"), new Remark("Pretty"));
+                new Email("berniceyu@example.com"), getTagSet("colleagues", "friends"));
         Student charlotte = new Student(new Name("Charlotte Oliveiro"), new MatricNumber("A0123456A"),
-                new Email("charlotte@example.com"), getTagSet("neighbours"), new Remark("Italian"));
+                new Email("charlotte@example.com"), getTagSet("neighbours"));
         tutorial.setEnrolledStudents(alex);
         tutorial.setEnrolledStudents(bernice);
         tutorial.setEnrolledStudents(charlotte);

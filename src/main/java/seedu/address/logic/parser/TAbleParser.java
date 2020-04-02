@@ -12,7 +12,6 @@ import seedu.address.logic.commands.CloseCalendarCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.consults.AddConsultCommand;
 import seedu.address.logic.commands.consults.DeleteConsultCommand;
 import seedu.address.logic.commands.consults.EditConsultCommand;
@@ -129,9 +128,6 @@ public class TAbleParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case RemarkCommand.COMMAND_WORD:
-            return new RemarkCommandParser().parse(arguments);
 
         // ======================================== Consult Commands ==============================
 
