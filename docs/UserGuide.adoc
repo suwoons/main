@@ -244,7 +244,7 @@ Deletes the 2nd consultation in TAble.
 Clears all consultations slots in TAble. +
 Format: `clearConsults`
 
-==== Locating consultations by date or place: `findConsult` [coming in v1.4]
+==== Locating consultations by date or place: `findConsult` [coming in v2.0]
 
 Finds consultations whose date or place match any of the given keywords. +
 Format: `findConsult [DATE] [PLACE]`

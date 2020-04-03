@@ -46,7 +46,7 @@ public class UniqueConsultList implements Iterable<Consult> {
      */
     public boolean hasSameDateTime(Consult consult) {
         requireNonNull(consult);
-        logger.info("" + internalList.stream().filter(consult::timeClash).count());
+        logger.fine("" + internalList.stream().filter(consult::timeClash).count());
         return internalList.stream().filter(consult::timeClash).count() > 1;
     }
 
