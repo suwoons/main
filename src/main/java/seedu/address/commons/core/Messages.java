@@ -21,6 +21,8 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX = "The tutorial index provided is invalid.";
     public static final String MESSAGE_INVALID_TUTORIAL_STUDENT_INDEX = "The student index provided is invalid.";
+    public static final String MESSAGE_INVALID_TUTORIAL_NAME = "The tutorial name provided is invalid. Please "
+            + "note that tutorial name cannot be empty and is capped at 8 alphanumeric characters.";
     public static final String MESSAGE_TUTORIAL_BEGIN_TIME_AFTER_END_TIME = "The BeginTime of the tutorial is not "
             + "before the EndTime of the tutorial.";
     public static final String MESSAGE_TUTORIAL_TIMING_CLASH = "This tutorial's timing clashes with an existing"

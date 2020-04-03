@@ -51,8 +51,13 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
         }
 
         ModCode moduleCode = ParserUtil.parseModCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
-        TutorialName tutorialName = ParserUtil.parseTutorialName(argMultimap.getValue(
-                PREFIX_TUTORIAL_NAME).get());
+
+        String inputName = argMultimap.getValue(PREFIX_TUTORIAL_NAME).get();
+        if (inputName.length() > 8 || inputName.isEmpty()) {
+            throw new ParseException(MESSAGE_INVALID_TUTORIAL_NAME);
+        }
+        TutorialName tutorialName = ParserUtil.parseTutorialName(inputName);
+
 
         int dayValue = Integer.parseInt(argMultimap.getValue(PREFIX_TUTORIAL_WEEKDAY).get());
         if (dayValue < 1 || dayValue > 7) {
