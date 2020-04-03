@@ -94,6 +94,11 @@ Examples:
 Shows a list of all students in TAble. +
 Format: `listStudent`
 
+==== Listing all students : `listStudent`
+
+Clears the list of all students in TAble. +
+Format: `clearStudent`
+
 ==== Editing a student : `editStudent`
 
 Edits an existing student in TAble. +
@@ -742,6 +747,7 @@ There is no need to save manually.
 * *Add* : `addStudent name/NAME matric/MATRIC_NUMBER email/EMAIL [t/TAG]...` +
 e.g. `addStudent name/James Tan matric/A0123456X email/jamesho@example.com t/friend t/colleague`
 * *Clear* : `clear`
+e.g. `clear`
 * *Delete* : `deleteStudent INDEX` +
 e.g. `deleteStudent 3`
 * *Edit* : `editStudent INDEX [name/NAME] [matric/MATRIC_NUMBER] [email/EMAIL] [t/TAG]...` +
