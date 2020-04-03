@@ -40,9 +40,9 @@ public class AddTutorialCommand extends Command {
             + PREFIX_PLACE + "SR3 ";
 
     public static final String MESSAGE_SUCCESS = "New tutorial added!\n%1$s";
-    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in TAble.\n" +
-            "If you are adding another session of the same tutorial, please use a different tutorial name " +
-            "(eg. T02A and T02B).";
+    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in TAble.\n"
+            + "If you are adding another session of the same tutorial, please use a different tutorial name "
+            + "(eg. T02A and T02B).";
 
     private final Tutorial toAdd;
 

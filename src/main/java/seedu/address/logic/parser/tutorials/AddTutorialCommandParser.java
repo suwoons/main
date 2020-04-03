@@ -1,6 +1,9 @@
 package seedu.address.logic.parser.tutorials;
 
-import static seedu.address.commons.core.Messages.*;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DAY;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TUTORIAL_NAME;
+import static seedu.address.commons.core.Messages.MESSAGE_TUTORIAL_BEGIN_TIME_AFTER_END_TIME;
 import static seedu.address.commons.util.TutorialUtil.isStartEarlierThanEndTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
