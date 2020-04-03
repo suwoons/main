@@ -94,7 +94,7 @@ Examples:
 Shows a list of all students in TAble. +
 Format: `listStudent`
 
-==== Listing all students : `listStudent`
+==== Clears the list of students : `clearStudent`
 
 Clears the list of all students in TAble. +
 Format: `clearStudent`
