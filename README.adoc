@@ -14,7 +14,7 @@ ifndef::env-github[]
 image::images/Ui.png[width="600"]
 endif::[]
 
-* Have you ever had trouble keeping track of your tutorials and students as a TA in NUS? TAble is your handy desktop app, optimized for TAs who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)! Mark attendance, arrange consults, add module notes, and more with TAble!
+* Have you ever had trouble keeping track of your tutorials and students as a TA in NUS? TAble is your handy desktop app, optimized for TAs who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)! Mark attendance, arrange consults, add module notes, set reminders and more with TAble!
 
 == Site Map
 

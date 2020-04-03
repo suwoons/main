@@ -348,7 +348,7 @@ image::FindReminderSequenceDiagram.png[]
 
 A snooze reminder feature is also implemented for the users to easily postpone a reminder. It's implementation is similar to the `editReminderCommand` where it creates a new reminder to replace the specified reminder instead of editing the current reminder directly. This is to ensure the reminders are immutable which improves the stability of the application.
 
-User can choose to snooze the reminder in any/all of the following time units: days, hours and/or minutes. Only positive integer are allowed as the user are not supposed to snooze the reminders backwards or snooze it by zero duration. Following is an activity digram for the command.
+User can choose to snooze the reminder in any/all of the following time units: days, hours and/or minutes. Only positive integer are allowed as the user are not supposed to snooze the reminders backwards or snooze it by zero duration. Following is an activity diagram for the command.
 
 .Activity diagram for the command snoozeReminder in the reminder feature
 image::SnoozeReminderActivityDiagram.png[]
