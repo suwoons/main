@@ -13,11 +13,13 @@ public class Name {
             "Names should only contain alphanumeric characters and spaces, and it should not be blank\n"
             + "The maximum length of a student's name is 70 characters";
 
-    /*
+    /**
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]*";
+
+    private static final int CHAR_LIMIT = 70;
 
     public final String fullName;
 
@@ -33,8 +35,9 @@ public class Name {
         fullName = name;
     }
 
+
     /**
-     * Capitalises the first letter of the student's name
+     * Capitalises the first letter of the student's name.
      */
     public String capitaliseName(String name) {
         StringBuffer stringBuffer = new StringBuffer();
@@ -54,7 +57,7 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= CHAR_LIMIT;
     }
 
     @Override
