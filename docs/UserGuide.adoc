@@ -278,7 +278,12 @@ Format: `listTutorial`
 Add a tutorial slot for a particular module at the given time, day and place. +
 Format: `addTutorial modCode/MODULE_CODE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE beginTime/START_TIME endTIme/END_TIME place/PLACE`
 
+[TIP]
+A tutorial is distinguished by its module and name. Only one session is allowed per tutorial.
+If you wish to have a tutorial with multiple slots per week, you may use unique tutorial names (eg. T02A and T02B).
+
 ****
+* The tutorial name provided is capped at 8 alphanumeric characters.
 * The time provided must be in HH:MM format, i.e: 24-hour format
 * The day provided is the value of the weekday (ie. MONDAY = 1, TUESDAY = 2, ... SUNDAY = 7)
 * The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`

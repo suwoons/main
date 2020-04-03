@@ -26,7 +26,7 @@ public class AddTutorialCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to TAble.\n"
             + "Parameters: "
             + PREFIX_MODULE_CODE + "MODULE_CODE "
-            + PREFIX_TUTORIAL_NAME + "TUTORIAL_NAME "
+            + PREFIX_TUTORIAL_NAME + "TUTORIAL_NAME (capped at 8 alphanumeric characters)"
             + PREFIX_TUTORIAL_WEEKDAY + "TUTORIAL_WEEKDAY_VALUE (1-7) "
             + PREFIX_TUTORIAL_BEGIN_TIME + "TUTORIAL_BEGIN_TIME "
             + PREFIX_TUTORIAL_END_TIME + "TUTORIAL_END_TIME "
@@ -40,7 +40,9 @@ public class AddTutorialCommand extends Command {
             + PREFIX_PLACE + "SR3 ";
 
     public static final String MESSAGE_SUCCESS = "New tutorial added!\n%1$s";
-    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in TAble.";
+    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in TAble.\n" +
+            "If you are adding another session of the same tutorial, please use a different tutorial name " +
+            "(eg. T02A and T02B).";
 
     private final Tutorial toAdd;
 

@@ -23,8 +23,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_TUTORIAL_STUDENT_INDEX = "The student index provided is invalid.";
     public static final String MESSAGE_TUTORIAL_BEGIN_TIME_AFTER_END_TIME = "The BeginTime of the tutorial is not "
             + "before the EndTime of the tutorial.";
-    public static final String MESSAGE_TUTORIAL_TIMING_CLASH = "This tutorial's timing clash with another pre-existing"
-            + " tutorial.";
+    public static final String MESSAGE_TUTORIAL_TIMING_CLASH = "This tutorial's timing clashes with an existing"
+            + " tutorial's.";
     public static final String MESSAGE_INVALID_WEEK = "The week specified is invalid. Please enter a value between"
             + " 3 and 13 (inclusive).";
     public static final String MESSAGE_INVALID_DAY = "The value of day specified is invalid. Please enter a value"
