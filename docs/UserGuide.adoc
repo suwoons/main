@@ -182,6 +182,9 @@ Deletes the 1st student in the results of the `find` command.
 // tag::Consult[]
 
 === Consults Feature
+[NOTE]
+The consults that are overdue will appear in red to highlight that these consults are ready to be deleted!
+
 ==== Adding a consult: `addConsult`
 
 Add a consultation slot at the given time, date and place. +
