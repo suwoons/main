@@ -47,14 +47,15 @@ public class DeleteStudentCommand extends Command {
         Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteStudent(studentToDelete);
         List<Tutorial> currentTutorialList = model.getFilteredTutorialList();
+
         for (int i = 0; i < currentTutorialList.size(); i++) {
             ArrayList<Student> enrolledStudents = currentTutorialList.get(i).getEnrolledStudents();
             int checker = enrolledStudents.indexOf(studentToDelete);
             if (checker != -1) {
                 model.deleteTutorialStudent(currentTutorialList.get(i), studentToDelete);
             }
-            enrolledStudents.clear();
         }
+
         return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete));
     }
 
