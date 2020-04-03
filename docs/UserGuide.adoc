@@ -747,8 +747,8 @@ There is no need to save manually.
 == Command Summary
 
 === Student
-* *Add* : `addStudent name/NAME matric/MATRIC_NUMBER email/EMAIL [t/TAG]...` +
-e.g. `addStudent name/James Tan matric/A0123456X email/jamesho@example.com t/friend t/colleague`
+* *Add* : `addStudent name/NAME matric/MATRIC_NUMBER email/EMAIL [tag/TAG]...` +
+e.g. `addStudent name/James Tan matric/A0123456X email/jamesho@example.com tag/friend tag/colleague`
 * *Clear* : `clear`
 e.g. `clear`
 * *Delete* : `deleteStudent INDEX` +
