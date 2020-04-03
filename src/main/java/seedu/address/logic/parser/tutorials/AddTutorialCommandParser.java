@@ -1,7 +1,6 @@
 package seedu.address.logic.parser.tutorials;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_TUTORIAL_BEGIN_TIME_BEFORE_END_TIME;
+import static seedu.address.commons.core.Messages.*;
 import static seedu.address.commons.util.TutorialUtil.isStartEarlierThanEndTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
@@ -54,8 +53,14 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
         ModCode moduleCode = ParserUtil.parseModCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
         TutorialName tutorialName = ParserUtil.parseTutorialName(argMultimap.getValue(
                 PREFIX_TUTORIAL_NAME).get());
+
+        int dayValue = Integer.parseInt(argMultimap.getValue(PREFIX_TUTORIAL_WEEKDAY).get());
+        if (dayValue < 1 || dayValue > 7) {
+            throw new ParseException(MESSAGE_INVALID_DAY);
+        }
         DayOfWeek weekday = ParserUtil.parseDay(argMultimap.getValue(
                 PREFIX_TUTORIAL_WEEKDAY).get());
+
         LocalTime beginTime = ParserUtil.parseTime(argMultimap.getValue(
                 PREFIX_TUTORIAL_BEGIN_TIME).get());
         LocalTime endTime = ParserUtil.parseTime(argMultimap.getValue(
@@ -64,7 +69,7 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
                 PREFIX_PLACE).get());
 
         if (!isStartEarlierThanEndTime(beginTime, endTime)) {
-            throw new ParseException(MESSAGE_TUTORIAL_BEGIN_TIME_BEFORE_END_TIME);
+            throw new ParseException(MESSAGE_TUTORIAL_BEGIN_TIME_AFTER_END_TIME);
         }
 
         Tutorial tutorial = new Tutorial(moduleCode, tutorialName, weekday, beginTime, endTime, location);

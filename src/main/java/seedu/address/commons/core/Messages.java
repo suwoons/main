@@ -21,12 +21,14 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX = "The tutorial index provided is invalid.";
     public static final String MESSAGE_INVALID_TUTORIAL_STUDENT_INDEX = "The student index provided is invalid.";
-    public static final String MESSAGE_TUTORIAL_BEGIN_TIME_BEFORE_END_TIME = "The Begin Time of the tutorial is before "
-            + "the End Time of the tutorial.";
+    public static final String MESSAGE_TUTORIAL_BEGIN_TIME_AFTER_END_TIME = "The BeginTime of the tutorial is not "
+            + "before the EndTime of the tutorial.";
     public static final String MESSAGE_TUTORIAL_TIMING_CLASH = "This tutorial's timing clash with another pre-existing"
             + " tutorial.";
     public static final String MESSAGE_INVALID_WEEK = "The week specified is invalid. Please enter a value between"
             + " 3 and 13 (inclusive).";
+    public static final String MESSAGE_INVALID_DAY = "The value of day specified is invalid. Please enter a value"
+            + " between 1 and 7 (inclusive), corresponding from Mon to Sun.";
 
     public static final String MESSAGE_MISSING_MOD = "The module code provided does not exist in TAble.";
     public static final String MESSAGE_INVALID_MODLINK_INDEX = "This index does not correspond to a ModLink in TAble.";
