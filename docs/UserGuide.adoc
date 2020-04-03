@@ -274,8 +274,6 @@ Returns any consults that are held at SR3
 Focuses the display in the GUI to the Tutorials list view, without requiring the user to click on the tab.
 Format: `listTutorial`
 
-image::listTutorial.png[]
-
 ==== Add a tutorial slot: `addTutorial`
 
 Add a tutorial slot for a particular module at the given time, day and place. +
@@ -332,9 +330,6 @@ Format: `addTutorialStudent tutorialIndex/INDEX student/STUDENT_INDEX`
 Example:
 
 * `addTutorialStudent tutorialIndex/3 student/12`
-
-.After adding student Roy and calling `listAttendance`
-image::addTutorialStudent.png[]
 
 ==== Marks students as present: `markPresent`
 
@@ -409,9 +404,6 @@ Example:
 
 * `deleteTutorialStudent tutorialIndex/3 student/12`
 
-.After deleting student Alex from a tutorial and calling `listAttendance`
-image::deleteTutorialStudent.png[]
-
 ==== Copy tutorial students' emails to user clipboard: `copyTutorialEmails`
 
 Copies all student emails in the given tutorial to the user clipboard, for easy mass-emailing purposes.
@@ -444,8 +436,6 @@ Format: `listAttendance tutorialIndex/INDEX week/INDEX`
 Example:
 
 * `listAttendance tutorialIndex/2 week/10`
-
-image::listAttendance.png[]
 
 //end::Tutorial[]
 
