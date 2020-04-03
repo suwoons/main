@@ -1,5 +1,6 @@
 package seedu.address.ui.consult;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
@@ -20,6 +21,7 @@ public class ConsultCard extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
 
     private static final String FXML = "ConsultListCard.fxml";
+    private static final String OVERDUE_CONSULT_BACKGROUND = "#A52A2A";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -47,6 +49,10 @@ public class ConsultCard extends UiPart<Region> {
     public ConsultCard(Consult consult, int displayedIndex) {
         super(FXML);
         this.consult = consult;
+        LocalDateTime nowDateTime = LocalDateTime.now();
+        if (consult.getEndDateTime().isBefore(nowDateTime)) {
+            cardPane.setStyle("-fx-background-color:  " + OVERDUE_CONSULT_BACKGROUND + ";");
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MMM-YY");
         id.setText(displayedIndex + ". ");
         beginDateTime.setText("Start: " + consult.getBeginDateTime().format(formatter));
