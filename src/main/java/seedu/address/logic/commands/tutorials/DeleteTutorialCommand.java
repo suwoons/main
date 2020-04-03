@@ -26,7 +26,8 @@ public class DeleteTutorialCommand extends Command {
             + PREFIX_INDEX
             + "\nExample: " + COMMAND_WORD + " 2";
 
-    public static final String MESSAGE_DELETE_TUTORIAL_SUCCESS = "Deleted Tutorial!\n%1$s";
+    public static final String MESSAGE_DELETE_TUTORIAL_SUCCESS = "Deleted Tutorial!\n%1$s\n" +
+            "Please use listAttendance command to refresh the attendance list.";
 
     private final Index targetIndex;
 

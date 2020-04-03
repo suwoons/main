@@ -763,7 +763,7 @@ e.g `editConsult 3 place/The Deck`
 * *List* : `listConsult`
 
 === Tutorial
-* *Add* : `addTutorial modCode/MODULE_CODE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE beginTime/START_TIME endTIme/END_TIME place/PLACE` +
+* *Add* : `addTutorial modCode/MODULE_CODE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE beginTime/START_TIME endTime/END_TIME place/PLACE` +
 e.g. `addTutorial modCode/CS2103 tutorialName/T02 day/3 beginTime/12:00 endTime/13:00 place/SR3`
 * *Delete* : `deleteTutorial INDEX` +
 e.g. `deleteTutorial 2`
