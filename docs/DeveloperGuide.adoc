@@ -400,12 +400,15 @@ Furthermore, they are hard to test due to their volatile nature and including th
 ==== Implementation
 The key command which users can call is the `viewCalendar` command.
 
-The following sequence diagram demonstrates how the `calendar` command works, as a `Calendar` window is displayed to the user.
+Most functions to display the calendar window are called within the `CalendarWindow` class, as it is the main class that drives the calendar view.
+The `CalendarWindow` class extends `UiPart<Stage>`, and represents the calendar using a `GridPane` as the skeleton of the calendar, with individual dates being populated by a `CalendarDay` class which extends `UiPart<Region>`.
+The `CalendarDay` has a `StackPane` that displays the number of `ConsultS`, `TutorialS` and `ReminderS` each day.
+
+The following sequence diagram demonstrates how the `viewCalendar` command works, as a `Calendar` window is generated and displayed to the user.
 
 .Sequence diagram of 'viewCalendar' command
 image::ConsultsCommandClassDiagram.png[]
 
-A consultation slot is represented by the `Consult` class which contains 5 key attributes, the `beginDateTime`, `endDateTime`, `location`, `studentMatricNumber` and `studentName`.
 The `beginDateTime` and `endDateTime` attributes are represented using Java's `LocalDateTime` class. The `studentMatricNumber` and `studentName` attributes are classes that belong to a certain `Student`. The `studentMatricNumber` is used to uniquely identify the `Student` involved in the consultation, while the studentName is used in the front end of the application, displayed to the TA.
 
 The `XYZConsultCommand` class represent classes that extend the abstract class `Command` and allows the TA to add, edit, delete, view and clear consultations added to TAble. These `XYZConsultCommandS` are created by the respective `XYZConsultCommandParserS`.

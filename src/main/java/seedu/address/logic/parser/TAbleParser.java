@@ -6,11 +6,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.CalendarCommand;
 import seedu.address.logic.commands.CloseCalendarCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ViewCalendarCommand;
 import seedu.address.logic.commands.consults.AddConsultCommand;
 import seedu.address.logic.commands.consults.DeleteConsultCommand;
 import seedu.address.logic.commands.consults.EditConsultCommand;
@@ -234,8 +234,8 @@ public class TAbleParser {
 
         // ======================================== Calendar Commands =============================
 
-        case CalendarCommand.COMMAND_WORD:
-            return new CalendarCommand();
+        case ViewCalendarCommand.COMMAND_WORD:
+            return new ViewCalendarCommand();
 
         case CloseCalendarCommand.COMMAND_WORD:
             return new CloseCalendarCommand();

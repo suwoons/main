@@ -186,93 +186,6 @@ Deletes the 1st student in the results of the `find` command.
 
 // end::delete[]
 
-// tag::Consult[]
-=== Consults Feature
-[NOTE]
-The consults that are overdue will appear in red to highlight that these consults are ready to be deleted!
-
-==== Adding a consult: `addConsult`
-
-Add a consultation slot at the given time, date and place. +
-Format: `addConsult student/STUDENT_INDEX beginDateTime/BEGIN_DATE_TIME endDateTime/END_DATE_TIME place/PLACE`
-
-****
-* The 'STUDENT_INDEX' should be referred to by the index as referred to in the student list
-* The begin and end date time provided must be in the yyyy-MM-dd HH:mm format
-* The location provided should be any valid string i.e, must be alphanumeric
-* The consult must be held within the same day, thus the begin and end DateTime objects should have the same date.
-****
-
-Example:
-
-* `addConsult student/1 beginDateTime/2020-03-03 10:00 endDateTime/2020-03-03 12:00 place/Deck`
-
-==== Editing a consult: `editConsult`
-
-Edit the time, date or place of an existing consultation slot. +
-Format: `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]`
-
-****
-* Edits the consult at the specified `INDEX`. The index refers to the index number shown in the displayed consultation list. The index *must be a positive integer* 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* Note that one cannot edit the student involved in the consult, as it is unlikely that the TA will need to change the student at that consult timing.
-****
-
-Example:
-
-* `editConsult 1 beginDateTime/2020-03-03 15:00` +
-Edits the beginning time of the 1st consult to be at 2020-03-03, 15:00 hours i.e 3.00 p.m.
-* `editConsult 2 place/SR3` +
-Edits the place of the 2nd consult to be at SR3.
-
-==== Listing all consults : `listConsult`
-
-Shows a list of all consultations in TAble. +
-Format: `listConsult`
-
-==== Deleting a consult: `deleteConsult`
-
-Removes an existing consultation slot. +
-Format: `deleteConsult INDEX`
-
-****
-* Deletes the consultation at the specified `INDEX`.
-* The index refers to the index number shown in the displayed consultation list.
-* The index *must be a positive integer* 1, 2, 3, ...
-****
-
-Example:
-
-* `listConsult` +
-`deleteConsult 2` +
-Deletes the 2nd consultation in TAble.
-
-==== Clearing all consults : `clearConsults`
-
-Clears all consultations slots in TAble. +
-Format: `clearConsults`
-
-==== Locating consultations by date or place: `findConsult` [coming in v2.0]
-
-Finds consultations whose date or place match any of the given keywords. +
-Format: `findConsult [DATE] [PLACE]`
-
-****
-* At least one of the optional fields must be provided
-* If both optional fields are provided, only consults that meet both criterion will be returned
-* The search is case insensitive. e.g `SR1` will match `sr1`
-* The order of the keywords matters. e.g. `find SR1 03-03-2020` will throw an error
-****
-
-Examples:
-
-* `findConsult 03-03-2020` +
-Returns all consults on 03-03-2020
-* `findConsult SR3` +
-Returns any consults that are held at SR3
-// end::Consult[]
-
 //tag::Module[]
 === Module Feature
 ==== Add Module into database: `addMod`
@@ -408,6 +321,8 @@ Format: `addTutorial modCode/MODULE_CODE tutorialName/TUTORIAL_NAME day/WEEKDAY_
 A tutorial is distinguished by its module and name. Only one session is allowed per tutorial.
 If you wish to have a tutorial with multiple slots per week, you may use unique tutorial names (eg. T02A and T02B).
 
+[TIP]
+The module for `addTutorial` MODULE_CODE should already exist in TAble before adding the desired `Tutorial`
 ****
 * The tutorial name provided is capped at 8 alphanumeric characters.
 * The time provided must be in HH:MM format, i.e: 24-hour format
@@ -589,6 +504,93 @@ Example:
 * `exportAttendance tutorialIndex/1 csvFilePath/./data/attendance.csv`
 //end::ExportTutorialAttendance[]
 
+// tag::Consult[]
+=== Consults Feature
+[NOTE]
+The consults that are overdue will appear in red to highlight that these consults are ready to be deleted!
+
+==== Adding a consult: `addConsult`
+
+Add a consultation slot at the given time, date and place. +
+Format: `addConsult student/STUDENT_INDEX beginDateTime/BEGIN_DATE_TIME endDateTime/END_DATE_TIME place/PLACE`
+
+****
+* The 'STUDENT_INDEX' should be referred to by the index as referred to in the student list
+* The begin and end date time provided must be in the yyyy-MM-dd HH:mm format
+* The location provided should be any valid string i.e, must be alphanumeric
+* The consult must be held within the same day, thus the begin and end DateTime objects should have the same date.
+****
+
+Example:
+
+* `addConsult student/1 beginDateTime/2020-03-03 10:00 endDateTime/2020-03-03 12:00 place/Deck`
+
+==== Editing a consult: `editConsult`
+
+Edit the time, date or place of an existing consultation slot. +
+Format: `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]`
+
+****
+* Edits the consult at the specified `INDEX`. The index refers to the index number shown in the displayed consultation list. The index *must be a positive integer* 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* Note that one cannot edit the student involved in the consult, as it is unlikely that the TA will need to change the student at that consult timing.
+****
+
+Example:
+
+* `editConsult 1 beginDateTime/2020-03-03 15:00` +
+Edits the beginning time of the 1st consult to be at 2020-03-03, 15:00 hours i.e 3.00 p.m.
+* `editConsult 2 place/SR3` +
+Edits the place of the 2nd consult to be at SR3.
+
+==== Listing all consults : `listConsult`
+
+Shows a list of all consultations in TAble. +
+Format: `listConsult`
+
+==== Deleting a consult: `deleteConsult`
+
+Removes an existing consultation slot. +
+Format: `deleteConsult INDEX`
+
+****
+* Deletes the consultation at the specified `INDEX`.
+* The index refers to the index number shown in the displayed consultation list.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
+
+Example:
+
+* `listConsult` +
+`deleteConsult 2` +
+Deletes the 2nd consultation in TAble.
+
+==== Clearing all consults : `clearConsults`
+
+Clears all consultations slots in TAble. +
+Format: `clearConsults`
+
+==== Locating consultations by date or place: `findConsult` [coming in v2.0]
+
+Finds consultations whose date or place match any of the given keywords. +
+Format: `findConsult [DATE] [PLACE]`
+
+****
+* At least one of the optional fields must be provided
+* If both optional fields are provided, only consults that meet both criterion will be returned
+* The search is case insensitive. e.g `SR1` will match `sr1`
+* The order of the keywords matters. e.g. `find SR1 03-03-2020` will throw an error
+****
+
+Examples:
+
+* `findConsult 03-03-2020` +
+Returns all consults on 03-03-2020
+* `findConsult SR3` +
+Returns any consults that are held at SR3
+// end::Consult[]
+
 
 // tag::Reminder[]
 === Reminder Feature
@@ -767,16 +769,6 @@ e.g. `findStudent James Jake`
 e.g. `findStudentMatricNumber matric/A0123456A`
 * *List* : `listStudent`
 
-=== Consult
-* *Add* : `addConsult student/STUDENT_INDEX beginDateTime/BEGIN_DATE_TIME endDateTime/END_DATE_TIME place/PLACE` +
-e.g. `addConsult student/1 beginDateTime/2020-03-03 10:00 endDateTime/2020-03-03 12:00 place/Deck`
-* *Clear* : `clearConsult`
-* *Delete* : `deleteConsult INDEX` +
-e.g. `deleteConsult 3`
-* *Edit* : `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]` +
-e.g `editConsult 3 place/The Deck`
-* *List* : `listConsult`
-
 === Module
 * *Add* : `addMod modCode/MODULE_CODE modName/MODULE_NAME` +
 e.g. `addMod modCode/CS2103 modName/Software Engineering`
@@ -812,6 +804,16 @@ e.g. `listAttendance tutorialIndex/2 week/10`
 e.g. `copyTutorialEmails tutorialIndex/3`
 * *Export attendance to CSV file* : `exportAttendance tutorialIndex/INDEX csvFilePath/CSV_FILEPATH` +
 e.g. `exportAttendance tutorialIndex/1 csvFilePath/./data/attendance.csv`
+
+=== Consult
+* *Add* : `addConsult student/STUDENT_INDEX beginDateTime/BEGIN_DATE_TIME endDateTime/END_DATE_TIME place/PLACE` +
+e.g. `addConsult student/1 beginDateTime/2020-03-03 10:00 endDateTime/2020-03-03 12:00 place/Deck`
+* *Clear* : `clearConsult`
+* *Delete* : `deleteConsult INDEX` +
+e.g. `deleteConsult 3`
+* *Edit* : `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]` +
+e.g `editConsult 3 place/The Deck`
+* *List* : `listConsult`
 
 === Reminder
 * *Add* : `addReminder desc/DESCRIPTION date/DATE time/TIME` +

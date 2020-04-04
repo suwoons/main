@@ -31,9 +31,6 @@ public class CommandResult {
     /** The application should show the relevant attendance list. */
     private final boolean showAttendance;
 
-
-
-
     /** Information for the application to show the correct attendance list. */
     private final Tutorial tutorialToShow;
     private final int weekZeroBased;
