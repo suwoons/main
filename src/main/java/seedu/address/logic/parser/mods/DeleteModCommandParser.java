@@ -10,6 +10,7 @@ import seedu.address.logic.commands.mods.DeleteModCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.mod.ModCode;
@@ -35,7 +36,7 @@ public class DeleteModCommandParser implements Parser<DeleteModCommand> {
                 DeleteModCommand.MESSAGE_USAGE));
         }
 
-        ModCode modCode = new ModCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
+        ModCode modCode = ParserUtil.parseModCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
         return new DeleteModCommand(modCode);
     }
 

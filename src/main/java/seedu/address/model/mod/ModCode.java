@@ -10,16 +10,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class ModCode {
 
-    public static final String MESSAGE_CONSTRAINTS = "Modules should be of the format Department0000Subcode "
-            + "and adhere to the following constraints:\n"
-            + "1. The department should only contain either two or three capital letters\n"
+    public static final String MESSAGE_CONSTRAINTS = "Module codes consist of three parts: Department Code, Number, "
+            + "then Subcode. They should adhere to the following constraints:\n"
+            + "1. The department code should only contain either two or three capital letters\n"
             + "2. This is followed by 4 numbers, with the first not being zero.\n"
-            + "The subcode cannot be more than 2 capital letters long. ";
+            + "3. The Subcode cannot be more than 2 capital letters long. ";
 
     /*
      * The entire string must fit the specifications for it to be valid.
      */
-    public static final String VALIDATION_REGEX = "^[A-Z]{2,3}\\d{4}[A-Z]{0,2}$";
+    public static final String VALIDATION_REGEX = "^[A-Z]{2,3}[1-9]\\d{3}[A-Z]{0,2}$";
 
     public final String modCode;
 
