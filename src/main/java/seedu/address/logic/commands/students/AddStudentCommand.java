@@ -19,7 +19,7 @@ public class AddStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "addStudent";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the list of students.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_MATRIC_NUMBER + "MATRICNUMBER "
@@ -33,7 +33,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the list of students";
     public static final String MESSAGE_DUPLICATE_MATRIC_NUMBER =
             "This matric number already exists in the address book.";
 
