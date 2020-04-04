@@ -168,7 +168,7 @@ The `beginDateTime` and `endDateTime` attributes are represented using Java's `L
 
 The `XYZConsultCommand` class represent classes that extend the abstract class `Command` and allows the TA to add, edit, delete, view and clear consultations added to TAble. These `XYZConsultCommandS` are created by the respective `XYZConsultCommandParserS`.
 
-A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `ConsultS`. When a `consult` is added to the ConsultTAble, there will first be a check that the `consult` does not already exist in the `UniqueConsultList`.
+A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `ConsultS`. When a `Consult` is added to the ConsultTAble, there will first be a check that the `Consult` does not already exist in the `UniqueConsultList`.
 
 Given the class diagram and the understanding of how the `Consult` class interacts with other classes, let us examine how an `addConsult` command behaves, by using the following activity diagram of the system.
 
@@ -237,9 +237,49 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 |===
 
 Reason for choosing Alternative 1:  We believe that automatically sorting the consult list provides  a better user experience as the user can immediately see the upcoming consults in the panel, without having to type a sort command.
-
 // end::consult[]
 
+// tag::module[]
+=== Module feature
+*TAble* allows NUS SoC teaching assistants to track and record all modules that they are teaching. Users can leave notes on the modules that they are teaching and store a list of links for the module that are useful for reference.
+
+==== Implementation
+A module can be stored as a Mod object in TAble (renamed due to naming restrictions on Java keywords). The main components are the module code, which is used to identify unique modules, and module name. Mod can also store the user's notes of the module through its description parameter, as well as a set of module links which are relevant to the course.
+
+.Class diagram of 'Mod' feature, displaying only directly related classes
+image::ModClassDiagram.png[]
+
+The following sequence diagram shows how notes of a module can be updated with the `noteMod` command.
+
+.Sequence diagram of updating Mod notes
+image::NoteModSequenceDiagram.png[]
+
+Module links are stored as ModLink objects in TAble. The collection of ModLinks are stored as `List<Pair<String, ModLink>>` since each module link can be described differently. This allows for more flexibility in naming the module links, rather than solely using an index based notation, and ensures that the order of addition into the collection is maintained. The activity diagram of adding module links is shown below.
+
+.Activity diagram of adding ModLinks to Mod
+image::AddModLinkActivityDiagram.png[]
+
+==== Design Considerations
+
+===== ModLink behaviour
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1: (Current Choice)* Copy link into user's clipboard
+|*Alternative 2 :* Open a new browser page
+
+|*Pros*
+|Allows for easier access and sharing of link.
+|Fast access to module's weblink by directly opening a browser.
+
+|*Cons*
+| User needs to open a browser before accessing link.
+| Very distracting when opening link, as focus changes from TAble to browser unexpectedly (depending on when browser loads).
+|===
+
+Reason for choosing Alternative 1: On a user design perspective, it is less jarring to copy link into the user's clipboard, since the user can choose when they want to access the link and have the flexibility to share the link to others. Additionally, opening a new browser page requires more complicated code that depends on another program.
+
+// end::module[]
 
 // tag::tutorial[]
 
@@ -290,47 +330,6 @@ If successful, the updated information is then saved.
 
 // end::tutorial[]
 
-// tag::module[]
-=== Module feature
-*TAble* allows NUS SoC teaching assistants to track and record all modules that they are teaching. Users can leave notes on the modules that they are teaching and store a list of links for the module that are useful for reference.
-
-==== Implementation
-A module can be stored as a Mod object in TAble (renamed due to naming restrictions on Java keywords). The main components are the module code, which is used to identify unique modules, and module name. Mod can also store the user's notes of the module through its description parameter, as well as a set of module links which are relevant to the course.
-
-.Class diagram of 'Mod' feature, displaying only directly related classes
-image::ModClassDiagram.png[]
-
-The following sequence diagram shows how notes of a module can be updated with the `noteMod` command.
-
-.Sequence diagram of updating Mod notes
-image::NoteModSequenceDiagram.png[]
-
-Module links are stored as ModLink objects in TAble. The collection of ModLinks are stored as `List<Pair<String, ModLink>>` since each module link can be described differently. This allows for more flexibility in naming the module links, rather than solely using an index based notation, and ensures that the order of addition into the collection is maintained. The activity diagram of adding module links is shown below.
-
-.Activity diagram of adding ModLinks to Mod
-image::AddModLinkActivityDiagram.png[]
-
-==== Design Considerations
-
-===== ModLink behaviour
-
-[width="100%", cols="1, 5, 5"]
-|===
-||*Alternative 1: (Current Choice)* Copy link into user's clipboard
-|*Alternative 2 :* Open a new browser page
-
-|*Pros*
-|Allows for easier access and sharing of link.
-|Fast access to module's weblink by directly opening a browser.
-
-|*Cons*
-| User needs to open a browser before accessing link.
-| Very distracting when opening link, as focus changes from TAble to browser unexpectedly (depending on when browser loads).
-|===
-
-Reason for choosing Alternative 1: On a user design perspective, it is less jarring to copy link into the user's clipboard, since the user can choose when they want to access the link and have the flexibility to share the link to others. Additionally, opening a new browser page requires more complicated code that depends on another program.
-
-// end::module[]
 
 // tag::reminder[]
 === Reminder feature
@@ -399,7 +398,7 @@ Furthermore, they are hard to test due to their volatile nature and including th
 *TAble* allows NUS SoC teaching assistants to bring up a calendar view of all their upcoming consults, tutorials and reminders.
 
 ==== Implementation
-The key command which users can call is the `calendar` command.
+The key command which users can call is the `viewCalendar` command.
 
 The following sequence diagram demonstrates how the `calendar` command works, as a `Calendar` window is displayed to the user.
 

@@ -829,7 +829,7 @@ e.g `findReminder desc/midterms date/2020-03-15`
 * *List* : `listReminder`
 
 === Calendar
-* *View Calendar* : `calendar`
+* *View Calendar* : `viewCalendar`
 * *Close Calendar*: `closeCalendar`
 
 * *Help* : `help`
