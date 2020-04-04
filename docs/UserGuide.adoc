@@ -402,7 +402,7 @@ Format: `listTutorial`
 ==== Add a tutorial slot: `addTutorial`
 
 Add a tutorial slot for a particular module at the given time, day and place. +
-Format: `addTutorial modCode/MODULE_CODE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE beginTime/START_TIME endTIme/END_TIME place/PLACE`
+Format: `addTutorial modCode/MODULE_CODE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE beginTime/START_TIME endTime/END_TIME place/PLACE`
 
 [TIP]
 A tutorial is distinguished by its module and name. Only one session is allowed per tutorial.
