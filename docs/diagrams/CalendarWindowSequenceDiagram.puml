@@ -5,7 +5,6 @@ box Ui UI_COLOR_T2
 participant ":MainWindow" as MainWindow UI_COLOR
 participant ":CalendarWindow" as CalendarWindow UI_COLOR
 participant ":CalendarDay" as CalendarDay UI_COLOR
-participant ":CommandResult" as CommandResult UI_COLOR
 end box
 
 [-> MainWindow : new MainWindow(primaryStage, logic)
