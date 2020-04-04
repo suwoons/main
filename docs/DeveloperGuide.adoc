@@ -168,7 +168,7 @@ The `beginDateTime` and `endDateTime` attributes are represented using Java's `L
 
 The `XYZConsultCommand` class represent classes that extend the abstract class `Command` and allows the TA to add, edit, delete, view and clear consultations added to TAble. These `XYZConsultCommandS` are created by the respective `XYZConsultCommandParserS`.
 
-A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `ConsultS`. When a `consult` is added to the ConsultTAble, there will first be a check that the `consult` does not already exist in the `UniqueConsultList`.
+A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `ConsultS`. When a `Consult` is added to the ConsultTAble, there will first be a check that the `Consult` does not already exist in the `UniqueConsultList`.
 
 Given the class diagram and the understanding of how the `Consult` class interacts with other classes, let us examine how an `addConsult` command behaves, by using the following activity diagram of the system.
 
@@ -237,9 +237,49 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 |===
 
 Reason for choosing Alternative 1:  We believe that automatically sorting the consult list provides  a better user experience as the user can immediately see the upcoming consults in the panel, without having to type a sort command.
-
 // end::consult[]
 
+// tag::module[]
+=== Module feature
+*TAble* allows NUS SoC teaching assistants to track and record all modules that they are teaching. Users can leave notes on the modules that they are teaching and store a list of links for the module that are useful for reference.
+
+==== Implementation
+A module can be stored as a Mod object in TAble (renamed due to naming restrictions on Java keywords). The main components are the module code, which is used to identify unique modules, and module name. Mod can also store the user's notes of the module through its description parameter, as well as a set of module links which are relevant to the course.
+
+.Class diagram of 'Mod' feature, displaying only directly related classes
+image::ModClassDiagram.png[]
+
+The following sequence diagram shows how notes of a module can be updated with the `noteMod` command.
+
+.Sequence diagram of updating Mod notes
+image::NoteModSequenceDiagram.png[]
+
+Module links are stored as ModLink objects in TAble. The collection of ModLinks are stored as `List<Pair<String, ModLink>>` since each module link can be described differently. This allows for more flexibility in naming the module links, rather than solely using an index based notation, and ensures that the order of addition into the collection is maintained. The activity diagram of adding module links is shown below.
+
+.Activity diagram of adding ModLinks to Mod
+image::AddModLinkActivityDiagram.png[]
+
+==== Design Considerations
+
+===== ModLink behaviour
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1: (Current Choice)* Copy link into user's clipboard
+|*Alternative 2 :* Open a new browser page
+
+|*Pros*
+|Allows for easier access and sharing of link.
+|Fast access to module's weblink by directly opening a browser.
+
+|*Cons*
+| User needs to open a browser before accessing link.
+| Very distracting when opening link, as focus changes from TAble to browser unexpectedly (depending on when browser loads).
+|===
+
+Reason for choosing Alternative 1: On a user design perspective, it is less jarring to copy link into the user's clipboard, since the user can choose when they want to access the link and have the flexibility to share the link to others. Additionally, opening a new browser page requires more complicated code that depends on another program.
+
+// end::module[]
 
 // tag::tutorial[]
 
@@ -290,47 +330,6 @@ If successful, the updated information is then saved.
 
 // end::tutorial[]
 
-// tag::module[]
-=== Module feature
-*TAble* allows NUS SoC teaching assistants to track and record all modules that they are teaching. Users can leave notes on the modules that they are teaching and store a list of links for the module that are useful for reference.
-
-==== Implementation
-A module can be stored as a Mod object in TAble (renamed due to naming restrictions on Java keywords). The main components are the module code, which is used to identify unique modules, and module name. Mod can also store the user's notes of the module through its description parameter, as well as a set of module links which are relevant to the course.
-
-.Class diagram of 'Mod' feature, displaying only directly related classes
-image::ModClassDiagram.png[]
-
-The following sequence diagram shows how notes of a module can be updated with the `noteMod` command.
-
-.Sequence diagram of updating Mod notes
-image::NoteModSequenceDiagram.png[]
-
-Module links are stored as ModLink objects in TAble. The collection of ModLinks are stored as `List<Pair<String, ModLink>>` since each module link can be described differently. This allows for more flexibility in naming the module links, rather than solely using an index based notation, and ensures that the order of addition into the collection is maintained. The activity diagram of adding module links is shown below.
-
-.Activity diagram of adding ModLinks to Mod
-image::AddModLinkActivityDiagram.png[]
-
-==== Design Considerations
-
-===== ModLink behaviour
-
-[width="100%", cols="1, 5, 5"]
-|===
-||*Alternative 1: (Current Choice)* Copy link into user's clipboard
-|*Alternative 2 :* Open a new browser page
-
-|*Pros*
-|Allows for easier access and sharing of link.
-|Fast access to module's weblink by directly opening a browser.
-
-|*Cons*
-| User needs to open a browser before accessing link.
-| Very distracting when opening link, as focus changes from TAble to browser unexpectedly (depending on when browser loads).
-|===
-
-Reason for choosing Alternative 1: On a user design perspective, it is less jarring to copy link into the user's clipboard, since the user can choose when they want to access the link and have the flexibility to share the link to others. Additionally, opening a new browser page requires more complicated code that depends on another program.
-
-// end::module[]
 
 // tag::reminder[]
 === Reminder feature
@@ -399,64 +398,48 @@ Furthermore, they are hard to test due to their volatile nature and including th
 *TAble* allows NUS SoC teaching assistants to bring up a calendar view of all their upcoming consults, tutorials and reminders.
 
 ==== Implementation
-The key command which users can call is the `calendar` command.
+The key command which users can call is the `viewCalendar` command.
 
-The following sequence diagram demonstrates how the `calendar` command works, as a `Calendar` window is displayed to the user.
+Most functions to display the calendar window are called within the `CalendarWindow` class, as it is the main class that drives the calendar view.
+The `CalendarWindow` class extends `UiPart<Stage>`, and represents the calendar using a `GridPane` as the skeleton of the calendar, with individual dates being populated by a `CalendarDay` class which extends `UiPart<Region>`.
+The `CalendarDay` has a `StackPane` that displays the number of `ConsultS`, `TutorialS` and `ReminderS` each day.
 
-.Sequence diagram of 'viewCalendar' command
-image::ConsultsCommandClassDiagram.png[]
+The following sequence diagram demonstrates how the Calendar is initialised, each time the TAble app is set up.
 
-A consultation slot is represented by the `Consult` class which contains 5 key attributes, the `beginDateTime`, `endDateTime`, `location`, `studentMatricNumber` and `studentName`.
-The `beginDateTime` and `endDateTime` attributes are represented using Java's `LocalDateTime` class. The `studentMatricNumber` and `studentName` attributes are classes that belong to a certain `Student`. The `studentMatricNumber` is used to uniquely identify the `Student` involved in the consultation, while the studentName is used in the front end of the application, displayed to the TA.
+.Sequence diagram of creation of Calendar
+image::CalendarWindowSequenceDiagram.png[]
 
-The `XYZConsultCommand` class represent classes that extend the abstract class `Command` and allows the TA to add, edit, delete, view and clear consultations added to TAble. These `XYZConsultCommandS` are created by the respective `XYZConsultCommandParserS`.
+The above sequence diagram illustrates how the Calendar is initialised when the TAble app is start up. Thus, whenever the user inputs the `viewCalendar` command,
+this calendar window is brought up, similar to how the Help window is brought up as well. The calendar window brought up will show the calendar view of the current month and year.
 
-A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `ConsultS`. When a `consult` is added to the ConsultTAble, there will first be a check that the `consult` does not already exist in the `UniqueConsultList`.
+The calendar window also stores the `UniqueConsultList`, `UniqueTutorialList` and the `UniqueReminderList`. As seen in the sequence diagram above, the calendar window checks for the consults, tutorials and reminders in the 3 lists, to see if they are on a particular date.
+If they occur on that date, the `StackPane` in `CalendarDay` will be updated to reflect the corresponding number of consult, tutorial and reminders.
+As seen in the screenshot below, the number of reminders, tutorials and consults will not clash, as they take up the top, middle and bottom rows respectively.
 
-Given the class diagram and the understanding of how the `Consult` class interacts with other classes, let us examine how an `addConsult` command behaves, by using the following activity diagram of the system.
-
-.Activity diagram for the command addConsult in the `Consult` feature
-image::TutorialMarkPresentActivityDiagram.png[]
-
-The workflow above shows how a `Consult` is added and the various checks that occurs at the different points throughout the workflow.
+.Screenshot of how the number of reminders, tutorials and consults are displayed on the same day
+image::CalendarReminderTutConsult.png[]
 
 ==== Design Considerations
 
-===== Length of command prefixes (For all features)
+===== Displaying calendar as a separate window
 
 [width="100%", cols="1, 5, 5"]
 |===
-||*Alternative 1 (Current Choice):* Make the prefixes of the command descriptive, such as `student/`.
-|*Alternative 2 :* Make the prefixes of the commands short, by using the first few letters of the command word, such as `s/` for students.
+||*Alternative 1 (Current Choice):* Displaying the calendar view as a separate window.
+|*Alternative 2 :* Having a calendar view permanently by the side of TAble.
 
 |*Pros*
-|It is more clear and intuitive for the user to type in the full prefix.
-|It is easier for the user to type in shorter command prefixes, so that it is less tedious to input the commands.
+|It is clearer and less visually clunky for the user, as information overload is prevented.
+|It is more intuitive, as the user can always view the calendar at the side for his upcoming schedules.
 
 |*Cons*
-|Lower user experience as the user has to type in longer commands to use the TAble application.
-|It may be confusing for the user, as certain command prefixes may share similar initials, such as `tags` and `time`.
+|Lower user experience as the user has to type in a command to view the calendar.
+|The UI may be too cluttered as there are already alot of information being displayed currently.
 |===
 
-Reason for choosing Alternative 1:  We believe that the user experience will be better when using more descriptive command prefixes, as the user will not be required to constantly check on the user guide since the command prefixes are intuitive.
-
-===== Consult storing Matric Number and Name
-
-[width="100%", cols="1, 5, 5"]
-|===
-||*Alternative 1 (Current Choice):* Make the consult store the matric number and name of the student that is attending the consult.
-|*Alternative 2 :* Make the consult store the entire Student class that is attending the consult.
-
-|*Pros*
-|It is easier to implement and coupling will be reduced as `Student` will not be directly related to the `consult` class.
-|It is easier to visualise as the entire `Student` related to the `consult` will be stored.
-
-|*Cons*
-|It is not as intuitive as currently, the `Consult` class only stores certain attributes of the `Student` that is attending the `consult`.
-|It will be harder to test due to the high degree of coupling.
-|===
-
-Reason for choosing Alternative 1: Due to the time constraint of this project, our group has decided to choose alternative 1, as it not only reduces coupling, but is sufficient for us to uniquely identify the `Student` participating in the `consult` as the `MatricNumber` would be unique.
+Reason for choosing Alternative 1:  We believe that our current implementation of the UI has all of TAble's core features, and the calendar view can and should
+be implemented as a separate window to prevent visual clutter. The command to view the calendar window command is also short and intuitive to remember, thus the user experience
+would likely not be significantly affected.
 
 // end::calendar[]
 

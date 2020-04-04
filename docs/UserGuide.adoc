@@ -41,6 +41,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Refer to <<Features>> for details of each command.
 
 . Example of the Tutorial and Consult panels.
+[NOTE]
+The consults that are overdue will appear in red to highlight that these consults are ready to be deleted!
 
 +
 image::TutConsult.png[width="750"]
@@ -64,7 +66,7 @@ image::CalendarWindow.png[width="750"]
 *Command Format*
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `addStudent name/NAME`, `NAME` is a parameter which can be used as `addStudent name/John Doe`.
-* Items in square brackets are optional e.g `name/NAME [t/TAG]` can be used as `name/John Doe tag/friend` or as `name/John Doe`.
+* Items in square brackets are optional e.g `name/NAME [tag/TAG]` can be used as `name/John Doe tag/friend` or as `name/John Doe`.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `[tag/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
 * Parameters can be in any order e.g. if the command specifies `name/NAME email/EMAIL`, `email/EMAIL name/NAME` is also acceptable.
 ====
@@ -184,94 +186,123 @@ Deletes the 1st student in the results of the `find` command.
 
 // end::delete[]
 
-// tag::Consult[]
+//tag::Module[]
+=== Module Feature
+==== Add Module into database: `addMod`
+Adds a module into TAble.
 
-=== Consults Feature
 [NOTE]
-The consults that are overdue will appear in red to highlight that these consults are ready to be deleted!
+Due to naming restrictions in java, all code references to modules are named Mod instead of Module.
 
-==== Adding a consult: `addConsult`
-
-Add a consultation slot at the given time, date and place. +
-Format: `addConsult student/STUDENT_INDEX beginDateTime/BEGIN_DATE_TIME endDateTime/END_DATE_TIME place/PLACE`
+Format: `addMod modCode/MODULE_CODE modName/MODULE_NAME`
 
 ****
-* The 'STUDENT_INDEX' should be referred to by the index as referred to in the student list
-* The begin and end date time provided must be in the yyyy-MM-dd HH:mm format
-* The location provided should be any valid string i.e, must be alphanumeric
-* The consult must be held within the same day, thus the begin and end DateTime objects should have the same date.
+* The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`. It should be prefixed by at most three characters, then four numbers, and finally no more than two characters as suffix.
+* The module name provided should be any valid string.
+
 ****
 
 Example:
 
-* `addConsult student/1 beginDateTime/2020-03-03 10:00 endDateTime/2020-03-03 12:00 place/Deck`
+* `addMod modCode/CS1010S modName/Programming Methodology`
 
-==== Editing a consult: `editConsult`
-
-Edit the time, date or place of an existing consultation slot. +
-Format: `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]`
+==== Delete Module from database: `deleteMod`
+Deletes a module from TAble. +
+Format: `deleteMod modCode/MODULE_CODE`
 
 ****
-* Edits the consult at the specified `INDEX`. The index refers to the index number shown in the displayed consultation list. The index *must be a positive integer* 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* Note that one cannot edit the student involved in the consult, as it is unlikely that the TA will need to change the student at that consult timing.
+* The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`. It should be prefixed by at most three characters, then four numbers, and finally no more than two characters as suffix.
+* The module code should correspond to an existing module in the database.
 ****
 
 Example:
 
-* `editConsult 1 beginDateTime/2020-03-03 15:00` +
-Edits the beginning time of the 1st consult to be at 2020-03-03, 15:00 hours i.e 3.00 p.m.
-* `editConsult 2 place/SR3` +
-Edits the place of the 2nd consult to be at SR3.
+* `addModule modCode/CS1010S modName/Programming Methodology`
 
-==== Listing all consults : `listConsult`
-
-Shows a list of all consultations in TAble. +
-Format: `listConsult`
-
-==== Deleting a consult: `deleteConsult`
-
-Removes an existing consultation slot. +
-Format: `deleteConsult INDEX`
+==== Edit Module note: `noteMod`
+Edits corresponding note of module. +
+Format: `noteMod modCode/MODULE_CODE modNote/NOTE`
 
 ****
-* Deletes the consultation at the specified `INDEX`.
-* The index refers to the index number shown in the displayed consultation list.
-* The index *must be a positive integer* 1, 2, 3, ...
+* The module code should correspond to an existing module in the database.
+* The note provided should be any valid string, and replaces the current note of the module.
 ****
 
 Example:
 
-* `listConsult` +
-`deleteConsult 2` +
-Deletes the 2nd consultation in TAble.
+* `noteModule modCode/CS1010S modNote/How cool is that?` +
+When viewing the module info for CS1010S, the note will be updated to show "How cool is that?"
 
-==== Clearing all consults : `clearConsults`
-
-Clears all consultations slots in TAble. +
-Format: `clearConsults`
-
-==== Locating consultations by date or place: `findConsult` [coming in v2.0]
-
-Finds consultations whose date or place match any of the given keywords. +
-Format: `findConsult [DATE] [PLACE]`
+==== Add link to module with appropriate name: `addModLink`
+Edit module to include links to appropriate websites (e.g. Google Drive Folder, Module Website etc.) +
+Format: `addModLink modCode/MODULE_CODE modLink/LINK modLinkName/NAME`
 
 ****
-* At least one of the optional fields must be provided
-* If both optional fields are provided, only consults that meet both criterion will be returned
-* The search is case insensitive. e.g `SR1` will match `sr1`
-* The order of the keywords matters. e.g. `find SR1 03-03-2020` will throw an error
+* The module code should correspond to an existing module in the database.
+* The module link should correspond to a valid URL format (protocol optional). Hence the first character should be alphanumeric, followed by any character in the set [-a-zA-Z0-9+&@\#/%?=~\_|!:,.;], and end with [-a-zA-Z0-9+&@#/%=~_|].
+* The tag provided should be any valid string.
 ****
 
-Examples:
+Example:
 
-* `findConsult 03-03-2020` +
-Returns all consults on 03-03-2020
-* `findConsult SR3` +
-Returns any consults that are held at SR3
-// end::Consult[]
+* `addModLink modCode/CS1231` +
+When viewing the module page for CS1231, there will be an additional label with "Module Website" and points to https://comp.nus.edu.sg/~cs1231.
 
+
+==== Clear all module links from module in database: `clearModLink`
+Removes all module links from a module in TAble. +
+Format: `clearModLink modCode/MODULE_CODE`
+
+****
+* The module code should correspond to an existing module in the database.
+****
+
+Example:
+
+* `clearModLink modCode/CS1231` +
+When viewing the module page for CS1231, there will not be any module links shown.
+
+==== Copy Module Link into Clipboard: `copyModLink`
+Copies a module link from the links currently associated with a module. Index corresponding to module link can be seen when viewing the module info using `viewModInfo`.
+
+Format: `copyModLink INDEX modCode/MODULE_CODE`
+
+****
+* The module code should correspond to an existing module in the database.
+* The index should correspond to a valid index in the module links.
+****
+
+Example:
+
+* `copyModLink 1 modCode/CS1231` +
+The module website for CS1231 is copied into the user's clipboard.
+
+==== View Module: `viewModInfo`
+Opens the view for the selected module to view module description, links and (coming in v2.0) lecture timeslots.
+
+Format: `viewModInfo modCode/MODULE_CODE`
+
+****
+* The module code should correspond to an existing module in the database.
+****
+
+==== Add lecture timeslot: `addModLecture` [coming in v2.0]
+Adds lecture timeslot to module. This is to be included to integrate with the consultation finding feature. +
+Format: `addModLecture modCode/MODULE_CODE d/DAY from/TIME to/TIME p/LOCATION`
+
+Example:
+
+* `addModLecture modCode/CS1010S d/WED from/1400 to/1600 p/LT27`
+
+==== Clear all lecture timeslots: `clearModLecture` [coming in v2.0]
+Clears all lectures associated with a certain module. +
+Format: `clearModLecture modCode/MODULE_CODE`
+
+Example:
+
+* `clearModLecture modCode/CS1010S`
+
+//end::Module[]
 
 // tag::Tutorial[]
 === Tutorials Feature
@@ -284,19 +315,21 @@ Format: `listTutorial`
 ==== Add a tutorial slot: `addTutorial`
 
 Add a tutorial slot for a particular module at the given time, day and place. +
-Format: `addTutorial modCode/MODULE_CODE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE beginTime/START_TIME endTIme/END_TIME place/PLACE`
+Format: `addTutorial modCode/MODULE_CODE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE beginTime/START_TIME endTime/END_TIME place/PLACE`
 
 [TIP]
 A tutorial is distinguished by its module and name. Only one session is allowed per tutorial.
 If you wish to have a tutorial with multiple slots per week, you may use unique tutorial names (eg. T02A and T02B).
 
+[TIP]
+The module for `addTutorial` MODULE_CODE should already exist in TAble before adding the desired `Tutorial`
 ****
 * The tutorial name provided is capped at 8 alphanumeric characters.
 * The time provided must be in HH:MM format, i.e: 24-hour format
 * The day provided is the value of the weekday (ie. MONDAY = 1, TUESDAY = 2, ... SUNDAY = 7)
 * The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`
 * The module with the referenced module code should already be present in TAble
-* The place provided should be any valid string
+* The place provided can be any valid string
 * Note that you are not allowed to add tutorials with clashing times (ie. periods overlap)
 ****
 
@@ -471,123 +504,93 @@ Example:
 * `exportAttendance tutorialIndex/1 csvFilePath/./data/attendance.csv`
 //end::ExportTutorialAttendance[]
 
-//tag::Module[]
-=== Module Feature
-==== Add Module into database: `addMod`
-Adds a module into TAble.
-
+// tag::Consult[]
+=== Consults Feature
 [NOTE]
-Due to naming restrictions in java, all code references to modules are named Mod instead of Module.
+The consults that are overdue will appear in red to highlight that these consults are ready to be deleted!
 
-Format: `addMod modCode/MODULE_CODE modName/MODULE_NAME`
+==== Adding a consult: `addConsult`
 
-****
-* The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`. It should be prefixed by at most three characters, then four numbers, and finally no more than two characters as suffix.
-* The module name provided should be any valid string.
-
-****
-
-Example:
-
-* `addModule modCode/CS1010S modName/Programming Methodology`
-
-==== Delete Module from database: `deleteMod`
-Deletes a module from TAble. +
-Format: `deleteMod modCode/MODULE_CODE`
+Add a consultation slot at the given time, date and place. +
+Format: `addConsult student/STUDENT_INDEX beginDateTime/BEGIN_DATE_TIME endDateTime/END_DATE_TIME place/PLACE`
 
 ****
-* The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`. It should be prefixed by at most three characters, then four numbers, and finally no more than two characters as suffix.
-* The module code should correspond to an existing module in the database.
+* The 'STUDENT_INDEX' should be referred to by the index as referred to in the student list
+* The begin and end date time provided must be in the yyyy-MM-dd HH:mm format
+* The location provided should be any valid string i.e, must be alphanumeric
+* The consult must be held within the same day, thus the begin and end DateTime objects should have the same date.
 ****
 
 Example:
 
-* `addModule modCode/CS1010S modName/Programming Methodology`
+* `addConsult student/1 beginDateTime/2020-03-03 10:00 endDateTime/2020-03-03 12:00 place/Deck`
 
-==== Edit Module note: `noteMod`
-Edits corresponding note of module. +
-Format: `noteMod modCode/MODULE_CODE modNote/NOTE`
+==== Editing a consult: `editConsult`
 
-****
-* The module code should correspond to an existing module in the database.
-* The note provided should be any valid string, and replaces the current note of the module.
-****
-
-Example:
-
-* `noteModule modCode/CS1010S modNote/How cool is that?` +
-When viewing the module info for CS1010S, the note will be updated to show "How cool is that?"
-
-==== Add link to module with appropriate name: `addModLink`
-Edit module to include links to appropriate websites (e.g. Google Drive Folder, Module Website etc.) +
-Format: `addModLink modCode/MODULE_CODE modLink/LINK modLinkName/NAME`
+Edit the time, date or place of an existing consultation slot. +
+Format: `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]`
 
 ****
-* The module code should correspond to an existing module in the database.
-* The module link should correspond to a valid URL format (protocol optional). Hence the first character should be alphanumeric, followed by any character in the set [-a-zA-Z0-9+&@\#/%?=~\_|!:,.;], and end with [-a-zA-Z0-9+&@#/%=~_|].
-* The tag provided should be any valid string.
+* Edits the consult at the specified `INDEX`. The index refers to the index number shown in the displayed consultation list. The index *must be a positive integer* 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* Note that one cannot edit the student involved in the consult, as it is unlikely that the TA will need to change the student at that consult timing.
 ****
 
 Example:
 
-* `addModLink modCode/CS1231` +
-When viewing the module page for CS1231, there will be an additional label with "Module Website" and points to https://comp.nus.edu.sg/~cs1231.
+* `editConsult 1 beginDateTime/2020-03-03 15:00` +
+Edits the beginning time of the 1st consult to be at 2020-03-03, 15:00 hours i.e 3.00 p.m.
+* `editConsult 2 place/SR3` +
+Edits the place of the 2nd consult to be at SR3.
 
+==== Listing all consults : `listConsult`
 
-==== Clear all module links from module in database: `clearModLink`
-Removes all module links from a module in TAble. +
-Format: `deleteMod modCode/MODULE_CODE`
+Shows a list of all consultations in TAble. +
+Format: `listConsult`
 
-****
-* The module code should correspond to an existing module in the database.
-****
+==== Deleting a consult: `deleteConsult`
 
-Example:
-
-* `clearModLink modCode/CS1231` +
-When viewing the module page for CS1231, there will not be any module links shown.
-
-==== Copy Module Link into Clipboard: `copyModLink`
-Copies a module link from the links currently associated with a module. Index corresponding to module link can be seen when viewing the module info using `viewModInfo`.
-
-Format: `copyModLink INDEX modCode/MODULE_CODE`
+Removes an existing consultation slot. +
+Format: `deleteConsult INDEX`
 
 ****
-* The module code should correspond to an existing module in the database.
-* The index should correspond to a valid index in the module links.
+* Deletes the consultation at the specified `INDEX`.
+* The index refers to the index number shown in the displayed consultation list.
+* The index *must be a positive integer* 1, 2, 3, ...
 ****
 
 Example:
 
-* `copyModLink 1 modCode/CS1231` +
-The module website for CS1231 is copied into the user's clipboard.
+* `listConsult` +
+`deleteConsult 2` +
+Deletes the 2nd consultation in TAble.
 
-==== View Module: `viewModInfo`
-Opens the view for the selected module to view module description, links and (coming in v2.0) lecture timeslots.
+==== Clearing all consults : `clearConsults`
 
-Format: `viewModInfo modCode/MODULE_CODE`
+Clears all consultations slots in TAble. +
+Format: `clearConsults`
+
+==== Locating consultations by date or place: `findConsult` [coming in v2.0]
+
+Finds consultations whose date or place match any of the given keywords. +
+Format: `findConsult [DATE] [PLACE]`
 
 ****
-* The module code should correspond to an existing module in the database.
+* At least one of the optional fields must be provided
+* If both optional fields are provided, only consults that meet both criterion will be returned
+* The search is case insensitive. e.g `SR1` will match `sr1`
+* The order of the keywords matters. e.g. `find SR1 03-03-2020` will throw an error
 ****
 
-==== Add lecture timeslot: `addModLecture` [coming in v2.0]
-Adds lecture timeslot to module. This is to be included to integrate with the consultation finding feature. +
-Format: `addModLecture modCode/MODULE_CODE d/DAY from/TIME to/TIME p/LOCATION`
+Examples:
 
-Example:
+* `findConsult 03-03-2020` +
+Returns all consults on 03-03-2020
+* `findConsult SR3` +
+Returns any consults that are held at SR3
+// end::Consult[]
 
-* `addModLecture modCode/CS1010S d/WED from/1400 to/1600 p/LT27`
-
-==== Clear all lecture timeslots: `clearModLecture` [coming in v2.0]
-Clears all lectures associated with a certain module. +
-Format: `clearModLecture modCode/MODULE_CODE`
-
-Example:
-
-* `clearModLecture modCode/CS1010S`
-
-//end::Module[]
 
 // tag::Reminder[]
 === Reminder Feature
@@ -754,8 +757,8 @@ There is no need to save manually.
 === Student
 * *Add* : `addStudent name/NAME matric/MATRIC_NUMBER email/EMAIL [tag/TAG]...` +
 e.g. `addStudent name/James Tan matric/A0123456X email/jamesho@example.com tag/friend tag/colleague`
-* *Clear* : `clear`
-e.g. `clear`
+* *Clear* : `clearStudent`
+e.g. `clearStudent`
 * *Delete* : `deleteStudent INDEX` +
 e.g. `deleteStudent 3`
 * *Edit* : `editStudent INDEX [name/NAME] [matric/MATRIC_NUMBER] [email/EMAIL] [t/TAG]...` +
@@ -766,15 +769,20 @@ e.g. `findStudent James Jake`
 e.g. `findStudentMatricNumber matric/A0123456A`
 * *List* : `listStudent`
 
-=== Consult
-* *Add* : `addConsult student/STUDENT_INDEX beginDateTime/BEGIN_DATE_TIME endDateTime/END_DATE_TIME place/PLACE` +
-e.g. `addConsult student/1 beginDateTime/2020-03-03 10:00 endDateTime/2020-03-03 12:00 place/Deck`
-* *Clear* : `clearConsult`
-* *Delete* : `deleteConsult INDEX` +
-e.g. `deleteConsult 3`
-* *Edit* : `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]` +
-e.g `editConsult 3 place/The Deck`
-* *List* : `listConsult`
+=== Module
+* *Add* : `addMod modCode/MODULE_CODE modName/MODULE_NAME` +
+e.g. `addMod modCode/CS2103 modName/Software Engineering`
+* *Delete* : `deleteMod modCode/MODULE_CODE` +
+e.g. `deleteMod modCode/CS2103`
+* *Edit module Note* : `noteMod modCode/MODULE_CODE modNote/MODULE_NOTE` +
+e.g. `noteMod modCode/CS2103 modNote/SWE is fun!`
+* *Add module website link* : `addModLink modCode/MODULE_CODE modLink/MODULE_LINK modLinkName/MODULE_LINK_NAME` +
+e.g. `addModLink modCode/CS2103 modLink/comp.nus.edu.sg/~cs2103 modLinkName/Module Website`
+* *Clear all module links* : `clearModLink modCode/MODULE_CODE`
+* *View module info* : `viewModInfo modCode/MODULE_CODE`
+* *Copy module link into clipboard* : `copyModLink INDEX modCode/MODULE_CODE` +
+e.g. `copyModLink 1 modCode/CS2013`
+* *List Mods* : `listMod`
 
 === Tutorial
 * *Add* : `addTutorial modCode/MODULE_CODE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE beginTime/START_TIME endTime/END_TIME place/PLACE` +
@@ -797,20 +805,15 @@ e.g. `copyTutorialEmails tutorialIndex/3`
 * *Export attendance to CSV file* : `exportAttendance tutorialIndex/INDEX csvFilePath/CSV_FILEPATH` +
 e.g. `exportAttendance tutorialIndex/1 csvFilePath/./data/attendance.csv`
 
-=== Module
-* *Add* : `addMod modCode/MODULE_CODE modName/MODULE_NAME` +
-e.g. `addMod modCode/CS2103 modName/Software Engineering`
-* *Delete* : `deleteMod modCode/MODULE_CODE` +
-e.g. `deleteMod modCode/CS2103`
-* *Edit module Note* : `noteMod modCode/MODULE_CODE modNote/MODULE_NOTE` +
-e.g. `noteMod modCode/CS2103 modNote/SWE is fun!`
-* *Add module website link* : `addModLink modCode/MODULE_CODE modLink/MODULE_LINK modLinkName/MODULE_LINK_NAME` +
-e.g. `addModLink modCode/CS2103 modLink/comp.nus.edu.sg/~cs2103 modLinkName/Module Website`
-* *Clear all module links* : `clearModLink modCode/MODULE_CODE`
-* *View module info* : `viewModInfo modCode/MODULE_CODE`
-* *Copy module link into clipboard* : `copyModLink INDEX modCode/MODULE_CODE` +
-e.g. `copyModLink 1 modCode/CS2013`
-* *List Mods* : `listMod`
+=== Consult
+* *Add* : `addConsult student/STUDENT_INDEX beginDateTime/BEGIN_DATE_TIME endDateTime/END_DATE_TIME place/PLACE` +
+e.g. `addConsult student/1 beginDateTime/2020-03-03 10:00 endDateTime/2020-03-03 12:00 place/Deck`
+* *Clear* : `clearConsult`
+* *Delete* : `deleteConsult INDEX` +
+e.g. `deleteConsult 3`
+* *Edit* : `editConsult INDEX [beginDateTime/BEGINDATETIME] [endDateTime/ENDDATETIME] [place/PLACE]` +
+e.g `editConsult 3 place/The Deck`
+* *List* : `listConsult`
 
 === Reminder
 * *Add* : `addReminder desc/DESCRIPTION date/DATE time/TIME` +
@@ -828,7 +831,7 @@ e.g `findReminder desc/midterms date/2020-03-15`
 * *List* : `listReminder`
 
 === Calendar
-* *View Calendar* : `calendar`
+* *View Calendar* : `viewCalendar`
 * *Close Calendar*: `closeCalendar`
 
 * *Help* : `help`
