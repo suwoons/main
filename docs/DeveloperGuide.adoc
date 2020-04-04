@@ -153,92 +153,6 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-// tag::consult[]
-=== Consult feature
-*TAble* allows NUS SoC teaching assistants to track and record all their consultations scheduled with their students.
-
-==== Implementation
-A `Consult` class stores all of the relevant information of consults. The class diagram below shows how all the different components interact to allow the consult feature to function. Note that the XYZConsultCommand and XYZConsultCommandParser refers to all Consult related commands like add, edit, delete etc.
-
-.Class diagram of 'Consults' feature
-image::ConsultsCommandClassDiagram.png[]
-
-A consultation slot is represented by the `Consult` class which contains 5 key attributes, the `beginDateTime`, `endDateTime`, `location`, `studentMatricNumber` and `studentName`.
-The `beginDateTime` and `endDateTime` attributes are represented using Java's `LocalDateTime` class. The `studentMatricNumber` and `studentName` attributes are classes that belong to a certain `Student`. The `studentMatricNumber` is used to uniquely identify the `Student` involved in the consultation, while the studentName is used in the front end of the application, displayed to the TA.
-
-The `XYZConsultCommand` class represent classes that extend the abstract class `Command` and allows the TA to add, edit, delete, view and clear consultations added to TAble. These `XYZConsultCommandS` are created by the respective `XYZConsultCommandParserS`.
-
-A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `ConsultS`. When a `Consult` is added to the ConsultTAble, there will first be a check that the `Consult` does not already exist in the `UniqueConsultList`.
-
-Given the class diagram and the understanding of how the `Consult` class interacts with other classes, let us examine how an `addConsult` command behaves, by using the following activity diagram of the system.
-
-.Activity diagram for the command addConsult in the `Consult` feature
-image::AddConsultActivityDiagram.png[]
-
-The workflow above shows how a `Consult` is added and the various checks that occurs at the different points throughout the workflow.
-
-To summarize the above activity diagram, there are 5 key checks which TAble checks for when the user is adding a `consult`. Firstly, TAble checks if all 4 prefixes are present in the command.
-Then, TAble checks if all prefixes present are formatted correctly. Following which, TAble will check if each of the data passed for the prefixes are in the right format. Firstly, it checks if
-the `Student` index provided is within the range of the `Student` list. Then, it checks if the timing and `Location` provided are in the correct format. Lastly, and most importantly, it checks if the
-`Consult` timing provided clashes with other existing `Consult` timings.
-
-==== Design Considerations
-
-===== Length of command prefixes (For all features)
-
-[width="100%", cols="1, 5, 5"]
-|===
-||*Alternative 1 (Current Choice):* Make the prefixes of the command descriptive, such as `student/`.
-|*Alternative 2 :* Make the prefixes of the commands short, by using the first few letters of the command word, such as `s/` for students.
-
-|*Pros*
-|It is more clear and intuitive for the user to type in the full prefix.
-|It is easier for the user to type in shorter command prefixes, so that it is less tedious to input the commands.
-
-|*Cons*
-|Lower user experience as the user has to type in longer commands to use the TAble application.
-|It may be confusing for the user, as certain command prefixes may share similar initials, such as `tags` and `time`.
-|===
-
-Reason for choosing Alternative 1:  We believe that the user experience will be better when using more descriptive command prefixes, as the user will not be required to constantly check on the user guide since the command prefixes are intuitive.
-
-===== Consult storing Matric Number and Name
-
-[width="100%", cols="1, 5, 5"]
-|===
-||*Alternative 1 (Current Choice):* Make the consult store the matric number and name of the student that is attending the consult.
-|*Alternative 2 :* Make the consult store the entire Student class that is attending the consult.
-
-|*Pros*
-|It is easier to implement and coupling will be reduced as `Student` will not be directly related to the `consult` class.
-|It is easier to visualise as the entire `Student` related to the `consult` will be stored.
-
-|*Cons*
-|It is not as intuitive as currently, the `Consult` class only stores certain attributes of the `Student` that is attending the `consult`.
-|It will be harder to test due to the high degree of coupling.
-|===
-
-Reason for choosing Alternative 1: Due to the time constraint of this project, our group has decided to choose alternative 1, as it not only reduces coupling, but is sufficient for us to uniquely identify the `Student` participating in the `consult` as the `MatricNumber` would be unique.
-
-===== Sorting the consults
-
-[width="100%", cols="1, 5, 5"]
-|===
-||*Alternative 1 (Current Choice):* Automatically sorts the consult list by the time of the consult, whenever a consult is added
-|*Alternative 2 :* Sorts the consult list only when user enters a sort command
-
-|*Pros*
-|It is intuitive for the consult list to be sorted according to their date and time.
-|User can decide how they want the list to be sorted (e.g. by alphabetical order for location).
-
-|*Cons*
-|User are not able to sort the list according to their preferences.
-|User have to type the sort command each time a new consult is added.
-|===
-
-Reason for choosing Alternative 1:  We believe that automatically sorting the consult list provides  a better user experience as the user can immediately see the upcoming consults in the panel, without having to type a sort command.
-// end::consult[]
-
 // tag::module[]
 === Module feature
 *TAble* allows NUS SoC teaching assistants to track and record all modules that they are teaching. Users can leave notes on the modules that they are teaching and store a list of links for the module that are useful for reference.
@@ -260,6 +174,24 @@ Module links are stored as ModLink objects in TAble. The collection of ModLinks 
 image::AddModLinkActivityDiagram.png[]
 
 ==== Design Considerations
+
+===== Unable to delete module with associated tutorials
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1: (Current Choice)* Disable deletion of module with associated tutorials
+|*Alternative 2 :* Delete module together with its associated tutorials
+
+|*Pros*
+|Informs user if there are any dependencies between module to be deleted and tutorials in TAble.
+|Fast deletion of module and related objects.
+
+|*Cons*
+|User needs to individually delete associated tutorials before module can be deleted.
+|Information in TAble will be lost easily as user may not be aware of such an association. As there is no undo command, it will not be easy to undo this command and revert TAble to its original state.
+|===
+
+Reason for choosing Alternative 1: On a user design perspective, it is not advisable to delete all objects associated with module, as the user may be unaware of these associated objects. By individually confirming the objects to be deleted, the user is made more aware of any information that they may want to export or save first before deleting said information.
 
 ===== ModLink behaviour
 
@@ -330,6 +262,73 @@ If successful, the updated information is then saved.
 
 // end::tutorial[]
 
+// tag::consult[]
+=== Consult feature
+*TAble* allows NUS SoC teaching assistants to track and record all their consultations scheduled with their students.
+
+==== Implementation
+A `Consult` class stores all of the relevant information of consults. The class diagram below shows how all the different components interact to allow the consult feature to function. Note that the XYZConsultCommand and XYZConsultCommandParser refers to all Consult related commands like add, edit, delete etc.
+
+.Class diagram of 'Consults' feature
+image::ConsultsCommandClassDiagram.png[]
+
+A consultation slot is represented by the `Consult` class which contains 5 key attributes, the `beginDateTime`, `endDateTime`, `location`, `studentMatricNumber` and `studentName`.
+The `beginDateTime` and `endDateTime` attributes are represented using Java's `LocalDateTime` class. The `studentMatricNumber` and `studentName` attributes are classes that belong to a certain `Student`. The `studentMatricNumber` is used to uniquely identify the `Student` involved in the consultation, while the studentName is used in the front end of the application, displayed to the TA.
+
+The `XYZConsultCommand` class represent classes that extend the abstract class `Command` and allows the TA to add, edit, delete, view and clear consultations added to TAble. These `XYZConsultCommandS` are created by the respective `XYZConsultCommandParserS`.
+
+A `ConsultTAble` that has a `UniqueConsultList` stores and manages all `ConsultS`. When a `Consult` is added to the ConsultTAble, there will first be a check that the `Consult` does not already exist in the `UniqueConsultList`.
+
+Given the class diagram and the understanding of how the `Consult` class interacts with other classes, let us examine how an `addConsult` command behaves, by using the following activity diagram of the system.
+
+.Activity diagram for the command addConsult in the `Consult` feature
+image::AddConsultActivityDiagram.png[]
+
+The workflow above shows how a `Consult` is added and the various checks that occurs at the different points throughout the workflow.
+
+To summarize the above activity diagram, there are 5 key checks which TAble checks for when the user is adding a `consult`. Firstly, TAble checks if all 4 prefixes are present in the command.
+Then, TAble checks if all prefixes present are formatted correctly. Following which, TAble will check if each of the data passed for the prefixes are in the right format. Firstly, it checks if
+the `Student` index provided is within the range of the `Student` list. Then, it checks if the timing and `Location` provided are in the correct format. Lastly, and most importantly, it checks if the
+`Consult` timing provided clashes with other existing `Consult` timings.
+
+==== Design Considerations
+
+===== Consult storing Matric Number and Name
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1 (Current Choice):* Make the consult store the matric number and name of the student that is attending the consult.
+|*Alternative 2 :* Make the consult store the entire Student class that is attending the consult.
+
+|*Pros*
+|It is easier to implement and coupling will be reduced as `Student` will not be directly related to the `consult` class.
+|It is easier to visualise as the entire `Student` related to the `consult` will be stored.
+
+|*Cons*
+|It is not as intuitive as currently, the `Consult` class only stores certain attributes of the `Student` that is attending the `consult`.
+|It will be harder to test due to the high degree of coupling.
+|===
+
+Reason for choosing Alternative 1: Due to the time constraint of this project, our group has decided to choose alternative 1, as it not only reduces coupling, but is sufficient for us to uniquely identify the `Student` participating in the `consult` as the `MatricNumber` would be unique.
+
+===== Sorting the consults
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1 (Current Choice):* Automatically sorts the consult list by the time of the consult, whenever a consult is added
+|*Alternative 2 :* Sorts the consult list only when user enters a sort command
+
+|*Pros*
+|It is intuitive for the consult list to be sorted according to their date and time.
+|User can decide how they want the list to be sorted (e.g. by alphabetical order for location).
+
+|*Cons*
+|User are not able to sort the list according to their preferences.
+|User have to type the sort command each time a new consult is added.
+|===
+
+Reason for choosing Alternative 1:  We believe that automatically sorting the consult list provides  a better user experience as the user can immediately see the upcoming consults in the panel, without having to type a sort command.
+// end::consult[]
 
 // tag::reminder[]
 === Reminder feature
@@ -442,6 +441,26 @@ be implemented as a separate window to prevent visual clutter. The command to vi
 would likely not be significantly affected.
 
 // end::calendar[]
+
+=== Common Design Considerations
+
+==== Length of command prefixes (For all features)
+
+[width="100%", cols="1, 5, 5"]
+|===
+||*Alternative 1 (Current Choice):* Make the prefixes of the command descriptive, such as `student/`.
+|*Alternative 2 :* Make the prefixes of the commands short, by using the first few letters of the command word, such as `s/` for students.
+
+|*Pros*
+|It is more clear and intuitive for the user to type in the full prefix.
+|It is easier for the user to type in shorter command prefixes, so that it is less tedious to input the commands.
+
+|*Cons*
+|Lower user experience as the user has to type in longer commands to use the TAble application.
+|It may be confusing for the user, as certain command prefixes may share similar initials, such as `tags` and `time`.
+|===
+
+Reason for choosing Alternative 1:  We believe that the user experience will be better when using more descriptive command prefixes, as the user will not be required to constantly check on the user guide since the command prefixes are intuitive.
 
 === Logging
 

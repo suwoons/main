@@ -44,7 +44,7 @@ public class CopyModLinkCommandParser implements Parser<CopyModLinkCommand> {
                 CopyModLinkCommand.MESSAGE_USAGE));
         }
 
-        ModCode modCode = new ModCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
+        ModCode modCode = ParserUtil.parseModCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
         return new CopyModLinkCommand(index, modCode);
     }
 

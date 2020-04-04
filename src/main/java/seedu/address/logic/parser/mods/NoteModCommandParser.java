@@ -11,6 +11,7 @@ import seedu.address.logic.commands.mods.NoteModCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.mod.ModCode;
@@ -38,7 +39,7 @@ public class NoteModCommandParser implements Parser<NoteModCommand> {
                 NoteModCommand.MESSAGE_USAGE));
         }
 
-        ModCode modCode = new ModCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
+        ModCode modCode = ParserUtil.parseModCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
         String note = argMultimap.getValue(PREFIX_MODULE_NOTE).get();
 
         return new NoteModCommand(modCode, note);

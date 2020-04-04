@@ -197,7 +197,12 @@ Due to naming restrictions in java, all code references to modules are named Mod
 Format: `addMod modCode/MODULE_CODE modName/MODULE_NAME`
 
 ****
-* The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`. It should be prefixed by at most three characters, then four numbers, and finally no more than two characters as suffix.
+* The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`. +
+Module codes consist of three parts: Department Code, Number, then Subcode. They should adhere to the following constraints:
+1. The department code should only contain either two or three capital letters.
+2. This is followed by 4 numbers, with the first not being zero.
+3. The Subcode cannot be more than 2 capital letters long.
+
 * The module name provided should be any valid string.
 
 ****
@@ -213,6 +218,7 @@ Format: `deleteMod modCode/MODULE_CODE`
 ****
 * The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`. It should be prefixed by at most three characters, then four numbers, and finally no more than two characters as suffix.
 * The module code should correspond to an existing module in the database.
+* Modules cannot be deleted if there are tutorials associated with it in TAble (i.e. User cannot delete CS2103 if there are still tutorials with module code CS2103).
 ****
 
 Example:
