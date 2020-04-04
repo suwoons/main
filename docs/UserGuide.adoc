@@ -41,6 +41,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Refer to <<Features>> for details of each command.
 
 . Example of the Tutorial and Consult panels.
+[NOTE]
+The consults that are overdue will appear in red to highlight that these consults are ready to be deleted!
 
 +
 image::TutConsult.png[width="750"]
@@ -64,7 +66,7 @@ image::CalendarWindow.png[width="750"]
 *Command Format*
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `addStudent name/NAME`, `NAME` is a parameter which can be used as `addStudent name/John Doe`.
-* Items in square brackets are optional e.g `name/NAME [t/TAG]` can be used as `name/John Doe tag/friend` or as `name/John Doe`.
+* Items in square brackets are optional e.g `name/NAME [tag/TAG]` can be used as `name/John Doe tag/friend` or as `name/John Doe`.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `[tag/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
 * Parameters can be in any order e.g. if the command specifies `name/NAME email/EMAIL`, `email/EMAIL name/NAME` is also acceptable.
 ====
@@ -272,6 +274,123 @@ Returns all consults on 03-03-2020
 Returns any consults that are held at SR3
 // end::Consult[]
 
+//tag::Module[]
+=== Module Feature
+==== Add Module into database: `addMod`
+Adds a module into TAble.
+
+[NOTE]
+Due to naming restrictions in java, all code references to modules are named Mod instead of Module.
+
+Format: `addMod modCode/MODULE_CODE modName/MODULE_NAME`
+
+****
+* The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`. It should be prefixed by at most three characters, then four numbers, and finally no more than two characters as suffix.
+* The module name provided should be any valid string.
+
+****
+
+Example:
+
+* `addMod modCode/CS1010S modName/Programming Methodology`
+
+==== Delete Module from database: `deleteMod`
+Deletes a module from TAble. +
+Format: `deleteMod modCode/MODULE_CODE`
+
+****
+* The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`. It should be prefixed by at most three characters, then four numbers, and finally no more than two characters as suffix.
+* The module code should correspond to an existing module in the database.
+****
+
+Example:
+
+* `addModule modCode/CS1010S modName/Programming Methodology`
+
+==== Edit Module note: `noteMod`
+Edits corresponding note of module. +
+Format: `noteMod modCode/MODULE_CODE modNote/NOTE`
+
+****
+* The module code should correspond to an existing module in the database.
+* The note provided should be any valid string, and replaces the current note of the module.
+****
+
+Example:
+
+* `noteModule modCode/CS1010S modNote/How cool is that?` +
+When viewing the module info for CS1010S, the note will be updated to show "How cool is that?"
+
+==== Add link to module with appropriate name: `addModLink`
+Edit module to include links to appropriate websites (e.g. Google Drive Folder, Module Website etc.) +
+Format: `addModLink modCode/MODULE_CODE modLink/LINK modLinkName/NAME`
+
+****
+* The module code should correspond to an existing module in the database.
+* The module link should correspond to a valid URL format (protocol optional). Hence the first character should be alphanumeric, followed by any character in the set [-a-zA-Z0-9+&@\#/%?=~\_|!:,.;], and end with [-a-zA-Z0-9+&@#/%=~_|].
+* The tag provided should be any valid string.
+****
+
+Example:
+
+* `addModLink modCode/CS1231` +
+When viewing the module page for CS1231, there will be an additional label with "Module Website" and points to https://comp.nus.edu.sg/~cs1231.
+
+
+==== Clear all module links from module in database: `clearModLink`
+Removes all module links from a module in TAble. +
+Format: `clearModLink modCode/MODULE_CODE`
+
+****
+* The module code should correspond to an existing module in the database.
+****
+
+Example:
+
+* `clearModLink modCode/CS1231` +
+When viewing the module page for CS1231, there will not be any module links shown.
+
+==== Copy Module Link into Clipboard: `copyModLink`
+Copies a module link from the links currently associated with a module. Index corresponding to module link can be seen when viewing the module info using `viewModInfo`.
+
+Format: `copyModLink INDEX modCode/MODULE_CODE`
+
+****
+* The module code should correspond to an existing module in the database.
+* The index should correspond to a valid index in the module links.
+****
+
+Example:
+
+* `copyModLink 1 modCode/CS1231` +
+The module website for CS1231 is copied into the user's clipboard.
+
+==== View Module: `viewModInfo`
+Opens the view for the selected module to view module description, links and (coming in v2.0) lecture timeslots.
+
+Format: `viewModInfo modCode/MODULE_CODE`
+
+****
+* The module code should correspond to an existing module in the database.
+****
+
+==== Add lecture timeslot: `addModLecture` [coming in v2.0]
+Adds lecture timeslot to module. This is to be included to integrate with the consultation finding feature. +
+Format: `addModLecture modCode/MODULE_CODE d/DAY from/TIME to/TIME p/LOCATION`
+
+Example:
+
+* `addModLecture modCode/CS1010S d/WED from/1400 to/1600 p/LT27`
+
+==== Clear all lecture timeslots: `clearModLecture` [coming in v2.0]
+Clears all lectures associated with a certain module. +
+Format: `clearModLecture modCode/MODULE_CODE`
+
+Example:
+
+* `clearModLecture modCode/CS1010S`
+
+//end::Module[]
 
 // tag::Tutorial[]
 === Tutorials Feature
@@ -471,123 +590,6 @@ Example:
 * `exportAttendance tutorialIndex/1 csvFilePath/./data/attendance.csv`
 //end::ExportTutorialAttendance[]
 
-//tag::Module[]
-=== Module Feature
-==== Add Module into database: `addMod`
-Adds a module into TAble.
-
-[NOTE]
-Due to naming restrictions in java, all code references to modules are named Mod instead of Module.
-
-Format: `addMod modCode/MODULE_CODE modName/MODULE_NAME`
-
-****
-* The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`. It should be prefixed by at most three characters, then four numbers, and finally no more than two characters as suffix.
-* The module name provided should be any valid string.
-
-****
-
-Example:
-
-* `addModule modCode/CS1010S modName/Programming Methodology`
-
-==== Delete Module from database: `deleteMod`
-Deletes a module from TAble. +
-Format: `deleteMod modCode/MODULE_CODE`
-
-****
-* The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`. It should be prefixed by at most three characters, then four numbers, and finally no more than two characters as suffix.
-* The module code should correspond to an existing module in the database.
-****
-
-Example:
-
-* `addModule modCode/CS1010S modName/Programming Methodology`
-
-==== Edit Module note: `noteMod`
-Edits corresponding note of module. +
-Format: `noteMod modCode/MODULE_CODE modNote/NOTE`
-
-****
-* The module code should correspond to an existing module in the database.
-* The note provided should be any valid string, and replaces the current note of the module.
-****
-
-Example:
-
-* `noteModule modCode/CS1010S modNote/How cool is that?` +
-When viewing the module info for CS1010S, the note will be updated to show "How cool is that?"
-
-==== Add link to module with appropriate name: `addModLink`
-Edit module to include links to appropriate websites (e.g. Google Drive Folder, Module Website etc.) +
-Format: `addModLink modCode/MODULE_CODE modLink/LINK modLinkName/NAME`
-
-****
-* The module code should correspond to an existing module in the database.
-* The module link should correspond to a valid URL format (protocol optional). Hence the first character should be alphanumeric, followed by any character in the set [-a-zA-Z0-9+&@\#/%?=~\_|!:,.;], and end with [-a-zA-Z0-9+&@#/%=~_|].
-* The tag provided should be any valid string.
-****
-
-Example:
-
-* `addModLink modCode/CS1231` +
-When viewing the module page for CS1231, there will be an additional label with "Module Website" and points to https://comp.nus.edu.sg/~cs1231.
-
-
-==== Clear all module links from module in database: `clearModLink`
-Removes all module links from a module in TAble. +
-Format: `deleteMod modCode/MODULE_CODE`
-
-****
-* The module code should correspond to an existing module in the database.
-****
-
-Example:
-
-* `clearModLink modCode/CS1231` +
-When viewing the module page for CS1231, there will not be any module links shown.
-
-==== Copy Module Link into Clipboard: `copyModLink`
-Copies a module link from the links currently associated with a module. Index corresponding to module link can be seen when viewing the module info using `viewModInfo`.
-
-Format: `copyModLink INDEX modCode/MODULE_CODE`
-
-****
-* The module code should correspond to an existing module in the database.
-* The index should correspond to a valid index in the module links.
-****
-
-Example:
-
-* `copyModLink 1 modCode/CS1231` +
-The module website for CS1231 is copied into the user's clipboard.
-
-==== View Module: `viewModInfo`
-Opens the view for the selected module to view module description, links and (coming in v2.0) lecture timeslots.
-
-Format: `viewModInfo modCode/MODULE_CODE`
-
-****
-* The module code should correspond to an existing module in the database.
-****
-
-==== Add lecture timeslot: `addModLecture` [coming in v2.0]
-Adds lecture timeslot to module. This is to be included to integrate with the consultation finding feature. +
-Format: `addModLecture modCode/MODULE_CODE d/DAY from/TIME to/TIME p/LOCATION`
-
-Example:
-
-* `addModLecture modCode/CS1010S d/WED from/1400 to/1600 p/LT27`
-
-==== Clear all lecture timeslots: `clearModLecture` [coming in v2.0]
-Clears all lectures associated with a certain module. +
-Format: `clearModLecture modCode/MODULE_CODE`
-
-Example:
-
-* `clearModLecture modCode/CS1010S`
-
-//end::Module[]
 
 // tag::Reminder[]
 === Reminder Feature
@@ -776,6 +778,21 @@ e.g. `deleteConsult 3`
 e.g `editConsult 3 place/The Deck`
 * *List* : `listConsult`
 
+=== Module
+* *Add* : `addMod modCode/MODULE_CODE modName/MODULE_NAME` +
+e.g. `addMod modCode/CS2103 modName/Software Engineering`
+* *Delete* : `deleteMod modCode/MODULE_CODE` +
+e.g. `deleteMod modCode/CS2103`
+* *Edit module Note* : `noteMod modCode/MODULE_CODE modNote/MODULE_NOTE` +
+e.g. `noteMod modCode/CS2103 modNote/SWE is fun!`
+* *Add module website link* : `addModLink modCode/MODULE_CODE modLink/MODULE_LINK modLinkName/MODULE_LINK_NAME` +
+e.g. `addModLink modCode/CS2103 modLink/comp.nus.edu.sg/~cs2103 modLinkName/Module Website`
+* *Clear all module links* : `clearModLink modCode/MODULE_CODE`
+* *View module info* : `viewModInfo modCode/MODULE_CODE`
+* *Copy module link into clipboard* : `copyModLink INDEX modCode/MODULE_CODE` +
+e.g. `copyModLink 1 modCode/CS2013`
+* *List Mods* : `listMod`
+
 === Tutorial
 * *Add* : `addTutorial modCode/MODULE_CODE tutorialName/TUTORIAL_NAME day/WEEKDAY_VALUE beginTime/START_TIME endTime/END_TIME place/PLACE` +
 e.g. `addTutorial modCode/CS2103 tutorialName/T02 day/3 beginTime/12:00 endTime/13:00 place/SR3`
@@ -796,21 +813,6 @@ e.g. `listAttendance tutorialIndex/2 week/10`
 e.g. `copyTutorialEmails tutorialIndex/3`
 * *Export attendance to CSV file* : `exportAttendance tutorialIndex/INDEX csvFilePath/CSV_FILEPATH` +
 e.g. `exportAttendance tutorialIndex/1 csvFilePath/./data/attendance.csv`
-
-=== Module
-* *Add* : `addMod modCode/MODULE_CODE modName/MODULE_NAME` +
-e.g. `addMod modCode/CS2103 modName/Software Engineering`
-* *Delete* : `deleteMod modCode/MODULE_CODE` +
-e.g. `deleteMod modCode/CS2103`
-* *Edit module Note* : `noteMod modCode/MODULE_CODE modNote/MODULE_NOTE` +
-e.g. `noteMod modCode/CS2103 modNote/SWE is fun!`
-* *Add module website link* : `addModLink modCode/MODULE_CODE modLink/MODULE_LINK modLinkName/MODULE_LINK_NAME` +
-e.g. `addModLink modCode/CS2103 modLink/comp.nus.edu.sg/~cs2103 modLinkName/Module Website`
-* *Clear all module links* : `clearModLink modCode/MODULE_CODE`
-* *View module info* : `viewModInfo modCode/MODULE_CODE`
-* *Copy module link into clipboard* : `copyModLink INDEX modCode/MODULE_CODE` +
-e.g. `copyModLink 1 modCode/CS2013`
-* *List Mods* : `listMod`
 
 === Reminder
 * *Add* : `addReminder desc/DESCRIPTION date/DATE time/TIME` +
