@@ -11,7 +11,9 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.consult.Consult;
 import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 
 /**
@@ -27,7 +29,8 @@ public class DeleteStudentCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s.\n"
-            + "Please use listAttendance command to view updated list of students.";
+            + "Please use listAttendance command to view updated list of students.\n"
+            + "Please use listConsult command to view updated list of consults.\n";
 
     private final Index targetIndex;
 
@@ -45,15 +48,27 @@ public class DeleteStudentCommand extends Command {
         }
 
         Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
+        MatricNumber matricNumberToDelete = studentToDelete.getMatricNumber();
         model.deleteStudent(studentToDelete);
         List<Tutorial> currentTutorialList = model.getFilteredTutorialList();
+        List<Consult> currentConsultList = model.getFilteredConsultList();
+
+
         for (int i = 0; i < currentTutorialList.size(); i++) {
             ArrayList<Student> enrolledStudents = currentTutorialList.get(i).getEnrolledStudents();
             int checker = enrolledStudents.indexOf(studentToDelete);
             if (checker != -1) {
                 model.deleteTutorialStudent(currentTutorialList.get(i), studentToDelete);
             }
-            enrolledStudents.clear();
+        }
+        List<Consult> consultsToBeDeleted = new ArrayList<>();
+        for (int i = 0; i < currentConsultList.size(); i++) {
+            if (matricNumberToDelete.equals(currentConsultList.get(i).getMatricNumber())) {
+                consultsToBeDeleted.add(currentConsultList.get(i));
+            }
+        }
+        for (int i = 0; i < consultsToBeDeleted.size(); i++) {
+            model.deleteConsult(consultsToBeDeleted.get(i));
         }
         return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete));
     }

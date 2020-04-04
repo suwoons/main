@@ -5,7 +5,7 @@ import seedu.address.model.Model;
 /**
  * Command to show a calendar pop up display.
  */
-public class CalendarCommand extends Command {
+public class ViewCalendarCommand extends Command {
 
     public static final String COMMAND_WORD = "viewCalendar";
 

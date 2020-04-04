@@ -36,6 +36,9 @@ public class TutorialName {
      * Returns true if a given string is a valid tutorial name.
      */
     public static boolean isValidTutorialName(String test) {
+        if (test.length() > 8) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

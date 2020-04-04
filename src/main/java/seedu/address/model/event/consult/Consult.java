@@ -8,7 +8,10 @@ import static seedu.address.commons.util.ConsultUtil.checkSameDate;
 import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Location;
 import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Name;
@@ -19,11 +22,14 @@ import seedu.address.model.student.Name;
  */
 public class Consult implements Comparable<Consult> {
 
+    private final Logger logger = LogsCenter.getLogger(getClass());
+
     private LocalDateTime beginDateTime;
     private LocalDateTime endDateTime;
     private Location location;
     private Name studentName;
     private MatricNumber matricNumber;
+
 
     public Consult(LocalDateTime beginDateTime, LocalDateTime endDateTime,
                    Location location, Name studentName, MatricNumber matricNumber) {
@@ -113,19 +119,36 @@ public class Consult implements Comparable<Consult> {
         }
 
         Consult otherEvent = (Consult) other;
-        return (!checkStartEndDateTime(otherEvent.getBeginDateTime(), getEndDateTime())
-            && !checkStartEndDateTime(getBeginDateTime(), otherEvent.getBeginDateTime()))
-                || (!checkStartEndDateTime(otherEvent.getEndDateTime(), getBeginDateTime())
-            && !checkStartEndDateTime(getEndDateTime(), otherEvent.getEndDateTime()));
+        if (getBeginDateTime().isEqual(otherEvent.getBeginDateTime())
+            && !getEndDateTime().isEqual(otherEvent.getEndDateTime())) {
+            logger.info("Same start time, different end time.");
+            return true;
+        } else if (getEndDateTime().isEqual(otherEvent.getEndDateTime())
+            && !getBeginDateTime().isEqual(otherEvent.getBeginDateTime())) {
+            logger.info("Same end time, different start time.");
+            return true;
+        } else if (checkStartEndDateTime(getBeginDateTime(), otherEvent.getBeginDateTime())) {
+            logger.info("End time before another consult start time.");
+            return !checkStartEndDateTime(getEndDateTime(), otherEvent.getBeginDateTime());
+        } else if (checkStartEndDateTime(getEndDateTime(), otherEvent.getEndDateTime())) {
+            logger.info("Another consult start time before end time.");
+            return checkStartEndDateTime(otherEvent.getBeginDateTime(), getEndDateTime());
+        } else if (checkStartEndDateTime(getBeginDateTime(), otherEvent.getEndDateTime())) {
+            logger.info("Start time before another consult end time.");
+            return checkStartEndDateTime(otherEvent.getBeginDateTime(), getBeginDateTime());
+        }
+
+        return false;
     }
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         final StringBuilder builder = new StringBuilder();
         builder.append(" Start Time: ")
-                .append(getBeginDateTime())
+                .append((DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(getBeginDateTime())))
                 .append(" End Time: ")
-                .append(getEndDateTime())
+                .append(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(getBeginDateTime()))
                 .append(" Place: ")
                 .append(getLocation());
         return builder.toString();

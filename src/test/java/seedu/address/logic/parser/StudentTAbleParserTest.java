@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.students.AddStudentCommand;
+import seedu.address.logic.commands.students.ClearStudentCommand;
 import seedu.address.logic.commands.students.DeleteStudentCommand;
 import seedu.address.logic.commands.students.EditStudentCommand;
 import seedu.address.logic.commands.students.EditStudentCommand.EditStudentDescriptor;
@@ -42,8 +42,8 @@ public class StudentTAbleParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearStudentCommand.COMMAND_WORD) instanceof ClearStudentCommand);
+        assertTrue(parser.parseCommand(ClearStudentCommand.COMMAND_WORD + " 3") instanceof ClearStudentCommand);
     }
 
     @Test

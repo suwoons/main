@@ -6,12 +6,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.CalendarCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CloseCalendarCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ViewCalendarCommand;
 import seedu.address.logic.commands.consults.AddConsultCommand;
 import seedu.address.logic.commands.consults.DeleteConsultCommand;
 import seedu.address.logic.commands.consults.EditConsultCommand;
@@ -32,6 +31,7 @@ import seedu.address.logic.commands.reminders.FindReminderCommand;
 import seedu.address.logic.commands.reminders.ListReminderCommand;
 import seedu.address.logic.commands.reminders.SnoozeReminderCommand;
 import seedu.address.logic.commands.students.AddStudentCommand;
+import seedu.address.logic.commands.students.ClearStudentCommand;
 import seedu.address.logic.commands.students.DeleteStudentCommand;
 import seedu.address.logic.commands.students.EditStudentCommand;
 import seedu.address.logic.commands.students.FindStudentCommand;
@@ -116,8 +116,8 @@ public class TAbleParser {
         case DeleteStudentCommand.COMMAND_WORD:
             return new DeleteStudentCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case ClearStudentCommand.COMMAND_WORD:
+            return new ClearStudentCommand();
 
         case FindStudentCommand.COMMAND_WORD:
             return new FindStudentCommandParser().parse(arguments);
@@ -234,8 +234,8 @@ public class TAbleParser {
 
         // ======================================== Calendar Commands =============================
 
-        case CalendarCommand.COMMAND_WORD:
-            return new CalendarCommand();
+        case ViewCalendarCommand.COMMAND_WORD:
+            return new ViewCalendarCommand();
 
         case CloseCalendarCommand.COMMAND_WORD:
             return new CloseCalendarCommand();
