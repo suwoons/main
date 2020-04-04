@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.CloseCalendarCommand.CLOSE_CALENDAR_M
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
