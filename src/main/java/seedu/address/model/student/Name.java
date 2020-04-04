@@ -10,13 +10,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Names should only contain alphanumeric characters and spaces, and it should not be blank\n"
+            + "The maximum length of a student's name is 70 characters";
 
-    /*
+    /**
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]*";
+
+    private static final int CHAR_LIMIT = 70;
 
     public final String fullName;
 
@@ -28,14 +31,33 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        name = capitaliseName(name);
         fullName = name;
+    }
+
+
+    /**
+     * Capitalises the first letter of the student's name.
+     */
+    public String capitaliseName(String name) {
+        StringBuffer stringBuffer = new StringBuffer();
+        char beforeLetter = ' ';
+        for (int i = 0; i < name.length(); i++) {
+            if (beforeLetter == ' ' && name.charAt(i) != ' ') {
+                stringBuffer.append(Character.toUpperCase(name.charAt(i)));
+            } else {
+                stringBuffer.append(Character.toLowerCase(name.charAt(i)));
+            }
+            beforeLetter = name.charAt(i);
+        }
+        return stringBuffer.toString().trim();
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= CHAR_LIMIT;
     }
 
     @Override
