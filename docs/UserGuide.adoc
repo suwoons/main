@@ -218,6 +218,7 @@ Format: `deleteMod modCode/MODULE_CODE`
 ****
 * The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`. It should be prefixed by at most three characters, then four numbers, and finally no more than two characters as suffix.
 * The module code should correspond to an existing module in the database.
+* Modules cannot be deleted if there are tutorials associated with it in TAble (i.e. User cannot delete CS2103 if there are still tutorials with module code CS2103).
 ****
 
 Example:
