@@ -226,10 +226,10 @@ public class ParserUtil {
         DayOfWeek parsedDay;
         try {
             parsedDay = DayOfWeek.of(Integer.parseInt(trimmedDay));
+            return parsedDay;
         } catch (DateTimeParseException | NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_DAY);
         }
-        return parsedDay;
     }
 
     /**
