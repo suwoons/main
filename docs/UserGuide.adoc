@@ -414,7 +414,7 @@ If you wish to have a tutorial with multiple slots per week, you may use unique 
 * The day provided is the value of the weekday (ie. MONDAY = 1, TUESDAY = 2, ... SUNDAY = 7)
 * The module code provided is case insensitive, e.g. `Cs2103` is equivalent to `CS2103`
 * The module with the referenced module code should already be present in TAble
-* The place provided should be any valid string
+* The place provided can be any valid string
 * Note that you are not allowed to add tutorials with clashing times (ie. periods overlap)
 ****
 
