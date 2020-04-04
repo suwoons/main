@@ -187,7 +187,6 @@ Deletes the 1st student in the results of the `find` command.
 // end::delete[]
 
 // tag::Consult[]
-
 === Consults Feature
 [NOTE]
 The consults that are overdue will appear in red to highlight that these consults are ready to be deleted!
