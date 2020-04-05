@@ -38,7 +38,7 @@ Tutorial --> AddTutorialCommandParser : t
 deactivate Tutorial
 
 create AddTutorialCommand
-AddTutorialCommandParser -> AddTutorialCommand : t
+AddTutorialCommandParser -> AddTutorialCommand : AddTutorialCommand(t)
 activate AddTutorialCommand
 
 AddTutorialCommand --> AddTutorialCommandParser : a
