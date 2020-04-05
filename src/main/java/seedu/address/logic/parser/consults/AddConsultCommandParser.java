@@ -3,6 +3,7 @@ package seedu.address.logic.parser.consults;
 import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_BEGIN_TIME_BEFORE_END_TIME;
 import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_DIFFERENT_DATE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_REPEATED_PREFIXES;
 import static seedu.address.commons.util.ConsultUtil.checkSameDate;
 import static seedu.address.commons.util.ConsultUtil.checkStartEndDateTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIME;
@@ -45,6 +46,12 @@ public class AddConsultCommandParser implements Parser<AddConsultCommand> {
                 AddConsultCommand.MESSAGE_USAGE));
         }
 
+        if (!arePrefixesUnique(argMultimap, PREFIX_STUDENT, PREFIX_CONSULT_BEGIN_DATE_TIME,
+                PREFIX_CONSULT_END_DATE_TIME, PREFIX_PLACE)) {
+            throw new ParseException(String.format(MESSAGE_REPEATED_PREFIXES,
+                    AddConsultCommand.MESSAGE_USAGE));
+        }
+
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT).get());
         LocalDateTime beginDateTime = ParserUtil.parseDateTime(argMultimap.getValue(
                 PREFIX_CONSULT_BEGIN_DATE_TIME).get());
@@ -73,5 +80,13 @@ public class AddConsultCommandParser implements Parser<AddConsultCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if at least one of the prefixes is repeated in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(argumentMultimap::isRepeated).count() == 0;
     }
 }

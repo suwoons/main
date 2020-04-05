@@ -226,6 +226,10 @@ The following illustrates the sequence diagram for AddTutorialCommand, in which 
 .Sequence diagram for the command to add a tutorial
 image::TutorialCommandSequenceDiagram.png[]
 
+The `LogicManager` is responsible for handling the execution of the user's input command to add a tutorial, calling `parseCommand()`, which returns an `AddTutorialCommand` object
+and subsequently calls for the `AddTutorialCommand` object to perform `execute()`. This leads to the `Model` being updated accordingly,
+and feedback in the form of a formatted String is finally shown to the user after being returned from `AddTutorialCommand`.
+
 As can be observed, each step of the process is clearly separated, with each component only responsible for single task (eg. parsing user input, executing the actual command etc.)
 This enables bugs to be easily caught, and for the process to be structured and comprehensible.
 

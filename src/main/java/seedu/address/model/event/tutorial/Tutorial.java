@@ -1,7 +1,6 @@
 package seedu.address.model.event.tutorial;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.commons.util.TutorialUtil.isStartEarlierThanEndTime;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -257,15 +256,18 @@ public class Tutorial {
             return false;
         }
 
+        // no time clash if same day
         Tutorial otherTutorial = (Tutorial) other;
         if (otherTutorial.getDay().getValue() != this.getDay().getValue()) {
             return false;
         }
 
-        // true if other tutorial starts before current one ends
-        // true if other tutorial ends after current one starts
-        return isStartEarlierThanEndTime(otherTutorial.getBeginTime(), getEndTime())
-                || isStartEarlierThanEndTime(getBeginTime(), otherTutorial.getEndTime());
+        // other tutorial is existing tutorial
+        // this tutorial is tutorial to be added
+        return !((getBeginTime().compareTo(otherTutorial.getBeginTime()) < 0
+                && getEndTime().compareTo(otherTutorial.getBeginTime()) <= 0)
+                || (getBeginTime().compareTo(otherTutorial.getEndTime()) >= 0
+                && getEndTime().compareTo(otherTutorial.getEndTime()) > 0));
     }
 
     /**
