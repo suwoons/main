@@ -2,6 +2,7 @@ package seedu.address.logic.parser.students;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_REPEATED_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -51,7 +52,9 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
 
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
 
-        if (!arePrefixesUnique(argMultimap, PREFIX_NAME, PREFIX_MATRIC_NUMBER, PREFIX_EMAIL));
+        if (!arePrefixesUnique(argMultimap, PREFIX_NAME, PREFIX_MATRIC_NUMBER, PREFIX_EMAIL)) {
+            throw new ParseException(String.format(MESSAGE_REPEATED_PREFIXES, EditStudentCommand.MESSAGE_USAGE));
+        }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));

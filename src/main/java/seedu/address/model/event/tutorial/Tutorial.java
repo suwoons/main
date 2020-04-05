@@ -1,7 +1,6 @@
 package seedu.address.model.event.tutorial;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.commons.util.TutorialUtil.isStartEarlierThanEndTime;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;

@@ -1,6 +1,8 @@
 package seedu.address.logic.parser.students;
 
-import static seedu.address.commons.core.Messages.*;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_REPEATED_PREFIXES;
+import static seedu.address.commons.core.Messages.MESSAGE_STUDENT_EMPTY_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 
 import java.util.Arrays;

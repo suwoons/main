@@ -1,7 +1,9 @@
 package seedu.address.logic.parser.reminders;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.*;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_REMINDERS_EMPTY_DESCRIPTION;
+import static seedu.address.commons.core.Messages.MESSAGE_REPEATED_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DESCRIPTION;
 
