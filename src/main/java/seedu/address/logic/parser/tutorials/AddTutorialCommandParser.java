@@ -1,9 +1,6 @@
 package seedu.address.logic.parser.tutorials;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DAY;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TUTORIAL_NAME;
-import static seedu.address.commons.core.Messages.MESSAGE_TUTORIAL_BEGIN_TIME_AFTER_END_TIME;
+import static seedu.address.commons.core.Messages.*;
 import static seedu.address.commons.util.TutorialUtil.isStartEarlierThanEndTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
@@ -53,6 +50,13 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
                     AddTutorialCommand.MESSAGE_USAGE));
         }
 
+        if (!arePrefixesUnique(argMultimap, PREFIX_MODULE_CODE, PREFIX_TUTORIAL_NAME,
+                PREFIX_TUTORIAL_WEEKDAY, PREFIX_TUTORIAL_BEGIN_TIME, PREFIX_TUTORIAL_END_TIME,
+                PREFIX_PLACE)) {
+            throw new ParseException(String.format(MESSAGE_REPEATED_PREFIXES,
+                    AddTutorialCommand.MESSAGE_USAGE));
+        }
+
         ModCode moduleCode = ParserUtil.parseModCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
 
         String inputName = argMultimap.getValue(PREFIX_TUTORIAL_NAME).get();
@@ -91,5 +95,13 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if at least one of the prefixes is repeated in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(prefix -> argumentMultimap.isRepeated(prefix)).count() == 0;
     }
 }

@@ -269,7 +269,6 @@ public class Tutorial {
                 && getEndTime().compareTo(otherTutorial.getBeginTime()) <= 0)
                 || (getBeginTime().compareTo(otherTutorial.getEndTime()) >= 0
                 && getEndTime().compareTo(otherTutorial.getEndTime()) > 0));
-
     }
 
     /**
