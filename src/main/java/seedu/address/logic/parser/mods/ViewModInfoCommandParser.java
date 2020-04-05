@@ -2,6 +2,7 @@ package seedu.address.logic.parser.mods;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_REPEATED_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 
 import java.util.stream.Stream;
@@ -38,6 +39,11 @@ public class ViewModInfoCommandParser implements Parser<ViewModInfoCommand> {
                 ViewModInfoCommand.MESSAGE_USAGE));
         }
 
+        if (!arePrefixesUnique(argMultimap, PREFIX_MODULE_CODE)) {
+            throw new ParseException(String.format(MESSAGE_REPEATED_PREFIXES,
+                    ViewModInfoCommand.MESSAGE_USAGE));
+        }
+
         ModCode modCode = ParserUtil.parseModCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
         return new ViewModInfoCommand(modCode);
     }
@@ -48,5 +54,13 @@ public class ViewModInfoCommandParser implements Parser<ViewModInfoCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if at least one of the prefixes is repeated in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(argumentMultimap::isRepeated).count() == 0;
     }
 }

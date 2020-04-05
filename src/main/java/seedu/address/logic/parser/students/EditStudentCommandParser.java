@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.students.EditStudentCommand;
@@ -19,6 +20,7 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
@@ -48,6 +50,9 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
         }
 
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
+
+        if (!arePrefixesUnique(argMultimap, PREFIX_NAME, PREFIX_MATRIC_NUMBER, PREFIX_EMAIL));
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -82,4 +87,11 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    /**
+     * Returns true if at least one of the prefixes is repeated in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(argumentMultimap::isRepeated).count() == 0;
+    }
 }

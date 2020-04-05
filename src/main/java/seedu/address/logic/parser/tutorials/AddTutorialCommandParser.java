@@ -102,6 +102,6 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).filter(prefix -> argumentMultimap.isRepeated(prefix)).count() == 0;
+        return Stream.of(prefixes).filter(argumentMultimap::isRepeated).count() == 0;
     }
 }

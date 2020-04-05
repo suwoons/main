@@ -22,7 +22,7 @@ public class CopyTutorialEmailsCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Copies tutorial students' emails to clipboard\n"
             + "Parameters: "
             + PREFIX_TUTORIAL_INDEX + "TUTORIAL_INDEX (must be a positive integer) "
-            + "Example: " + COMMAND_WORD + " "
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_TUTORIAL_INDEX + "1";
 
     public static final String MESSAGE_SUCCESS = COMMAND_WORD + ": Copied students' emails from tutorial %1$s %2$s"

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.tutorials;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_REPEATED_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_WEEK;
 
@@ -35,6 +36,11 @@ public class ListAttendanceCommandParser implements Parser<ListAttendanceCommand
                     ListAttendanceCommand.MESSAGE_USAGE));
         }
 
+        if (!arePrefixesUnique(argMultimap, PREFIX_TUTORIAL_INDEX, PREFIX_TUTORIAL_WEEK)) {
+            throw new ParseException(String.format(MESSAGE_REPEATED_PREFIXES,
+                    ListAttendanceCommand.MESSAGE_USAGE));
+        }
+
         Index tutorialIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TUTORIAL_INDEX).get());
         int week = ParserUtil.parseTutorialWeek(argMultimap.getValue(PREFIX_TUTORIAL_WEEK).get());
 
@@ -47,5 +53,13 @@ public class ListAttendanceCommandParser implements Parser<ListAttendanceCommand
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if at least one of the prefixes is repeated in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(argumentMultimap::isRepeated).count() == 0;
     }
 }
