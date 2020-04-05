@@ -22,7 +22,7 @@ if () then ([all prefixes present])
     else ([else])
         :Display error message on
         invalid prefix format, telling user
-        to input a week between 1-13 (inclusive);
+        to input a week between 3-13 (inclusive);
     endif
 else ([else])
    :Display error message
