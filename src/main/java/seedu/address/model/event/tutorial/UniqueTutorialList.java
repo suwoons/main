@@ -51,7 +51,7 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
      */
     public boolean hasSameTiming(Tutorial tutorial) {
         requireNonNull(tutorial);
-        return internalList.stream().filter(tutorial::timeClash).count() > 1;
+        return internalList.stream().filter(other -> tutorial.timeClash(other)).count() > 0;
     }
 
     /**

@@ -2,9 +2,12 @@ package seedu.address.logic.parser.reminders;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_REPEATED_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_HOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_MINUTE;
+
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.reminders.SnoozeReminderCommand;
@@ -12,6 +15,7 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -43,6 +47,12 @@ public class SnoozeReminderCommandParser implements Parser<SnoozeReminderCommand
         long hourToSnooze = 0;
         long minuteToSnooze = 0;
 
+        if (!arePrefixesUnique(argMultimap, PREFIX_REMINDER_DAY, PREFIX_REMINDER_HOUR,
+                PREFIX_REMINDER_MINUTE)) {
+            throw new ParseException(String.format(MESSAGE_REPEATED_PREFIXES,
+                    SnoozeReminderCommand.MESSAGE_USAGE));
+        }
+
         if (argMultimap.getValue(PREFIX_REMINDER_DAY).isPresent()) {
             dayToSnooze = ParserUtil.parseSnoozeDuration(argMultimap.getValue(PREFIX_REMINDER_DAY).get());
         }
@@ -58,5 +68,13 @@ public class SnoozeReminderCommandParser implements Parser<SnoozeReminderCommand
         }
 
         return new SnoozeReminderCommand(index, dayToSnooze, hourToSnooze, minuteToSnooze);
+    }
+
+    /**
+     * Returns true if at least one of the prefixes is repeated in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(argumentMultimap::isRepeated).count() == 0;
     }
 }

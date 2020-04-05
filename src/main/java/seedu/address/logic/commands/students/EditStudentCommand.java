@@ -47,7 +47,7 @@ public class EditStudentCommand extends Command {
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the list of students.";
     public static final String MESSAGE_DUPLICATE_MATRIC_NUMBER =
             "This matric number already exists in the address " + "book.";
 
