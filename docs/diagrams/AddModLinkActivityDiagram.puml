@@ -12,8 +12,7 @@ if () then ([all prefixes present])
         :Find corresponding
         module in Model;
         if () then ([module is found])
-            :Add Pair of ModLink and
-            String to module;
+            :Add ModLinkPair to module;
             :Replace module in Model
             with edited module;
         else ([else])

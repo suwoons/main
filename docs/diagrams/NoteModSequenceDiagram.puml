@@ -11,7 +11,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":Mod" as Mod MODEL_COLOR
+participant "m:Mod" as Mod MODEL_COLOR
 end box
 
 [-> lm : execute("noteMod modCode/CS2103\nmodNote/Introduce PlantUML")
@@ -52,17 +52,17 @@ activate nmc
 nmc -> Model : findMod(CS2103)
 activate Model
 
-Model --> nmc : optionalMod
+Model --> nmc : optionalModToEdit
 deactivate Model
 
 create Mod
-nmc --> Mod : modToEdit
+nmc --> Mod : new Mod(modToEdit, note)
 activate Mod
 
-Mod --> nmc : replacementMod
+Mod --> nmc : m
 deactivate Mod
 
-nmc --> Model : setMod(modToEdit, replacementMod)
+nmc --> Model : setMod(modToEdit, m)
 activate Model
 
 Model --> nmc

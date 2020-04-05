@@ -55,9 +55,9 @@ public class NoteModCommand extends Command {
             throw new CommandException(MESSAGE_MISSING_MOD);
         }
 
-        Optional<Mod> optionalMod = model.findMod(modCode);
-        assert optionalMod.isPresent();
-        Mod modToEdit = optionalMod.get();
+        Optional<Mod> optionalModToEdit = model.findMod(modCode);
+        assert optionalModToEdit.isPresent();
+        Mod modToEdit = optionalModToEdit.get();
 
         Mod editedMod = new Mod(modToEdit, note);
         model.setMod(modToEdit, editedMod);
