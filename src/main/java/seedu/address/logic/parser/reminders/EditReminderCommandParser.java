@@ -2,9 +2,12 @@ package seedu.address.logic.parser.reminders;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_REPEATED_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_TIME;
+
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.reminders.EditReminderCommand;
@@ -12,6 +15,7 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -41,6 +45,13 @@ public class EditReminderCommandParser implements Parser<EditReminderCommand> {
 
         EditReminderCommand.EditReminderDescriptor editReminderDescriptor =
                 new EditReminderCommand.EditReminderDescriptor();
+
+        if (!arePrefixesUnique(argMultimap, PREFIX_REMINDER_DESCRIPTION, PREFIX_REMINDER_DATE,
+                PREFIX_REMINDER_TIME)) {
+            throw new ParseException(String.format(MESSAGE_REPEATED_PREFIXES,
+                    EditReminderCommand.MESSAGE_USAGE));
+        }
+
         if (argMultimap.getValue(PREFIX_REMINDER_DESCRIPTION).isPresent()) {
             editReminderDescriptor.setDescription(ParserUtil.parseDescription(
                     argMultimap.getValue(PREFIX_REMINDER_DESCRIPTION).get()));
@@ -57,5 +68,13 @@ public class EditReminderCommandParser implements Parser<EditReminderCommand> {
         }
 
         return new EditReminderCommand(index, editReminderDescriptor);
+    }
+
+    /**
+     * Returns true if at least one of the prefixes is repeated in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(argumentMultimap::isRepeated).count() == 0;
     }
 }

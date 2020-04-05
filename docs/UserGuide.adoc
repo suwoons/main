@@ -767,7 +767,7 @@ e.g. `addStudent name/James Tan matric/A0123456X email/jamesho@example.com tag/f
 e.g. `clearStudent`
 * *Delete* : `deleteStudent INDEX` +
 e.g. `deleteStudent 3`
-* *Edit* : `editStudent INDEX [name/NAME] [matric/MATRIC_NUMBER] [email/EMAIL] [t/TAG]...` +
+* *Edit* : `editStudent INDEX [name/NAME] [matric/MATRIC_NUMBER] [email/EMAIL] [tag/TAG]...` +
 e.g. `editStudent 2 name/James Lee email/jameslee@example.com`
 * *Find* : `findStudent KEYWORD [MORE_KEYWORDS]` +
 e.g. `findStudent James Jake`

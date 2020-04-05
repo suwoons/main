@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.reminders;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_REPEATED_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_TIME;
@@ -41,6 +42,12 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
                     AddReminderCommand.MESSAGE_USAGE));
         }
 
+        if (!arePrefixesUnique(argMultimap, PREFIX_REMINDER_DESCRIPTION,
+                PREFIX_REMINDER_DATE, PREFIX_REMINDER_TIME)) {
+            throw new ParseException(String.format(MESSAGE_REPEATED_PREFIXES,
+                    AddReminderCommand.MESSAGE_USAGE));
+        }
+
         Description description = ParserUtil.parseDescription(argMultimap.getValue(
                 PREFIX_REMINDER_DESCRIPTION).get());
         LocalDate date = ParserUtil.parseDate(argMultimap.getValue(
@@ -59,5 +66,13 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if at least one of the prefixes is repeated in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(argumentMultimap::isRepeated).count() == 0;
     }
 }

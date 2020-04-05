@@ -158,20 +158,22 @@ This section describes some noteworthy details on how certain features are imple
 *TAble* allows NUS SoC teaching assistants to track and record all modules that they are teaching. Users can leave notes on the modules that they are teaching and store a list of links for the module that are useful for reference.
 
 ==== Implementation
-A module can be stored as a Mod object in TAble (renamed due to naming restrictions on Java keywords). The main components are the module code, which is used to identify unique modules, and module name. Mod can also store the user's notes of the module through its description parameter, as well as a set of module links which are relevant to the course.
+A module can be stored as a Mod object in TAble (renamed due to naming restrictions on Java keywords). The main components are the module code, which is used to identify unique modules, and module name. Mod can also store the user's notes of the module through its description parameter, as well as a list of module links which are relevant to the course.
 
 .Class diagram of 'Mod' feature, displaying only directly related classes
 image::ModClassDiagram.png[]
 
-The following sequence diagram shows how notes of a module can be updated with the `noteMod` command.
+The following sequence diagram shows how notes of a module can be updated with the `noteMod` command. Each command is parsed into a ModCode object and the note stored as string. The ModCode is then used to retrieve the appropriate Mod object in `model`. Next, this is used in the Mod constructor to come up with a new Mod with the given note. This new Mod replaces the original Mod in model and the command returns a string indicating success.
 
 .Sequence diagram of updating Mod notes
 image::NoteModSequenceDiagram.png[]
 
-Module links are stored as ModLink objects in TAble. The collection of ModLinks are stored as `List<Pair<String, ModLink>>` since each module link can be described differently. This allows for more flexibility in naming the module links, rather than solely using an index based notation, and ensures that the order of addition into the collection is maintained. The activity diagram of adding module links is shown below.
+Module links are stored as ModLink objects in TAble. The collection of ModLinks are stored as `List<ModLinkPair>` (where a ModLinkPair is actually a class wrapper for a Pair<String, ModLink> object) since each module link can be described differently. This allows for more flexibility in naming the module links, rather than solely using an index based notation, and ensures that the order of addition into the collection is maintained. The activity diagram of adding module links is shown below.
 
 .Activity diagram of adding ModLinks to Mod
 image::AddModLinkActivityDiagram.png[]
+
+Users can then view the information associated with a Mod object by using the `viewModInfo` command, and copy module links with the `copyModLink` command. Discussion on the copyModLink command is shown below.
 
 ==== Design Considerations
 
@@ -226,6 +228,10 @@ The following illustrates the sequence diagram for AddTutorialCommand, in which 
 .Sequence diagram for the command to add a tutorial
 image::TutorialCommandSequenceDiagram.png[]
 
+The `LogicManager` is responsible for handling the execution of the user's input command to add a tutorial, calling `parseCommand()`, which returns an `AddTutorialCommand` object
+and subsequently calls for the `AddTutorialCommand` object to perform `execute()`. This leads to the `Model` being updated accordingly,
+and feedback in the form of a formatted String is finally shown to the user after being returned from `AddTutorialCommand`.
+
 As can be observed, each step of the process is clearly separated, with each component only responsible for single task (eg. parsing user input, executing the actual command etc.)
 This enables bugs to be easily caught, and for the process to be structured and comprehensible.
 
@@ -236,7 +242,7 @@ However, a `Student` object, as we are implementing it, does not contain the att
 [width="100%", cols="1, 5, 5"]
 |===
 ||*Alternative 1:* Include an attendance attribute to each `Student` such that they keep track of their own attendance for every tutorial they are enrolled in.
-|*Alternative 2 : (Current Choice)* Each `Tutorial` contains an attendance sheet, comprised of a list of 13 nested lists of booleans. Each nested list represents each week of a typical NUS school semester, while the size in each of the nested lists corresponds to the number of enrolled students.
+|*Alternative 2 : (Current Choice)* Each `Tutorial` contains an attendance sheet, comprised of a list of 11 nested lists of booleans. Each nested list represents each week of a typical NUS school semester, while the size in each of the nested lists corresponds to the number of enrolled students.
 
 |*Pros*
 |Efficient to mark the attendance of just a single student, and retrieve all attendance information of a particular `Student`.
@@ -1208,16 +1214,16 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
-=== Deleting a person
+=== Deleting a student
 
-. Deleting a person while all persons are listed
+. Deleting a student while all student are listed
 
-.. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-.. Test case: `delete 1` +
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `delete 0` +
+.. Prerequisites: List all persons using the `listStudent` command. Multiple students in the list.
+.. Test case: `deleteStudent 1` +
+   Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `deleteStudent 0` +
    Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
+.. Other incorrect delete commands to try: `deleteStudent`, `deleteStudent x` (where x is larger than the list size) _{give more}_ +
    Expected: Similar to previous.
 
 _{ more test cases ... }_

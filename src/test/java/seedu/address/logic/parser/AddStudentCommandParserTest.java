@@ -47,18 +47,6 @@ public class AddStudentCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + MATRICNUMBER_DESC_BOB
                 + EMAIL_DESC_BOB + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudent));
 
-        // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + MATRICNUMBER_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudent));
-
-        // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + MATRICNUMBER_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudent));
-
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + MATRICNUMBER_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudent));
-
         // multiple tags - all accepted
         Student expectedStudentMultipleTags = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();

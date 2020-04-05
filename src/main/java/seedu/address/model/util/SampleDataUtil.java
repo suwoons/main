@@ -92,8 +92,8 @@ public class SampleDataUtil {
         ModCode modCode = new ModCode("CS2103");
         TutorialName tutorialName = new TutorialName("T03");
         DayOfWeek weekday = DayOfWeek.WEDNESDAY;
-        LocalTime startTime = LocalTime.now();
-        LocalTime endTime = LocalTime.now().plusHours(2);
+        LocalTime startTime = LocalTime.of(15, 0);
+        LocalTime endTime = startTime.plusHours(2);
         Location location = new Location("SR1");
         Tutorial tutorial = new Tutorial(modCode, tutorialName, weekday, startTime, endTime, location);
         Student alex = new Student(new Name("Alex Yeoh"), new MatricNumber("A0187596R"),

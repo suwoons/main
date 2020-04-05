@@ -14,27 +14,27 @@ class Mod MODEL_COLOR_T2 {
 -ModCode modcode
 -String modName
 -String description
--List<Pair<String, ModLink>> links
+-List<ModLinkPair> links
 }
 class ModCode MODEL_COLOR_T2
+class ModLinkPair MODEL_COLOR_T2
+class ModTAble MODEL_COLOR_T2 {
+-UniqueModList mods
+-ObservableList<Mod> viewedModSingletonList
+}
 class ModLink MODEL_COLOR_T2
-class ModTAble MODEL_COLOR_T2
 
 }
 
 Mod *-up- "1" ModCode MODEL_COLOR_T2
-Mod ..up> "*" ModLink MODEL_COLOR_T2
-Mod -- "*" ModTAble MODEL_COLOR_T2
+Mod .up.> "*" ModLinkPair MODEL_COLOR_T2
+ModLink "1" -right-* ModLinkPair MODEL_COLOR_T2
+Mod "*" --  ModTAble MODEL_COLOR_T2
+ModCode -[hidden]right-> ModLinkPair
 
-Package Logic <<Rectangle>>{
+Package seedu.address.logic <<Rectangle>>{
 
-    together commands {
-        Class AddModCommand
-        Class DeleteModCommand
-        Class NoteModCommand
-        Class AddModLinkCommand
-        Class ClearModLinksCommand
-    }
+    class XYZCommands
 
     Class XYZCommandParsers
 
@@ -45,36 +45,21 @@ Package Logic <<Rectangle>>{
 }
 
 
-note left of XYZCommandParsers: XYZCommandParsers are\nthe corresponding Parser\nclasses of the Commands
-Command <|- AddModCommand
-Command <|- DeleteModCommand
-Command <|- NoteModCommand
-Command <|- AddModLinkCommand
-Command <|- ClearModLinksCommand
+note bottom of XYZCommandParsers: XYZCommandParsers are\nthe corresponding Parser\nclass of XYZCommand
+note bottom of XYZCommands: XYZCommands are the\nvarious commands used\nto interact with Mod
+Command <|- XYZCommands
 Parser <|.. XYZCommandParsers
 
 Parser .left. Command
 
-XYZCommandParsers <. AddModCommand
-XYZCommandParsers <. DeleteModCommand
-XYZCommandParsers <. NoteModCommand
-XYZCommandParsers <. AddModLinkCommand
-XYZCommandParsers <. ClearModLinksCommand
+XYZCommandParsers <. XYZCommands
 
-AddModCommand ..> Mod
-DeleteModCommand ..> Mod
-NoteModCommand ..> Mod
-NoteModCommand ..> ModCode
-AddModLinkCommand ..> ModCode
-AddModLinkCommand ..> ModLink
-ClearModLinksCommand ..> ModCode
-ClearModLinksCommand ..> ModLink
+XYZCommands ..> Mod
+XYZCommands ..> ModCode
+XYZCommands ..> ModLink : addModLink\nclearModLink\ncopyModLink
 
-AddModCommand .[hidden]down. DeleteModCommand
-DeleteModCommand .[hidden]down. NoteModCommand
-NoteModCommand .[hidden]down. AddModLinkCommand
-AddModLinkCommand .[hidden]down. ClearModLinksCommand
 
 show Mod fields
+show ModTAble fields
 
 @enduml
