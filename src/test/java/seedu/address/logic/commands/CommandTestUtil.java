@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.consults.EditConsultCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.reminders.EditReminderCommand;
 import seedu.address.logic.commands.students.EditStudentCommand;
@@ -27,6 +28,7 @@ import seedu.address.model.Model;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentTAble;
+import seedu.address.testutil.EditConsultDescriptorBuilder;
 import seedu.address.testutil.EditReminderDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
@@ -67,6 +69,9 @@ public class CommandTestUtil {
     public static final String VALID_END_TIME = "2020-03-03 17:00";
     public static final String VALID_PLACE = "SR1";
     public static final int VALID_INDEX = 1;
+    public static final String VALID_START_TIME_2 = "2020-03-03 16:00";
+    public static final String VALID_END_TIME_2 = "2020-03-03 19:00";
+    public static final String VALID_PLACE_2 = "SR2";
 
     // consult invalid entries
     public static final String INVALID_DATE_TIME = PREFIX_CONSULT_BEGIN_DATE_TIME + "2020-03-03 26:00";
@@ -79,6 +84,7 @@ public class CommandTestUtil {
     public static final String VALID_END_TIME_INPUT = " " + PREFIX_CONSULT_END_DATE_TIME + VALID_END_TIME;
     public static final String VALID_PLACE_INPUT = " " + PREFIX_PLACE + VALID_PLACE;
     public static final String VALID_INDEX_INPUT = " " + PREFIX_STUDENT + VALID_INDEX;
+
 
     // consult invalid command line inputs
     public static final String INVALID_START_TIME_INPUT = " " + PREFIX_CONSULT_BEGIN_DATE_TIME + INVALID_DATE_TIME;
@@ -116,6 +122,9 @@ public class CommandTestUtil {
     public static final EditStudentCommand.EditStudentDescriptor DESC_AMY;
     public static final EditStudentCommand.EditStudentDescriptor DESC_BOB;
 
+    public static final EditConsultCommand.EditConsultDescriptor DESC_CONSULT1;
+    public static final EditConsultCommand.EditConsultDescriptor DESC_CONSULT2;
+
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withMatricNumber(VALID_MATRICNUMBER_AMY).withEmail(VALID_EMAIL_AMY)
@@ -125,6 +134,12 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
+    static {
+        DESC_CONSULT1 = new EditConsultDescriptorBuilder().withBeginDateTime(VALID_START_TIME)
+                .withEndDateTime(VALID_END_TIME).withLocation(VALID_PLACE).build();
+        DESC_CONSULT2 = new EditConsultDescriptorBuilder().withBeginDateTime(VALID_START_TIME_2)
+            .withEndDateTime(VALID_END_TIME_2).withLocation(VALID_PLACE_2).build();
+    }
     static {
         DESC_REMINDER1 = new EditReminderDescriptorBuilder().withDescription(VALID_DESCRIPTION1)
                 .withDate(VALID_DATE1).withTime(VALID_TIME1).build();
