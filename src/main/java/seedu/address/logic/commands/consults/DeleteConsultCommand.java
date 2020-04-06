@@ -1,3 +1,4 @@
+
 package seedu.address.logic.commands.consults;
 
 import static java.util.Objects.requireNonNull;
