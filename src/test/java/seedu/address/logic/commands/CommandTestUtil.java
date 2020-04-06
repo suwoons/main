@@ -85,7 +85,6 @@ public class CommandTestUtil {
     public static final String VALID_PLACE_INPUT = " " + PREFIX_PLACE + VALID_PLACE;
     public static final String VALID_INDEX_INPUT = " " + PREFIX_STUDENT + VALID_INDEX;
 
-
     // consult invalid command line inputs
     public static final String INVALID_START_TIME_INPUT = " " + PREFIX_CONSULT_BEGIN_DATE_TIME + INVALID_DATE_TIME;
     public static final String INVALID_END_TIME_INPUT = " " + PREFIX_CONSULT_END_DATE_TIME
@@ -140,6 +139,7 @@ public class CommandTestUtil {
         DESC_CONSULT2 = new EditConsultDescriptorBuilder().withBeginDateTime(VALID_START_TIME_2)
             .withEndDateTime(VALID_END_TIME_2).withLocation(VALID_PLACE_2).build();
     }
+
     static {
         DESC_REMINDER1 = new EditReminderDescriptorBuilder().withDescription(VALID_DESCRIPTION1)
                 .withDate(VALID_DATE1).withTime(VALID_TIME1).build();

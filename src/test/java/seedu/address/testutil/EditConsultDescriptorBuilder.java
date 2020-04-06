@@ -1,12 +1,10 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.consults.EditConsultCommand;
-import seedu.address.logic.commands.reminders.EditReminderCommand;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.consult.Consult;
-import seedu.address.model.reminder.Description;
 
 public class EditConsultDescriptorBuilder {
     private EditConsultCommand.EditConsultDescriptor descriptor;
@@ -56,14 +54,14 @@ public class EditConsultDescriptorBuilder {
 
     /**
      * Sets the {@code Time} of the {@code EditReminderDescriptor} that we are building.
+     * @return EditConsultDescriptorBuilder
      */
-    public EditReminderDescriptorBuilder withLocation(String location) {
+    public EditConsultDescriptorBuilder withLocation(String location) {
         descriptor.setLocation(new Location(location));
-
         return this;
     }
 
-    public EditReminderCommand.EditReminderDescriptor build() {
+    public EditConsultCommand.EditConsultDescriptor build() {
         return descriptor;
     }
 }

@@ -2,19 +2,15 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CONSULT1;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CONSULT2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MATRICNUMBER_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLACE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_2;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.consults.EditConsultCommand;
-import seedu.address.logic.commands.students.EditStudentCommand;
-import seedu.address.testutil.EditStudentDescriptorBuilder;
+import seedu.address.testutil.EditConsultDescriptorBuilder;
 
 public class EditConsultDescriptorTest {
     @Test
@@ -37,20 +33,17 @@ public class EditConsultDescriptorTest {
         // different values -> returns false
         assertFalse(DESC_CONSULT1.equals(DESC_CONSULT2));
 
-        // different name -> returns false
-        EditStudentCommand.EditStudentDescriptor editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        // different beginTime -> returns false
+        EditConsultCommand.EditConsultDescriptor editedConsult1 = new EditConsultDescriptorBuilder(DESC_CONSULT1)
+            .withBeginDateTime(VALID_START_TIME_2).build();
+        assertFalse(DESC_CONSULT1.equals(editedConsult1));
 
         // different matric number -> returns false
-        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withMatricNumber(VALID_MATRICNUMBER_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedConsult1 = new EditConsultDescriptorBuilder(DESC_CONSULT1).withEndDateTime(VALID_END_TIME_2).build();
+        assertFalse(DESC_CONSULT1.equals(editedConsult1));
 
-        // different email -> returns false
-        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
-
-        // different tags -> returns false
-        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        // different location -> returns false
+        editedConsult1 = new EditConsultDescriptorBuilder(DESC_CONSULT1).withLocation(VALID_PLACE_2).build();
+        assertFalse(DESC_CONSULT1.equals(editedConsult1));
     }
 }
