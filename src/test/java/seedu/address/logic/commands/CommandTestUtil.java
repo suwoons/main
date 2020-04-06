@@ -72,6 +72,7 @@ public class CommandTestUtil {
     public static final String INVALID_DATE_TIME = PREFIX_CONSULT_BEGIN_DATE_TIME + "2020-03-03 26:00";
     public static final String INVALID_END_TIME_DIFFERENT_DATE = PREFIX_CONSULT_END_DATE_TIME + "2020-03-04 14:00";
     public static final String INVALID_PLACE = PREFIX_PLACE + "home!";
+    public static final int INVALID_INDEX = 0;
 
     // consult valid command line inputs
     public static final String VALID_START_TIME_INPUT = " " + PREFIX_CONSULT_BEGIN_DATE_TIME + VALID_START_TIME;
