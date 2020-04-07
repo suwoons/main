@@ -352,7 +352,7 @@ image::FindReminderSequenceDiagram.png[]
 
 A snooze reminder feature is also implemented for the users to easily postpone a reminder. It's implementation is similar to the `editReminderCommand` where it creates a new reminder to replace the specified reminder instead of editing the current reminder directly. This is to ensure the reminders are immutable which improves the stability of the application.
 
-User can choose to snooze the reminder in any/all of the following time units: days, hours and/or minutes. Only positive integer are allowed as the user are not supposed to snooze the reminders backwards or snooze it by zero duration. Following is an activity diagram for the command.
+User can choose to snooze the reminder in any/all of the following time units: days, hours and/or minutes. Only positive integer are allowed as the user are not supposed to snooze the reminders backwards or snooze it by zero duration. Reminders that are done are also not allowed to be snoozed. Following is an activity diagram for the command.
 
 .Activity diagram for the command snoozeReminder in the reminder feature
 image::SnoozeReminderActivityDiagram.png[]
@@ -1014,7 +1014,7 @@ Use case ends.
 *MSS*
 
 1.  User requests to snooze an existing reminder by a certain number of day, hour or minute
-2.  System updates the existing reminder according to the the User's request
+2.  System updates the existing reminder according to the the user's request
 +
 Use case ends.
 
@@ -1028,10 +1028,17 @@ Use case ends.
 +
 Use case ends.
 [none]
-* 1b. The day, hour and minute of reminder to be snoozed by is not included.
+* 1b. The day, hour and minute of reminder to be snoozed by are not included.
 +
 [none]
 ** 1b1. System shows an error message that at least one of day, hour or minute must be included.
++
+Use case ends.
+[none]
+* 1c. The reminder is already done.
++
+[none]
+** 1c1. System shows an error message that the reminder is already done.
 +
 Use case ends.
 
@@ -1204,13 +1211,13 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Download the jar file and copy into an empty folder
 .. Double-click the jar file +
-   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   Expected: Shows the GUI with a set of sample students, modules, tutorials, consults and reminders. The window size is fixed.
 
-. Saving window preferences
+. Shuting down
 
-.. Resize the window to an optimum size. Move the window to a different location. Close the window.
-.. Re-launch the app by double-clicking the jar file. +
-   Expected: The most recent window size and location is retained.
+.. Add, edit or delete some data in TAble. Close the window.
+.. Re-launch the app by double-clicking the jar file +
+   Expected: Modifications to the data in TAble are retained. 
 
 _{ more test cases ... }_
 
@@ -1231,9 +1238,9 @@ _{ more test cases ... }_
 === Viewing calendar
 
 . Displaying the calendar for the current month and year.
-.. Test case: `calendar` +
+.. Test case: `viewCalendar` +
    Expected: A new `Calendar` window is brought up at the current year and month. A success message "Opened Calendar window." will appear.
-.. Test case: `CALENDAR` +
+.. Test case: `VIEWCALENDAR` +
    Expected: No new `Calendar` window appears. Error details shown in the status message.
 .. Test case: Click on the left/right arrow in the `Calendar` window. +
    Expected: The new month before/after the current displayed month is displayed in the new `Calendar` window.
