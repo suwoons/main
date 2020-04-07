@@ -83,8 +83,22 @@ Format: `help`
 Adds a student to TAble +
 Format: `addStudent name/NAME matric/MATRIC_NUMBER email/EMAIL [tag/TAG]...`
 
+[NOTE]
+====
+* The students name will be automatically formatted such that it follows a standard format of
+the first letter of each word being uppercase and the rest lowercase, and a maximum of one space between each word. This
+is done to follow proper naming convention, making it more presentable and readable,
+and remedies any errors which may have happened when extracting the list of student names.
+The removal of excess spaces is also done for tags.
+** For example: `addStudent name/john      doe matric/A0123456X email/johnd@example.com`
+adds a student with the name "John Doe" into the list.
+* Students name have a maximum length of 70 characters as it is the standard length for database fields.
+====
+
+
 [TIP]
-A student can have any number of tags (including 0)
+A student can have any number of tags (including 0), but tags are limited to a length of 40 characters
+
 
 Examples:
 

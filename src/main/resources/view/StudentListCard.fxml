@@ -28,7 +28,7 @@
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="matricNumber" styleClass="cell_small_label" text="\$matricNumber" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true"/>
     </VBox>
   </GridPane>
 </HBox>
