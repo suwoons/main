@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CONSULT1;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CONSULT2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_2;
@@ -9,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PLACE_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_2;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.consults.EditConsultCommand;
 import seedu.address.testutil.EditConsultDescriptorBuilder;
 
@@ -16,8 +18,8 @@ public class EditConsultDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditConsultCommand.EditConsultDescriptor descriptorWithSameValues
-            = new EditConsultCommand.EditConsultDescriptor(DESC_CONSULT1);
+        EditConsultCommand.EditConsultDescriptor descriptorWithSameValues =
+            new EditConsultCommand.EditConsultDescriptor(DESC_CONSULT1);
 
         assertTrue(DESC_CONSULT1.equals(descriptorWithSameValues));
 

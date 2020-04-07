@@ -6,6 +6,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.consult.Consult;
 
+/**
+ * A utility class to help with building EditConsultDescriptor objects.
+ */
 public class EditConsultDescriptorBuilder {
     private EditConsultCommand.EditConsultDescriptor descriptor;
 
