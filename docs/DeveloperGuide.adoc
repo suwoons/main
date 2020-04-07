@@ -1217,7 +1217,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Add, edit or delete some data in TAble. Close the window.
 .. Re-launch the app by double-clicking the jar file +
-   Expected: Modifications to the data in TAble are retained. 
+   Expected: Modifications to the data in TAble are retained.
 
 _{ more test cases ... }_
 
