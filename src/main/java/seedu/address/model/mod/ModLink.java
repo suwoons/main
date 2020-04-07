@@ -3,6 +3,9 @@ package seedu.address.model.mod;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 /**
  * Represents a Module's link to a web resource in TAble.
  * Guarantees: immutable; is valid as declared in {@link #isValidModLink(String)}
@@ -10,13 +13,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class ModLink {
 
-    public static final String MESSAGE_CONSTRAINTS = "Module links should follow a URL link (protocol optional)";
-
-    /*
-     * The entire string must fit the specifications for it to be valid.
-     */
-    public static final String VALIDATION_REGEX =
-            "^[a-zA-Z0-9][-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+    public static final String MESSAGE_CONSTRAINTS = "Module links should follow a URL link as specified in Java.";
 
     public final String modLink;
 
@@ -35,9 +32,13 @@ public class ModLink {
      * Returns true if a given string is a valid tutorial name.
      */
     public static boolean isValidModLink(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            URL url = new URL(test);
+        } catch (MalformedURLException e) {
+            return false;
+        }
+        return true;
     }
-
 
     @Override
     public String toString() {

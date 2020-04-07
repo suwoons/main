@@ -19,4 +19,19 @@ public class ModLinkPair {
     public ModLink getValue() {
         return modLink;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ModLinkPair)) {
+            return false;
+        }
+
+        ModLinkPair otherModLinkPair = (ModLinkPair) other;
+        return otherModLinkPair.getKey().equals(this.getKey())
+            && otherModLinkPair.getValue().equals(this.getValue());
+    }
 }
