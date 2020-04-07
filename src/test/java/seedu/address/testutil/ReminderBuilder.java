@@ -16,15 +16,18 @@ public class ReminderBuilder {
     public static final String DEFAULT_DESCRIPTION = "Return midterms paper to T02";
     public static final String DEFAULT_DATE = "2022-03-18";
     public static final String DEFAULT_TIME = "15:00";
+    public static final String DEFAULT_DONE = "false";
 
     private Description description;
     private LocalDate date;
     private LocalTime time;
+    private boolean done;
 
     public ReminderBuilder() throws ParseException {
         description = ParserUtil.parseDescription(DEFAULT_DESCRIPTION);
         date = ParserUtil.parseDate(DEFAULT_DATE);
         time = ParserUtil.parseTime(DEFAULT_TIME);
+        done = Boolean.parseBoolean(DEFAULT_DONE);
     }
 
     /**
@@ -34,13 +37,14 @@ public class ReminderBuilder {
         description = reminderToCopy.getDescription();
         date = reminderToCopy.getDate();
         time = reminderToCopy.getTime();
+        done = reminderToCopy.getDone();
     }
 
     /**
      * Sets the {@code Description} of the {@code Reminder} that we are building.
      */
-    public ReminderBuilder withDescription(Description description) {
-        this.description = description;
+    public ReminderBuilder withDescription(String description) {
+        this.description = new Description(description);
         return this;
     }
 
@@ -62,7 +66,15 @@ public class ReminderBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Done} of the {@code Reminder} that we are building.
+     */
+    public ReminderBuilder withDone(String done) {
+        this.done = Boolean.parseBoolean(done);
+        return this;
+    }
+
     public Reminder build() {
-        return new Reminder(description, date, time, false);
+        return new Reminder(description, date, time, done);
     }
 }

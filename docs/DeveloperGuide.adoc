@@ -1213,7 +1213,7 @@ These instructions only provide a starting point for testers to work on; testers
 .. Double-click the jar file +
    Expected: Shows the GUI with a set of sample students, modules, tutorials, consults and reminders. The window size is fixed.
 
-. Shuting down
+. Shutting down
 
 .. Add, edit or delete some data in TAble. Close the window.
 .. Re-launch the app by double-clicking the jar file +
