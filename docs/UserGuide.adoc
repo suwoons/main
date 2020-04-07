@@ -612,6 +612,7 @@ Reminders will be automatically sorted according to their date and time, with th
 * The description provided should be any valid string.
 * The date provided must be in YYYY-MM-DD format
 * The time provided must be in HH:MM format, i.e: 24-hour format
+* The reminder must be in the future.
 ****
 
 Examples:
@@ -648,7 +649,7 @@ Marks the reminder from the reminder list as done. +
 Format: `doneReminder INDEX`
 
 [TIP]
-Reminders marked as done will automatically be sorted to the bottom of the list.
+Reminders marked as done will automatically be sorted to the bottom of the list and will no longer appears in the calendar.
 
 ****
 * Marks the reminder at the specified `INDEX` as done.
@@ -688,6 +689,7 @@ Format: `snoozeReminder INDEX [day/DAY] [hour/HOUR] [minute/MINUTE]`
 * Snooze the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index *must be a positive integer* 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Number of days, hours or minutes provided must be a positive whole number.
+* Reminder to be snoozed must not be done.
 ****
 
 Examples:

@@ -126,10 +126,12 @@ public class CalendarDay extends UiPart<Region> {
     }
 
     /**
-     * Adds the reminder that is happening on this day to the {@Code CalendarDay}.
+     * Adds the reminder that is happening on this day to the {@Code CalendarDay} if it is not done yet.
      */
     public void addReminder(Reminder reminder) {
-        reminders.add(reminder);
+        if (!reminder.getDone()) {
+            reminders.add(reminder);
+        }
     }
 
     /**
