@@ -76,13 +76,20 @@ public class SnoozeReminderCommand extends Command {
         }
 
         Reminder reminderToSnooze = lastShownList.get(index.getZeroBased());
+
+        if (reminderToSnooze.getDone()) {
+            throw new CommandException(Messages.MESSAGE_REMINDER_ALREADY_DONE);
+        }
+
         LocalDateTime dateTime = LocalDateTime.of(reminderToSnooze.getDate(), reminderToSnooze.getTime());;
         LocalDateTime updatedDateTime;
+
         try {
             updatedDateTime = dateTime.plusDays(dayToSnooze).plusHours(hourToSnooze).plusMinutes(minuteToSnooze);
         } catch (DateTimeException e) {
             throw new CommandException(MESSAGE_MAXIMUM_DATE);
         }
+
         EditReminderCommand.EditReminderDescriptor editReminderDescriptor =
                 new EditReminderCommand.EditReminderDescriptor();
         editReminderDescriptor.setDate(updatedDateTime.toLocalDate());

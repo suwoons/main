@@ -1,6 +1,7 @@
 package seedu.address.model.mod;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.List;
@@ -43,7 +44,7 @@ public class ModTAble implements ReadOnlyMod {
     }
 
     /**
-     * Creates a ModTAble using the tutorials in the {@code modList}
+     * Creates a ModTAble using the modules in the {@code modList}
      */
     public ModTAble(List<Mod> modList) {
         this.mods.setMods(modList);
@@ -103,17 +104,8 @@ public class ModTAble implements ReadOnlyMod {
      * Returns {@code mod} from {@code TAble}.
      * {@code module} must exist in the address book.
      */
-    public Mod getMod(int index) {
-        return mods.getMod(index);
-    }
-
-    /**
-     * Returns {@code mod} from {@code TAble}.
-     * {@code module} must exist in the address book.
-     */
     public void setMod(Mod target, Mod editedMod) {
-        requireNonNull(target);
-        requireNonNull(editedMod);
+        requireAllNonNull(target, editedMod);
         mods.setMod(target, editedMod);
         if (editedMod.isSameMod(viewedModSingletonList.get(0))) {
             viewedModSingletonList.clear();

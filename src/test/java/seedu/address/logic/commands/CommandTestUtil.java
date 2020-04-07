@@ -6,6 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_BEGIN_DATE_TIM
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
@@ -92,6 +97,30 @@ public class CommandTestUtil {
     public static final String INVALID_PLACE_INPUT = " " + PREFIX_PLACE + INVALID_PLACE;
     public static final String INVALID_INDEX_INPUT = PREFIX_STUDENT + "-2";
 
+    // ==================================== Mod related ===========================================
+    // Mod valid entries
+    public static final String VALID_MODCODE = "CS2103";
+    public static final String VALID_MODNAME = "SOFTWARE ENGINEERING";
+    public static final String VALID_MODNOTE = "SE is fun!!!";
+    public static final String VALID_MODLINK = "http://www.comp.nus.edu.sg/~cs2103";
+    public static final String VALID_MODLINK_NAME = "Module Website";
+
+    // Mod invalid entries
+    public static final String INVALID_MODCODE = "B1010"; // Not enough characters for department code
+    public static final String INVALID_MODLINK = "coursemologyorg"; // Does not fit URL format
+
+    // Mod valid parts
+    public static final String VALID_MODCODE_INPUT = " " + PREFIX_MODULE_CODE + VALID_MODCODE;
+    public static final String VALID_MODNAME_INPUT = " " + PREFIX_MODULE_NAME + VALID_MODNAME;
+    public static final String VALID_MODNOTE_INPUT = " " + PREFIX_MODULE_NOTE + VALID_MODNOTE;
+    public static final String VALID_MODLINK_INPUT = " " + PREFIX_MODULE_LINK + VALID_MODLINK;
+    public static final String VALID_MODLINK_NAME_INPUT = " " + PREFIX_MODULE_LINK_NAME + VALID_MODLINK_NAME;
+
+    // Mod invalid parts
+    public static final String INVALID_MODCODE_INPUT = " " + PREFIX_MODULE_CODE + "B1010";
+    public static final String INVALID_MODLINK_INPUT = " " + PREFIX_MODULE_LINK + "coursemologyorg";
+
+    // ================================== Reminder related ========================================
     // reminder valid entries
     public static final String VALID_DESCRIPTION1 = "Return midterms paper to T02";
     public static final String VALID_DESCRIPTION2 = "Makeup tutorial for T03";

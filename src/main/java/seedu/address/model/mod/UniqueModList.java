@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.mod.exceptions.DuplicateModException;
 import seedu.address.model.mod.exceptions.ModNotFoundException;
-import seedu.address.model.student.exceptions.StudentNotFoundException;
 
 /**
  * A list of modules that enforces uniqueness between its elements and does not allow nulls.
@@ -70,7 +69,11 @@ public class UniqueModList implements Iterable<Mod> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new StudentNotFoundException();
+            throw new ModNotFoundException();
+        }
+
+        if (!target.isSameMod(editedMod) && contains(editedMod)) {
+            throw new DuplicateModException();
         }
 
         internalList.set(index, editedMod);
@@ -133,14 +136,8 @@ public class UniqueModList implements Iterable<Mod> {
     }
 
     /**
-     * Returns the module at the {@code index}.
-     * @param index Index of the module.
-     * @return Mod at the index.
+     * Returns a list of all mods.
      */
-    public Mod getMod(int index) {
-        return internalList.get(index);
-    }
-
     public ObservableList<Mod> getAllMods() {
         return this.internalList;
     }
