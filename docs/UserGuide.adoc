@@ -237,7 +237,7 @@ Format: `noteMod modCode/MODULE_CODE modNote/NOTE`
 Example:
 
 * `noteModule modCode/CS1010S modNote/How cool is that?` +
-When viewing the module info for CS1010S, the note will be updated to show "How cool is that?"
+When viewing the module info for CS1010S, the note will be updated to show "How cool is that?".
 
 ==== Add link to module with appropriate name: `addModLink`
 Edit module to include links to appropriate websites (e.g. Google Drive Folder, Module Website etc.) +
@@ -245,13 +245,13 @@ Format: `addModLink modCode/MODULE_CODE modLink/LINK modLinkName/NAME`
 
 ****
 * The module code should correspond to an existing module in the database.
-* The module link should correspond to a valid URL format (protocol optional). Hence the first character should be alphanumeric, followed by any character in the set [-a-zA-Z0-9+&@\#/%?=~\_|!:,.;], and end with [-a-zA-Z0-9+&@#/%=~_|].
+* The module link should correspond to a valid URL format as specified by Java.
 * The tag provided should be any valid string.
 ****
 
 Example:
 
-* `addModLink modCode/CS1231` +
+* `addModLink modCode/CS1231 modLink/https://comp.nus.edu.sg/~cs1231 modLinkName/Module Website` +
 When viewing the module page for CS1231, there will be an additional label with "Module Website" and points to https://comp.nus.edu.sg/~cs1231.
 
 
@@ -281,7 +281,7 @@ Format: `copyModLink INDEX modCode/MODULE_CODE`
 Example:
 
 * `copyModLink 1 modCode/CS1231` +
-The module website for CS1231 is copied into the user's clipboard.
+The first module link for CS1231 is copied into the user's clipboard.
 
 ==== View Module: `viewModInfo`
 Opens the view for the selected module to view module description, links and (coming in v2.0) lecture timeslots.

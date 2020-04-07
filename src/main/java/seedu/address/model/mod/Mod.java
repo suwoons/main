@@ -23,7 +23,6 @@ public class Mod {
     // Data fields
     private String note;
     private List<ModLinkPair> links;
-    private ObservableList<ModLinkPair> observableLinkList;
 
     /**
      * Every field must be present and not null.
@@ -40,7 +39,7 @@ public class Mod {
         requireAllNonNull(mod, note);
         this.modCode = mod.getModCode();
         this.modName = mod.getModName();
-        this.note = mod.getNote() + note;
+        this.note = note;
         this.links = new ArrayList<>(mod.getLinks());
     }
 
@@ -70,8 +69,7 @@ public class Mod {
      * if modification is attempted.
      */
     public ObservableList<ModLinkPair> getLinks() {
-        observableLinkList = FXCollections.observableList(links);
-        return observableLinkList;
+        return FXCollections.observableList(links);
     }
 
     /**

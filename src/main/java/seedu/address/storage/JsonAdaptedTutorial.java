@@ -138,7 +138,7 @@ class JsonAdaptedTutorial {
         final ArrayList<Student> modelEnrolledStudents = new ArrayList<Student>();
         final ArrayList<ArrayList<Boolean>> modelStudentAttendance = new ArrayList<ArrayList<Boolean>>();
 
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < Tutorial.NUM_OF_WEEKS; i++) {
             ArrayList<Boolean> week = new ArrayList<Boolean>();
             modelStudentAttendance.add(week);
         }
