@@ -1,11 +1,16 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.mod.ModCode;
+import seedu.address.model.mod.ModLinkPair;
 
 /**
  * Jackson-friendly version of {@link Mod}.
@@ -17,15 +22,23 @@ public class JsonAdaptedMod {
 
     private final String modCode;
     private final String modName;
+    private final String note;
+    private final List<JsonAdaptedModLinkPair> links = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedMod} with the given module details.
      */
     @JsonCreator
     public JsonAdaptedMod(@JsonProperty("modCode") String modCode,
-                          @JsonProperty("modName") String modName) {
+                          @JsonProperty("modName") String modName,
+                          @JsonProperty("note") String note,
+                          @JsonProperty("links") List<JsonAdaptedModLinkPair> links) {
         this.modCode = modCode;
         this.modName = modName;
+        this.note = note;
+        if (links != null) {
+            this.links.addAll(links);
+        }
     }
 
     /**
@@ -34,6 +47,10 @@ public class JsonAdaptedMod {
     public JsonAdaptedMod(Mod source) {
         modCode = source.getModCode().toString();
         modName = source.getModName();
+        note = source.getNote();
+        links.addAll(source.getLinks().stream()
+            .map(JsonAdaptedModLinkPair::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -46,7 +63,6 @@ public class JsonAdaptedMod {
         if (modCode == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "MOD_CODE"));
         }
-
         if (modName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "MOD_NAME"));
         }
@@ -54,10 +70,25 @@ public class JsonAdaptedMod {
         ModCode modelModCode;
         String modelModName;
 
+        if (!ModCode.isValidModCode(modCode)) {
+            throw new IllegalValueException(ModCode.MESSAGE_CONSTRAINTS);
+        }
         modelModCode = new ModCode(modCode);
         modelModName = modName;
 
-        return new Mod(modelModCode, modelModName);
+        Mod modelMod = new Mod(modelModCode, modelModName);
+
+        if (note != null) {
+            modelMod = new Mod(modelMod, note);
+        }
+
+        List<ModLinkPair> modelLinks = new ArrayList<>();
+        for (JsonAdaptedModLinkPair jsonAdaptedModLinkPair : links) {
+            ModLinkPair modLinkPair = jsonAdaptedModLinkPair.toModelType();
+            modelMod = new Mod(modelMod, modLinkPair.getKey(), modLinkPair.getValue());
+        }
+
+        return modelMod;
     }
 }
 

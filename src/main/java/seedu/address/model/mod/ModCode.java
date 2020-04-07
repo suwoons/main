@@ -41,10 +41,6 @@ public class ModCode {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public String getModCode() {
-        return modCode;
-    }
-
     @Override
     public String toString() {
         return modCode;
