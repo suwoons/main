@@ -17,7 +17,7 @@ TAble is your handy desktop app, optimized for TAs who prefer to work with a Com
 
 * *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* *Code contributed*: [https://github.com[Dead link - Functional code]] [https://github.com[Dead link - Test code]] _{give links to collated code files}_
+* *Code contributed*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=&sort=totalCommits%20dsc&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=hanchingyong&tabRepo=AY1920S2-CS2103-W15-3%2Fmain%5Bmaster%5D[RepoSense - Code Report]]
 
 * *Other contributions*:
 
