@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -20,6 +21,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.consult.Consult;
+import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Name;
@@ -71,6 +74,8 @@ public class EditStudentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
+        List<Tutorial> currentTutorialList = model.getFilteredTutorialList();
+        List<Consult> currentConsultList = model.getFilteredConsultList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -78,6 +83,7 @@ public class EditStudentCommand extends Command {
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
+        List<Consult> consultsToEditStudent = new ArrayList<>();
 
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
@@ -87,6 +93,21 @@ public class EditStudentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MATRIC_NUMBER);
         }
 
+        for (int i = 0; i < currentTutorialList.size(); i++) {
+            ArrayList<Student> enrolledStudents = currentTutorialList.get(i).getEnrolledStudents();
+            int checker = enrolledStudents.indexOf(studentToEdit);
+            if (checker != -1) {
+                model.editTutorialStudent(currentTutorialList.get(i), studentToEdit, editedStudent);
+            }
+        }
+        for (int i = 0; i < currentConsultList.size(); i++) {
+            if (studentToEdit.getMatricNumber().equals(currentConsultList.get(i).getMatricNumber())) {
+                consultsToEditStudent.add(currentConsultList.get(i));
+            }
+        }
+        for (int i = 0; i < consultsToEditStudent.size(); i++) {
+            model.editConsultStudent(consultsToEditStudent.get(i), editedStudent);
+        }
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));

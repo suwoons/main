@@ -153,6 +153,12 @@ public interface Model {
     /** Returns the Consult TAble */
     ReadOnlyConsult getConsultTAble();
 
+    /**
+     * Edits the student identify of a given consult.
+     * The consult must exist in TAble.
+     */
+    void editConsultStudent(Consult target, Student editedStudent);
+
     // Tutorial-level operations =====================================================================================
 
     /**
@@ -188,6 +194,12 @@ public interface Model {
      * {@code toDeleteFrom} and {@code target} must already exist in TutorialTAble.
      */
     void deleteTutorialStudent(Tutorial toDeleteFrom, Student target);
+
+    /**
+     * Edits the equivalent student from the given tutorial and updates the student.
+     * {@code toEditFrom} and {@code studentToEdit} must already exist in TutorialTAble.
+     */
+    void editTutorialStudent(Tutorial toEditFrom, Student studentToEdit, Student editedStudent);
 
     /**
      * Marks the given student in the given tutorial as present in {@code weekZeroBased}.
