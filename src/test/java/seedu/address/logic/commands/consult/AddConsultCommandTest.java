@@ -231,6 +231,11 @@ public class AddConsultCommandTest {
         }
 
         @Override
+        public void editConsultStudent(Consult target, Student editedStudent) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public boolean hasTutorial(Tutorial tutorial) {
             throw new AssertionError("This method should not be called.");
         }
@@ -258,6 +263,11 @@ public class AddConsultCommandTest {
 
         @Override
         public void deleteTutorialStudent(Tutorial toDeleteFrom, Student target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editTutorialStudent(Tutorial toEditFrom, Student studentToEdit, Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
 
