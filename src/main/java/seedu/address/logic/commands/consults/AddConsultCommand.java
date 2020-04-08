@@ -46,7 +46,6 @@ public class AddConsultCommand extends Command {
     public static final String MESSAGE_DUPLICATE_CONSULT = "There is already a consultation at that timing!";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
-
     private final Index index;
     private final Consult toAdd;
 
