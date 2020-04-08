@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.mod.exceptions.DuplicateModException;
 import seedu.address.model.mod.exceptions.ModNotFoundException;
 
@@ -125,14 +126,7 @@ public class UniqueModList implements Iterable<Mod> {
      * Returns true if {@code mods} contains only unique modules.
      */
     private boolean modsAreUnique(List<Mod> mods) {
-        for (int i = 0; i < mods.size() - 1; i++) {
-            for (int j = i + 1; j < mods.size(); j++) {
-                if (mods.get(i).equals(mods.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return CollectionUtil.isUnique(mods);
     }
 
     /**

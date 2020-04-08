@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.event.consult.exceptions.ConsultNotFoundException;
 import seedu.address.model.event.consult.exceptions.DuplicateConsultException;
 
@@ -158,14 +159,7 @@ public class UniqueConsultList implements Iterable<Consult> {
      * Returns true if {@code consults} contains only unique consults.
      */
     private boolean consultsAreUnique(List<Consult> consults) {
-        for (int i = 0; i < consults.size() - 1; i++) {
-            for (int j = i + 1; j < consults.size(); j++) {
-                if (consults.get(i).equals(consults.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return CollectionUtil.isUnique(consults);
     }
 
     public ObservableList<Consult> getAllConsults() {
