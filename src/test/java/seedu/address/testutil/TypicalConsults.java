@@ -13,8 +13,8 @@ import seedu.address.model.event.consult.ConsultTAble;
  */
 public class TypicalConsults {
 
-    private static Consult consult1;
-    private static Consult consult2;
+    public static Consult consult1;
+    public static Consult consult2;
 
     static {
         try {
