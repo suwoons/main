@@ -10,9 +10,10 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.event.consult.exceptions.ConsultNotFoundException;
 import seedu.address.model.event.consult.exceptions.DuplicateConsultException;
-
+import seedu.address.model.student.Student;
 
 
 /**
@@ -131,6 +132,24 @@ public class UniqueConsultList implements Iterable<Consult> {
     }
 
     /**
+     * Replaces the student identity in the consult {@code target} in the list with the student identity from
+     * {@code editedStudent}.
+     * {@code target} must exist in the list.
+     */
+    public void editConsultStudent(Consult target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new ConsultNotFoundException();
+        }
+
+        internalList.get(index).setMatricNumber(editedStudent.getMatricNumber());
+        internalList.get(index).setStudentName(editedStudent.getName());
+        FXCollections.sort(internalList);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Consult> asUnmodifiableObservableList() {
@@ -158,14 +177,7 @@ public class UniqueConsultList implements Iterable<Consult> {
      * Returns true if {@code consults} contains only unique consults.
      */
     private boolean consultsAreUnique(List<Consult> consults) {
-        for (int i = 0; i < consults.size() - 1; i++) {
-            for (int j = i + 1; j < consults.size(); j++) {
-                if (consults.get(i).equals(consults.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return CollectionUtil.isUnique(consults);
     }
 
     public ObservableList<Consult> getAllConsults() {

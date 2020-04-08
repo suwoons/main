@@ -258,6 +258,11 @@ public class ModelManager implements Model {
         this.consultTAble.resetData(consultTAble);
     }
 
+    @Override
+    public void editConsultStudent(Consult target, Student editedStudent) {
+        consultTAble.editConsultStudent(target, editedStudent);
+    }
+
 
     // Tutorials section ==========================================================================
 
@@ -291,6 +296,11 @@ public class ModelManager implements Model {
     @Override
     public void deleteTutorialStudent(Tutorial toDeleteFrom, Student target) {
         tutorialTAble.deleteTutorialStudent(toDeleteFrom, target);
+    }
+
+    @Override
+    public void editTutorialStudent(Tutorial tutorial, Student studentToEdit, Student editedStudent) {
+        tutorialTAble.editTutorialStudent(tutorial, studentToEdit, editedStudent);
     }
 
     @Override
