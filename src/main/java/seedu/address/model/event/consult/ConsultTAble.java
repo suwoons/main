@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.student.Student;
 
 /**
  * Wraps all consult data at the Consult TAble level
@@ -113,6 +114,15 @@ public class ConsultTAble implements ReadOnlyConsult {
      */
     public void clearConsults() {
         consults.clearConsults();
+    }
+
+    /**
+     * Replaces the student identity in the given consult {@code target} with the identity of the
+     * edited student {@code editedStuden}.
+     * {@code target} must exist in the ConsultTAble.
+     */
+    public void editConsultStudent(Consult target, Student editedStudent) {
+        consults.editConsultStudent(target, editedStudent);
     }
 
     //// util methods

@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.consult.exceptions.ConsultNotFoundException;
 import seedu.address.model.event.consult.exceptions.DuplicateConsultException;
-
+import seedu.address.model.student.Student;
 
 
 /**
@@ -128,6 +128,24 @@ public class UniqueConsultList implements Iterable<Consult> {
      */
     public void clearConsults() {
         internalList.remove(0, internalList.size());
+    }
+
+    /**
+     * Replaces the student identity in the consult {@code target} in the list with the student identity from
+     * {@code editedStudent}.
+     * {@code target} must exist in the list.
+     */
+    public void editConsultStudent(Consult target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new ConsultNotFoundException();
+        }
+
+        internalList.get(index).setMatricNumber(editedStudent.getMatricNumber());
+        internalList.get(index).setStudentName(editedStudent.getName());
+        FXCollections.sort(internalList);
     }
 
     /**

@@ -12,6 +12,8 @@ import javafx.scene.input.ClipboardContent;
 import seedu.address.model.event.Location;
 import seedu.address.model.mod.ModCode;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.DuplicateStudentException;
+import seedu.address.model.student.exceptions.StudentNotFoundException;
 
 /**
  * Represents a Tutorial in TAble.
@@ -282,6 +284,26 @@ public class Tutorial {
             }
         }
         return hasDuplicateStudent;
+    }
+
+    /**
+     * Replaces the student {@code studentToEdit} in the list with {@code editedStudent}.
+     * {@code target} must exist in the list.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in the list.
+     */
+    public void editEnrolledStudent(Student studentToEdit, Student editedStudent) {
+        requireAllNonNull(studentToEdit, editedStudent);
+
+        int index = enrolledStudents.indexOf(studentToEdit);
+        if (index == -1) {
+            throw new StudentNotFoundException();
+        }
+
+        if (!studentToEdit.isSameStudent(editedStudent) && enrolledStudents.contains(editedStudent)) {
+            throw new DuplicateStudentException();
+        }
+
+        enrolledStudents.set(index, editedStudent);
     }
 
     @Override

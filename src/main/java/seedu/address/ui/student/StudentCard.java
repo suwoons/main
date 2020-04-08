@@ -1,12 +1,21 @@
 package seedu.address.ui.student;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.model.event.tutorial.TutorialName;
+import seedu.address.model.mod.ModCode;
 import seedu.address.model.student.Student;
 import seedu.address.ui.UiPart;
 
@@ -39,9 +48,11 @@ public class StudentCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane modTutorials;
 
 
-    public StudentCard(Student student, int displayedIndex) {
+    public StudentCard(Student student, int displayedIndex, ObservableList<Tutorial> tutorialList) {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
@@ -51,6 +62,30 @@ public class StudentCard extends UiPart<Region> {
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        Map<ModCode, List<TutorialName>> modTutorialMap = new HashMap<>();
+        for (int i = 0; i < tutorialList.size(); i++) {
+            int checker = 0;
+            ArrayList<Student> enrolledStudents = tutorialList.get(i).getEnrolledStudents();
+            for (int j = 0; j < enrolledStudents.size(); j++) {
+                if (student.hasSameMatricNum(enrolledStudents.get(j))
+                        || (student.getName().equals(enrolledStudents.get(j).getName())
+                        && student.getEmail().equals(enrolledStudents.get(j).getEmail()))) {
+                    checker = 1;
+                }
+            }
+            if (checker != 0) {
+                modTutorialMap.computeIfAbsent(tutorialList.get(i).getModCode(),
+                    t -> new ArrayList<>()).add(tutorialList.get(i).getTutorialName());
+            }
+        }
+
+        modTutorialMap.entrySet().stream()
+                      .forEach(modCodeTutorialNameEntry -> modTutorials.getChildren()
+                              .add(new Label(modCodeTutorialNameEntry.getKey().toString() + ": "
+                                      + modCodeTutorialNameEntry.getValue().stream()
+                                        .map(t -> t.getTutorialName())
+                                        .collect(Collectors.joining(", ")))));
     }
 
     @Override
