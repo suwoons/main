@@ -115,6 +115,14 @@ public class TutorialTAble implements ReadOnlyTutorial {
     }
 
     /**
+     * Replaces {@code studentToEdit} from {@code tutorial} in {@code TutorialTAble} into {@code editedStudent}.
+     * {@code tutorial} must exist in the Tutorial TAble, and {@code studentToEdit} must exist in the tutorial.
+     */
+    public void editTutorialStudent(Tutorial tutorial, Student studentToEdit, Student editedStudent) {
+        tutorials.editTutorialStudent(tutorial, studentToEdit, editedStudent);
+    }
+
+    /**
      * Marks {@code studentToMark} in {@code tutorialToMark} as present in {@code week}.
      * {@code tutorialToMark} must exist in the Tutorial TAble, and {@code studentToMark} must exist in the tutorial.
      */

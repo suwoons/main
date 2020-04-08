@@ -32,9 +32,16 @@ public class Name {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         name = capitaliseName(name);
+        name = removeExcessSpaces(name);
         fullName = name;
     }
 
+    /**
+     * Removes any excess spaces between words of the names if there are more than 1 space between each word.
+     */
+    public String removeExcessSpaces(String name) {
+        return name.trim().replaceAll(" +", " ");
+    }
 
     /**
      * Capitalises the first letter of the student's name.

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.event.tutorial.exceptions.DuplicateTutorialException;
 import seedu.address.model.event.tutorial.exceptions.TutorialNotFoundException;
 import seedu.address.model.student.Student;
@@ -115,6 +116,25 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     }
 
     /**
+     * Edits the equivalent student from the given tutorial and updates the student.
+     * The tutorial must exist in the list, and the student to be edited must exist in the tutorial.
+     */
+    public void editTutorialStudent(Tutorial toEditFrom, Student studentToEdit, Student editedStudent) {
+        requireAllNonNull(toEditFrom, studentToEdit);
+        long matchCount = internalList.stream().filter(toEditFrom::equals).count();
+
+        if (matchCount == 1) {
+            internalList.stream().filter(toEditFrom::equals)
+                    .forEach(tut -> tut.editEnrolledStudent(studentToEdit, editedStudent));
+        } else if (matchCount == 0) {
+            throw new TutorialNotFoundException();
+        } else {
+            // matchCount > 1
+            throw new DuplicateTutorialException();
+        }
+    }
+
+    /**
      * Marks the equivalent student in the given tutorial as present.
      * The tutorial must exist in the list, and the student must exist in the tutorial.
      */
@@ -198,14 +218,7 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
      * Returns true if {@code tutorials} contains only unique tutorials.
      */
     private boolean tutorialsAreUnique(List<Tutorial> tutorials) {
-        for (int i = 0; i < tutorials.size() - 1; i++) {
-            for (int j = i + 1; j < tutorials.size(); j++) {
-                if (tutorials.get(i).equals(tutorials.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return CollectionUtil.isUnique(tutorials);
     }
 
     /**

@@ -25,6 +25,7 @@ import seedu.address.ui.consult.ConsultListPanel;
 import seedu.address.ui.mod.ModInfoPanel;
 import seedu.address.ui.mod.ModListPanel;
 import seedu.address.ui.reminder.ReminderListPanel;
+import seedu.address.ui.student.StudentListPanel;
 import seedu.address.ui.tutorial.AttendanceListPanel;
 import seedu.address.ui.tutorial.TutorialListPanel;
 
@@ -154,7 +155,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), logic.getFilteredTutorialList());
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         tutorialListPanel = new TutorialListPanel(logic.getFilteredTutorialList());

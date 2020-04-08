@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 import seedu.address.model.reminder.exceptions.ReminderIsDoneException;
 import seedu.address.model.reminder.exceptions.ReminderNotFoundException;
@@ -159,14 +160,7 @@ public class UniqueReminderList implements Iterable<Reminder> {
      * Returns true if {@code reminders} contains only unique reminders.
      */
     private boolean remindersAreUnique(List<Reminder> reminders) {
-        for (int i = 0; i < reminders.size() - 1; i++) {
-            for (int j = i + 1; j < reminders.size(); j++) {
-                if (reminders.get(i).equals(reminders.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return CollectionUtil.isUnique(reminders);
     }
 
     public ObservableList<Reminder> getAllReminders() {
