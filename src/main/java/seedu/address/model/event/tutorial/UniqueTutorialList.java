@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.event.tutorial.exceptions.DuplicateTutorialException;
 import seedu.address.model.event.tutorial.exceptions.TutorialNotFoundException;
 import seedu.address.model.student.Student;
@@ -217,14 +218,7 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
      * Returns true if {@code tutorials} contains only unique tutorials.
      */
     private boolean tutorialsAreUnique(List<Tutorial> tutorials) {
-        for (int i = 0; i < tutorials.size() - 1; i++) {
-            for (int j = i + 1; j < tutorials.size(); j++) {
-                if (tutorials.get(i).equals(tutorials.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return CollectionUtil.isUnique(tutorials);
     }
 
     /**

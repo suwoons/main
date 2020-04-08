@@ -42,6 +42,14 @@ public class TypicalConsults {
         return st;
     }
 
+    public static Consult getConsult1() {
+        return consult1;
+    }
+
+    public static Consult getConsult2() {
+        return consult2;
+    }
+
     public static List<Consult> getTypicalConsults() {
         return new ArrayList<>(Arrays.asList(consult1, consult2));
     }

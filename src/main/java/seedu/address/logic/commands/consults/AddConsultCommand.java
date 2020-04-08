@@ -9,7 +9,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -25,7 +27,6 @@ import seedu.address.model.student.Student;
  * Adds a consult into TAble.
  */
 public class AddConsultCommand extends Command {
-
 
     public static final String COMMAND_WORD = "addConsult";
 
@@ -44,6 +45,7 @@ public class AddConsultCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New consultation added: %1$s";
     public static final String MESSAGE_DUPLICATE_CONSULT = "There is already a consultation at that timing!";
 
+    private final Logger logger = LogsCenter.getLogger(getClass());
     private final Index index;
     private final Consult toAdd;
 
@@ -78,6 +80,8 @@ public class AddConsultCommand extends Command {
         Name studentName = new Name(studentToEdit.getName().toString());
         toAdd.setMatricNumber(studentMatricNumber);
         toAdd.setStudentName(studentName);
+        logger.fine("Student name: " + studentName.toString());
+        logger.fine("Student matric number: " + studentMatricNumber.toString());
 
         model.addConsult(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
