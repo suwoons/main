@@ -12,8 +12,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 
 import java.time.LocalDateTime;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.consults.AddConsultCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -29,6 +31,8 @@ import seedu.address.model.event.consult.Consult;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddConsultCommandParser implements Parser<AddConsultCommand> {
+
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddConsultCommand
@@ -59,6 +63,11 @@ public class AddConsultCommandParser implements Parser<AddConsultCommand> {
                 PREFIX_CONSULT_END_DATE_TIME).get());
         Location location = ParserUtil.parsePlace(argMultimap.getValue(
                 PREFIX_PLACE).get());
+
+        logger.fine("Index: " + index.toString());
+        logger.fine("Begin Date Time: " + beginDateTime.toString());
+        logger.fine("End Date Time: " + endDateTime.toString());
+        logger.fine("Location: " + location.toString());
 
 
         if (!checkStartEndDateTime(beginDateTime, endDateTime)) {

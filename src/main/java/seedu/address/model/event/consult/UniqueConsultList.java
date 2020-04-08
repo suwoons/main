@@ -14,8 +14,6 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.event.consult.exceptions.ConsultNotFoundException;
 import seedu.address.model.event.consult.exceptions.DuplicateConsultException;
 
-
-
 /**
  * A list of consults that enforces uniqueness between its elements and does not allow nulls.
  * A consult is considered unique by comparing using {@code Consult#equals(Consult)}. As such, adding, updating and
