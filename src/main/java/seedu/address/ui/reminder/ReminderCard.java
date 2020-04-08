@@ -70,9 +70,7 @@ public class ReminderCard extends UiPart<Region> {
                 cardPane.setStyle("-fx-background-color:  " + ONGOING_REMINDER_BACKGROUND + ";");
                 long dayDifferences = ChronoUnit.DAYS.between(nowDateTime, dueDateTime);
                 if (dayDifferences > 0) {
-                    if (dayDifferences == 1) {
-                        dayDifferences++;
-                    }
+                    dayDifferences++;
                     dueIn.setText("DUE IN: " + dayDifferences + " days");
                 } else {
                     Timeline due = new Timeline(new KeyFrame(Duration.ZERO, e -> {
