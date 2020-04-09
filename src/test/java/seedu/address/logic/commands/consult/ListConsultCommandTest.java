@@ -2,7 +2,7 @@ package seedu.address.logic.commands.consult;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalConsults.getTypicalConsultTAble;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentTAble;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ public class ListConsultCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalConsultTAble(),
+        model = new ModelManager(getTypicalStudentTAble(), new UserPrefs(), getTypicalConsultTAble(),
             new TutorialTAble(), new ModTAble(), new ReminderTAble());
         expectedModel = new ModelManager(model.getStudentTAble(), new UserPrefs(), model.getConsultTAble(),
             new TutorialTAble(), new ModTAble(), new ReminderTAble());

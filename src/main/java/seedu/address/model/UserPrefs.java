@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data", "TAble.json");
+    private Path studentTAbleFilePath = Paths.get("data", "TAble.json");
     private Path consultTAbleFilePath = Paths.get("data", "consults.json");
     private Path tutorialTAbleFilePath = Paths.get("data", "tutorials.json");
     private Path modTAbleFilePath = Paths.get("data", "mods.json");
@@ -40,7 +40,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setStudentTAbleFilePath(newUserPrefs.getStudentTAbleFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -52,13 +52,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getStudentTAbleFilePath() {
+        return studentTAbleFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setStudentTAbleFilePath(Path studentTAbleFilePath) {
+        requireNonNull(studentTAbleFilePath);
+        this.studentTAbleFilePath = studentTAbleFilePath;
     }
 
     // Consults start =============================================================================
@@ -92,11 +92,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     // Reminders start ==============================================================================
-    public Path getReminderTableFilePath() {
+    public Path getReminderTAbleFilePath() {
         return reminderTableFilePath;
     }
 
-    public void setReminderTableFilePath(Path reminderTableFilePath) {
+    public void setReminderTAbleFilePath(Path reminderTableFilePath) {
         requireNonNull(reminderTableFilePath);
         this.reminderTableFilePath = reminderTableFilePath;
     }
@@ -114,19 +114,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && studentTAbleFilePath.equals(o.studentTAbleFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, studentTAbleFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + studentTAbleFilePath);
         return sb.toString();
     }
 

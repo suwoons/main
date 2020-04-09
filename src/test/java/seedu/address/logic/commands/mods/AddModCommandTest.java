@@ -1,18 +1,14 @@
-package seedu.address.logic.commands.consult;
+package seedu.address.logic.commands.mods;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODCODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODNAME;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalConsults.getTypicalConsultTAble;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.address.testutil.TypicalStudents.getTypicalStudentTAble;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -20,90 +16,51 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.consults.AddConsultCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.event.consult.Consult;
-import seedu.address.model.event.consult.ConsultTAble;
 import seedu.address.model.event.consult.ReadOnlyConsult;
 import seedu.address.model.event.tutorial.ReadOnlyTutorial;
 import seedu.address.model.event.tutorial.Tutorial;
-import seedu.address.model.event.tutorial.TutorialTAble;
 import seedu.address.model.mod.Mod;
 import seedu.address.model.mod.ModCode;
 import seedu.address.model.mod.ModTAble;
 import seedu.address.model.mod.ReadOnlyMod;
 import seedu.address.model.reminder.ReadOnlyReminder;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.StudentTAble;
-import seedu.address.testutil.ConsultBuilder;
 
-public class AddConsultCommandTest {
-
-    private Model model = new ModelManager(getTypicalStudentTAble(), new UserPrefs(), getTypicalConsultTAble(),
-        new TutorialTAble(), new ModTAble(), new ReminderTAble());
+public class AddModCommandTest {
 
     @Test
-    public void constructor_nullIndexNullConsult_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddConsultCommand(null, null));
+    public void constructor_nullFields_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddModCommand(null, VALID_MODNAME));
+        assertThrows(NullPointerException.class, () -> new AddModCommand(new ModCode(VALID_MODCODE), null));
     }
 
     @Test
-    public void execute_consultAcceptedByModel_addSuccessful() throws Exception {
-        Consult validConsult = new ConsultBuilder().build();
-        Index index = Index.fromOneBased(1);
+    public void execute_modAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingModAdded modelStub = new ModelStubAcceptingModAdded();
+        Mod expectedMod = new Mod(new ModCode(VALID_MODCODE), VALID_MODNAME);
 
-        AddConsultCommand addConsultCommand = new AddConsultCommand(index, validConsult);
-        String expectedMessage = String.format(AddConsultCommand.MESSAGE_SUCCESS, validConsult);
-        Model expectedModel = new ModelManager(new StudentTAble(model.getStudentTAble()),
-            new UserPrefs(), new ConsultTAble(), new TutorialTAble(), new ModTAble(), new ReminderTAble());
-        expectedModel.addConsult(validConsult);
+        CommandResult commandResult = new AddModCommand(new ModCode(VALID_MODCODE), VALID_MODNAME).execute(modelStub);
 
-        assertCommandSuccess(addConsultCommand, model, expectedMessage, expectedModel);
+        assertEquals(String.format(AddModCommand.MESSAGE_SUCCESS, expectedMod), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(expectedMod), modelStub.modsAdded);
     }
 
-    @Test
-    public void execute_sameConsult_throwsCommandException() throws ParseException {
-        Consult firstConsult = model.getFilteredConsultList().get(INDEX_FIRST.getZeroBased());
-        Index index = Index.fromOneBased(1);
-
-        AddConsultCommand addConsultCommand = new AddConsultCommand(index, firstConsult);
-
-        assertCommandFailure(addConsultCommand, model, addConsultCommand.MESSAGE_DUPLICATE_CONSULT);
-    }
 
     @Test
-    public void equals() throws ParseException {
-        Consult c1 = new ConsultBuilder().withLocation("sr1").build();
-        Consult c2 = new ConsultBuilder().withBeginDateTime("2020-02-02 12:00").withEndDateTime("2020-02-02 13:00")
-                .build();
-        Index index = Index.fromOneBased(1);
+    public void execute_duplicateStudent_throwsCommandException() {
+        Mod expectedMod = new Mod(new ModCode(VALID_MODCODE), VALID_MODNAME);
+        AddModCommand addStudentCommand = new AddModCommand(new ModCode(VALID_MODCODE), VALID_MODNAME);
+        ModelStub modelStub = new ModelStubWithMod(expectedMod);
 
-        AddConsultCommand addC1Command = new AddConsultCommand(index, c1);
-        AddConsultCommand addC2Command = new AddConsultCommand(index, c2);
-
-        // same object -> returns true
-        assertTrue(addC1Command.equals(addC1Command));
-
-        // same values -> returns true
-        AddConsultCommand addSr1CommandCopy = new AddConsultCommand(index, c1);
-        assertTrue(addC1Command.equals(addSr1CommandCopy));
-
-        // different types -> returns false
-        assertFalse(addC1Command.equals(1));
-
-        // null -> returns false
-        assertFalse(addC1Command.equals(null));
-
-        // different timing -> returns false
-        assertFalse(addC1Command.equals(addC2Command));
+        assertThrows(CommandException.class,
+            AddModCommand.MESSAGE_DUPLICATE_MOD, ()-> addStudentCommand.execute(modelStub));
     }
 
     /**
@@ -141,7 +98,7 @@ public class AddConsultCommandTest {
         }
 
         @Override
-        public void addStudent(Student student) {
+        public void addStudent(Student mod) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -156,12 +113,12 @@ public class AddConsultCommandTest {
         }
 
         @Override
-        public boolean hasStudent(Student student) {
+        public boolean hasStudent(Student mod) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasSameMatricNumber(Student student) {
+        public boolean hasSameMatricNumber(Student mod) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -241,7 +198,7 @@ public class AddConsultCommandTest {
         }
 
         @Override
-        public boolean hasTutorialStudent(Tutorial tutorial, Student student) {
+        public boolean hasTutorialStudent(Tutorial tutorial, Student mod) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -268,7 +225,7 @@ public class AddConsultCommandTest {
 
         @Override
         public void editTutorialStudent(Tutorial toEditFrom, Student studentToEdit, Student editedStudent) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method should not be called");
         }
 
         @Override
@@ -300,7 +257,6 @@ public class AddConsultCommandTest {
         public boolean hasSameTiming(Tutorial tutorial) {
             throw new AssertionError("This method should not be called");
         }
-
         @Override
         public boolean hasMod(Mod mod) {
             throw new AssertionError("This method should not be called.");
@@ -367,12 +323,12 @@ public class AddConsultCommandTest {
         }
 
         @Override
-        public void setReminder(Reminder reminderToEdit, Reminder editedReminder) {
+        public Reminder doneReminder(Reminder target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Reminder doneReminder(Reminder target) {
+        public void setReminder(Reminder reminderToEdit, Reminder editedReminder) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -409,49 +365,44 @@ public class AddConsultCommandTest {
     }
 
     /**
-     * A Model stub that contains a single consult.
+     * A Model stub that contains a single Mod.
      */
-    private class ModelStubWithConsult extends AddConsultCommandTest.ModelStub {
-        private final Consult consult;
+    private class ModelStubWithMod extends ModelStub {
+        private final Mod mod;
 
-        ModelStubWithConsult(Consult consult) {
-            requireAllNonNull(consult);
-            this.consult = consult;
+        ModelStubWithMod(Mod mod) {
+            requireNonNull(mod);
+            this.mod = mod;
         }
 
         @Override
-        public boolean hasConsult(Consult consult) {
-            requireNonNull(consult);
-            return this.consult.equals(consult);
+        public boolean hasMod(Mod mod) {
+            requireNonNull(mod);
+            return this.mod.isSameMod(mod);
         }
     }
 
     /**
-     * A Model stub that always accept the consult being added.
+     * A Model stub that always accepts the module being added.
      */
-    private class ModelStubAcceptingConsultAdded extends AddConsultCommandTest.ModelStub {
-        final ArrayList<Consult> consultsAdded = new ArrayList<>();
+    private class ModelStubAcceptingModAdded extends ModelStub {
+        final ArrayList<Mod> modsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasConsult(Consult consult) {
-            requireNonNull(consult);
-            return consultsAdded.stream().anyMatch(consult::equals);
+        public boolean hasMod(Mod mod) {
+            requireNonNull(mod);
+            return modsAdded.stream().anyMatch(mod::isSameMod);
         }
 
         @Override
-        public void addConsult(Consult consult) {
-            requireNonNull(consult);
-            consultsAdded.add(consult);
+        public void addMod(Mod mod) {
+            requireNonNull(mod);
+            modsAdded.add(mod);
         }
 
         @Override
-        public boolean hasSameDateTime(Consult consult) {
-            return consultsAdded.stream().anyMatch(consult::timeClash);
-        }
-
-        @Override
-        public ReadOnlyStudent getStudentTAble() {
-            return new StudentTAble();
+        public ReadOnlyMod getModTAble() {
+            return new ModTAble();
         }
     }
 }

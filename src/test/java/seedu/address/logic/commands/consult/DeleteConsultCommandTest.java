@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalConsults.getTypicalConsultTAble;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentTAble;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +28,7 @@ import seedu.address.model.reminder.ReminderTAble;
  */
 public class DeleteConsultCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalConsultTAble(),
+    private Model model = new ModelManager(getTypicalStudentTAble(), new UserPrefs(), getTypicalConsultTAble(),
         new TutorialTAble(), new ModTAble(), new ReminderTAble());
 
     @Test
