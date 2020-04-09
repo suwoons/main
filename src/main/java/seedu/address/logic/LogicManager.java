@@ -19,6 +19,7 @@ import seedu.address.model.mod.Mod;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.student.Student;
+import seedu.address.model.util.InputHistory;
 import seedu.address.storage.Storage;
 
 /**
@@ -56,6 +57,7 @@ public class LogicManager implements Logic {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
+        InputHistory.addInput(commandText);
         return commandResult;
     }
 
