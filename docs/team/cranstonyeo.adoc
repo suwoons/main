@@ -15,9 +15,9 @@ TAble is your handy desktop app, optimized for TAs who prefer to work with a Com
 ** What it does: Allows the user to work with reminders using *TAble* to increase their productivity.
 ** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+* *Minor enhancement*: added a feature that allows the user to navigate to previous commands using up/down keys.
 
-* *Code contributed*: [https://github.com[Dead link - Functional code]] [https://github.com[Dead link - Test code]] _{give links to collated code files}_
+* *Code contributed*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=CranstonYeo&tabRepo=AY1920S2-CS2103-W15-3%2Fmain%5Bmaster%5D[RepoSense - Code Report]]
 
 * *Other contributions*:
 

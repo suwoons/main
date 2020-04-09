@@ -3,10 +3,12 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.util.InputHistory;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -24,6 +26,29 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+            switch (e.getCode()) {
+            case UP:
+                String input = InputHistory.getPrevious();
+                if (!input.equals("")) {
+                    commandTextField.setText(input);
+                    commandTextField.end();
+                }
+                e.consume();
+                break;
+            case DOWN:
+                input = InputHistory.getNext();
+                if (!input.equals("")) {
+                    commandTextField.setText(input);
+                    commandTextField.end();
+                }
+                e.consume();
+                break;
+            default:
+                break;
+            }
+        });
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }

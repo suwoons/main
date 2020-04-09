@@ -68,10 +68,9 @@ public class ReminderCard extends UiPart<Region> {
                 cardPane.setStyle("-fx-background-color:  " + OVERDUE_REMINDER_BACKGROUND + ";");
             } else {
                 cardPane.setStyle("-fx-background-color:  " + ONGOING_REMINDER_BACKGROUND + ";");
-                long dayDifferences = ChronoUnit.DAYS.between(nowDateTime, dueDateTime);
+                long dayDifferences = ChronoUnit.DAYS.between(nowDateTime, dueDateTime.plusMinutes(1));
                 if (dayDifferences > 0) {
-                    dayDifferences++;
-                    dueIn.setText("DUE IN: " + dayDifferences + " days");
+                    dueIn.setText("DUE IN: " + dayDifferences + " day(s)");
                 } else {
                     Timeline due = new Timeline(new KeyFrame(Duration.ZERO, e -> {
                         LocalDateTime frameDateTime = LocalDateTime.now();

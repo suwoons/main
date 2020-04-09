@@ -21,11 +21,13 @@ public class TypicalReminders {
             reminder1 = new ReminderBuilder()
                     .withDescription("Send out email to T02")
                     .withDate("2022-03-20")
-                    .withTime("15:00").build();
+                    .withTime("15:00")
+                    .withDone("true").build();
             reminder2 = new ReminderBuilder()
                     .withDescription("Get back to alice on tutorial 3 qns 5")
                     .withDate("2022-03-23")
-                    .withTime("16:00").build();
+                    .withTime("16:00")
+                    .withDone("false").build();
         } catch (ParseException e) {
             e.printStackTrace();
         }
