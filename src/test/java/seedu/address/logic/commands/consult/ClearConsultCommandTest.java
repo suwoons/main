@@ -2,7 +2,7 @@ package seedu.address.logic.commands.consult;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalConsults.getTypicalConsultTAble;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentTAble;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,9 +27,9 @@ public class ClearConsultCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalConsultTAble(),
+        Model model = new ModelManager(getTypicalStudentTAble(), new UserPrefs(), getTypicalConsultTAble(),
             new TutorialTAble(), new ModTAble(), new ReminderTAble());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalConsultTAble(),
+        Model expectedModel = new ModelManager(getTypicalStudentTAble(), new UserPrefs(), getTypicalConsultTAble(),
             new TutorialTAble(), new ModTAble(), new ReminderTAble());
 
         expectedModel.setConsultTAble(new ConsultTAble());

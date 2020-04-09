@@ -12,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentTAble;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,7 +39,7 @@ import seedu.address.testutil.StudentBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ConsultTAble(),
+    private Model model = new ModelManager(getTypicalStudentTAble(), new UserPrefs(), new ConsultTAble(),
         new TutorialTAble(), new ModTAble(), new ReminderTAble());
 
     @Test

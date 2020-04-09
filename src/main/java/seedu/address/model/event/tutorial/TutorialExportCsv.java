@@ -27,6 +27,8 @@ public class TutorialExportCsv {
      */
     public void exportAttendance() throws IOException {
         populateCsvStringBuilder();
+
+        // Not sure if this can be tested
         FileUtil.createIfMissing(path);
         FileUtil.writeToFile(path, writeToCsv.toString());
     }

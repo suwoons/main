@@ -58,11 +58,12 @@ public class CopyModLinkCommand extends Command {
         Mod modToGet = optionalMod.get();
 
         List<ModLinkPair> modLinkPairList = modToGet.getLinks();
-        if (targetIndex.getZeroBased() >= modLinkPairList.size()) {
+        if (modLinkPairList.size() == 0 || targetIndex.getZeroBased() >= modLinkPairList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MODLINK_INDEX);
         }
         ModLink link = modLinkPairList.get(targetIndex.getZeroBased()).getValue();
 
+        // Cannot be tested as it can only function on event thread
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
         url.putString(link.toString());

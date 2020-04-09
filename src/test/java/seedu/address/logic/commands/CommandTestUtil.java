@@ -88,7 +88,7 @@ public class CommandTestUtil {
     public static final String VALID_START_TIME_INPUT = " " + PREFIX_CONSULT_BEGIN_DATE_TIME + VALID_START_TIME;
     public static final String VALID_END_TIME_INPUT = " " + PREFIX_CONSULT_END_DATE_TIME + VALID_END_TIME;
     public static final String VALID_PLACE_INPUT = " " + PREFIX_PLACE + VALID_PLACE;
-    public static final String VALID_INDEX_INPUT = " " + PREFIX_STUDENT + VALID_INDEX;
+    public static final String VALID_STUDENT_INDEX_INPUT = " " + PREFIX_STUDENT + VALID_INDEX;
 
     // consult invalid command line inputs
     public static final String INVALID_START_TIME_INPUT = " " + PREFIX_CONSULT_BEGIN_DATE_TIME + INVALID_DATE_TIME;

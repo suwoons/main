@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentTAble;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentTAble;
@@ -40,7 +39,7 @@ public class StudentTAbleTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        StudentTAble newData = getTypicalAddressBook();
+        StudentTAble newData = getTypicalStudentTAble();
         studentTAble.resetData(newData);
         assertEquals(newData, studentTAble);
     }

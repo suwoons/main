@@ -59,7 +59,7 @@ public class TypicalStudents {
     /**
      * Returns an {@code StudentTAble} with all the typical students.
      */
-    public static StudentTAble getTypicalAddressBook() {
+    public static StudentTAble getTypicalStudentTAble() {
         StudentTAble ab = new StudentTAble();
         for (Student student : getTypicalStudents()) {
             ab.addStudent(student);

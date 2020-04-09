@@ -47,7 +47,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getStudentTAble());
+            storage.saveStudentTAble(model.getStudentTAble());
             storage.saveConsults(model.getConsultTAble());
             storage.saveMods(model.getModTAble());
             storage.saveTutorials(model.getTutorialTAble());
