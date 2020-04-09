@@ -17,7 +17,8 @@ import seedu.address.model.reminder.Reminder;
 class JsonAdaptedReminder {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Reminder's %s field is missing!";
-    private static final String INVALID_DATE_TIME_FORMAT = "Invalid date or time format!";
+    public static final String INVALID_DESCRIPTION = "Description is invalid!";
+    public static final String INVALID_DATE_TIME_FORMAT = "Invalid date or time format!";
 
     private final String description;
     private final String date;
@@ -71,9 +72,16 @@ class JsonAdaptedReminder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "DONE"));
         }
 
-        final Description modelDescription = new Description(description);
-        LocalDate modelDate;
-        LocalTime modelTime;
+        final Description modelDescription;
+
+        try {
+            modelDescription = new Description(description);
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalValueException(INVALID_DESCRIPTION);
+        }
+
+        final LocalDate modelDate;
+        final LocalTime modelTime;
 
         try {
             modelDate = LocalDate.parse(this.date);
