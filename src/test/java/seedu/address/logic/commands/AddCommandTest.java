@@ -34,8 +34,6 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentTAble;
 import seedu.address.testutil.StudentBuilder;
 
-
-
 public class AddCommandTest {
 
     @Test

@@ -25,7 +25,7 @@ public class JsonSerializableStudentTAbleTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_STUDENTS_FILE,
                 JsonSerializableAddressBook.class).get();
         StudentTAble studentTAbleFromFile = dataFromFile.toModelType();
-        StudentTAble typicalStudentsStudentTAble = TypicalStudents.getTypicalAddressBook();
+        StudentTAble typicalStudentsStudentTAble = TypicalStudents.getTypicalStudentTAble();
         assertEquals(studentTAbleFromFile, typicalStudentsStudentTAble);
     }
 

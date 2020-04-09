@@ -21,18 +21,18 @@ import seedu.address.model.student.ReadOnlyStudent;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private StudentStorage studentStorage;
     private UserPrefsStorage userPrefsStorage;
     private ConsultStorage consultStorage;
     private TutorialStorage tutorialStorage;
     private ModStorage modStorage;
     private ReminderStorage reminderStorage;
 
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+    public StorageManager(StudentStorage studentStorage, UserPrefsStorage userPrefsStorage,
                           ConsultStorage consultStorage, TutorialStorage tutorialStorage,
                           ModStorage modStorage, ReminderStorage reminderStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.studentStorage = studentStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.consultStorage = consultStorage;
         this.tutorialStorage = tutorialStorage;
@@ -61,30 +61,30 @@ public class StorageManager implements Storage {
     // ================ StudentTAble methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getStudentTAbleFilePath() {
+        return studentStorage.getStudentTAbleFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyStudent> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyStudent> readStudentTAble() throws DataConversionException, IOException {
+        return readStudentTAble(studentStorage.getStudentTAbleFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyStudent> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyStudent> readStudentTAble(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return studentStorage.readStudentTAble(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyStudent addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveStudentTAble(ReadOnlyStudent studentTAble) throws IOException {
+        saveStudentTAble(studentTAble, studentStorage.getStudentTAbleFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyStudent addressBook, Path filePath) throws IOException {
+    public void saveStudentTAble(ReadOnlyStudent studentTAble, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        studentStorage.saveStudentTAble(studentTAble, filePath);
     }
 
     // ================ Consult methods ==============================

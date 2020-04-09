@@ -9,11 +9,11 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_INPUT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INDEX;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INDEX_INPUT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PLACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PLACE_INPUT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_INPUT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_INDEX_INPUT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_DATE_TIME;
@@ -37,7 +37,7 @@ public class AddConsultCommandParserTest {
         Index index = Index.fromZeroBased(VALID_INDEX);
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_INDEX_INPUT + VALID_START_TIME_INPUT
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_STUDENT_INDEX_INPUT + VALID_START_TIME_INPUT
             + VALID_END_TIME_INPUT + VALID_PLACE_INPUT, new AddConsultCommand(index, expectedConsult));
     }
 
@@ -50,11 +50,11 @@ public class AddConsultCommandParserTest {
             + VALID_PLACE_INPUT, expectedMessage);
 
         // missing start time prefix
-        assertParseFailure(parser, VALID_INDEX_INPUT + VALID_START_TIME + VALID_END_TIME_INPUT
+        assertParseFailure(parser, VALID_STUDENT_INDEX_INPUT + VALID_START_TIME + VALID_END_TIME_INPUT
             + VALID_PLACE_INPUT, expectedMessage);
 
         // missing end time prefix
-        assertParseFailure(parser, VALID_INDEX_INPUT + VALID_START_TIME_INPUT + VALID_END_TIME
+        assertParseFailure(parser, VALID_STUDENT_INDEX_INPUT + VALID_START_TIME_INPUT + VALID_END_TIME
             + VALID_PLACE_INPUT, expectedMessage);
 
         // all prefixes missing
@@ -65,23 +65,23 @@ public class AddConsultCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid begin date time
-        assertParseFailure(parser, VALID_INDEX_INPUT + INVALID_START_TIME_INPUT + VALID_END_TIME_INPUT
+        assertParseFailure(parser, VALID_STUDENT_INDEX_INPUT + INVALID_START_TIME_INPUT + VALID_END_TIME_INPUT
             + VALID_PLACE_INPUT, MESSAGE_INVALID_DATE_TIME);
 
         // invalid end date time, different from start date time
-        assertParseFailure(parser, VALID_INDEX_INPUT + VALID_START_TIME_INPUT + INVALID_END_TIME_INPUT
+        assertParseFailure(parser, VALID_STUDENT_INDEX_INPUT + VALID_START_TIME_INPUT + INVALID_END_TIME_INPUT
             + VALID_PLACE_INPUT, MESSAGE_INVALID_DATE_TIME);
 
         // invalid place
-        assertParseFailure(parser, VALID_INDEX_INPUT + VALID_START_TIME_INPUT + VALID_END_TIME_INPUT
+        assertParseFailure(parser, VALID_STUDENT_INDEX_INPUT + VALID_START_TIME_INPUT + VALID_END_TIME_INPUT
             + INVALID_PLACE_INPUT, Location.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_START_TIME_INPUT + INVALID_PLACE_INPUT
-                + VALID_END_TIME_INPUT + VALID_INDEX_INPUT, MESSAGE_INVALID_DATE_TIME);
+                + VALID_END_TIME_INPUT + VALID_STUDENT_INDEX_INPUT, MESSAGE_INVALID_DATE_TIME);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + VALID_INDEX_INPUT + VALID_START_TIME_INPUT
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + VALID_STUDENT_INDEX_INPUT + VALID_START_TIME_INPUT
                 + VALID_END_TIME_INPUT + VALID_PLACE_INPUT,
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddConsultCommand.MESSAGE_USAGE));
     }

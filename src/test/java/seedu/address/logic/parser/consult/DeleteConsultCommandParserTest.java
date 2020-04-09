@@ -5,9 +5,9 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_INPUT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INDEX;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INDEX_INPUT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PLACE_INPUT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_INPUT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_INDEX_INPUT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -43,7 +43,7 @@ public class DeleteConsultCommandParserTest {
     @Test
     public void parse_invalidFields_failure() {
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + VALID_INDEX_INPUT,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + VALID_STUDENT_INDEX_INPUT,
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteConsultCommand.MESSAGE_USAGE));
     }
 }

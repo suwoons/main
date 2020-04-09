@@ -11,12 +11,12 @@ import seedu.address.model.student.StudentTAble;
 /**
  * Represents a storage for {@link StudentTAble}.
  */
-public interface AddressBookStorage {
+public interface StudentStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getStudentTAbleFilePath();
 
     /**
      * Returns StudentTAble data as a {@link ReadOnlyStudent}.
@@ -24,23 +24,23 @@ public interface AddressBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyStudent> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyStudent> readStudentTAble() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getStudentTAbleFilePath()
      */
-    Optional<ReadOnlyStudent> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyStudent> readStudentTAble(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyStudent} to the storage.
-     * @param addressBook cannot be null.
+     * @param studentTAble cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyStudent addressBook) throws IOException;
+    void saveStudentTAble(ReadOnlyStudent studentTAble) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyStudent)
+     * @see #saveStudentTAble(ReadOnlyStudent)
      */
-    void saveAddressBook(ReadOnlyStudent addressBook, Path filePath) throws IOException;
+    void saveStudentTAble(ReadOnlyStudent studentTAble, Path filePath) throws IOException;
 
 }
