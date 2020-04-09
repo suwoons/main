@@ -53,15 +53,15 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given studentTAble and userPrefs.
      */
-    public ModelManager(ReadOnlyStudent addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyConsult consultTAble,
+    public ModelManager(ReadOnlyStudent studentTAble, ReadOnlyUserPrefs userPrefs, ReadOnlyConsult consultTAble,
                         ReadOnlyTutorial tutorialTAble, ReadOnlyMod modTAble, ReadOnlyReminder reminderTAble) {
         super();
-        requireAllNonNull(addressBook, userPrefs, consultTAble, tutorialTAble, modTAble, reminderTAble);
+        requireAllNonNull(studentTAble, userPrefs, consultTAble, tutorialTAble, modTAble, reminderTAble);
 
-        logger.fine("Initializing with address book: " + addressBook + " , user prefs " + userPrefs
+        logger.fine("Initializing with address book: " + studentTAble + " , user prefs " + userPrefs
             + ", with consults " + consultTAble + " and modules in " + modTAble);
 
-        this.studentTAble = new StudentTAble(addressBook);
+        this.studentTAble = new StudentTAble(studentTAble);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.studentTAble.getStudentList());
         this.consultTAble = new ConsultTAble(consultTAble);

@@ -30,10 +30,10 @@ import seedu.address.model.mod.ModTAble;
 import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.student.Student;
-import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonConsultStorage;
 import seedu.address.storage.JsonModStorage;
 import seedu.address.storage.JsonReminderStorage;
+import seedu.address.storage.JsonStudentStorage;
 import seedu.address.storage.JsonTutorialStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -50,8 +50,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonStudentStorage addressBookStorage =
+                new JsonStudentStorage(temporaryFolder.resolve("TAble.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonConsultStorage consultStorage = new JsonConsultStorage(temporaryFolder.resolve("consults.json"));
         JsonTutorialStorage tutorialStorage = new JsonTutorialStorage(temporaryFolder.resolve("tutorials.json"));
@@ -83,8 +83,8 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-            new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonStudentStorage addressBookStorage =
+            new JsonStudentIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
             new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonConsultStorage consultStorage = new JsonConsultStorage(temporaryFolder.resolve("ioExceptionConsults.json"));
@@ -170,13 +170,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonStudentIoExceptionThrowingStub extends JsonStudentStorage {
+        private JsonStudentIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyStudent addressBook, Path filePath) throws IOException {
+        public void saveStudentTAble(ReadOnlyStudent studentTAble, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

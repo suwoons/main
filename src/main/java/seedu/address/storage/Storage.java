@@ -12,7 +12,7 @@ import seedu.address.model.student.ReadOnlyStudent;
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage, ConsultStorage,
+public interface Storage extends StudentStorage, UserPrefsStorage, ConsultStorage,
     TutorialStorage, ModStorage, ReminderStorage {
 
     @Override
@@ -22,12 +22,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, ConsultSt
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getStudentTAbleFilePath();
 
     @Override
-    Optional<ReadOnlyStudent> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyStudent> readStudentTAble() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyStudent addressBook) throws IOException;
+    void saveStudentTAble(ReadOnlyStudent studentTAble) throws IOException;
 
 }

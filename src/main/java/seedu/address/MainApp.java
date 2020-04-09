@@ -30,18 +30,18 @@ import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.student.StudentTAble;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.ConsultStorage;
-import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonConsultStorage;
 import seedu.address.storage.JsonModStorage;
 import seedu.address.storage.JsonReminderStorage;
+import seedu.address.storage.JsonStudentStorage;
 import seedu.address.storage.JsonTutorialStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.ModStorage;
 import seedu.address.storage.ReminderStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.StudentStorage;
 import seedu.address.storage.TutorialStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
@@ -72,12 +72,12 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getStudentTAbleFilePath());
+        StudentStorage studentStorage = new JsonStudentStorage(userPrefs.getStudentTAbleFilePath());
         ConsultStorage consultStorage = new JsonConsultStorage(userPrefs.getConsultTAbleFilePath());
         TutorialStorage tutorialStorage = new JsonTutorialStorage(userPrefs.getTutorialTAbleFilePath());
         ModStorage modStorage = new JsonModStorage(userPrefs.getModTAbleFilePath());
         ReminderStorage reminderStorage = new JsonReminderStorage(userPrefs.getReminderTAbleFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, consultStorage,
+        storage = new StorageManager(studentStorage, userPrefsStorage, consultStorage,
             tutorialStorage, modStorage, reminderStorage);
 
         initLogging(config);
@@ -108,7 +108,7 @@ public class MainApp extends Application {
         ReadOnlyReminder initialReminders;
 
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readStudentTAble();
             consultsOptional = storage.readConsults();
             tutorialsOptional = storage.readTutorials();
             modsOptional = storage.readMods();

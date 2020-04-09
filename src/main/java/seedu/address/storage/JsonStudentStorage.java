@@ -8,7 +8,6 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
-
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
@@ -18,32 +17,32 @@ import seedu.address.model.student.ReadOnlyStudent;
 /**
  * A class to access StudentTAble data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonStudentStorage implements StudentStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonStudentStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonStudentStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getStudentTAbleFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyStudent> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyStudent> readStudentTAble() throws DataConversionException {
+        return readStudentTAble(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readStudentTAble()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyStudent> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyStudent> readStudentTAble(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
@@ -61,21 +60,21 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyStudent addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveStudentTAble(ReadOnlyStudent studentTAble) throws IOException {
+        saveStudentTAble(studentTAble, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyStudent)}.
+     * Similar to {@link #saveStudentTAble(ReadOnlyStudent)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyStudent addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveStudentTAble(ReadOnlyStudent studentTAble, Path filePath) throws IOException {
+        requireNonNull(studentTAble);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(studentTAble), filePath);
     }
 
 }
