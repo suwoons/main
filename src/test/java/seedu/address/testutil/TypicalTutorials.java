@@ -8,6 +8,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.tutorial.Tutorial;
 import seedu.address.model.event.tutorial.TutorialTAble;
 
+/**
+ * A utility class containing a list of {@code Tutorial} objects to be used in tests.
+ */
 public class TypicalTutorials {
 
     private static Tutorial tutorial1;

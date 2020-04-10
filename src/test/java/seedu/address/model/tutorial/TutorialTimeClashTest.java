@@ -26,34 +26,39 @@ public class TutorialTimeClashTest {
         // different type -> returns false;
         assertFalse(tutorial1.timeClash(5));
 
+        // different day -> returns false;
+        tutorial1 = new TutorialBuilder(tutorial1).withBeginTime("12:00").withEndTime("14:00").withDay("1").build();
+        tutorial2 = new TutorialBuilder(tutorial2).withBeginTime("12:00").withEndTime("14:00").withDay("2").build();
+        assertFalse(tutorial1.timeClash(tutorial2));
+
         // same begin time and end time -> returns true
-        tutorial1 = new TutorialBuilder(tutorial1).withBeginTime("12:00").withEndTime("14:00").build();
-        tutorial2 = new TutorialBuilder(tutorial2).withBeginTime("12:00").withEndTime("14:00").build();
+        tutorial1 = new TutorialBuilder(tutorial1).withBeginTime("12:00").withEndTime("14:00").withDay("1").build();
+        tutorial2 = new TutorialBuilder(tutorial2).withBeginTime("12:00").withEndTime("14:00").withDay("1").build();
         assertTrue(tutorial1.timeClash(tutorial2));
 
         // same begin time different end time -> returns true
-        tutorial2 = new TutorialBuilder(tutorial2).withBeginTime("12:00").withEndTime("13:00").build();
+        tutorial2 = new TutorialBuilder(tutorial2).withBeginTime("12:00").withEndTime("13:00").withDay("1").build();
         assertTrue(tutorial1.timeClash(tutorial2));
 
         // different begin time same end time -> returns true
-        tutorial2 = new TutorialBuilder(tutorial2).withBeginTime("13:00").withEndTime("14:00").build();
+        tutorial2 = new TutorialBuilder(tutorial2).withBeginTime("13:00").withEndTime("14:00").withDay("1").build();
         assertTrue(tutorial1.timeClash(tutorial2));
 
         // tutorial 2 starts before tutorial 1 ends -> returns true
-        tutorial2 = new TutorialBuilder(tutorial2).withBeginTime("13:00").withEndTime("15:00").build();
+        tutorial2 = new TutorialBuilder(tutorial2).withBeginTime("13:00").withEndTime("15:00").withDay("1").build();
         assertTrue(tutorial1.timeClash(tutorial2));
 
         // tutorial 1 starts and ends within tutorial 2 period -> returns true
-        tutorial2 = new TutorialBuilder(tutorial2).withBeginTime("10:00").withEndTime("15:00").build();
+        tutorial2 = new TutorialBuilder(tutorial2).withBeginTime("10:00").withEndTime("15:00").withDay("1").build();
         assertTrue(tutorial1.timeClash(tutorial2));
 
         // tutorial 1 before tutorial 2 -> returns false
-        tutorial1 = new TutorialBuilder(tutorial1).withBeginTime("10:00").withEndTime("12:00").build();
-        tutorial2 = new TutorialBuilder(tutorial2).withBeginTime("13:00").withEndTime("14:00").build();
+        tutorial1 = new TutorialBuilder(tutorial1).withBeginTime("10:00").withEndTime("12:00").withDay("1").build();
+        tutorial2 = new TutorialBuilder(tutorial2).withBeginTime("13:00").withEndTime("14:00").withDay("1").build();
         assertFalse(tutorial1.timeClash(tutorial2));
 
         // tutorial 1 ends at the same time tutorial 2 starts -> returns false
-        tutorial2 = new TutorialBuilder(tutorial2).withBeginTime("12:00").withEndTime("14:00").build();
+        tutorial2 = new TutorialBuilder(tutorial2).withBeginTime("12:00").withEndTime("14:00").withDay("1").build();
         assertFalse(tutorial1.timeClash(tutorial2));
     }
 }
