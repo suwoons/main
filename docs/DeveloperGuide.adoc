@@ -461,7 +461,7 @@ would likely not be significantly affected.
 |It may be confusing for the user, as certain command prefixes may share similar initials, such as `tags` and `time`.
 |===
 
-Reason for choosing Alternative 1:  We believe that the user experience will be better when using more descriptive command prefixes, as the user will not be required to constantly check on the user guide since the command prefixes are intuitive.
+Reason for choosing Alternative 1:  We believe that the user experience will be better when using more descriptive command prefixes, as the user will not be required to constantly check on the user guide since the command prefixes are intuitive. Furthermore, TAble comes with the autocomplete feature which removes the hassle of typing out long prefixes.
 
 === Logging
 
@@ -569,7 +569,11 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |teaching assistant |add module links |update module resources
 
-|`* * *` |teaching assistant |have a calendar view |track all of my consults, tutorials and reminders in a single calendar window.
+|`* * *` |teaching assistant |have a calendar view |track all of my consults, tutorials and reminders in a single calendar window
+
+|`* *` |teaching assistant |easily input my last entered command |be more productive by entering repetitive commands quickly
+
+|`* * *` |teaching assistant |get suggestions and autocomplete my input |easily enter commands without having to type each prefix
 
 |`* *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
@@ -1224,15 +1228,29 @@ _{ more test cases ... }_
 
 . Deleting a student while all student are listed
 
-.. Prerequisites: List all persons using the `listStudent` command. Multiple students in the list.
+.. Prerequisites: List all students using the `listStudent` command. Multiple students in the list.
 .. Test case: `deleteStudent 1` +
    Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `deleteStudent 0` +
-   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `deleteStudent`, `deleteStudent x` (where x is larger than the list size) _{give more}_ +
    Expected: Similar to previous.
 
-_{ more test cases ... }_
+
+=======
+=== Snoozing a reminder
+
+. Snoozing a reminder while some reminders are listed
+
+.. Prerequisites: List reminders using `listReminder` or `findReminder` command. Multiple reminders in the list.
+.. Test case: `snoozeReminder 1 hour/1` +
+   Expected: First reminder in the list is snoozed by an hour. Details of the updated reminder shown in the status message.
+.. Test case: `snoozeReminder -2 day/3` +
+   Expected: No reminder is snoozed. Error details shown in the status message.
+.. Test case: `snoozeReminder 1 hour/0` +
+   Expected: No reminder is snoozed. Error details shown in the status message.
+.. Other incorrect snooze commands to try: `snoozeReminder`, `snoozeReminder x` (where x is larger than the list size), `snoozeReminder 1 hour/y (where y is a negative integer)` +
+   Expected: Similar to previous.
 
 // tag::hc1[]
 

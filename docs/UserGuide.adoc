@@ -69,6 +69,17 @@ image::CalendarWindow.png[width="750"]
 * Items in square brackets are optional e.g `name/NAME [tag/TAG]` can be used as `name/John Doe tag/friend` or as `name/John Doe`.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `[tag/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
 * Parameters can be in any order e.g. if the command specifies `name/NAME email/EMAIL`, `email/EMAIL name/NAME` is also acceptable.
+
+*Command History*
+
+* Navigate through the past command history by pressing the up and down arrow button.
+
+*Autocompletion*
+
+* TAble will suggest the available commands and prefixes based on your current input.
+* Press kbd:[Tab] or kbd:[Enter] to accept the suggestion.
+* Press kbd:[Esc] to cancel and close the suggestion window.
+
 ====
 
 === Viewing help : `help`
@@ -799,7 +810,7 @@ e.g. `deleteMod modCode/CS2103`
 * *Edit module Note* : `noteMod modCode/MODULE_CODE modNote/MODULE_NOTE` +
 e.g. `noteMod modCode/CS2103 modNote/SWE is fun!`
 * *Add module website link* : `addModLink modCode/MODULE_CODE modLink/MODULE_LINK modLinkName/MODULE_LINK_NAME` +
-e.g. `addModLink modCode/CS2103 modLink/comp.nus.edu.sg/~cs2103 modLinkName/Module Website`
+e.g. `addModLink modCode/CS2103 modLink/http://comp.nus.edu.sg/~cs2103 modLinkName/Module Website`
 * *Clear all module links* : `clearModLink modCode/MODULE_CODE`
 * *View module info* : `viewModInfo modCode/MODULE_CODE`
 * *Copy module link into clipboard* : `copyModLink INDEX modCode/MODULE_CODE` +
