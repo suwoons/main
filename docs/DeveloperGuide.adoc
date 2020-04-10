@@ -1260,6 +1260,10 @@ Expected: No module link is copied to the clipboard, and an error message is sho
 . Test case: `copyModLink 1 modCode/ZZ9999` +
 Expected: No module link is copied to the clipboard (unless there is a module with a module code of ZZ9999), and an error message is shown to the user.
 
+=== Marking attendance of a tutorial student
+
+=== Copying tutorial students' emails
+
 === Snoozing a reminder
 
 . Snoozing a reminder while some reminders are listed
