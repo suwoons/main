@@ -1267,8 +1267,12 @@ Expected: No module link is copied to the clipboard (unless there is a module wi
 .. Prerequisities: Target tutorial must exist in TAble and have at least one student enrolled in it.
 .. Test case: `markPresent tutorialIndex/2 week/3 student/1` +
 Expected: Using `listAttendance tutorialIndex/2 week/3` will display an attendance list with the 1st student highlighted green.
+.. Test case: `markPresent tutorialIndex/2 week/3 student/all` +
+Expected: Using `listAttendance tutorialIndex/2 week/3` will display an attendance list with all the students highlighted green.
 .. Test case: `markAbsent tutorialIndex/2 week/3 student/1` +
 Expected: Using `listAttendance tutorialIndex/2 week/3` will display an attendance list with the 1st student highlighted red.
+.. Test case: `markAbsent tutorialIndex/2 week/3 student/all` +
+Expected: Using `listAttendance tutorialIndex/2 week/3` will display an attendance list with all the students highlighted red.
 .. Test case: `markPresent tutorialIndex/-1 week/3 student/1` +
 Expected: Error message displayed, with no change to attendance list. Error details shown in the status message.
 .. Test case: `markPresent tutorialIndex/1 week/0 student/1` +
