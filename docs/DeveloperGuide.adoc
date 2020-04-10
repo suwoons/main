@@ -14,7 +14,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/AY1920-CS2103-W15-3/main/master
 
-By: `Team CS2103-W15-3`      Since: `Feb 2020`      Licence: `MIT`
+By: `AY1920-CS2103-W15-3`      Since: `Apr 2020`      Licence: `MIT`
 
 == Setting up
 
@@ -1077,7 +1077,7 @@ Use case ends.
 *MSS*
 
 1.  User requests to view an existing module
-2.  System updates the tab to show the existing module according to the the User's request
+2.  System updates the module information tab to show the existing module according to the the User's request
 +
 Use case ends.
 
@@ -1096,7 +1096,7 @@ Use case ends.
 
 *MSS*
 
-1.  User requests to update description of an existing module
+1.  User requests to update the notes of an existing module
 2.  System updates the existing module according to the the User's request
 +
 Use case ends.
@@ -1112,11 +1112,11 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Include Module links (U23)
+=== Use case: Add Module links (U23)
 
 *MSS*
 
-1.  User requests to include links to module
+1.  User requests to add links to module
 2.  System updates the existing module links according to the the User's request by appending the link to the module links section.
 +
 Use case ends.
@@ -1128,6 +1128,14 @@ Use case ends.
 +
 [none]
 ** 1a1. System shows an error message that the module does not exist.
++
+Use case ends.
+
+[none]
+* 2a. Link provided by user does not match the URL format as specified in Java 11.
++
+[none]
+** 2a1. System shows an error message that the URL provided is not valid.
 +
 Use case ends.
 
@@ -1219,11 +1227,9 @@ These instructions only provide a starting point for testers to work on; testers
 
 . Shutting down
 
-.. Add, edit or delete some data in TAble. Close the window.
+.. Add, edit or delete some data in TAble. Close the window or type `exit`.
 .. Re-launch the app by double-clicking the jar file +
    Expected: Modifications to the data in TAble are retained.
-
-_{ more test cases ... }_
 
 === Deleting a student
 
@@ -1238,7 +1244,21 @@ _{ more test cases ... }_
    Expected: Similar to previous.
 
 
-=======
+=== Copying module links from module
+
+After storing a module link using the `AddModLink` command on a target module, the user can easily copy it to their clipboard with the `copyModLink` command.
+
+[NOTE]
+It is recommended that the module information panel is currently showing the target module (via the `viewModInfo` command), as the prefix for the module link is needed in this function. However, viewing the module information is not necessary; the user can simply enter the prefix if they remember it.
+
+. Prerequisities: Target module must exist in TAble and have at least one module link associated with it.
+. Test case: `copyModLink 1 modCode/CS2103` +
+Expected: the first module link of the module is copied to the user's clipboard.
+. Test case: `copyModLink -1 modCode/CS2103` +
+Expected: No module link is copied to the clipboard, and an error message is shown to the user.
+. Test case: `copyModLink 1 modCode/ZZ9999` +
+Expected: No module link is copied to the clipboard (unless there is a module with a module code of ZZ9999), and an error message is shown to the user.
+
 === Snoozing a reminder
 
 . Snoozing a reminder while some reminders are listed
