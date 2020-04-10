@@ -17,26 +17,26 @@ import seedu.address.model.student.StudentTAble;
  * An Immutable StudentTAble that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableStudentStorage {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given students.
+     * Constructs a {@code JsonSerializableStudentStorage} with the given students.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("students") List<JsonAdaptedStudent> students) {
+    public JsonSerializableStudentStorage(@JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.students.addAll(students);
     }
 
     /**
      * Converts a given {@code ReadOnlyStudent} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableStudentStorage}.
      */
-    public JsonSerializableAddressBook(ReadOnlyStudent source) {
+    public JsonSerializableStudentStorage(ReadOnlyStudent source) {
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 

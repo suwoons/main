@@ -53,15 +53,16 @@ public class ConsultCard extends UiPart<Region> {
         if (consult.getEndDateTime().isBefore(nowDateTime)) {
             cardPane.setStyle("-fx-background-color:  " + OVERDUE_CONSULT_BACKGROUND + ";");
         }
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MMM-YY");
         id.setText(displayedIndex + ". ");
         beginDateTime.setText("Start: " + consult.getBeginDateTime().format(formatter));
         endDateTime.setText("End: " + consult.getEndDateTime().format(formatter));
         eventLocation.setText("Location: " + consult.getLocation().toString());
         studentName.setText(consult.getStudentName().toString());
+
         logger.fine(consult.getLocation().toString());
         logger.fine(consult.getStudentName().toString());
-
     }
 
     @Override

@@ -19,7 +19,6 @@ Class Student
 Class Email
 Class Name
 Class MatricNumber
-Class Remark
 Class UniqueStudentList
 Class StudentTAble
 }
@@ -69,13 +68,11 @@ UniqueStudentList o--> "*" Student
 Student *--> Name
 Student *--> MatricNumber
 Student *--> Email
-Student *--> Remark
 Student *--> "*" Tag
 
 Tag -[hidden]right-> Name
 Name -[hidden]right-> MatricNumber
 MatricNumber -[hidden]right-> Email
-Email -[hidden]right-> Remark
 
 ModelManager -->"1" Student : filtered list
 
