@@ -45,8 +45,8 @@ public class JsonStudentStorage implements StudentStorage {
     public Optional<ReadOnlyStudent> readStudentTAble(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableStudentStorage> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableStudentStorage.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -74,7 +74,7 @@ public class JsonStudentStorage implements StudentStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(studentTAble), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableStudentStorage(studentTAble), filePath);
     }
 
 }
