@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.util.InputHistory;
+import seedu.address.model.util.CommandHistory;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -19,6 +19,7 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private final InputMatcher inputMatcher;
 
     @FXML
     private TextField commandTextField;
@@ -26,11 +27,15 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        this.inputMatcher = new InputMatcher(commandTextField);
+        commandTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            inputMatcher.match(newValue);
+        });
 
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
             switch (e.getCode()) {
             case UP:
-                String input = InputHistory.getPrevious();
+                String input = CommandHistory.getPrevious();
                 if (!input.equals("")) {
                     commandTextField.setText(input);
                     commandTextField.end();
@@ -38,7 +43,7 @@ public class CommandBox extends UiPart<Region> {
                 e.consume();
                 break;
             case DOWN:
-                input = InputHistory.getNext();
+                input = CommandHistory.getNext();
                 if (!input.equals("")) {
                     commandTextField.setText(input);
                     commandTextField.end();

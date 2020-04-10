@@ -415,3 +415,12 @@
     -fx-max-width: 260;
     -fx-wrap-text: true;
 }
+
+.auto-complete-popup {
+    -fx-control-inner-background: #515658;
+}
+
+.auto-complete-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled {
+    -fx-font-size: 11pt;
+    -fx-control-inner-background: #383838;
+}
