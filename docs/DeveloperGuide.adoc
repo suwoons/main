@@ -1254,7 +1254,7 @@ It is recommended that the module information panel is currently showing the tar
 
 . Prerequisities: Target module must exist in TAble and have at least one module link associated with it.
 . Test case: `copyModLink 1 modCode/CS2103` +
-Expected: the first module link of the module is copied to the user's clipboard.
+Expected: The first module link of the module is copied to the user's clipboard.
 . Test case: `copyModLink -1 modCode/CS2103` +
 Expected: No module link is copied to the clipboard, and an error message is shown to the user.
 . Test case: `copyModLink 1 modCode/ZZ9999` +
@@ -1262,7 +1262,29 @@ Expected: No module link is copied to the clipboard (unless there is a module wi
 
 === Marking attendance of a tutorial student
 
+. Marking a student as present or absent (by default absent) for a particular week in the semester (3-13 inclusive).
+
+.. Prerequisities: Target tutorial must exist in TAble and have at least one student enrolled in it.
+.. Test case: `markPresent tutorialIndex/2 week/3 student/1` +
+Expected: Using `listAttendance tutorialIndex/2 week/3` will display an attendance list with the 1st student highlighted green.
+.. Test case: `markAbsent tutorialIndex/2 week/3 student/1` +
+Expected: Using `listAttendance tutorialIndex/2 week/3` will display an attendance list with the 1st student highlighted red.
+.. Test case: `markPresent tutorialIndex/-1 week/3 student/1` +
+Expected: Error message displayed, with no change to attendance list. Error details shown in the status message.
+.. Test case: `markPresent tutorialIndex/1 week/0 student/1` +
+Expected: Error message displayed, with no change to attendance list. Error details shown in the status message.
+.. Test case: `markPresent tutorialIndex/-1 week/3 student/-2` +
+Expected: Error message displayed, with no change to attendance list. Error details shown in the status message.
+
 === Copying tutorial students' emails
+
+. Copying all tutorial students' emails at once onto user's clipboard with the `copyTutorialEmails` command.
+
+.. Prerequisities: Target tutorial must exist in TAble and have at least one student enrolled in it, otherwise the copied information would be blank.
+.. Test case: `copyTutorialEmails tutorialIndex/2` +
+Expected: All the emails of the students in the specified tutorial is copied to the user's clipboard, separated with "; "
+.. Test case: `copyTutorialEmails tutorialIndex/-1` +
+Expected: No student emails are copied to the clipboard, and an error message is shown to the user.
 
 === Snoozing a reminder
 
