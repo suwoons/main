@@ -6,7 +6,7 @@ import java.util.ListIterator;
 /**
  * Stores user input history as an ArrayList.
  */
-public class InputHistory {
+public class CommandHistory {
     private static ArrayList<String> inputHistory = new ArrayList<>();
     private static ListIterator<String> iterator = inputHistory.listIterator();
 
@@ -19,6 +19,8 @@ public class InputHistory {
     public static void addInput(String input) {
         inputHistory.add(input);
         iterator = inputHistory.listIterator(inputHistory.size());
+        previousCalled = false;
+        nextCalled = false;
     }
 
     /**
@@ -27,12 +29,12 @@ public class InputHistory {
      * ListIterator where altering calls between next and previous returning the same element.
      */
     public static String getPrevious() {
+        if (nextCalled && iterator.hasPrevious()) {
+            iterator.previous();
+            nextCalled = false;
+        }
         if (iterator.hasPrevious()) {
             previousCalled = true;
-            if (nextCalled) {
-                iterator.previous();
-                nextCalled = false;
-            }
             return iterator.previous();
         } else {
             return "";
@@ -43,12 +45,12 @@ public class InputHistory {
      * Retrieves the next input command in the list.
      */
     public static String getNext() {
+        if (previousCalled && iterator.hasNext()) {
+            iterator.next();
+            previousCalled = false;
+        }
         if (iterator.hasNext()) {
             nextCalled = true;
-            if (previousCalled) {
-                iterator.next();
-                previousCalled = false;
-            }
             return iterator.next();
         } else {
             return "";
