@@ -612,7 +612,6 @@ Use case ends.
 +
 Use case resumes at step 2.
 
-// tag::hc[]
 
 [discrete]
 === Use case: Add consult (U02)
@@ -633,6 +632,8 @@ Use case ends.
 ** 1a1. System shows an error message that student, date, time and location must all be included.
 +
 Use case ends.
+
+// tag::hc[]
 
 [discrete]
 === Use case: Edit consult (U03)
@@ -687,6 +688,7 @@ Use case ends.
 ** 1b1. System shows an error message that the wrong delete consult command format was given.
 +
 Use case ends.
+// end::hc[]
 
 [discrete]
 === Use case: List consults (U05)
@@ -705,7 +707,6 @@ Use case ends.
 +
 Use case ends.
 
-// end::hc[]
 
 [discrete]
 === Use case: Add tutorial (U06)

@@ -60,10 +60,7 @@ include::../DeveloperGuide.adoc[tag=consult]
 include::../DeveloperGuide.adoc[tag=calendar]
 
 == Use Cases
-
 include::../DeveloperGuide.adoc[tag=hc]
 
-== Instructions for Manual Testing
-include::../DeveloperGuide.adoc[tag=hc1]
 
 
