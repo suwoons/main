@@ -1,6 +1,6 @@
 @startuml
 start
-:User executes addConsultCommand;
+:User enters addConsultCommand;
 
 if () then ([all prefixes present])
     :Parse prefixes;
