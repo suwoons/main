@@ -1,16 +1,21 @@
 package seedu.address.ui.tutorial;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.tutorial.Tutorial;
+import seedu.address.storage.StorageManager;
 import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Tutorial}.
  */
 public class TutorialCard extends UiPart<Region> {
+    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
 
     private static final String FXML = "TutorialListCard.fxml";
 
@@ -54,9 +59,8 @@ public class TutorialCard extends UiPart<Region> {
         modCode.setText(tutorial.getModCode().toString());
         tutlocation.setText(tutorial.getLocation().toString());
         tutTime.setText(tutorial.getDayAndTime());
-        //startTime.setText(tutorial.getStartTime());
-        //endTime.setText(tutorial.getEndTime());
 
+        logger.fine(tutorial.getModCode().toString() + " " + tutorial.getTutorialName().toString());
     }
 
     @Override
