@@ -707,7 +707,7 @@ Use case ends.
 +
 Use case ends.
 
-
+// tag::sarah[]
 [discrete]
 === Use case: Add tutorial (U06)
 
@@ -875,6 +875,7 @@ Use case ends.
 2. System brings up the attendance panel, and shows all students in a tutorial and their attendance from the database.
 +
 Use case ends.
+// end::sarah[]
 
 
 [discrete]

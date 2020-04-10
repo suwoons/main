@@ -58,7 +58,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(studentTAble, userPrefs, consultTAble, tutorialTAble, modTAble, reminderTAble);
 
-        logger.fine("Initializing with address book: " + studentTAble + " , user prefs " + userPrefs
+        logger.fine("Initializing with TAble: " + studentTAble + " , user prefs " + userPrefs
             + ", with consults " + consultTAble + " and modules in " + modTAble);
 
         this.studentTAble = new StudentTAble(studentTAble);

@@ -84,7 +84,7 @@ public class ConsultTAble implements ReadOnlyConsult {
      * Replaces the given consult {@code target} in the list with {@code editedConsult}.
      * {@code target} must exist in the ConsultTAble.
      * The consult identity of {@code editedConsult} must not be the same
-     * as another existing student in the address book.
+     * as another existing student in the ConsultTAble.
      */
     public void setConsult(Consult target, Consult editedConsult) {
         requireNonNull(editedConsult);
@@ -94,7 +94,7 @@ public class ConsultTAble implements ReadOnlyConsult {
 
     /**
      * Removes {@code key} from this {@code ConsultTAble}.
-     * {@code key} must exist in the Consult TAble.
+     * {@code key} must exist in the ConsultTAble.
      */
     public void removeConsult(Consult key) {
         consults.remove(key);
@@ -103,7 +103,7 @@ public class ConsultTAble implements ReadOnlyConsult {
 
     /**
      * Returns {@code consult} from {@code TAble}.
-     * {@code consult} must exist in the address book.
+     * {@code consult} must exist in ConsultTAble.
      */
     public Consult getConsult(int index) {
         return consults.getConsult(index);

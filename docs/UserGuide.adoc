@@ -204,7 +204,7 @@ Examples:
 
 * `listStudent` +
 `deleteStudent 2` +
-Deletes the 2nd student in the address book.
+Deletes the 2nd student in TAble.
 * `findStudent Betsy` +
 `deleteStudent 1` +
 Deletes the 1st student in the results of the `find` command.

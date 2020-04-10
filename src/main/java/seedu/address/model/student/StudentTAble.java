@@ -58,7 +58,7 @@ public class StudentTAble implements ReadOnlyStudent {
     //// student-level operations
 
     /**
-     * Returns true if a student with the same identity as {@code students} exists in the address book.
+     * Returns true if a student with the same identity as {@code students} exists in TAble.
      */
     public boolean hasStudent(Student student) {
         requireNonNull(student);
@@ -66,7 +66,7 @@ public class StudentTAble implements ReadOnlyStudent {
     }
 
     /**
-     * Returns true if a student with the same matric number as {@code students} exists in the address book.
+     * Returns true if a student with the same matric number as {@code students} exists in TAble.
      */
     public boolean hasSameMatricNumber(Student student) {
         requireNonNull(student);
@@ -74,8 +74,8 @@ public class StudentTAble implements ReadOnlyStudent {
     }
 
     /**
-     * Adds a student to the address book.
-     * The student must not already exist in the address book.
+     * Adds a student to TAble.
+     * The student must not already exist in TAble.
      */
     public void addStudent(Student p) {
         students.add(p);
@@ -83,7 +83,7 @@ public class StudentTAble implements ReadOnlyStudent {
 
     /**
      * Replaces the given student {@code target} in the list with {@code editedStudent}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in TAble.
      * The student identity of {@code editedStudent} must not be the same as another existing student in TAble.
      */
     public void setStudent(Student target, Student editedStudent) {
@@ -103,7 +103,7 @@ public class StudentTAble implements ReadOnlyStudent {
 
     /**
      * Returns {@code student} from {@code TAble}.
-     * {@code student} must exist in the address book.
+     * {@code student} must exist in the TAble.
      */
     public Student getStudent(int index) {
         return students.getStudent(index);
