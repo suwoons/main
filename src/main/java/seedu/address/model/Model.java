@@ -79,7 +79,7 @@ public interface Model {
 
     /**
      * Deletes the given student.
-     * The student must exist in the address book.
+     * The student must exist in TAble
      */
     void deleteStudent(Student target);
 
