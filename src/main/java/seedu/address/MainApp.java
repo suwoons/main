@@ -136,14 +136,14 @@ public class MainApp extends Application {
             initialMods = modsOptional.orElseGet(SampleDataUtil::getSampleMods);
             initialReminders = remindersOptional.orElseGet(SampleDataUtil::getSampleReminders);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty StudentTAble");
+            logger.warning("Data file not in the correct format. Will be starting with an empty TAble");
             initialData = new StudentTAble();
             initialConsults = new ConsultTAble();
             initialTutorials = new TutorialTAble();
             initialMods = new ModTAble();
             initialReminders = new ReminderTAble();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty StudentTAble");
+            logger.warning("Problem while reading from the file. Will be starting with an empty TAble");
             initialData = new StudentTAble();
             initialConsults = new ConsultTAble();
             initialTutorials = new TutorialTAble();
