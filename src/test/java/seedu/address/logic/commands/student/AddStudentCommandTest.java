@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.students.AddStudentCommand;
 import seedu.address.model.Model;
@@ -34,7 +35,7 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentTAble;
 import seedu.address.testutil.StudentBuilder;
 
-public class AddCommandTest {
+public class AddStudentCommandTest {
 
     @Test
     public void constructor_nullStudent_throwsNullPointerException() {

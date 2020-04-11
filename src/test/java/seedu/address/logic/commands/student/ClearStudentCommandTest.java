@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.student;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentTAble;
@@ -15,7 +15,7 @@ import seedu.address.model.mod.ModTAble;
 import seedu.address.model.reminder.ReminderTAble;
 import seedu.address.model.student.StudentTAble;
 
-public class ClearCommandTest {
+public class ClearStudentCommandTest {
 
     @Test
     public void execute_emptyAddressBook_success() {

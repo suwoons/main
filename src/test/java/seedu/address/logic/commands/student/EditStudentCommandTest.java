@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.student;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,7 +37,7 @@ import seedu.address.testutil.StudentBuilder;
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
  * EditStudentCommand.
  */
-public class EditCommandTest {
+public class EditStudentCommandTest {
 
     private Model model = new ModelManager(getTypicalStudentTAble(), new UserPrefs(), new ConsultTAble(),
         new TutorialTAble(), new ModTAble(), new ReminderTAble());
