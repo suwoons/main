@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.tutorial;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.tutorials.AddTutorialCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -34,7 +35,6 @@ import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentTAble;
 import seedu.address.testutil.TutorialBuilder;
-
 
 public class AddTutorialCommandTest {
 
@@ -171,6 +171,11 @@ public class AddTutorialCommandTest {
 
         @Override
         public boolean hasSameMatricNumber(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSameEmail(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -45,6 +45,15 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
+     * Returns true if the list contains an equivalent email address.
+     */
+    public boolean containsSameEmail(Student toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::hasSameEmail);
+    }
+
+
+    /**
      * Adds a student to the list.
      * The student must not already exist in the list.
      */

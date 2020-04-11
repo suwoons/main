@@ -18,7 +18,7 @@ class Consult {
 -endDateTime
 -studentMatricNumber
 -studentName
--Location
+-location
 }
 }
 package Logic <<Rectangle>> {

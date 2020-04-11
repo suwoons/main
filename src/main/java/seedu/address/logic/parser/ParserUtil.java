@@ -39,8 +39,8 @@ public class ParserUtil {
             + " or \"all\".";
     public static final String MESSAGE_INVALID_DATE_TIME = "Format of date and time is not supported.";
     public static final String MESSAGE_INVALID_DATE = "Format of date is not supported.";
-    public static final String MESSAGE_INVALID_TIME = "Format of time is not supported.";
-    public static final String MESSAGE_INVALID_DAY = "Format of day is not supported.";
+    public static final String MESSAGE_INVALID_TIME = "Format of time should be HH:MM";
+    public static final String MESSAGE_INVALID_DAY = "Day should be an integer from 1 (Monday) to 7 (Sunday).";
     public static final String MESSAGE_INVALID_FILEPATH = "Filepath specified is invalid.";
     public static final String MESSAGE_INVALID_FILEPATH_EXTENSION = "Filepath specified does not end in .csv";
 

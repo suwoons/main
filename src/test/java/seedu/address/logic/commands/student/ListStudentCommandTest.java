@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.student;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
@@ -20,7 +20,7 @@ import seedu.address.model.reminder.ReminderTAble;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for listStudentCommand.
  */
-public class ListCommandTest {
+public class ListStudentCommandTest {
 
     private Model model;
     private Model expectedModel;

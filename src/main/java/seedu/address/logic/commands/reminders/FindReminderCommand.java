@@ -11,7 +11,7 @@ import seedu.address.model.reminder.DatePredicate;
 import seedu.address.model.reminder.DescriptionContainsKeywordsPredicate;
 
 /**
- * Finds and lists all reminders in address book whose description contains any of the argument keywords.
+ * Finds and lists all reminders in TAble whose description contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindReminderCommand extends Command {

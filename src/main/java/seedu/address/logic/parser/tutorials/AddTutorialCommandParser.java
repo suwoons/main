@@ -70,7 +70,12 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
         TutorialName tutorialName = ParserUtil.parseTutorialName(inputName);
 
 
-        int dayValue = Integer.parseInt(argMultimap.getValue(PREFIX_TUTORIAL_WEEKDAY).get());
+        int dayValue;
+        try {
+            dayValue = Integer.parseInt(argMultimap.getValue(PREFIX_TUTORIAL_WEEKDAY).get());
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(MESSAGE_INVALID_DAY);
+        }
         if (dayValue < 1 || dayValue > 7) {
             throw new ParseException(MESSAGE_INVALID_DAY);
         }

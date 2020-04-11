@@ -63,7 +63,8 @@ public class DeleteTutorialStudentCommand extends Command {
             Student toDelete = tutorialToDeleteFrom.getEnrolledStudents().get(studentIndex.getZeroBased());
             model.deleteTutorialStudent(tutorialToDeleteFrom, toDelete);
             return new CommandResult(String.format(MESSAGE_DELETE_TUTORIAL_STUDENT_SUCCESS, toDelete.getName().fullName,
-                    tutorialToDeleteFrom.getModCode(), tutorialToDeleteFrom.getTutorialName()));
+                    tutorialToDeleteFrom.getModCode(), tutorialToDeleteFrom.getTutorialName()), false,
+                    false, false, true, false);
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_INVALID_TUTORIAL_STUDENT_INDEX);
         }

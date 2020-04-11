@@ -7,33 +7,36 @@
 
 == Overview
 
-TAble is your handy desktop app, optimized for TAs who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)! Mark attendance, arrange consults, add module notes, and more with TAble! It has a GUI created with JavaFX and written in Java, and has about 10 kLoC.
+TAble is your handy desktop app, optimized for TAs who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)! I have added the functionality for TAs to arrange consults and view all upcoming events in a calendar! The GUI of TAble was created with JavaFX and written in Java, and I have written about 4 kLoC.
 
 == Summary of contributions
 
 * *Major enhancement*: Enabled support for *Consults*
-** What it does: Allows the user to work with all of his/her consults using *TAble*.
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+** *What it does*: The user is able to add/edit/delete/list all `Consults` which he has scheduled with a current `Student`.
+** *Highlights*: A separate consult panel that displays all of the user's `Consults` exist for the user to easily keep track of all his consults.
+Any consults that are overdue are also highlighted in red, to remind the user to delete these outdated consults.
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+* *Major enhancement*: Added a calendar view for TAble.
+** *What it does*:  Added a calendar view that displays all the `Consults`, `Tutorials` and `Reminders` for the user.
+** *Highlights*: This calendar is able to show the number of  `Consults`, `Tutorials` and `Reminders` that occurs on a given day in one view, without any information being ommitted.
+** Credits: _{Code for the Calendar Window adapted from https://github.com/SirGoose3432/javafx-calendar/blob/master/src/FullCalendarView.java}_
 
-* *Code contributed*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=&sort=totalCommits%20dsc&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=hanchingyong&tabRepo=AY1920S2-CS2103-W15-3%2Fmain%5Bmaster%5D[RepoSense - Code Report]]
+
+* *All code contributed*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=hanchingyong&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false[RepoSense - Code Report]]
 
 * *Other contributions*:
 
 ** Project management:
-***
-** Enhancements to existing features:
-*** To be Updated
+*** Raised issues that needed to be solved and provided some solutions to these problems. [https://github.com/AY1920S2-CS2103-W15-3/main/issues?q=is%3Aissue+involves%3Ahanchingyong[Issues raised/discussed]]
 ** Documentation:
-*** Added Consults feature in User Guide: https://github.com[#0]
-*** Added Consults user stories and use cases.
-** Community:
-*** To be updated
+*** Contributed in the `Consult` and `Calendar` sections of the User Guide:
+*** Contributed in the `Consult` and `Calendar` sections of the Developer Guide: which includes the class diagram for `Consults`, activity diagram for `addConsult` command and a sequence diagram for the creation of the Calendar. More details on these are covered below.
 ** Tools:
 *** Helped to set up Travis-CI and Netifly.
+** Summary of contributions:
+*** Created over [https://github.com/AY1920S2-CS2103-W15-3/main/pulls?q=is%3Apr+author%3Ahanchingyong[35 pull requests]] on GitHub
+*** Reviewed over [https://github.com/AY1920S2-CS2103-W15-3/main/pulls?q=is%3Apr+reviewed-by%3Ahanchingyong[36 pull requests]]on GitHub
 
-_{you can add/remove categories in the list above}_
 
 == Contributions to the User Guide
 
@@ -44,10 +47,20 @@ _{you can add/remove categories in the list above}_
 
 include::../UserGuide.adoc[tag=Consult]
 
+include::../UserGuide.adoc[tag=Calendar]
+
 == Contributions to the Developer Guide
 
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-_To be updated_
+include::../DeveloperGuide.adoc[tag=consult]
+
+include::../DeveloperGuide.adoc[tag=calendar]
+
+== Use Cases
+include::../DeveloperGuide.adoc[tag=hc]
+
+
+

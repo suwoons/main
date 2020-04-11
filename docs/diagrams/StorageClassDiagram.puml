@@ -6,11 +6,11 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
+Interface StudentStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+Class JsonStudentStorage
 
 Package Consults {
 Interface ConsultStorage <<Interface>>
@@ -33,7 +33,7 @@ Interface TutorialStorage <<Interface>>
 
 StorageManager .up.|> Storage
 StorageManager o-up-> UserPrefsStorage
-StorageManager o-right-> AddressBookStorage
+StorageManager o-right-> StudentStorage
 StorageManager o--> ConsultStorage
 StorageManager o--> ModStorage
 StorageManager o--> ReminderStorage
@@ -41,9 +41,9 @@ StorageManager o--> TutorialStorage
 
 JsonUserPrefsStorage ..|> UserPrefsStorage
 
-JsonAddressBookStorage ..|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage ..> JsonAdaptedStudent
+JsonStudentStorage ..|> StudentStorage
+JsonStudentStorage ..> JsonSerializableStudentStorage
+JsonSerializableStudentStorage ..> JsonAdaptedStudent
 JsonAdaptedStudent ..> JsonAdaptedTag
 
 JsonConsultStorage ..|> ConsultStorage

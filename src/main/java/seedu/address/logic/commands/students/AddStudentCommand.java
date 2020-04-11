@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 
 /**
- * Adds a student to the address book.
+ * Adds a student to TAble.
  */
 public class AddStudentCommand extends Command {
 
@@ -35,7 +35,8 @@ public class AddStudentCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the list of students";
     public static final String MESSAGE_DUPLICATE_MATRIC_NUMBER =
-            "This matric number already exists in the address book.";
+            "This matric number already exists in TAble.";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "This email address already exists in TAble.";
 
     private final Student toAdd;
 
@@ -57,6 +58,10 @@ public class AddStudentCommand extends Command {
 
         if (model.hasSameMatricNumber(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MATRIC_NUMBER);
+        }
+
+        if (model.hasSameEmail(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
         }
 
         model.addStudent(toAdd);
