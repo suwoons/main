@@ -31,8 +31,8 @@ public class CommandResult {
     /** The application should show the relevant attendance list. */
     private final boolean showAttendance;
 
-    /** The application should reset attendance list. */
-    private final boolean deleteTutorial;
+    /** The application should reset attendance list and refresh student tutorial tags. */
+    private final boolean refreshTutorial;
 
     /** Information for the application to show the correct attendance list. */
     private final Tutorial tutorialToShow;
@@ -48,7 +48,7 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.showList = showList;
         this.showAttendance = false;
-        this.deleteTutorial = false;
+        this.refreshTutorial = false;
         this.exit = exit;
         this.tutorialToShow = null;
         this.weekZeroBased = 0;
@@ -65,14 +65,14 @@ public class CommandResult {
         this.exit = false;
         this.showList = false;
         this.showAttendance = true;
-        this.deleteTutorial = false;
+        this.refreshTutorial = false;
         this.tutorialToShow = tutorial;
         this.weekZeroBased = weekZeroBased;
         this.closeCalendar = false;
     }
 
     /**
-     * Constructs a {@code CommandResult} for a command which will reset attendance list after
+     * Constructs a {@code CommandResult} for a command which will show default attendance list after
      * deleting a tutorial.
      */
     public CommandResult(String feedbackToUser, boolean showCalendar, boolean showHelp,
@@ -82,7 +82,7 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.showList = showList;
         this.showAttendance = false;
-        this.deleteTutorial = deleteTutorial;
+        this.refreshTutorial = deleteTutorial;
         this.exit = exit;
         this.tutorialToShow = null;
         this.weekZeroBased = 0;
@@ -99,7 +99,7 @@ public class CommandResult {
         this.showCalendar = false;
         this.showList = false;
         this.showAttendance = false;
-        this.deleteTutorial = false;
+        this.refreshTutorial = false;
         this.tutorialToShow = null;
         this.weekZeroBased = 0;
         this.closeCalendar = false;
@@ -111,7 +111,7 @@ public class CommandResult {
     public CommandResult(String feedbackToUser, boolean closeCalendar) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showAttendance = false;
-        this.deleteTutorial = false;
+        this.refreshTutorial = false;
         this.showHelp = false;
         this.exit = false;
         this.showCalendar = false;
@@ -157,8 +157,8 @@ public class CommandResult {
         return showAttendance;
     }
 
-    public boolean isDeleteTutorial() {
-        return deleteTutorial;
+    public boolean isRefreshTutorial() {
+        return refreshTutorial;
     }
 
     public Tutorial getTutorialToShow() {
