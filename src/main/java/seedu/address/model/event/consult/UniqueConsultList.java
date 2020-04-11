@@ -43,19 +43,21 @@ public class UniqueConsultList implements Iterable<Consult> {
     }
 
     /**
-     * Returns true if the list contains another consult which timing clashes with the argument. Used by the addConsult command.
+     * Returns true if the list contains another consult which timing clashes with the argument.
+     * Used by the addConsult command.
      */
     public boolean hasSameDateTime(Consult consult) {
         requireNonNull(consult);
         logger.info("" + internalList.stream().filter(consult::timeClash).count());
         if (internalList.size() == 1) {
-            return  internalList.stream().filter(consult::timeClash).count() > 0;
+            return internalList.stream().filter(consult::timeClash).count() > 0;
         }
         return internalList.stream().filter(consult::timeClash).count() > 1;
     }
 
     /**
-     * Returns true if the list contains another consult which timing clashes with the argument. Used by the editConsult command.
+     * Returns true if the list contains another consult which timing clashes with the argument.
+     * Used by the editConsult command.
      */
     public boolean hasSameDateTimeEdit(Consult consult) {
         requireNonNull(consult);

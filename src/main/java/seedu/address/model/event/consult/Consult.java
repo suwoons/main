@@ -122,20 +122,25 @@ public class Consult implements Comparable<Consult> {
 
         if (getBeginDateTime().isEqual(otherEvent.getBeginDateTime())
             && !getEndDateTime().isEqual(otherEvent.getEndDateTime())) {
-            logger.info("Same start time, different end time." + !checkStartEndDateTime(getEndDateTime(), otherEvent.getBeginDateTime()));
+            logger.info("Same start time, different end time." + !checkStartEndDateTime(getEndDateTime(),
+                otherEvent.getBeginDateTime()));
             return true;
         } else if (getEndDateTime().isEqual(otherEvent.getEndDateTime())
             && !getBeginDateTime().isEqual(otherEvent.getBeginDateTime())) {
-            logger.info("Same end time, different start time." + !checkStartEndDateTime(getEndDateTime(), otherEvent.getBeginDateTime()));
+            logger.info("Same end time, different start time." + !checkStartEndDateTime(getEndDateTime(),
+                otherEvent.getBeginDateTime()));
             return true;
         } else if (checkStartEndDateTime(getBeginDateTime(), otherEvent.getBeginDateTime())) {
-            logger.info("End time before another consult start time." + !checkStartEndDateTime(getEndDateTime(), otherEvent.getBeginDateTime()));
+            logger.info("End time before another consult start time." + !checkStartEndDateTime(getEndDateTime(),
+                otherEvent.getBeginDateTime()));
             return !checkStartEndDateTime(getEndDateTime(), otherEvent.getBeginDateTime());
         } else if (checkStartEndDateTime(getEndDateTime(), otherEvent.getEndDateTime())) {
-            logger.info("Another consult start time before end time." + !checkStartEndDateTime(getEndDateTime(), otherEvent.getBeginDateTime()));
+            logger.info("Another consult start time before end time." + !checkStartEndDateTime(getEndDateTime(),
+                otherEvent.getBeginDateTime()));
             return checkStartEndDateTime(otherEvent.getBeginDateTime(), getEndDateTime());
         } else if (checkStartEndDateTime(getBeginDateTime(), otherEvent.getEndDateTime())) {
-            logger.info("Start time before another consult end time." + !checkStartEndDateTime(getEndDateTime(), otherEvent.getBeginDateTime()));
+            logger.info("Start time before another consult end time." + !checkStartEndDateTime(getEndDateTime(),
+                otherEvent.getBeginDateTime()));
             return checkStartEndDateTime(otherEvent.getBeginDateTime(), getBeginDateTime());
         }
 
