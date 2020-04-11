@@ -74,7 +74,7 @@ image::CalendarWindow.png[width="750"]
 
 * Navigate through the past command history by pressing kbd:[↑] / kbd:[↓] buttons.
 [NOTE]
-Only successfully executed commands will be added to list of command history. 
+Only successfully executed commands will be added to list of command history.
 
 *Autocompletion*
 

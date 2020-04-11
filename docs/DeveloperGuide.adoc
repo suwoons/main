@@ -1233,7 +1233,6 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file +
    Expected: Modifications to the data in TAble are retained.
 
-
 === Command history and Auto suggestion
 
 . Command history
