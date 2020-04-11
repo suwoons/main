@@ -277,7 +277,7 @@ public class ParserUtil {
         requireNonNull(csvFilePath);
         String trimmedCsvFilePath = csvFilePath.trim();
 
-        if (!FileUtil.isValidPath(csvFilePath)) {
+        if (!FileUtil.isValidPath(trimmedCsvFilePath) || trimmedCsvFilePath.length() < 5) {
             throw new ParseException(MESSAGE_INVALID_FILEPATH);
         }
 
