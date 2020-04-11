@@ -74,6 +74,14 @@ public class StudentTAble implements ReadOnlyStudent {
     }
 
     /**
+     * Returns true if a student with the same email as {@code students} exists in TAble.
+     */
+    public boolean hasSameEmail(Student student) {
+        requireNonNull(student);
+        return students.containsSameEmail(student);
+    }
+
+    /**
      * Adds a student to TAble.
      * The student must not already exist in TAble.
      */
@@ -94,7 +102,7 @@ public class StudentTAble implements ReadOnlyStudent {
 
     /**
      * Removes {@code key} from this {@code StudentTAble}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in TAble.
      */
     public void removeStudent(Student key) {
         students.remove(key);

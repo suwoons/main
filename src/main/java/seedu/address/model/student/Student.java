@@ -3,6 +3,7 @@ package seedu.address.model.student;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -10,7 +11,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Student in the address book.
+ * Represents a Student in TAble.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
@@ -79,6 +80,14 @@ public class Student {
     }
 
     /**
+     * Returns true if two students have the same matric number.
+     */
+    public boolean hasSameEmail(Student otherStudent) {
+        return otherStudent != null
+                && otherStudent.getEmail().equals(getEmail());
+    }
+
+    /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */
@@ -114,7 +123,9 @@ public class Student {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Tags: ");
-        getTags().forEach(builder::append);
+        getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(builder::append);
         return builder.toString();
     }
 

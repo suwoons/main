@@ -17,7 +17,7 @@ import seedu.address.model.student.MatricNumber;
 import seedu.address.model.student.Student;
 
 /**
- * Deletes a student identified using it's displayed index from the address book.
+ * Deletes a student identified using it's displayed index from TAble.
  */
 public class DeleteStudentCommand extends Command {
 
