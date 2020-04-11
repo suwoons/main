@@ -26,7 +26,7 @@ public class AddTutorialCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to TAble.\n"
             + "Parameters: "
             + PREFIX_MODULE_CODE + "MODULE_CODE "
-            + PREFIX_TUTORIAL_NAME + "TUTORIAL_NAME (capped at 8 alphanumeric characters)"
+            + PREFIX_TUTORIAL_NAME + "TUTORIAL_NAME (capped at 8 alphanumeric characters) "
             + PREFIX_TUTORIAL_WEEKDAY + "TUTORIAL_WEEKDAY_VALUE (1-7) "
             + PREFIX_TUTORIAL_BEGIN_TIME + "TUTORIAL_BEGIN_TIME "
             + PREFIX_TUTORIAL_END_TIME + "TUTORIAL_END_TIME "
