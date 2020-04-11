@@ -224,6 +224,11 @@ public class AddReminderCommandTest {
         }
 
         @Override
+        public boolean hasSameDateTimeEdit(Consult editedConsult) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyConsult getConsultTAble() {
             throw new AssertionError("This method should not be called");
         }

@@ -80,7 +80,7 @@ public class EditConsultCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CONSULT);
         }
 
-        if (model.hasSameDateTime(editedConsult)) {
+        if (model.hasSameDateTimeEdit(editedConsult)) {
             throw new CommandException(MESSAGE_CONSULT_TIMING_CLASH);
         }
 
