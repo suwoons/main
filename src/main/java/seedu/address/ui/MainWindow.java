@@ -289,6 +289,21 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Loads AttendanceListPanel in the GUI with the default label.
+     * Updates Student panel with new tutorial tags.
+     */
+    @FXML
+    private void handleRefreshTutorial() {
+        attendanceListPanel = new AttendanceListPanel();
+        attendanceListPanelPlaceholder.getChildren().clear();
+        attendanceListPanelPlaceholder.getChildren().add(attendanceListPanel.getRoot());
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), logic.getFilteredTutorialList());
+        studentListPanelPlaceholder.getChildren().clear();
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+    }
+
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -332,6 +347,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowAttendance()) {
                 handleAttendance(commandResult.getTutorialToShow(), commandResult.getWeekZeroBased());
+            }
+
+            if (commandResult.isRefreshTutorial()) {
+                handleRefreshTutorial();
             }
 
             if (commandResult.isExit()) {
