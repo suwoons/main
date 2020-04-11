@@ -155,6 +155,12 @@ public interface Model {
      */
     boolean hasSameDateTime(Consult consult);
 
+    /**
+     * Returns true if the list contains another consult which timing clashes with the argument. Used by the editConsult command.
+     */
+    boolean hasSameDateTimeEdit(Consult editedConsult);
+
+
     /** Returns the Consult TAble */
     ReadOnlyConsult getConsultTAble();
 
@@ -345,4 +351,5 @@ public interface Model {
 
 
     void setConsultTAble(ReadOnlyConsult consultTAble);
+
 }

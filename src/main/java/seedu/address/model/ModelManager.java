@@ -260,6 +260,13 @@ public class ModelManager implements Model {
         return consultTAble.hasSameDateTime(consult);
     }
 
+
+    @Override
+    public boolean hasSameDateTimeEdit(Consult consult) {
+        requireAllNonNull(consult, consultTAble);
+        return consultTAble.hasSameDateTimeEdit(consult);
+    }
+
     @Override
     public ReadOnlyConsult getConsultTAble() {
         return consultTAble;

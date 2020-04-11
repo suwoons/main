@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULT_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -62,6 +63,10 @@ public class AddConsultCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
+
+        if (toAdd.getEndDateTime().isBefore(LocalDateTime.now())) {
+            throw new CommandException(Messages.MESSAGE_CONSULT_PAST_CONSULT);
+        }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);

@@ -19,6 +19,8 @@ public class Messages {
             + " consult.";
     public static final String MESSAGE_CONSULT_DIFFERENT_DATE = "The start and end date of the consult is different."
             + "\nThe consult must be held within the same day.";
+    public static final String MESSAGE_CONSULT_PAST_CONSULT = "The consult added must be in the future.";
+
 
     public static final String MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX = "The tutorial index provided is invalid.";
     public static final String MESSAGE_INVALID_TUTORIAL_STUDENT_INDEX = "The student index provided is invalid.";

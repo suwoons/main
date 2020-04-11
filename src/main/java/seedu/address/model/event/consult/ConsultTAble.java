@@ -153,4 +153,8 @@ public class ConsultTAble implements ReadOnlyConsult {
     public boolean hasSameDateTime(Consult consult) {
         return consults.hasSameDateTime(consult);
     }
+
+    public boolean hasSameDateTimeEdit(Consult consult) {
+        return consults.hasSameDateTimeEdit(consult);
+    }
 }
