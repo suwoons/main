@@ -68,10 +68,16 @@ public class ModelManager implements Model {
         filteredConsults = new FilteredList<>(this.consultTAble.getAllConsults());
         this.tutorialTAble = new TutorialTAble(tutorialTAble);
         filteredTutorials = new FilteredList<>(this.tutorialTAble.getAllTutorials());
-        this.modTAble = new ModTAble(modTAble);
-        filteredMods = new FilteredList<>(this.modTAble.getAllMods());
         this.reminderTAble = new ReminderTAble(reminderTAble);
         filteredReminders = new FilteredList<>(this.reminderTAble.getAllReminders());
+
+        this.modTAble = new ModTAble(modTAble);
+        tutorialTAble.getAllTutorials().stream()
+            .map(Tutorial::getModCode)
+            .filter(mc -> !this.modTAble.hasMod(new Mod(mc, "blank")))
+            .forEach(mc -> this.modTAble
+                .addMod(new Mod(mc, "Blank mod\n(present in tutorial.json but not mod.json)")));
+        filteredMods = new FilteredList<>(this.modTAble.getAllMods());
     }
 
     public ModelManager() {
