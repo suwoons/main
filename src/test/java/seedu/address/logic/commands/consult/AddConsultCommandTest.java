@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalConsults.getTypicalConsultTAble;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -16,10 +15,10 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import org.junit.jupiter.api.Test;
-
 import javafx.collections.ObservableList;
+import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.consults.AddConsultCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -56,17 +55,16 @@ public class AddConsultCommandTest {
     }
 
     @Test
-    public void execute_consultAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_consultRejectedByModel_addFail() throws Exception {
         Consult validConsult = new ConsultBuilder().build();
         Index index = Index.fromOneBased(1);
 
         AddConsultCommand addConsultCommand = new AddConsultCommand(index, validConsult);
-        String expectedMessage = String.format(AddConsultCommand.MESSAGE_SUCCESS, validConsult);
         Model expectedModel = new ModelManager(new StudentTAble(model.getStudentTAble()),
             new UserPrefs(), new ConsultTAble(), new TutorialTAble(), new ModTAble(), new ReminderTAble());
         expectedModel.addConsult(validConsult);
 
-        assertCommandSuccess(addConsultCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(addConsultCommand, model, Messages.MESSAGE_CONSULT_PAST_CONSULT);
     }
 
     @Test

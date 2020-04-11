@@ -64,9 +64,6 @@ public class AddConsultCommand extends Command {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
 
-        if (toAdd.getEndDateTime().isBefore(LocalDateTime.now())) {
-            throw new CommandException(Messages.MESSAGE_CONSULT_PAST_CONSULT);
-        }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -78,6 +75,10 @@ public class AddConsultCommand extends Command {
 
         if (model.hasSameDateTime(toAdd)) {
             throw new CommandException(MESSAGE_CONSULT_TIMING_CLASH);
+        }
+
+        if (toAdd.getEndDateTime().isBefore(LocalDateTime.now())) {
+            throw new CommandException(Messages.MESSAGE_CONSULT_PAST_CONSULT);
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
