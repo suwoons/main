@@ -19,7 +19,7 @@
         <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
       </padding>
       <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="modCodeLabel" styleClass="cell_big_label" text="\$modCode">
+        <Label fx:id="modCodeLabel" styleClass="cell_big_label" text="\$modCode" wrapText="true">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></Label>

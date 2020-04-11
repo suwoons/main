@@ -20,3 +20,8 @@ src/test/data/sandbox/
 
 # MacOS custom attributes files created by Finder
 .DS_Store
+
+# PDF generated files
+/docs/team/nigelnnk.pdf
+/docs/Nigel_UML.adoc
+/docs/Nigel_UML.pdf

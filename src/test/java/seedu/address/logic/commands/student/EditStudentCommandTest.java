@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.student;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,7 +37,7 @@ import seedu.address.testutil.StudentBuilder;
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
  * EditStudentCommand.
  */
-public class EditCommandTest {
+public class EditStudentCommandTest {
 
     private Model model = new ModelManager(getTypicalStudentTAble(), new UserPrefs(), new ConsultTAble(),
         new TutorialTAble(), new ModTAble(), new ReminderTAble());
@@ -123,7 +123,7 @@ public class EditCommandTest {
     public void execute_duplicateStudentFilteredList_failure() {
         showStudentAtIndex(model, INDEX_FIRST);
 
-        // edit student in filtered list into a duplicate in address book
+        // edit student in filtered list into a duplicate in TAble
         Student studentInList = model.getStudentTAble().getStudentList().get(INDEX_SECOND.getZeroBased());
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST,
                 new EditStudentDescriptorBuilder(studentInList).build());
@@ -142,13 +142,13 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of TAble
      */
     @Test
     public void execute_invalidStudentIndexFilteredList_failure() {
         showStudentAtIndex(model, INDEX_FIRST);
         Index outOfBoundIndex = INDEX_SECOND;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of TAble list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getStudentTAble().getStudentList().size());
 
         EditStudentCommand editStudentCommand = new EditStudentCommand(outOfBoundIndex,

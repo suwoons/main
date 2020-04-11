@@ -18,7 +18,7 @@
         <Image url="@/images/calendar.png" />
     </icons>
     <scene>
-        <Scene>
+        <Scene fx:id="calendarScene">
             <VBox spacing="15" style="-fx-background-color: #383838;">
                 <HBox alignment="BASELINE_CENTER" spacing="10">
                     <Button id="btn-prev" onAction="#prevMonthFx" style="-fx-background-color: transparent;">

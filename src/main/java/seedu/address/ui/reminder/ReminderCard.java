@@ -3,6 +3,7 @@ package seedu.address.ui.reminder;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.logging.Logger;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -11,13 +12,16 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.storage.StorageManager;
 import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Reminder}.
  */
 public class ReminderCard extends UiPart<Region> {
+    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
 
     private static final String FXML = "ReminderListCard.fxml";
     private static final String ONGOING_REMINDER_BACKGROUND = "#FFED87";
@@ -51,6 +55,7 @@ public class ReminderCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         description.setText(reminder.getDescription().toString());
         setStyle(reminder);
+        logger.fine(reminder.getDescription().toString());
     }
 
     @FXML

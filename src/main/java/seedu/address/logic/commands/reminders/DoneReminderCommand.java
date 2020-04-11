@@ -25,7 +25,7 @@ public class DoneReminderCommand extends Command {
             + "Parameters: " + PREFIX_INDEX + "\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DONE_REMINDER_SUCCESS = "Reminder Done: %1$s";
+    public static final String MESSAGE_DONE_REMINDER_SUCCESS = "Reminder done: %1$s";
 
     private final Index targetIndex;
 

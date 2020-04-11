@@ -58,7 +58,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(studentTAble, userPrefs, consultTAble, tutorialTAble, modTAble, reminderTAble);
 
-        logger.fine("Initializing with address book: " + studentTAble + " , user prefs " + userPrefs
+        logger.fine("Initializing with TAble: " + studentTAble + " , user prefs " + userPrefs
             + ", with consults " + consultTAble + " and modules in " + modTAble);
 
         this.studentTAble = new StudentTAble(studentTAble);
@@ -68,10 +68,16 @@ public class ModelManager implements Model {
         filteredConsults = new FilteredList<>(this.consultTAble.getAllConsults());
         this.tutorialTAble = new TutorialTAble(tutorialTAble);
         filteredTutorials = new FilteredList<>(this.tutorialTAble.getAllTutorials());
-        this.modTAble = new ModTAble(modTAble);
-        filteredMods = new FilteredList<>(this.modTAble.getAllMods());
         this.reminderTAble = new ReminderTAble(reminderTAble);
         filteredReminders = new FilteredList<>(this.reminderTAble.getAllReminders());
+
+        this.modTAble = new ModTAble(modTAble);
+        tutorialTAble.getAllTutorials().stream()
+            .map(Tutorial::getModCode)
+            .filter(mc -> !this.modTAble.hasMod(new Mod(mc, "blank")))
+            .forEach(mc -> this.modTAble
+                .addMod(new Mod(mc, "Blank mod\n(present in tutorial.json but not mod.json)")));
+        filteredMods = new FilteredList<>(this.modTAble.getAllMods());
     }
 
     public ModelManager() {
@@ -136,6 +142,12 @@ public class ModelManager implements Model {
     public boolean hasSameMatricNumber(Student student) {
         requireNonNull(student);
         return studentTAble.hasSameMatricNumber(student);
+    }
+
+    @Override
+    public boolean hasSameEmail(Student student) {
+        requireNonNull(student);
+        return studentTAble.hasSameEmail(student);
     }
 
     @Override

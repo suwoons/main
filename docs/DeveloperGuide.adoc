@@ -390,8 +390,7 @@ Reason for choosing Alternative 1:  We believe that automatically sorting the li
 
 Reason for choosing Alternative 1: Pop-up notifications can be intrusive and potentially cause lag to the program which negatively impacts user's experience.
 Furthermore, they are hard to test due to their volatile nature and including them might decrease the stability of the application.
-
-// end:reminder[]
+// end::reminder[]
 
 // tag::calendar[]
 === Calendar feature
@@ -707,7 +706,7 @@ Use case ends.
 +
 Use case ends.
 
-
+// tag::sarah[]
 [discrete]
 === Use case: Add tutorial (U06)
 
@@ -875,8 +874,9 @@ Use case ends.
 2. System brings up the attendance panel, and shows all students in a tutorial and their attendance from the database.
 +
 Use case ends.
+// end::sarah[]
 
-
+// tag::cranston[]
 [discrete]
 === Use case: Add reminder (U13)
 
@@ -1045,6 +1045,7 @@ Use case ends.
 ** 1c1. System shows an error message that the reminder is already done.
 +
 Use case ends.
+// end::cranston[]
 
 [discrete]
 === Use case: Create Module (U20)
@@ -1077,7 +1078,7 @@ Use case ends.
 *MSS*
 
 1.  User requests to view an existing module
-2.  System updates the tab to show the existing module according to the the User's request
+2.  System updates the module information tab to show the existing module according to the the User's request
 +
 Use case ends.
 
@@ -1096,7 +1097,7 @@ Use case ends.
 
 *MSS*
 
-1.  User requests to update description of an existing module
+1.  User requests to update the notes of an existing module
 2.  System updates the existing module according to the the User's request
 +
 Use case ends.
@@ -1112,11 +1113,11 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Include Module links (U23)
+=== Use case: Add Module links (U23)
 
 *MSS*
 
-1.  User requests to include links to module
+1.  User requests to add links to module
 2.  System updates the existing module links according to the the User's request by appending the link to the module links section.
 +
 Use case ends.
@@ -1128,6 +1129,14 @@ Use case ends.
 +
 [none]
 ** 1a1. System shows an error message that the module does not exist.
++
+Use case ends.
+
+[none]
+* 2a. Link provided by user does not match the URL format as specified in Java 11.
++
+[none]
+** 2a1. System shows an error message that the URL provided is not valid.
 +
 Use case ends.
 
@@ -1219,11 +1228,9 @@ These instructions only provide a starting point for testers to work on; testers
 
 . Shutting down
 
-.. Add, edit or delete some data in TAble. Close the window.
+.. Add, edit or delete some data in TAble. Close the window or type `exit`.
 .. Re-launch the app by double-clicking the jar file +
    Expected: Modifications to the data in TAble are retained.
-
-_{ more test cases ... }_
 
 === Deleting a student
 
@@ -1238,7 +1245,51 @@ _{ more test cases ... }_
    Expected: Similar to previous.
 
 
-=======
+=== Copying module links from module
+
+After storing a module link using the `AddModLink` command on a target module, the user can easily copy it to their clipboard with the `copyModLink` command.
+
+[NOTE]
+It is recommended that the module information panel is currently showing the target module (via the `viewModInfo` command), as the prefix for the module link is needed in this function. However, viewing the module information is not necessary; the user can simply enter the prefix if they remember it.
+
+. Prerequisities: Target module must exist in TAble and have at least one module link associated with it.
+. Test case: `copyModLink 1 modCode/CS2103` +
+Expected: The first module link of the module is copied to the user's clipboard.
+. Test case: `copyModLink -1 modCode/CS2103` +
+Expected: No module link is copied to the clipboard, and an error message is shown to the user.
+. Test case: `copyModLink 1 modCode/ZZ9999` +
+Expected: No module link is copied to the clipboard (unless there is a module with a module code of ZZ9999), and an error message is shown to the user.
+
+=== Marking attendance of a tutorial student
+
+. Marking a student as present or absent (by default absent) for a particular week in the semester (3-13 inclusive).
+
+.. Prerequisities: Target tutorial must exist in TAble and have at least one student enrolled in it.
+.. Test case: `markPresent tutorialIndex/2 week/3 student/1` +
+Expected: Using `listAttendance tutorialIndex/2 week/3` will display an attendance list with the 1st student highlighted green.
+.. Test case: `markPresent tutorialIndex/2 week/3 student/all` +
+Expected: Using `listAttendance tutorialIndex/2 week/3` will display an attendance list with all the students highlighted green.
+.. Test case: `markAbsent tutorialIndex/2 week/3 student/1` +
+Expected: Using `listAttendance tutorialIndex/2 week/3` will display an attendance list with the 1st student highlighted red.
+.. Test case: `markAbsent tutorialIndex/2 week/3 student/all` +
+Expected: Using `listAttendance tutorialIndex/2 week/3` will display an attendance list with all the students highlighted red.
+.. Test case: `markPresent tutorialIndex/-1 week/3 student/1` +
+Expected: Error message displayed, with no change to attendance list. Error details shown in the status message.
+.. Test case: `markPresent tutorialIndex/1 week/0 student/1` +
+Expected: Error message displayed, with no change to attendance list. Error details shown in the status message.
+.. Test case: `markPresent tutorialIndex/-1 week/3 student/-2` +
+Expected: Error message displayed, with no change to attendance list. Error details shown in the status message.
+
+=== Copying tutorial students' emails
+
+. Copying all tutorial students' emails at once onto user's clipboard with the `copyTutorialEmails` command.
+
+.. Prerequisities: Target tutorial must exist in TAble and have at least one student enrolled in it, otherwise the copied information would be blank.
+.. Test case: `copyTutorialEmails tutorialIndex/2` +
+Expected: All the emails of the students in the specified tutorial is copied to the user's clipboard, separated with "; "
+.. Test case: `copyTutorialEmails tutorialIndex/-1` +
+Expected: No student emails are copied to the clipboard, and an error message is shown to the user.
+
 === Snoozing a reminder
 
 . Snoozing a reminder while some reminders are listed
@@ -1262,7 +1313,7 @@ _{ more test cases ... }_
    Expected: A new `Calendar` window is brought up at the current year and month. A success message "Opened Calendar window." will appear.
 .. Test case: `VIEWCALENDAR` +
    Expected: No new `Calendar` window appears. Error details shown in the status message.
-.. Test case: Click on the left/right arrow in the `Calendar` window. +
+.. Test case: Press or click the left/right arrow in the `Calendar` window or the keyboard. +
    Expected: The new month before/after the current displayed month is displayed in the new `Calendar` window.
 .. Test case: `closeCalendar` +
     Expected: The `Calendar` window will be closed. Alternatively, the user may choose to click the cross on the top right corner of the `Calendar` window to close it.

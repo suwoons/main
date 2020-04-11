@@ -60,7 +60,7 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code studentTAble}.
+     * Replaces TAble data with the data in {@code studentTAble}.
      */
     void setStudentTAble(ReadOnlyStudent studentTAble);
 
@@ -68,30 +68,35 @@ public interface Model {
     ReadOnlyStudent getStudentTAble();
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in the list of students.
      */
     boolean hasStudent(Student student);
 
     /**
-     * Returns true if a student with the same matric number as {@code student} exists in the address book.
+     * Returns true if a student with the same matric number as {@code student} exists in the list of students.
      */
     boolean hasSameMatricNumber(Student student);
 
     /**
+     * Returns true if a student with the same email as {@code student} exists in the list of students.
+     */
+    boolean hasSameEmail(Student student);
+
+    /**
      * Deletes the given student.
-     * The student must exist in the address book.
+     * The student must exist in TAble
      */
     void deleteStudent(Student target);
 
     /**
      * Adds the given student.
-     * {@code student} must not already exist in the address book.
+     * {@code student} must not already exist in the list of students.
      */
     void addStudent(Student student);
 
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the list of students.
      * The student identity of {@code editedStudent} must not be the same as another existing student in Table.
      */
     void setStudent(Student target, Student editedStudent);
@@ -258,7 +263,7 @@ public interface Model {
 
     /**
      * Replaces the given module {@code target} with {@code editedMod}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the TAble.
      * The module identity of {@code editedMod} must not be the same as another existing Mod in Table.
      */
     void setMod(Mod target, Mod editedMod);

@@ -12,6 +12,7 @@ if () then ([all prefixes present])
         :Find corresponding
         module in Model;
         if () then ([module is found])
+            :Create ModLinkPair from\nmodule link and name\ngiven in command;
             :Add ModLinkPair to module;
             :Replace module in Model
             with edited module;

@@ -204,7 +204,7 @@ Examples:
 
 * `listStudent` +
 `deleteStudent 2` +
-Deletes the 2nd student in the address book.
+Deletes the 2nd student in TAble.
 * `findStudent Betsy` +
 `deleteStudent 1` +
 Deletes the 1st student in the results of the `find` command.
@@ -752,7 +752,7 @@ Format: `viewCalendar`
 ****
 * The calendar will be brought up, displaying the current month and year.
 * For each month, the number of tutorials, consults and reminders for each day will be displayed in the calendar.
-* Click on the left and right arrows to change the month displayed.
+* Click on the left and right arrows or press them on your keyboard to change the month displayed.
 ****
 
 ==== Close the calendar window: `closeCalendar`

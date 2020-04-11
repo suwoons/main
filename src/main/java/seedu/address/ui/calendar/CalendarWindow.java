@@ -10,7 +10,10 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -33,6 +36,9 @@ public class CalendarWindow extends UiPart<Stage> {
     private static final int MAX_WEEK_OF_MONTH = 5;
     private static final int WEEKDAYS = 7;
     private final Logger logger = LogsCenter.getLogger(getClass());
+
+    @FXML
+    private Scene calendarScene;
 
     @FXML
     private GridPane dateDisplayGrid;
@@ -82,6 +88,13 @@ public class CalendarWindow extends UiPart<Stage> {
                 dateDisplayGrid.add(calendarDayStackPane, j, i);
             }
         }
+        calendarScene.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+            if (e.getCode() == KeyCode.LEFT) {
+                prevMonth();
+            } else if (e.getCode() == KeyCode.RIGHT) {
+                nextMonth();
+            }
+        });
     }
 
     /**

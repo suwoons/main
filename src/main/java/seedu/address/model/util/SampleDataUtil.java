@@ -129,8 +129,6 @@ public class SampleDataUtil {
         Reminder[] sampleReminderList = new Reminder[] {
             new Reminder(new Description("Review project progress of group 3"),
                     LocalDate.now().minusDays(1), LocalTime.now(), false),
-            new Reminder(new Description("Mark T03 midterms papers"), LocalDate.now(),
-                    LocalTime.now().plusHours(2), false),
             new Reminder(new Description("Submit students' attendance for week 7"),
                     LocalDate.now().plusDays(2), LocalTime.now(), false),
             new Reminder(new Description("Email T03 tutorial 6 solutions"),
