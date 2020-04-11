@@ -7,6 +7,7 @@
 :imagesDir: images
 :stylesDir: stylesheets
 :xrefstyle: full
+:experimental:
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -122,7 +123,7 @@ image::ModelClassDiagram.png[]
 The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
-* stores the AddressBook data of Students, and other data sources named as `{component}TAble` e.g. `ModTAble`.
+* stores the data of Students, and other data sources named as `{component}TAble` e.g. `ModTAble`.
 * exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -336,7 +337,7 @@ Reason for choosing Alternative 1:  We believe that automatically sorting the co
 *TAble* allows NUS SoC teaching assistants to create reminders to help them in keeping track of their ongoing or upcoming tasks.
 
 ==== Implementation
-A reminder is make up of a description, date and time which uniquely identify each reminder. Each reminder has a boolean attribute to indicate if the task is done.
+A reminder is made up of a description, date and time which uniquely identify each reminder. Each reminder has a boolean attribute to indicate if the task is done.
 
 To find a reminder in the reminder list, user must key in at least one of the optional predicates, `DescriptionContainsKeywordsPredicate` or `DatePredicate`. `DescriptionContainsKeywordsPredicate` contains a list of strings entered by the user while `DatePredicate` contains the input `LocalDate`.
 
@@ -412,7 +413,7 @@ The above sequence diagram illustrates how the Calendar is initialised when the 
 this calendar window is brought up, similar to how the Help window is brought up as well. The calendar window brought up will show the calendar view of the current month and year.
 
 The calendar window also stores the `UniqueConsultList`, `UniqueTutorialList` and the `UniqueReminderList`. As seen in the sequence diagram above, the calendar window checks for the consults, tutorials and reminders in the 3 lists, to see if they are on a particular date.
-If they occur on that date, the `StackPane` in `CalendarDay` will be updated to reflect the corresponding number of consult, tutorial and reminders.
+If they occur on that date, the `StackPane` in `CalendarDay` will be updated to reflect the corresponding number of consults, tutorials and reminders.
 As seen in the screenshot below, the number of reminders, tutorials and consults will not clash, as they take up the top, middle and bottom rows respectively.
 
 .Screenshot of how the number of reminders, tutorials and consults are displayed on the same day
@@ -572,7 +573,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |teaching assistant |easily input my last entered command |be more productive by entering repetitive commands quickly
 
-|`* * *` |teaching assistant |get suggestions and autocomplete my input |easily enter commands without having to type each prefix
+|`* *` |teaching assistant |get suggestions and autocomplete my input |easily enter commands without having to type out each prefix
 
 |`* *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
@@ -640,7 +641,7 @@ Use case ends.
 *MSS*
 
 1.  User requests to update either the time, date or place of an existing consult
-2.  System updates the existing consult according to the the User's request
+2.  System updates the existing consult according to the User's request
 +
 Use case ends.
 
@@ -903,7 +904,7 @@ Use case ends.
 *MSS*
 
 1.  User requests to mark an existing reminder as done
-2.  System updates the existing reminder according to the the User's request
+2.  System updates the existing reminder according to the User's request
 +
 Use case ends.
 
@@ -930,7 +931,7 @@ Use case ends.
 *MSS*
 
 1.  User requests to update either the description, date or time of an existing reminder
-2.  System updates the existing reminder according to the the User's request
+2.  System updates the existing reminder according to the User's request
 +
 Use case ends.
 
@@ -993,7 +994,7 @@ Use case ends.
 
 *MSS*
 
-1.  User requests to find all reminders matching with some particular keywords and/or date.
+1.  User requests to find all reminders matching with some keywords and/or date.
 2.  System returns a list with all the matching reminders from the database
 +
 Use case ends.
@@ -1018,7 +1019,7 @@ Use case ends.
 *MSS*
 
 1.  User requests to snooze an existing reminder by a certain number of day, hour or minute
-2.  System updates the existing reminder according to the the user's request
+2.  System updates the existing reminder according to the user's request
 +
 Use case ends.
 
@@ -1078,7 +1079,7 @@ Use case ends.
 *MSS*
 
 1.  User requests to view an existing module
-2.  System updates the module information tab to show the existing module according to the the User's request
+2.  System updates the module information tab to show the existing module according to the User's request
 +
 Use case ends.
 
@@ -1098,7 +1099,7 @@ Use case ends.
 *MSS*
 
 1.  User requests to update the notes of an existing module
-2.  System updates the existing module according to the the User's request
+2.  System updates the existing module according to the User's request
 +
 Use case ends.
 
@@ -1118,7 +1119,7 @@ Use case ends.
 *MSS*
 
 1.  User requests to add links to module
-2.  System updates the existing module links according to the the User's request by appending the link to the module links section.
+2.  System updates the existing module links according to the User's request by appending the link to the module links section.
 +
 Use case ends.
 
@@ -1146,7 +1147,7 @@ Use case ends.
 *MSS*
 
 1.  User requests to clear all links to module
-2.  System removes all existing module links according to the the User's request
+2.  System removes all existing module links according to the User's request
 +
 Use case ends.
 
@@ -1232,9 +1233,28 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file +
    Expected: Modifications to the data in TAble are retained.
 
+
+=== Command history and Auto suggestion
+
+. Command history
+
+.. Prerequisites: Successfully entered a command.
+.. Test case: Press kbd:[↑] +
+   Expected: Last successfully entered command shows up in the command box.
+.. Prerequisites: TAble just started up and no commands have been successfully entered.
+.. Test case: Press kbd:[↑] +
+   Expected: No changes in command box.
+
+. Auto suggestion
+
+.. Test case: Type 'add' into command box +
+   Expected: A dialog pops up below the command box and suggest a list of add commands.
+.. Test case: Type 'add' into command box and press kbd:[Tab] +
+   Expected: The first suggested add command is displayed in the command box.
+
 === Deleting a student
 
-. Deleting a student while all student are listed
+. Deleting a student while all students are listed
 
 .. Prerequisites: List all students using the `listStudent` command. Multiple students in the list.
 .. Test case: `deleteStudent 1` +
@@ -1313,7 +1333,7 @@ Expected: No student emails are copied to the clipboard, and an error message is
    Expected: A new `Calendar` window is brought up at the current year and month. A success message "Opened Calendar window." will appear.
 .. Test case: `VIEWCALENDAR` +
    Expected: No new `Calendar` window appears. Error details shown in the status message.
-.. Test case: Press or click the left/right arrow in the `Calendar` window or the keyboard. +
+.. Test case: Click the left/right arrow in the `Calendar` window or press kbd:[←] / kbd:[→] buttons. +
    Expected: The new month before/after the current displayed month is displayed in the new `Calendar` window.
 .. Test case: `closeCalendar` +
     Expected: The `Calendar` window will be closed. Alternatively, the user may choose to click the cross on the top right corner of the `Calendar` window to close it.
