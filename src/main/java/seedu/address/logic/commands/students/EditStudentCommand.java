@@ -30,7 +30,7 @@ import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing student in the address book.
+ * Edits the details of an existing student in TAble.
  */
 public class EditStudentCommand extends Command {
 
@@ -53,6 +53,8 @@ public class EditStudentCommand extends Command {
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the list of students.";
     public static final String MESSAGE_DUPLICATE_MATRIC_NUMBER =
             "This matric number already exists in the address " + "book.";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "This email address already exists in TAble.";
+
 
 
     private final Index index;
@@ -91,6 +93,10 @@ public class EditStudentCommand extends Command {
 
         if (!studentToEdit.hasSameMatricNum(editedStudent) && model.hasSameMatricNumber(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_MATRIC_NUMBER);
+        }
+
+        if (!studentToEdit.hasSameEmail(editedStudent) && model.hasSameEmail(editedStudent)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
         }
 
         for (int i = 0; i < currentTutorialList.size(); i++) {

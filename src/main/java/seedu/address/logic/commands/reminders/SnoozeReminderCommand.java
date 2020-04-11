@@ -40,7 +40,7 @@ public class SnoozeReminderCommand extends Command {
             + PREFIX_REMINDER_HOUR + "2 "
             + PREFIX_REMINDER_MINUTE + "20";
 
-    public static final String MESSAGE_SNOOZE_REMINDER_SUCCESS = "Snoozed Reminder: %1$s";
+    public static final String MESSAGE_SNOOZE_REMINDER_SUCCESS = "Snoozed reminder: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one of day, hour or minute must be provided.";
     public static final String MESSAGE_DUPLICATE_REMINDER = "Such a reminder already exists in TAble.";
     public static final String MESSAGE_MAXIMUM_DATE = "The maximum supported date is '+999999999-12-31'.";

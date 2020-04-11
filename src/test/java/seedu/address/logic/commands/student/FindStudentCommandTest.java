@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.student;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -28,7 +28,7 @@ import seedu.address.model.student.NameContainsKeywordsPredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindStudentCommand}.
  */
-public class FindCommandTest {
+public class FindStudentCommandTest {
     private Model model = new ModelManager(getTypicalStudentTAble(), new UserPrefs(), new ConsultTAble(),
         new TutorialTAble(), new ModTAble(), new ReminderTAble());
     private Model expectedModel = new ModelManager(getTypicalStudentTAble(), new UserPrefs(), new ConsultTAble(),

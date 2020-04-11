@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.student;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -27,7 +27,7 @@ import seedu.address.model.student.Student;
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
  * {@code DeleteCommand}.
  */
-public class DeleteCommandTest {
+public class DeleteStudentCommandTest {
 
     private Model model = new ModelManager(getTypicalStudentTAble(), new UserPrefs(), new ConsultTAble(),
         new TutorialTAble(), new ModTAble(), new ReminderTAble());
@@ -76,7 +76,7 @@ public class DeleteCommandTest {
         showStudentAtIndex(model, INDEX_FIRST);
 
         Index outOfBoundIndex = INDEX_SECOND;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of TAble list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getStudentTAble().getStudentList().size());
 
         DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(outOfBoundIndex);

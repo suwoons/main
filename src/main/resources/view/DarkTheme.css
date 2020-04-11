@@ -386,6 +386,8 @@
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
+    -fx-max-width: 260;
+    -fx-fit-to-width: true;
 }
 
 #tags .label {
