@@ -289,6 +289,16 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Loads AttendanceListPanel in the GUI with the appropriate data.
+     */
+    @FXML
+    private void handleAttendance() {
+        attendanceListPanel = new AttendanceListPanel();
+        attendanceListPanelPlaceholder.getChildren().clear();
+        attendanceListPanelPlaceholder.getChildren().add(attendanceListPanel.getRoot());
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -332,6 +342,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowAttendance()) {
                 handleAttendance(commandResult.getTutorialToShow(), commandResult.getWeekZeroBased());
+            }
+
+            if (commandResult.isDeleteTutorial()) {
+                handleAttendance();
             }
 
             if (commandResult.isExit()) {
