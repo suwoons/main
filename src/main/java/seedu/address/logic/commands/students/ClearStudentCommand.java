@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.student.StudentTAble;
 
 /**
- * Clears the address book.
+ * Clears the StudentTAble.
  */
 public class ClearStudentCommand extends Command {
 

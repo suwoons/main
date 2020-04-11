@@ -140,7 +140,7 @@ public class TutorialTAble implements ReadOnlyTutorial {
 
     /**
      * Returns {@code tutorial} from {@code TAble}.
-     * {@code tutorial} must exist in the address book.
+     * {@code tutorial} must exist in TAble.
      */
     public Tutorial getTutorial(int index) {
         return tutorials.getTutorial(index);

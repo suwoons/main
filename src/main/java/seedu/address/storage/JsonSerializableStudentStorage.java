@@ -41,7 +41,7 @@ class JsonSerializableStudentStorage {
     }
 
     /**
-     * Converts this address book into the model's {@code StudentTAble} object.
+     * Converts this TAble into the model's {@code StudentTAble} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
