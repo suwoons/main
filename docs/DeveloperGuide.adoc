@@ -390,8 +390,7 @@ Reason for choosing Alternative 1:  We believe that automatically sorting the li
 
 Reason for choosing Alternative 1: Pop-up notifications can be intrusive and potentially cause lag to the program which negatively impacts user's experience.
 Furthermore, they are hard to test due to their volatile nature and including them might decrease the stability of the application.
-
-// end:reminder[]
+// end::reminder[]
 
 // tag::calendar[]
 === Calendar feature
@@ -877,7 +876,7 @@ Use case ends.
 Use case ends.
 // end::sarah[]
 
-
+// tag::cranston[]
 [discrete]
 === Use case: Add reminder (U13)
 
@@ -1046,6 +1045,7 @@ Use case ends.
 ** 1c1. System shows an error message that the reminder is already done.
 +
 Use case ends.
+// end::cranston[]
 
 [discrete]
 === Use case: Create Module (U20)
@@ -1313,7 +1313,7 @@ Expected: No student emails are copied to the clipboard, and an error message is
    Expected: A new `Calendar` window is brought up at the current year and month. A success message "Opened Calendar window." will appear.
 .. Test case: `VIEWCALENDAR` +
    Expected: No new `Calendar` window appears. Error details shown in the status message.
-.. Test case: Click on the left/right arrow in the `Calendar` window. +
+.. Test case: Press or click the left/right arrow in the `Calendar` window or the keyboard. +
    Expected: The new month before/after the current displayed month is displayed in the new `Calendar` window.
 .. Test case: `closeCalendar` +
     Expected: The `Calendar` window will be closed. Alternatively, the user may choose to click the cross on the top right corner of the `Calendar` window to close it.
