@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
-
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Messages;
