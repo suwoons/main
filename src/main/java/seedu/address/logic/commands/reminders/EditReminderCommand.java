@@ -40,7 +40,7 @@ public class EditReminderCommand extends Command {
             + PREFIX_REMINDER_DATE + "2020-03-15 "
             + PREFIX_REMINDER_TIME + "15:00";
 
-    public static final String MESSAGE_EDIT_REMINDER_SUCCESS = "Edited Reminder: %1$s";
+    public static final String MESSAGE_EDIT_REMINDER_SUCCESS = "Edited reminder: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_REMINDER = "Such a reminder already exists in TAble.";
 
