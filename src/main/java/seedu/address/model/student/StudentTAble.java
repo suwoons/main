@@ -102,7 +102,7 @@ public class StudentTAble implements ReadOnlyStudent {
 
     /**
      * Removes {@code key} from this {@code StudentTAble}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in TAble.
      */
     public void removeStudent(Student key) {
         students.remove(key);
