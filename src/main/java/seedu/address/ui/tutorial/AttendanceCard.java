@@ -1,18 +1,22 @@
 package seedu.address.ui.tutorial;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
+import seedu.address.storage.StorageManager;
 import seedu.address.ui.UiPart;
 
 /**
  * A UI component that displays information of the attendance of a {@code Tutorial}.
  */
 public class AttendanceCard extends UiPart<Region> {
+    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
 
     private static final String FXML = "AttendanceListCard.fxml";
 
@@ -41,6 +45,8 @@ public class AttendanceCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         attendanceName.setText(student.getName().fullName);
+
+        logger.fine(student.getName().fullName);
     }
 
     public ArrayList<Boolean> getAttendanceList() {

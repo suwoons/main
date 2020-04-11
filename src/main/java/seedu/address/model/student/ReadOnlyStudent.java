@@ -3,7 +3,7 @@ package seedu.address.model.student;
 import javafx.collections.ObservableList;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a student list
  */
 public interface ReadOnlyStudent {
 
