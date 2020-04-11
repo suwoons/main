@@ -3,7 +3,10 @@ package seedu.address.logic.commands.consult;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_PAST_CONSULT;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_TIME_PAST;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_END_TIME_PAST;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalConsults.getTypicalConsultTAble;
@@ -20,7 +23,6 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.consults.AddConsultCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -58,7 +60,8 @@ public class AddConsultCommandTest {
 
     @Test
     public void execute_consultRejectedByModel_addFail() throws Exception {
-        Consult validConsult = new ConsultBuilder().build();
+        Consult validConsult = new ConsultBuilder().withBeginDateTime(INVALID_DATE_TIME_PAST)
+                .withEndDateTime(INVALID_END_TIME_PAST).build();
         Index index = Index.fromOneBased(1);
 
         AddConsultCommand addConsultCommand = new AddConsultCommand(index, validConsult);
@@ -66,7 +69,7 @@ public class AddConsultCommandTest {
             new UserPrefs(), new ConsultTAble(), new TutorialTAble(), new ModTAble(), new ReminderTAble());
         expectedModel.addConsult(validConsult);
 
-        assertCommandFailure(addConsultCommand, model, Messages.MESSAGE_CONSULT_PAST_CONSULT);
+        assertCommandFailure(addConsultCommand, model, MESSAGE_CONSULT_PAST_CONSULT);
     }
 
     @Test

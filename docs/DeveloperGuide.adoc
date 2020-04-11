@@ -1019,7 +1019,7 @@ Use case ends.
 *MSS*
 
 1.  User requests to snooze an existing reminder by a certain number of day, hour or minute
-2.  System updates the existing reminder according to the user's request
+2.  System updates the existing reminder according to the User's request
 +
 Use case ends.
 

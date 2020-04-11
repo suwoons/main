@@ -14,8 +14,8 @@ import seedu.address.model.student.Name;
  * A utility class to help with building Consult objects.
 */
 public class ConsultBuilder {
-    public static final String DEFAULT_BEGIN_DATE_TIME = "2020-03-03 15:00";
-    public static final String DEFAULT_END_DATE_TIME = "2020-03-03 17:00";
+    public static final String DEFAULT_BEGIN_DATE_TIME = "2020-10-03 15:00";
+    public static final String DEFAULT_END_DATE_TIME = "2020-10-03 17:00";
     public static final String DEFAULT_LOCATION = "SR1";
     public static final String DEFAULT_MATRIC_NUMBER = "A0123456Z";
     public static final String DEFAULT_STUDENT_NAME = "ALICE";

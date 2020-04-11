@@ -84,6 +84,10 @@ public class EditConsultCommand extends Command {
             throw new CommandException(MESSAGE_CONSULT_TIMING_CLASH);
         }
 
+        if (editedConsult.getEndDateTime().isBefore(LocalDateTime.now())) {
+            throw new CommandException(Messages.MESSAGE_CONSULT_PAST_CONSULT);
+        }
+
         model.setConsult(consultToEdit, editedConsult);
         model.updateFilteredConsultList(PREDICATE_SHOW_ALL_CONSULTS);
         return new CommandResult(String.format(MESSAGE_EDIT_CONSULT_SUCCESS, editedConsult));

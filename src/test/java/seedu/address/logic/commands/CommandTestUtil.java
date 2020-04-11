@@ -70,17 +70,19 @@ public class CommandTestUtil {
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     // consult valid entries
-    public static final String VALID_START_TIME = "2020-03-03 15:00";
-    public static final String VALID_END_TIME = "2020-03-03 17:00";
+    public static final String VALID_START_TIME = "2020-10-03 15:00";
+    public static final String VALID_END_TIME = "2020-10-03 17:00";
     public static final String VALID_PLACE = "SR1";
     public static final int VALID_INDEX = 1;
-    public static final String VALID_START_TIME_2 = "2020-03-03 16:00";
-    public static final String VALID_END_TIME_2 = "2020-03-03 19:00";
+    public static final String VALID_START_TIME_2 = "2020-10-03 16:00";
+    public static final String VALID_END_TIME_2 = "2020-10-03 19:00";
     public static final String VALID_PLACE_2 = "SR2";
 
     // consult invalid entries
-    public static final String INVALID_DATE_TIME = PREFIX_CONSULT_BEGIN_DATE_TIME + "2020-03-03 26:00";
-    public static final String INVALID_END_TIME_DIFFERENT_DATE = PREFIX_CONSULT_END_DATE_TIME + "2020-03-04 14:00";
+    public static final String INVALID_DATE_TIME = "2020-10-03 26:00";
+    public static final String INVALID_END_TIME_DIFFERENT_DATE = "2020-11-04 14:00";
+    public static final String INVALID_DATE_TIME_PAST = "2019-03-03 15:00";
+    public static final String INVALID_END_TIME_PAST = "2019-03-03 17:00";
     public static final String INVALID_PLACE = PREFIX_PLACE + "home!";
     public static final int INVALID_INDEX = 0;
 
