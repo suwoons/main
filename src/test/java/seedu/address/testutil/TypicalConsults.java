@@ -18,12 +18,12 @@ public class TypicalConsults {
 
     static {
         try {
-            consult1 = new ConsultBuilder().withBeginDateTime("2020-03-03 12:00")
-                    .withEndDateTime("2020-03-03 14:00")
+            consult1 = new ConsultBuilder().withBeginDateTime("2020-10-03 12:00")
+                    .withEndDateTime("2020-10-03 14:00")
                     .withMatricNumber("A0111111A")
                     .withLocation("Deck").build();
-            consult2 = new ConsultBuilder().withBeginDateTime("2020-03-04 12:00")
-                    .withEndDateTime("2020-03-04 14:00")
+            consult2 = new ConsultBuilder().withBeginDateTime("2020-10-04 12:00")
+                    .withEndDateTime("2020-10-04 14:00")
                     .withMatricNumber("A0123456Z")
                     .withLocation("SR1").build();
         } catch (ParseException e) {

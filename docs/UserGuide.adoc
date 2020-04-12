@@ -72,13 +72,15 @@ image::CalendarWindow.png[width="750"]
 
 *Command History*
 
-* Navigate through the past command history by pressing the up and down arrow button.
+* Navigate through the past command history by pressing kbd:[↑] / kbd:[↓] buttons.
+[NOTE]
+Only successfully executed commands will be added to list of command history.
 
 *Autocompletion*
 
 * TAble will suggest the available commands and prefixes based on your current input.
 * Press kbd:[Tab] or kbd:[Enter] to accept the suggestion.
-* Press kbd:[Esc] to cancel and close the suggestion window.
+* Press kbd:[Esc] to cancel and close the suggestion pop-up.
 
 ====
 
@@ -545,11 +547,16 @@ The consults that are overdue will appear in red to highlight that these consult
 Add a consultation slot at the given time, date and place. +
 Format: `addConsult student/STUDENT_INDEX beginDateTime/BEGIN_DATE_TIME endDateTime/END_DATE_TIME place/PLACE`
 
+
+[TIP]
+Consults will be automatically sorted according to their date and time, with the earliest at the top of the list.
+
 ****
 * The 'STUDENT_INDEX' should be referred to by the index as referred to in the student list
 * The begin and end date time provided must be in the yyyy-MM-dd HH:mm format
 * The location provided should be any valid string i.e, must be alphanumeric
 * The consult must be held within the same day, thus the begin and end DateTime objects should have the same date.
+* Consults also cannot be added in the past, and must be a consult that will occur in the future.
 ****
 
 Example:
@@ -752,7 +759,7 @@ Format: `viewCalendar`
 ****
 * The calendar will be brought up, displaying the current month and year.
 * For each month, the number of tutorials, consults and reminders for each day will be displayed in the calendar.
-* Click on the left and right arrows or press them on your keyboard to change the month displayed.
+* Click on the left/right arrows in the calendar window or press kbd:[←] / kbd:[→] buttons to change the month displayed.
 ****
 
 ==== Close the calendar window: `closeCalendar`
