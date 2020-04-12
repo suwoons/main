@@ -150,7 +150,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 // tag::module[]
-=== Module feature
+=== Module feature (Written by Nigel Neo)
 *TAble* allows NUS SoC teaching assistants to track and record all modules that they are teaching. Users can leave notes on the modules that they are teaching and store a list of links for the module that are useful for reference.
 
 ==== Implementation
@@ -213,7 +213,7 @@ Reason for choosing Alternative 1: On a user design perspective, it is less jarr
 
 // tag::tutorial[]
 
-=== Tutorial feature
+=== Tutorial feature (Written by Sarah Lim)
 *TAble* allows NUS teaching assistants to track and record all the tutorials they are teaching, and maintain details of the tutorial, such as the module it is under, start and end time of the tutorial, and the location it is held.
 Tutorials in *TAble* also allow teaching assistants to enroll students in a tutorial and mark their attendance for every week of the semester, and allows for convenient referencing (particularly when there's a pandemic and contact tracing is critical).
 
@@ -265,7 +265,7 @@ If successful, the updated information is then saved.
 // end::tutorial[]
 
 // tag::consult[]
-=== Consult feature
+=== Consult feature (Written by Han Ching)
 *TAble* allows NUS SoC teaching assistants to track and record all their consultations scheduled with their students.
 
 ==== Implementation
@@ -333,7 +333,7 @@ Reason for choosing Alternative 1:  We believe that automatically sorting the co
 // end::consult[]
 
 // tag::reminder[]
-=== Reminder feature
+=== Reminder feature (Written by Cranston Yeo)
 *TAble* allows NUS SoC teaching assistants to create reminders to help them in keeping track of their ongoing or upcoming tasks.
 
 ==== Implementation
@@ -394,7 +394,7 @@ Furthermore, they are hard to test due to their volatile nature and including th
 // end::reminder[]
 
 // tag::calendar[]
-=== Calendar feature
+=== Calendar feature (Written by Han Ching)
 *TAble* allows NUS SoC teaching assistants to bring up a calendar view of all their upcoming consults, tutorials and reminders.
 
 ==== Implementation

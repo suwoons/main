@@ -90,7 +90,7 @@ Format: `help`
 
 * A window containing the link to our User Guide will appear. Click on the Copy Link button to copy the link to our User Guide.
 
-===  Students Feature
+===  Students Feature (Written by Shun De)
 ==== Adding a student: `addStudent`
 
 Adds a student to TAble +
@@ -214,7 +214,7 @@ Deletes the 1st student in the results of the `find` command.
 // end::delete[]
 
 //tag::Module[]
-=== Module Feature
+=== Module Feature (Written by Nigel Neo)
 ==== Add Module into database: `addMod`
 Adds a module into TAble.
 
@@ -320,7 +320,7 @@ Format: `viewModInfo modCode/MODULE_CODE`
 ****
 
 ==== Add lecture timeslot: `addModLecture` [coming in v2.0]
-Adds lecture timeslot to module. This is to be included to integrate with the consultation finding feature. +
+Adds lecture timeslot to module. This is to be integrated with the future calendar display feature. +
 Format: `addModLecture modCode/MODULE_CODE d/DAY from/TIME to/TIME p/LOCATION`
 
 Example:
@@ -338,7 +338,7 @@ Example:
 //end::Module[]
 
 // tag::Tutorial[]
-=== Tutorials Feature
+=== Tutorials Feature (Written by Sarah Lim)
 
 ==== Switch GUI Display to Tutorial List View: `listTutorial`
 
@@ -518,7 +518,7 @@ Example:
 //end::Tutorial[]
 
 //tag::ExportTutorialAttendance[]
-==== Export tutorial attendance to csv file: `exportAttendance`
+==== Export tutorial attendance to csv file: `exportAttendance` (Written by Nigel Neo)
 
 Exports the attendance data of all enrolled students in a tutorial group to a csv file, where the filepath is specified by the user.
 Format: `exportAttendance tutorialIndex/INDEX csvFilePath/FILEPATH`
@@ -538,7 +538,7 @@ Example:
 //end::ExportTutorialAttendance[]
 
 // tag::Consult[]
-=== Consults Feature
+=== Consults Feature (Written by Han Ching)
 [NOTE]
 The consults that are overdue will appear in red to highlight that these consults are ready to be deleted!
 
@@ -631,7 +631,7 @@ Returns any consults that are held at SR3
 
 
 // tag::Reminder[]
-=== Reminder Feature
+=== Reminder Feature (Written by Cranston Yeo)
 ==== Adding a reminder: `addReminder`
 
 Adds a reminder to the reminder list. +
@@ -750,7 +750,7 @@ Returns all reminders on 05 May 2020.
 //end::Reminder[]
 
 // tag::Calendar[]
-=== Calendar Feature
+=== Calendar Feature (Written by Han Ching)
 ==== Display the calendar window: `viewCalendar`
 
 Brings up the calendar window.
