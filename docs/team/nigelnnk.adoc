@@ -48,6 +48,11 @@ TAble is your handy desktop app, optimized for TAs who prefer to work with a Com
 
 include::../UserGuide.adoc[tag=Module]
 
+'''
+
+=== Tutorial Feature
+include::../UserGuide.adoc[tag=ExportTutorialAttendance]
+
 == Contributions to the Developer Guide
 
 |===
