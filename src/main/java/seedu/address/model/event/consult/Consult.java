@@ -119,22 +119,28 @@ public class Consult implements Comparable<Consult> {
         }
 
         Consult otherEvent = (Consult) other;
+
         if (getBeginDateTime().isEqual(otherEvent.getBeginDateTime())
             && !getEndDateTime().isEqual(otherEvent.getEndDateTime())) {
-            logger.info("Same start time, different end time.");
+            logger.info("Same start time, different end time." + !checkStartEndDateTime(getEndDateTime(),
+                otherEvent.getBeginDateTime()));
             return true;
         } else if (getEndDateTime().isEqual(otherEvent.getEndDateTime())
             && !getBeginDateTime().isEqual(otherEvent.getBeginDateTime())) {
-            logger.info("Same end time, different start time.");
+            logger.info("Same end time, different start time." + !checkStartEndDateTime(getEndDateTime(),
+                otherEvent.getBeginDateTime()));
             return true;
         } else if (checkStartEndDateTime(getBeginDateTime(), otherEvent.getBeginDateTime())) {
-            logger.info("End time before another consult start time.");
+            logger.info("End time before another consult start time." + !checkStartEndDateTime(getEndDateTime(),
+                otherEvent.getBeginDateTime()));
             return !checkStartEndDateTime(getEndDateTime(), otherEvent.getBeginDateTime());
         } else if (checkStartEndDateTime(getEndDateTime(), otherEvent.getEndDateTime())) {
-            logger.info("Another consult start time before end time.");
+            logger.info("Another consult start time before end time." + !checkStartEndDateTime(getEndDateTime(),
+                otherEvent.getBeginDateTime()));
             return checkStartEndDateTime(otherEvent.getBeginDateTime(), getEndDateTime());
         } else if (checkStartEndDateTime(getBeginDateTime(), otherEvent.getEndDateTime())) {
-            logger.info("Start time before another consult end time.");
+            logger.info("Start time before another consult end time." + !checkStartEndDateTime(getEndDateTime(),
+                otherEvent.getBeginDateTime()));
             return checkStartEndDateTime(otherEvent.getBeginDateTime(), getBeginDateTime());
         }
 
@@ -148,7 +154,7 @@ public class Consult implements Comparable<Consult> {
         builder.append(" Start Time: ")
                 .append((DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(getBeginDateTime())))
                 .append(" End Time: ")
-                .append(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(getBeginDateTime()))
+                .append(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(getEndDateTime()))
                 .append(" Place: ")
                 .append(getLocation());
         return builder.toString();

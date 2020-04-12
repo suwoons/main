@@ -15,6 +15,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -34,6 +35,7 @@ import seedu.address.model.student.ReadOnlyStudent;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentTAble;
 import seedu.address.testutil.StudentBuilder;
+
 
 public class AddStudentCommandTest {
 
@@ -211,6 +213,11 @@ public class AddStudentCommandTest {
         @Override
         public boolean hasSameDateTime(Consult consult) {
             throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public boolean hasSameDateTimeEdit(Consult editedConsult) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

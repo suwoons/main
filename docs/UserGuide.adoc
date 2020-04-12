@@ -72,13 +72,15 @@ image::CalendarWindow.png[width="750"]
 
 *Command History*
 
-* Navigate through the past command history by pressing the up and down arrow button.
+* Navigate through the past command history by pressing kbd:[↑] / kbd:[↓] buttons.
+[NOTE]
+Only successfully executed commands will be added to list of command history.
 
 *Autocompletion*
 
 * TAble will suggest the available commands and prefixes based on your current input.
 * Press kbd:[Tab] or kbd:[Enter] to accept the suggestion.
-* Press kbd:[Esc] to cancel and close the suggestion window.
+* Press kbd:[Esc] to cancel and close the suggestion pop-up.
 
 ====
 
@@ -88,7 +90,7 @@ Format: `help`
 
 * A window containing the link to our User Guide will appear. Click on the Copy Link button to copy the link to our User Guide.
 
-===  Students Feature
+===  Students Feature (Written by Shun De)
 ==== Adding a student: `addStudent`
 
 Adds a student to TAble +
@@ -212,7 +214,7 @@ Deletes the 1st student in the results of the `find` command.
 // end::delete[]
 
 //tag::Module[]
-=== Module Feature
+=== Module Feature (Written by Nigel Neo)
 ==== Add Module into database: `addMod`
 Adds a module into TAble.
 
@@ -318,7 +320,7 @@ Format: `viewModInfo modCode/MODULE_CODE`
 ****
 
 ==== Add lecture timeslot: `addModLecture` [coming in v2.0]
-Adds lecture timeslot to module. This is to be included to integrate with the consultation finding feature. +
+Adds lecture timeslot to module. This is to be integrated with the future calendar display feature. +
 Format: `addModLecture modCode/MODULE_CODE d/DAY from/TIME to/TIME p/LOCATION`
 
 Example:
@@ -336,7 +338,7 @@ Example:
 //end::Module[]
 
 // tag::Tutorial[]
-=== Tutorials Feature
+=== Tutorials Feature (Written by Sarah Lim)
 
 ==== Switch GUI Display to Tutorial List View: `listTutorial`
 
@@ -516,7 +518,7 @@ Example:
 //end::Tutorial[]
 
 //tag::ExportTutorialAttendance[]
-==== Export tutorial attendance to csv file: `exportAttendance`
+==== Export tutorial attendance to csv file: `exportAttendance` (Written by Nigel Neo)
 
 Exports the attendance data of all enrolled students in a tutorial group to a csv file, where the filepath is specified by the user.
 Format: `exportAttendance tutorialIndex/INDEX csvFilePath/FILEPATH`
@@ -536,7 +538,7 @@ Example:
 //end::ExportTutorialAttendance[]
 
 // tag::Consult[]
-=== Consults Feature
+=== Consults Feature (Written by Han Ching)
 [NOTE]
 The consults that are overdue will appear in red to highlight that these consults are ready to be deleted!
 
@@ -545,11 +547,16 @@ The consults that are overdue will appear in red to highlight that these consult
 Add a consultation slot at the given time, date and place. +
 Format: `addConsult student/STUDENT_INDEX beginDateTime/BEGIN_DATE_TIME endDateTime/END_DATE_TIME place/PLACE`
 
+
+[TIP]
+Consults will be automatically sorted according to their date and time, with the earliest at the top of the list.
+
 ****
 * The 'STUDENT_INDEX' should be referred to by the index as referred to in the student list
 * The begin and end date time provided must be in the yyyy-MM-dd HH:mm format
 * The location provided should be any valid string i.e, must be alphanumeric
 * The consult must be held within the same day, thus the begin and end DateTime objects should have the same date.
+* Consults also cannot be added in the past, and must be a consult that will occur in the future.
 ****
 
 Example:
@@ -624,7 +631,7 @@ Returns any consults that are held at SR3
 
 
 // tag::Reminder[]
-=== Reminder Feature
+=== Reminder Feature (Written by Cranston Yeo)
 ==== Adding a reminder: `addReminder`
 
 Adds a reminder to the reminder list. +
@@ -634,15 +641,15 @@ Format: `addReminder desc/DESCRIPTION date/DATE time/TIME`
 Reminders will be automatically sorted according to their date and time, with the earliest at the top of the list.
 
 ****
-* The description provided should be any valid string.
-* The date provided must be in YYYY-MM-DD format
-* The time provided must be in HH:MM format, i.e: 24-hour format
+* The description provided should be any valid string that is not blank or exceeds 80 characters.
+* The date provided must be in YYYY-MM-DD format.
+* The time provided must be in HH:MM format, i.e: 24-hour format.
 * The reminder must be in the future.
 ****
 
 Examples:
 
-* `addReminder desc/Mark midterms papers date/2020-03-05 time/14:00`
+* `addReminder desc/Mark midterms papers date/2020-10-05 time/14:00`
 
 ==== Editing a reminder: `editReminder`
 
@@ -662,6 +669,26 @@ Edits the description of the 1st reminder to "Return midterms paper".
 
 * `editReminder 3 date/2020-05-20 time/18:00` +
 Edits the date of the 3rd reminder to 20th May 2020 18:00 hours i.e. 6.00 p.m.
+
+==== Finding reminders by their descriptions or date: `findReminder`
+Finds reminders matching with the given descriptions or date.
+Format: `findReminder [desc/DESCRIPTION] [MORE_DESCRIPTIONS] [date/DATE]`
+
+****
+* The search is case insensitive. e.g `Mark` will match `mark`.
+* The order of the descriptions does not matter. e.g. `Mark papers` will match `Papers mark`
+* Only full words will be matched e.g. `Mar` will not match `Mark`
+* Reminders matching at least one description will be returned (i.e. `OR` search). e.g. `Mark midterms` will return `Mark papers`, `Midterms exam`
+* At least one of the optional fields must be provided.
+* If both optional fields are provided, only reminders matching both criteria will be displayed.
+****
+
+Examples:
+
+* `findReminder desc/mark` +
+Returns reminders containing the keyword 'mark'.
+* `findReminder date/2020-05-05` +
+Returns all reminders on 05 May 2020.
 
 ==== List all reminders: `listReminder`
 
@@ -723,27 +750,10 @@ Examples:
 Postpone the second reminder to 3 days and 2 hours later.
 * `snoozeReminder 4 minute/30` +
 Postpone the fourth reminder to 30 minutes later.
-
-==== Finding reminders by information or date: `findReminder`
-Finds reminders matching with the given keyword or date.
-Format: `findReminder [desc/DESCRIPTION] [date/DATE]`
-
-****
-* The search is case insensitive. e.g `Mark` will match `mark`
-* At least one of the optional fields must be provided.
-* If both optional fields are provided, only reminders matching both criteria will be displayed.
-****
-
-Examples:
-
-* `findReminder desc/mark` +
-Returns reminders containing the keyword 'mark'.
-* `findReminder date/2020-05-05` +
-Returns all reminders on 05 May 2020.
 //end::Reminder[]
 
 // tag::Calendar[]
-=== Calendar Feature
+=== Calendar Feature (Written by Han Ching)
 ==== Display the calendar window: `viewCalendar`
 
 Brings up the calendar window.
@@ -752,7 +762,7 @@ Format: `viewCalendar`
 ****
 * The calendar will be brought up, displaying the current month and year.
 * For each month, the number of tutorials, consults and reminders for each day will be displayed in the calendar.
-* Click on the left and right arrows or press them on your keyboard to change the month displayed.
+* Click on the left/right arrows in the calendar window or press kbd:[←] / kbd:[→] buttons to change the month displayed.
 ****
 
 ==== Close the calendar window: `closeCalendar`
@@ -850,18 +860,18 @@ e.g `editConsult 3 place/The Deck`
 
 === Reminder
 * *Add* : `addReminder desc/DESCRIPTION date/DATE time/TIME` +
-e.g. `addReminder desc/Upload week 11 tutorial answers date/2020-03-31 time/15:00`
+e.g. `addReminder desc/Upload week 11 tutorial answers date/2020-10-31 time/15:00`
+* *Edit* : `editReminder INDEX [desc/DESCRIPTION] [date/DATE] [time/TIME]` +
+e.g `editReminder 3 date/2020-10-05`
+* *Find* : `findReminder [desc/DESCRIPTION] [MORE_DESCRIPTIONS] [date/DATE]` +
+e.g `findReminder desc/midterms paper date/2020-10-15`
+* *List* : `listReminder`
 * *Done* : `doneReminder INDEX` +
 e.g. `doneReminder 2`
 * *Delete* : `deleteReminder INDEX` +
 e.g. `deleteReminder 2`
-* *Edit* : `editReminder INDEX [desc/DESCRIPTION] [date/DATE] [time/TIME]` +
-e.g `editReminder 3 date/2020-04-05`
 * *Snooze* : `snoozeReminder INDEX [day/DAY] [hour/HOUR] [minute/MINUTE]` +
 e.g `snoozeReminder 4 hour/2 minute/30`
-* *Find* : `findReminder [desc/DESCRIPTION] [date/DATE]` +
-e.g `findReminder desc/midterms date/2020-03-15`
-* *List* : `listReminder`
 
 === Calendar
 * *View Calendar* : `viewCalendar`
