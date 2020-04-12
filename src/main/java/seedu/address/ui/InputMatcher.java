@@ -121,7 +121,7 @@ public class InputMatcher {
         suggestionProvider = SuggestionProvider.create(defaultKeyWords);
         autoCompletionBinding =
                 TextFields.bindAutoCompletion(commandTextField, suggestionProvider);
-        autoCompletionBinding.setPrefWidth(965);
+        autoCompletionBinding.setPrefWidth(960);
         autoCompletionBinding.setDelay(0);
         autoCompletionBinding.setVisibleRowCount(4);
     }

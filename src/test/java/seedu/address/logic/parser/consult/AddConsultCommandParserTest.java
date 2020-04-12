@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.consult;
 
+import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_DIFFERENT_DATE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_END_TIME_INPUT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PLACE_INPUT;
@@ -70,7 +71,7 @@ public class AddConsultCommandParserTest {
 
         // invalid end date time, different from start date time
         assertParseFailure(parser, VALID_STUDENT_INDEX_INPUT + VALID_START_TIME_INPUT + INVALID_END_TIME_INPUT
-            + VALID_PLACE_INPUT, MESSAGE_INVALID_DATE_TIME);
+            + VALID_PLACE_INPUT, MESSAGE_CONSULT_DIFFERENT_DATE);
 
         // invalid place
         assertParseFailure(parser, VALID_STUDENT_INDEX_INPUT + VALID_START_TIME_INPUT + VALID_END_TIME_INPUT

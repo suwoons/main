@@ -72,13 +72,15 @@ image::CalendarWindow.png[width="750"]
 
 *Command History*
 
-* Navigate through the past command history by pressing the up and down arrow button.
+* Navigate through the past command history by pressing kbd:[↑] / kbd:[↓] buttons.
+[NOTE]
+Only successfully executed commands will be added to list of command history.
 
 *Autocompletion*
 
 * TAble will suggest the available commands and prefixes based on your current input.
 * Press kbd:[Tab] or kbd:[Enter] to accept the suggestion.
-* Press kbd:[Esc] to cancel and close the suggestion window.
+* Press kbd:[Esc] to cancel and close the suggestion pop-up.
 
 ====
 
@@ -752,7 +754,7 @@ Format: `viewCalendar`
 ****
 * The calendar will be brought up, displaying the current month and year.
 * For each month, the number of tutorials, consults and reminders for each day will be displayed in the calendar.
-* Click on the left and right arrows or press them on your keyboard to change the month displayed.
+* Click on the left/right arrows in the calendar window or press kbd:[←] / kbd:[→] buttons to change the month displayed.
 ****
 
 ==== Close the calendar window: `closeCalendar`

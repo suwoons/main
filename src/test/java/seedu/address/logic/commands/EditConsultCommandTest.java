@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CONSULT1;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CONSULT2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalConsults.getTypicalConsultTAble;
@@ -36,7 +38,8 @@ public class EditConsultCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws ParseException {
-        Consult editedConsult = new ConsultBuilder().build();
+        Consult editedConsult = new ConsultBuilder().withBeginDateTime(VALID_START_TIME)
+                .withEndDateTime(VALID_END_TIME).build();
         EditConsultCommand.EditConsultDescriptor descriptor = new EditConsultDescriptorBuilder(editedConsult).build();
         EditConsultCommand editConsultCommand = new EditConsultCommand(INDEX_FIRST, descriptor);
 
