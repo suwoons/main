@@ -70,7 +70,8 @@ public class DeleteStudentCommand extends Command {
         for (int i = 0; i < consultsToBeDeleted.size(); i++) {
             model.deleteConsult(consultsToBeDeleted.get(i));
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete), false,
+                false, false, true, false);
     }
 
     @Override
