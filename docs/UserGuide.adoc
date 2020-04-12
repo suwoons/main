@@ -547,11 +547,16 @@ The consults that are overdue will appear in red to highlight that these consult
 Add a consultation slot at the given time, date and place. +
 Format: `addConsult student/STUDENT_INDEX beginDateTime/BEGIN_DATE_TIME endDateTime/END_DATE_TIME place/PLACE`
 
+
+[TIP]
+Consults will be automatically sorted according to their date and time, with the earliest at the top of the list.
+
 ****
 * The 'STUDENT_INDEX' should be referred to by the index as referred to in the student list
 * The begin and end date time provided must be in the yyyy-MM-dd HH:mm format
 * The location provided should be any valid string i.e, must be alphanumeric
 * The consult must be held within the same day, thus the begin and end DateTime objects should have the same date.
+* Consults also cannot be added in the past, and must be a consult that will occur in the future.
 ****
 
 Example:
